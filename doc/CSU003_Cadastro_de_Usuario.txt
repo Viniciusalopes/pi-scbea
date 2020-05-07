@@ -15,9 +15,9 @@ Pré-Condições: O sistema foi iniciado corretamente e o bibliotecário está l
 Pós-Condições: O formulário de usuário é enviado ao banco de dados, o usuário está pronto para requisitar os serviços da biblioteca.
 
 Cenário Principal:
-1: O sistema exige a tela de formulário de usuários.
-2: O bibliotecário solicita a inclusão de um novo perfil de usuário.
-3: O bibliotecário coloca as informações necessárias para cadastrar um novo usuário.
+1: O sistema exibe a tela de formulário de usuários.
+2: O bibliotecário solicita ao sistema inclusão de um novo perfil de usuário.
+3: O bibliotecário informa os dados necessários para cadastrar um novo usuário.
 4: O formulário é registrado no banco de dados.
 
 Cenários Alternativos:
