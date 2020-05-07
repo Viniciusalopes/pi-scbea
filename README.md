@@ -5,6 +5,7 @@ Projeto Integrador - Sistema Controle de Biblioteca do Escritório de Advocacia 
 ## PROJETOS
 [TAREFAS do Projeto Principal](https://github.com/Viniciusalopes/pi-scbea/projects/1)
 
+---
 
 ### Estrutura de arquivos
 
