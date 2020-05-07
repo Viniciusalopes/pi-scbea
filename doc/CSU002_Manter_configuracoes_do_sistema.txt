@@ -7,7 +7,7 @@ Requisito: RF 002
 Responsável: Lucas Araújo
 
 Descrição/Resumo: Regras de empréstimos de livro:
-Prazo (1 semana), qtd de livros (5), qtd de renovações (indefinido desde que não
+Prazo (1 semana), quatidade de livros (5), qtd de renovações (indefinido desde que não
 tenha reserva)
 Multa por atraso (2 reais - por dia e por livro)
 
@@ -21,7 +21,7 @@ Pós-condições este cenário de configuração e acessado quando as áreas
 responsáveis precisam manter algum tipo de configuração pendente , no caso
 o financeiro
 
-Cenário Principal - (Descrição do cenário principal do caso de uso.)
+Cenário Principal - aonde o usuario faz a configuraçao do sistema 
 1. Configurações relacionadas a parte financeira do sistema e assim
 possível um acesso melhor a configurações dessa natureza
 2. Estando presente também , as configurações de quantidade de livros ,
@@ -32,8 +32,7 @@ reserva )
 5. Cadastrar a quantidade de renovações por livro;
 6. Cadastrar o valor em reais (R$) para a multa por dia de atraso.
 
-Cenários Alternativos - (Descrição dos cenários alternativos do caso de uso,
-uma por vez, cada uma referindo-se ao passo do cenário principal)
+Cenários Alternativos - formulario qu emanipula as regras de negocio referentes aconfiguraçao
 1.a. erros na quantidade de livros que foram fornecidos por empréstimo
 1.b. erros de quantidade de livros emprestados , no caso o numero
 passou tamanho definido
@@ -42,7 +41,5 @@ pode ocorrer um erro
 3.b………...
 
 Cenários de Exceção - RU 002, RQ 002
-Requisitos Relacionados: (Referências cruzadas para os requisitos de
-qualidade - identificadores.)
-
-Regras de Domínio: (regras de domínio vinculadas - identificadores)
+Requisitos Relacionados: (RF 002, DD 002)
+Regras de Domínio: RF 001 , RF 003  , RF 004
