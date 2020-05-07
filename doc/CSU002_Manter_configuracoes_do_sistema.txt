@@ -32,8 +32,7 @@ reserva )
 5. Cadastrar a quantidade de renovações por livro;
 6. Cadastrar o valor em reais (R$) para a multa por dia de atraso.
 
-Cenários Alternativos - (Descrição dos cenários alternativos do caso de uso,
-uma por vez, cada uma referindo-se ao passo do cenário principal)
+Cenários Alternativos - (Formulário para a manutenção das regras de negócio no sistema)
 1.a. erros na quantidade de livros que foram fornecidos por empréstimo
 1.b. erros de quantidade de livros emprestados , no caso o numero
 passou tamanho definido
@@ -42,7 +41,6 @@ pode ocorrer um erro
 3.b………...
 
 Cenários de Exceção - RU 002, RQ 002
-Requisitos Relacionados: (Referências cruzadas para os requisitos de
-qualidade - identificadores.)
+Requisitos Relacionados: (RF 002, DD 002)
 
 Regras de Domínio: (regras de domínio vinculadas - identificadores)
