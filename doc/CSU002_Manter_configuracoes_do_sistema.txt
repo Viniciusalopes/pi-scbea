@@ -42,5 +42,4 @@ pode ocorrer um erro
 
 Cenários de Exceção - RU 002, RQ 002
 Requisitos Relacionados: (RF 002, DD 002)
-
-Regras de Domínio: (regras de domínio vinculadas - identificadores)
+Regras de Domínio: RF 001 , RF 003  , RF 004
