@@ -56,7 +56,6 @@ Cenários de Exceção - (Descrição dos cenários de exceção do caso de uso 
 lista dos eventos desencadeadores de cenários de exceção.)
 
 Requisitos Relacionados:
-(DD 001, campo usuarioAcesso, valor 1 – Permitido)
-(DD 001, campo usuarioCargo)
+(DD 003, descrição do conjunto de dados que compõem o catálogo de livro de acordo com o padrão CDD)
 
 Regras de Domínio:
