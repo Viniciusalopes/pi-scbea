@@ -1,0 +1,43 @@
+Identificador: CSU 004
+
+Nome: Manter livros
+
+Requisito: RF 001
+
+Responsável: Marcos Job
+
+Descrição/Resumo: Este caso de uso descreve o processo para manter o cadastro
+dos livros no sistema da biblioteca
+
+Atores: Usuário do sistema
+
+Pré-condições: O usuário precisa estar cadastrado no sistema e com permissão
+de acesso ao módulo manter livros
+Pós-condições: Acessar a tela com as funções desse módulo (incluir, editar e listar)
+
+Cenário Principal:
+1. O usuário faz login;
+2. O usuário clica na opção [Cadastro de livros];
+3. O usuário tem acesso as opções [incluir], [listar] e [editar]
+4. Acessando a opção [incluir] o sistema carrega para o usuário a tela de cadastro de novos livros
+5. Acessando a opção [listar] o sistema carrega para o usuário a lista de livros cadastrados e permite que o mesmo tenha acesso
+a função de [editar] algum cadastro listado.
+
+Cenários Alternativos - (Descrição dos cenários alternativos do caso de uso,
+uma por vez, cada uma referindo-se ao passo do cenário principal)
+1.a. Caso o usuário não tenha acesso ao módulo manter livros o sistema apresentará 
+a mensagem "Usuário sem permissão, verifique com o suporte técnico"
+O usuário terá a opção de fechar a mensagem para retornar a tela inicial do sistema
+
+1.b. Caso o usuário não tenha acesso a algumas das funções do módulo manter livros [incluir], [listar] ou [editar] 
+o sistema apresentará a mensagem "Usuário sem permissão, verifique com o suporte técnico"
+O usuário terá a opção de fechar a mensagem para retornar a tela inicial do módulo manter livros
+
+Cenários de Exceção - (Descrição dos cenários de exceção do caso de uso ou
+lista dos eventos desencadeadores de cenários de exceção.)
+
+Requisitos Relacionados:
+(DD 001, campo usuarioAcesso, valor 1 – Permitido)
+(DD 001, campo usuarioCargo)
+
+Regras de Domínio:
