@@ -2,7 +2,7 @@ Identificador: CSU 004
 
 Nome: Manter livros
 
-Requisito: RF 001
+Requisito: RF 004
 
 Responsável: Marcos Job
 
@@ -13,25 +13,44 @@ Atores: Usuário do sistema
 
 Pré-condições: O usuário precisa estar cadastrado no sistema e com permissão
 de acesso ao módulo manter livros
-Pós-condições: Acessar a tela com as funções desse módulo (incluir, editar e listar)
+Pós-condições: Acessar a tela com as funções desse módulo (incluir, editar, listar e excluir)
 
 Cenário Principal:
 1. O usuário faz login;
-2. O usuário clica na opção [Cadastro de livros];
-3. O usuário tem acesso as opções [incluir], [listar] e [editar]
-4. Acessando a opção [incluir] o sistema carrega para o usuário a tela de cadastro de novos livros
-5. Acessando a opção [listar] o sistema carrega para o usuário a lista de livros cadastrados e permite que o mesmo tenha acesso
-a função de [editar] algum cadastro listado.
+2. O sistema carrega a tela inicial;
+3. O usuário clica na opção [Cadastro de livros];
+4. O sistema carrega a tela do módulo manter cadastro com as opções opções [incluir] e [listar]
+5. Ao clicar na opção [incluir] o sistema carrega para o usuário a tela de cadastro de novos livros
+6. Ao clicar na opção [listar] o sistema carrega para o usuário a tela com a lista de livros cadastrados e habilita para 
+cada item da lista as opções [editar] e [excluir].
+7. Ao clicar na opção [editar] o sistema carrega a tela de cadastro de livro com os campos preenchidos conforme cadastro anterior.
+O usuário poderá realizar ajustes nesse cadastro e clicar na opção Salvar para concluir a edição ou cancelar para encerrar
+o processo sem realizar nenhuma alteração no cadastro.
+8. Ao clicar na opção [excluir] o sistema carrega para o usuário do sistema a tela com as opções [excluir] ou [cancelar],
+clicando em excluir o usuário exclui aqueles dados da lista do sistema e ao clicar em cancelar o usuário imterrompe o processo
+retornando ao passo 4
 
 Cenários Alternativos - (Descrição dos cenários alternativos do caso de uso,
 uma por vez, cada uma referindo-se ao passo do cenário principal)
-1.a. Caso o usuário não tenha acesso ao módulo manter livros o sistema apresentará 
+4.a. Caso o usuário não tenha acesso ao módulo manter livros o sistema apresentará 
 a mensagem "Usuário sem permissão, verifique com o suporte técnico"
-O usuário terá a opção de fechar a mensagem para retornar a tela inicial do sistema
+O usuário terá a opção de fechar a mensagem e ao fazer o sistema retornará ao passo 2
 
-1.b. Caso o usuário não tenha acesso a algumas das funções do módulo manter livros [incluir], [listar] ou [editar] 
-o sistema apresentará a mensagem "Usuário sem permissão, verifique com o suporte técnico"
-O usuário terá a opção de fechar a mensagem para retornar a tela inicial do módulo manter livros
+5.a. Caso o usuário não tenha acesso a função [incluir] o sistema apresentará a mensagem 
+"Usuário sem permissão, verifique com o suporte técnico" O usuário terá a opção de fechar a mensagem 
+e ao fazer retornará ao passo 4
+
+6.a Caso o usuário não tenha acesso a função [listar] o sistema apresentará a mensagem 
+"Usuário sem permissão, verifique com o suporte técnico". O usuário terá a opção de fechar a mensagem 
+e ao fazer retornará ao passo 4
+
+7.a Caso o usuário não tenha acesso a função [editar] o sistema apresentará a mensagem 
+"Usuário sem permissão, verifique com o suporte técnico". O usuário terá a opção de fechar a mensagem 
+e ao fazer retornará ao passo 4
+
+8.a Caso o usuário não tenha acesso a função [excluir] o sistema apresentará a mensagem 
+"Usuário sem permissão, verifique com o suporte técnico". O usuário terá a opção de fechar a mensagem 
+e ao fazer retornará ao passo 4
 
 Cenários de Exceção - (Descrição dos cenários de exceção do caso de uso ou
 lista dos eventos desencadeadores de cenários de exceção.)
