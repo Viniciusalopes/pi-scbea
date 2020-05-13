@@ -33,6 +33,7 @@ Cenários de Exceção:
 2a: O usuário solicita ao bibliotecário que interrompa ou cancele o processo de cadastro.
 2b: O bibliotecário solicita que o usuário altere algum dado que ele digitou devido a uma incompatibilidade ou impossibilidade no processo de cadastro.
 4: O sistema não pode se conectar ao banco de dados.
-Requisitos Relacionados: RU-005, RU-006, RU-018, RQ-003
+Requisitos Relacionados: RU-005, RU-006, RU-015, RU-018, RQ-003
 
-Regras de Domínio: XX XX XX
+Regras de Domínio: RU-005, RU-006, RU-015, RU-018  <-  (?)
+                   RD-001(RU-005 e RU-006 serão diferamente afetados pelo RU-018, que implica que o cargo é ligado aos usuarios)
