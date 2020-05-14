@@ -26,6 +26,7 @@ Projeto Integrador - Sistema Controle de Biblioteca do Escritório de Advocacia 
 │   └── diagramas
 │       └── DiagramaBibliotecaAdvocacia
 │           └── Colaboradores
+|   ** NA PASTA DOC, SOMENTE ARQUIVOS APROVADOS POR REVISÕES
 ├── doc  - - - - - - - - - - - - - - - - - - -> Documentação do processo de desenvolvimento e do sistema.
 │   ├── diagramas  - - - - - - - - - - - - - -> Diagramas UML para Casos de Uso, Classes e Domínio.
 │   │   └── DiagramaBibliotecaAdvocacia
@@ -34,6 +35,6 @@ Projeto Integrador - Sistema Controle de Biblioteca do Escritório de Advocacia 
 │   ├── requisitos - - - - - - - - - - - - - -> Documentos de Requisitos obtidos com o cliente.
 ├── originais  - - - - - - - - - - - - - - - -> Documentos originais para edição.
 └── tarefas - - - - - - - - - - - - - - - - - > Tarefas do projeto
-    ├── ativas  - - - - - - - - - - - - - - - > Tarefas Ativas(In Progress)
-    └── revisao - - - - - - - - - - - - - - - > Tarefas Em Revisão
+    ├── ativas  - - - - - - - - - - - - - - - > Uploads de arquivos de Tarefas Ativas(In Progress)
+    └── revisao - - - - - - - - - - - - - - - > Uploads de arquivos de Tarefas Em Revisão
 ```
