@@ -5,7 +5,7 @@ package modelos.utilidades;
  *
  * @author vovostudio FONTE: https://www.moreofless.co.uk/validate-isbn-13-java/
  */
-public class ValidaISBN {
+public class ValidadorISBN {
 
     /**
      * Médodo para validação.
