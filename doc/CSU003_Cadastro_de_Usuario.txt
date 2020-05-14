@@ -12,13 +12,13 @@ Atores: Clientes, Bibliotecário(s), Usuários e Advogados.
 
 Pré-Condições: O sistema foi iniciado corretamente e o bibliotecário está logado e autenticado.
 
-Pós-Condições: O formulário de usuário é enviado ao banco de dados, o usuário está pronto para requisitar os serviços da biblioteca.
+Pós-Condições: O formulário de usuário é enviado ao documento de dados e o usuário está pronto para requisitar os serviços da biblioteca.
 
 Cenário Principal:
 1: O sistema exibe a tela de formulário de usuários.
 2: O bibliotecário solicita ao sistema inclusão de um novo perfil de usuário.
 3: O bibliotecário informa os dados necessários para cadastrar um novo usuário.
-4: O formulário é registrado no banco de dados.
+4: O formulário é registrado no documento de dados.
 
 Cenários Alternativos:
 1: O sistema não reconhece os dados de entrada e sugere ao utilizador que cadastre um novo usuário.
@@ -26,14 +26,13 @@ Cenários Alternativos:
 2b: O bibliotecário solicita a alteração de um perfil existente de usuário
 2c: O sistema informa ao utilizador que o cadastro em questão já existe. 
 3: O sistema informa ao utilizador que algum campo não foi preenchido de maneira correta.
-4a: O sistema perdeu a conexão ou não pode se conectar ao banco de dados e exibe a mensagem de falha de conexão.
+4a: O sistema  não pode se ler o documento de dados e exibe a mensagem de erro.
 4b: O sistema informa que ocorreu um erro ao cadastrar novo formulário.
 
 Cenários de Exceção:
 2a: O usuário solicita ao bibliotecário que interrompa ou cancele o processo de cadastro.
 2b: O bibliotecário solicita que o usuário altere algum dado que ele digitou devido a uma incompatibilidade ou impossibilidade no processo de cadastro.
-4: O sistema não pode se conectar ao banco de dados.
+4: O sistema não pode ler o documento de dados.
 Requisitos Relacionados: RU-005, RU-006, RU-015, RU-018, RQ-003
 
-Regras de Domínio: RU-005, RU-006, RU-015, RU-018  <-  (?)
-                   RD-001(RU-005 e RU-006 serão diferamente afetados pelo RU-018, que implica que o cargo é ligado aos usuarios)
+Regras de Domínio: 
