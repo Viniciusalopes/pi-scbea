@@ -30,6 +30,7 @@ Projeto Integrador - Sistema Controle de Biblioteca do Escritório de Advocacia 
 │   │   └── diagrama-de-dominio
 │   ├── ers  - - - - - - - - - - - - - - - - -> 
 │   └── requisitos - - - - - - - - - - - - - -> Documentos de Requisitos obtidos com o cliente.
+├── lab  - - - - - - - - - - - - - - - - - - -> Laboratório para testes
 └── tarefas - - - - - - - - - - - - - - - - - > Tarefas do projeto
     ├── ativas  - - - - - - - - - - - - - - - > Uploads de arquivos de Tarefas Ativas(In Progress)
     └── revisao - - - - - - - - - - - - - - - > Uploads de arquivos de Tarefas Em Revisão
