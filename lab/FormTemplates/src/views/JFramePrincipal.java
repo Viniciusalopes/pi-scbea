@@ -1,7 +1,8 @@
 /**
- * Projeto de Templates para JFrames.
- * Autor: Vinicius Araujo Lopes
- * Data: 15/05/2020
+ * PROJETO INTEGRADOR 
+ * Templates para JFrames.
+ * Autor  : Vinicius Araujo Lopes
+ * Data   : 15/05/2020
  */
 package views;
 
