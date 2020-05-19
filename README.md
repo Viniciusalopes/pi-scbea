@@ -7,6 +7,9 @@ Projeto Integrador - Sistema Controle de Biblioteca do Escritório de Advocacia 
 ## PROJETOS
 [Projeto Integrador - TAREFAS (Tasks)](https://github.com/Viniciusalopes/pi-scbea/projects/1)
 
+## Links úteis
+[quickMockup](https://jdittrich.github.io/quickMockup/)
+
 ---
 
 ### Estrutura de diretorios
