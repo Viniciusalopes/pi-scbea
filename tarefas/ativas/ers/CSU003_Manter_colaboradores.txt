@@ -1,0 +1,39 @@
+Identificador: CSU003
+
+Nome: Manter colaboradores
+
+Requisito: RF-003 
+
+Responsável: João Pedro Faria Cabral
+
+Descrição/Resumo: Este caso consiste em manter o cadastro de colaboradores e permite a inclusão, consulta, alteração e exclusão de dados do colaborador.
+
+Atores: Bibliotecário, Administrador do sistema e colaboradores.
+
+Pré-Condições: O sistema foi iniciado corretamente e o usuário (bibliotecário ou administrador) está logado e autenticado.
+
+Pós-Condições: Os dados do formulário de colaborador é gravado na base de dados e o colaborador está pronto para requisitar os serviços da biblioteca.
+
+Cenário Principal:
+1: O sistema exibe a tela de principal do sistema.
+2: O bibliotecário clica na opção para incluir um novo cadastro de colaborador.
+3: O bibliotecário informa os dados necessários para cadastrar um novo colaborador.
+4: O formulário é gravado na base de dados e o sistema volta a exibir a tela principal em primeiro plano.
+
+Cenários Alternativos:
+1: O sistema não reconhece os dados de entrada e sugere ao utilizador que cadastre um novo colaborador.
+2a: O bibliotecário solicita a exclusão de um perfil existente de colaborador.
+2b: O bibliotecário solicita a alteração de um perfil existente de colaborador
+2c: O sistema informa ao utilizador que o cadastro em questão já existe. 
+3: O sistema informa ao utilizador que algum campo não foi preenchido de maneira correta.
+4a: O sistema  não pode se ler o documento de dados e exibe a mensagem de erro.
+4b: O sistema informa que ocorreu um erro ao cadastrar novo formulário.
+
+Cenários de Exceção:
+2a: O usuário solicita ao bibliotecário que interrompa ou cancele o processo de cadastro.
+2b: O bibliotecário solicita que o usuário altere algum dado que ele digitou devido a uma incompatibilidade ou impossibilidade no processo de cadastro.
+4: O sistema não pode ler o documento de dados.
+
+Requisitos Relacionados: RU 005, RU 006, RU 011, RU-018, RF 004, RF 012, RF 013.
+
+Regras de Domínio: 
