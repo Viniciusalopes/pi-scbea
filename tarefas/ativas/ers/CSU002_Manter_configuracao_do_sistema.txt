@@ -1,6 +1,5 @@
-Identificador: CSU 001
 Nome: Autenticar
-Requisito:  RF 001
+Requisito:  CSU 001
 Responsável:  Vinicius Lopes
 Descrição/Resumo:  Autenticar o colaborador para acesso ao sistema
 Atores:  Bibliotecário, Administrador do sistema
