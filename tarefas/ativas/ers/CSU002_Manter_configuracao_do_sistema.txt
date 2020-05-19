@@ -1,33 +1,49 @@
-Nome: Autenticar
+Identifica
+Nome: Manter configuração do sistema
 Requisito:  CSU 001
-Responsável:  Vinicius Lopes
-Descrição/Resumo:  Autenticar o colaborador para acesso ao sistema
-Atores:  Bibliotecário, Administrador do sistema
+Responsável:  Lucas Araujo
+Descrição/Resumo:  Manutençao de configurações do sistema quanto à regras de empréstimo e caminhhos da base de dados
+Atores:  Administrador do sistema
 
 Pré-condições: 
-O sistema de controle da bibilioteca deve ser executado.
+O administrador do sistema deve estar autenticado no sistema e deve acessar a tela de configuração do sistema.
 
 Pós-condições:
-O sistema exibirá a tela principal em caso de sucesso na autenticação.
+O sistema poderá alterar os cálculos de limite de livros emprestados por colaborador, dias de empréstimo, prazo de renovação, valor da multa diária e os camimhos de arquivos da base de dados caso os valores das configurações sejam alteradas.
 
 Cenário Principal
-    1. O usuário digita o login, digita a senha e clica em um botão da tela para autenticar.
-    4. O sistema oculta a tela de login e exibe a tela principal do sistema.
+    1. O administrador clica na opção para abrir a tela de configuração.
+    2. São exibidos os campos de configuração disponíveis para alteração.
+    3. O administrador altera um ou mais valores de configurações.
+    4. O administrador clica na opção para salvar as alterações.
+    5. O administrador clica na opção para sair da tela de configuração.
+    6. A tela de configuração é fechada e a tela principal volta para o primeiro plano de visão.
+    7. O sistema passa a se comportar conforme os novos valores de configurações.
     
 Cenários Alternativos
-    1.a. O usuário fecha a tela no X e o sistema é encerrado.
-    2.a. O usuário clica no botão "Não sei minha senha"e o sistema exibe uma mensagem informativa.
-	
+    1.a. O administrador clica na opção para abrir a tela de configuração.
+    2.a. São exibidos os campos de configuração disponíveis para alteração.
+    3.a. O administrador não altera nenhum valor de configuração.
+    4.a. O administrador clica na opção para sair da tela de configuração.
+    5.a. A tela de configuração é fechada e a tela principal volta para o primeiro plano de visão.
+    6.a. O sistema mantém o mesmo comportamento em relação aos valores de configurações.
+
+    1.b. O administrador clica na opção para abrir a tela de configuração.
+    2.b. São exibidos os campos de configuração disponíveis para alteração.
+    3.b. O administrador altera um ou mais valores de configurações.
+    4.b. O administrador clica na opção para sair da tela de configuração.
+    5.b. A tela de configuração é fechada e a tela principal volta para o primeiro plano de visão.
+    6.a. O sistema mantém o mesmo comportamento em relação aos valores de configurações.
+
+    
 Cenários de Exceção
-    1. Em caso de falha na autenticação, o sistema exibirá uma uma mensagem informando um dos motivos de não permitir o acesso à tela principal tais como:
-        - "Nenhum usuário cadastrado."
-        - "Login inválido!"
-        - "Usuário não está ativo!"
-        - "Senha inválida!"
+    1. Caso o administrador infome algum valor inválido em uma das configurações o sistema exibirá uma uma mensagem informando que a configuração é inválida e retorna para a tela de configuração.
+    Para conseguir salvar as configurações, o administrador deverá corrigir o(s) valor(es) inválido(s).
+    O administrador poderá abandonar a alteração das configurações clicando na opção que fecha a tela e volta para a tela principal.
 
 
 Requisitos Relacionados: 
-RF 001, RF 002, RQ 001, RQ 002, RQ 003, DD 002
+RU 002, RF 003, RF 012, RF 013, RQ 002, RQ 003, RQ 013, DD 001, DD 008, DD 009
 
 Regras de Domínio:
 Nenhuma.
