@@ -67,6 +67,7 @@ public class ControleColaborador implements ICRUDColaborador {
                     || (c.getEmail()).equals(login)) {
                 // Colaborador está cadastrado
                 colaborador = new Colaborador(c);
+                break;
             }
         }
 
@@ -78,8 +79,7 @@ public class ControleColaborador implements ICRUDColaborador {
             throw new Exception("Colaborador inativo!");
         }
 
-        String senhaHash = Hash.criptografar(senha, "SHA-256");
-        if (!colaborador.getSenha().equals(senhaHash)) {
+        if (!colaborador.getSenha().equals(Hash.criptografar(senha, "SHA-256"))) {
             throw new Exception("Senha incorreta!");
         }
         

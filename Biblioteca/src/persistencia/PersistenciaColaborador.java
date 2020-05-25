@@ -34,8 +34,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
     @Override
     public ArrayList<Colaborador> listar() throws Exception {
         ArrayList<Colaborador> colaboradores = new ArrayList<>();
-        arquivoTXT.setLinhas(controleArquivoTXT.lerArquivo(arquivoTXT));
-        ArrayList<String> linhas = arquivoTXT.getLinhas();
+        ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
 
         for (String linha : linhas) {
             String[] dados = linha.split(";");
