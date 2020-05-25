@@ -5,6 +5,7 @@
  */
 package telas;
 
+import classes.Colaborador;
 import controle.ControleColaborador;
 import javax.swing.JOptionPane;
 
@@ -110,9 +111,11 @@ public class TelaLogin extends javax.swing.JFrame {
 
         try {
             // FONTE: https://www.guj.com.br/t/como-pegar-valor-do-jpasswordfield/227295/7
-            new ControleColaborador().autenticar(jTextFieldLogin.getText(), new String(jPasswordField.getPassword()));
-            
-            new TelaPrincipal().setVisible(true);
+            Colaborador usuario = new ControleColaborador().autenticar(
+                    jTextFieldLogin.getText(), new String(jPasswordField.getPassword()));
+
+            TelaPrincipal telaPrincipal = new TelaPrincipal(usuario);
+            telaPrincipal.setVisible(true);
             this.dispose();
 
         } catch (Exception e) {

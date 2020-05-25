@@ -5,20 +5,32 @@
  */
 package telas;
 
+import classes.Colaborador;
+import enumeradores.EnumPerfil;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author vovostudio
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
+    private Colaborador usuario = null;
+
     /**
      * Creates new form JFramePrincipal
      */
-    public TelaPrincipal() {
+    public TelaPrincipal(Colaborador usuario) {
+
+        this.usuario = usuario;
+
         initComponents();
-        
+
         // Centraliza o form na tela
         this.setLocationRelativeTo(rootPane);
+
+        jButtonConfiguracoes.setVisible(this.usuario.getPerfil().equals(EnumPerfil.ADMINISTRADOR));
+
     }
 
     /**
@@ -30,23 +42,239 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupCadastros = new javax.swing.ButtonGroup();
+        jPanelCadastros = new javax.swing.JPanel();
+        jRadioButtonLivros = new javax.swing.JRadioButton();
+        jRadioButtonEmprestimos = new javax.swing.JRadioButton();
+        jRadioButtonReservas = new javax.swing.JRadioButton();
+        jRadioButtonAreas = new javax.swing.JRadioButton();
+        jRadioButtonEditoras = new javax.swing.JRadioButton();
+        jRadioButtonAutores = new javax.swing.JRadioButton();
+        jRadioButtonColaboradores = new javax.swing.JRadioButton();
+        jButtonSair = new javax.swing.JButton();
+        jButtonConfiguracoes = new javax.swing.JButton();
+        jSeparatorCadastrosBotoes = new javax.swing.JSeparator();
+        jPanelBotoes = new javax.swing.JPanel();
+        jButtonIncluir = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableLista = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Biblioteca Godofredo");
+        setResizable(false);
         setSize(new java.awt.Dimension(1366, 768));
+
+        buttonGroupCadastros.add(jRadioButtonLivros);
+        jRadioButtonLivros.setSelected(true);
+        jRadioButtonLivros.setText("Livros");
+        jRadioButtonLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonLivrosActionPerformed(evt);
+            }
+        });
+
+        buttonGroupCadastros.add(jRadioButtonEmprestimos);
+        jRadioButtonEmprestimos.setText("Empréstimos");
+
+        buttonGroupCadastros.add(jRadioButtonReservas);
+        jRadioButtonReservas.setText("Reservas");
+
+        buttonGroupCadastros.add(jRadioButtonAreas);
+        jRadioButtonAreas.setText("Áreas de conhecimento");
+        jRadioButtonAreas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonAreasActionPerformed(evt);
+            }
+        });
+
+        buttonGroupCadastros.add(jRadioButtonEditoras);
+        jRadioButtonEditoras.setText("Editoras");
+        jRadioButtonEditoras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonEditorasActionPerformed(evt);
+            }
+        });
+
+        buttonGroupCadastros.add(jRadioButtonAutores);
+        jRadioButtonAutores.setText("Autores");
+        jRadioButtonAutores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonAutoresActionPerformed(evt);
+            }
+        });
+
+        buttonGroupCadastros.add(jRadioButtonColaboradores);
+        jRadioButtonColaboradores.setText("Colaboradores");
+        jRadioButtonColaboradores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonColaboradoresActionPerformed(evt);
+            }
+        });
+
+        jButtonSair.setText("Sair");
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSairActionPerformed(evt);
+            }
+        });
+
+        jButtonConfiguracoes.setText("Configurações");
+        jButtonConfiguracoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConfiguracoesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelCadastrosLayout = new javax.swing.GroupLayout(jPanelCadastros);
+        jPanelCadastros.setLayout(jPanelCadastrosLayout);
+        jPanelCadastrosLayout.setHorizontalGroup(
+            jPanelCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCadastrosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadioButtonLivros)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButtonEmprestimos)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButtonReservas)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButtonAreas)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButtonEditoras)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButtonAutores)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButtonColaboradores)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(jButtonConfiguracoes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonSair)
+                .addGap(0, 0, 0))
+        );
+        jPanelCadastrosLayout.setVerticalGroup(
+            jPanelCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCadastrosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButtonLivros)
+                    .addComponent(jRadioButtonAreas)
+                    .addComponent(jRadioButtonEditoras)
+                    .addComponent(jRadioButtonAutores)
+                    .addComponent(jRadioButtonColaboradores)
+                    .addComponent(jButtonConfiguracoes)
+                    .addComponent(jButtonSair)
+                    .addComponent(jRadioButtonEmprestimos)
+                    .addComponent(jRadioButtonReservas))
+                .addGap(0, 0, 0))
+        );
+
+        jSeparatorCadastrosBotoes.setMinimumSize(new java.awt.Dimension(50, 5));
+        jSeparatorCadastrosBotoes.setPreferredSize(new java.awt.Dimension(50, 5));
+
+        jButtonIncluir.setText("Incluir");
+
+        jButtonEditar.setText("Editar");
+
+        jButtonExcluir.setText("Excluir");
+
+        javax.swing.GroupLayout jPanelBotoesLayout = new javax.swing.GroupLayout(jPanelBotoes);
+        jPanelBotoes.setLayout(jPanelBotoesLayout);
+        jPanelBotoesLayout.setHorizontalGroup(
+            jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotoesLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jButtonIncluir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonEditar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonExcluir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelBotoesLayout.setVerticalGroup(
+            jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBotoesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonIncluir)
+                    .addComponent(jButtonEditar)
+                    .addComponent(jButtonExcluir))
+                .addGap(6, 6, 6))
+        );
+
+        jTableLista.setAutoCreateRowSorter(true);
+        jTableLista.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jTableLista.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTableLista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(jTableLista);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 966, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparatorCadastrosBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanelCadastros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 468, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanelCadastros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparatorCadastrosBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfiguracoesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonConfiguracoesActionPerformed
+
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente sair?", "Confirmação",
+                JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButtonSairActionPerformed
+
+    private void jRadioButtonColaboradoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonColaboradoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonColaboradoresActionPerformed
+
+    private void jRadioButtonAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAutoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonAutoresActionPerformed
+
+    private void jRadioButtonEditorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEditorasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonEditorasActionPerformed
+
+    private void jRadioButtonAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAreasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonAreasActionPerformed
+
+    private void jRadioButtonLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLivrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonLivrosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -75,15 +303,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaPrincipal().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroupCadastros;
+    private javax.swing.JButton jButtonConfiguracoes;
+    private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonIncluir;
+    private javax.swing.JButton jButtonSair;
+    private javax.swing.JPanel jPanelBotoes;
+    private javax.swing.JPanel jPanelCadastros;
+    private javax.swing.JRadioButton jRadioButtonAreas;
+    private javax.swing.JRadioButton jRadioButtonAutores;
+    private javax.swing.JRadioButton jRadioButtonColaboradores;
+    private javax.swing.JRadioButton jRadioButtonEditoras;
+    private javax.swing.JRadioButton jRadioButtonEmprestimos;
+    private javax.swing.JRadioButton jRadioButtonLivros;
+    private javax.swing.JRadioButton jRadioButtonReservas;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparatorCadastrosBotoes;
+    public javax.swing.JTable jTableLista;
     // End of variables declaration//GEN-END:variables
 }
