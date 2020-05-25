@@ -43,7 +43,7 @@ public class ControleColaborador implements ICRUDColaborador {
     public void excluir(int idColaborador) {
     }
 
-    public void autenticar(String login, String senha) throws Exception {
+    public Colaborador autenticar(String login, String senha) throws Exception {
 
         if (login.trim().length() == 0) {
             throw new Exception("O campo Login é obrigatório!");
@@ -82,5 +82,7 @@ public class ControleColaborador implements ICRUDColaborador {
         if (!colaborador.getSenha().equals(senhaHash)) {
             throw new Exception("Senha incorreta!");
         }
+        
+        return colaborador;
     }
 }
