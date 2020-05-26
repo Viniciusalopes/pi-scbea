@@ -1,14 +1,52 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+AreaConhecimento
+- idAreaConhecimento : int
+- cdd : int
+- descricaoAreaConhecimento : String
+-STERS--GETRS-
++ get() : void
++ set() : void
+-TO-STRING-
++ toString() : String
  */
 package classes;
 
 /**
- *
- * @author vovostudio
+ * ATRIBUTOS DA CLASSE
  */
 public class AreaConhecimento {
-    
+
+    private int idAreaConhecimento() {
+        idAreaConhecimento();
+        return 0;
+
+    }
+
+    private int cdd() {
+        cdd();
+        return 0;
+
+    }
+
+    private String descricaoAreaConhecimento() {
+        descricaoAreaConhecimento();
+        return null;
+
+    }
+
+//STERS & GETRS 
+    public void getAreaConhecimento() {
+
+    }
+
+    public void setAreaConhecimento() {
+
+    }
+//TO STRING 
+
+    @Override
+    public String toString() {
+        return "classeAreaConhecimaneto{" + '}';
+    }
+
 }
