@@ -1,14 +1,51 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Reserva
+- idReserva  : int
+- livro : Livro
+- colaborador : Colaborador
+- dataReserva  : Date
+--GETERS-&-SETERS--
++ get() : void
++ set() : void
+--TO-STRING--
++ toString() : String
  */
 package classes;
 
 /**
- *
- * @author vovostudio
+ CLASSE RESERVA
+ * 
  */
 public class Reserva {
+    private int idReserva (){
+        idReserva();
+        return 0;
+        
+    }
+    private livro Livro (){
+        Livro();
+        return null;
+        
+    }
+    private colaborador Colaborador(){
+        Colaborador();
+        return null;
+    }
+    private dataReserva Date() { 
+        Date();
+        return null;
+        
+    }
+    public void getReserva(){
+        
+    }
+    public void setReserva(){
+        
+    }
+
+    @Override
+    public String toString() {
+        return "Reserva{" + '}';
+    }
     
 }
