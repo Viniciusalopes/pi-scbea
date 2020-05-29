@@ -10,8 +10,28 @@ package classes;
  * @author vovostudio
  */
 public class Exemplar {
+    //atributos 
+    //-------------------------------------
     int idExemplar;
-
+    
+    //-------------------------------------
+    
+    //-------------------------------------
+    //contrutores 
+    public Exemplar(){
+        
+    }
+    
+    public Exemplar (Exemplar exemplar ){
+        idExemplar = exemplar.idExemplar;
+    }
+    
+    public Exemplar (int idExemplar){
+        this.idExemplar = idExemplar;
+    }
+    //-------------------------------------
+    //geters e seters 
+    //-------------------------------------
     public int getIdExemplar() {
         return idExemplar;
     }
@@ -19,7 +39,14 @@ public class Exemplar {
     public void setIdExemplar(int idExemplar) {
         this.idExemplar = idExemplar;
     }
+    //-------------------------------------
     
+    //-------------------------------------
+    //toString 
+    @Override 
+    public String toString(){
+        return String.format("%d", idExemplar);
+    }
     
 
 }

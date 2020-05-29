@@ -11,42 +11,60 @@ AreaConhecimento
  */
 package classes;
 
-/**
- * ATRIBUTOS DA CLASSE
- */
 public class AreaConhecimento {
 
-    private int idAreaConhecimento() {
-        idAreaConhecimento();
-        return 0;
+    //atributos 
+    private int idAreaConhecimento;
+
+    private int cdd;
+
+    private String descricaoAreaConhecimento;
+
+    public AreaConhecimento() {
+   //construtor padrao 
+    }
+
+    public AreaConhecimento(AreaConhecimento areaComhecimento) {
+        idAreaConhecimento = areaComhecimento.idAreaConhecimento;
+        cdd = areaComhecimento.cdd;
+        descricaoAreaConhecimento = areaComhecimento.descricaoAreaConhecimento;
 
     }
 
-    private int cdd() {
-        cdd();
-        return 0;
-
+    public AreaConhecimento(int idAreaConhecimento, int cdd, String descricaoAreaConhecimento) {
+        this.idAreaConhecimento = idAreaConhecimento;
+        this.cdd = cdd;
+        this.descricaoAreaConhecimento = descricaoAreaConhecimento;
     }
 
-    private String descricaoAreaConhecimento() {
-        descricaoAreaConhecimento();
-        return null;
-
+    //STERS & GETRS 
+    public int getIdAreaConhecimento() {
+        return idAreaConhecimento;
     }
 
-//STERS & GETRS 
-    public void getAreaConhecimento() {
-
+    public void setIdAreaConhecimento(int idAreaConhecimento) {
+        this.idAreaConhecimento = idAreaConhecimento;
     }
 
-    public void setAreaConhecimento() {
-
+    public int getCdd() {
+        return cdd;
     }
-//TO STRING 
 
+    public void setCdd(int cdd) {
+        this.cdd = cdd;
+    }
+
+    public String getDescricaoAreaConhecimento() {
+        return descricaoAreaConhecimento;
+    }
+
+    public void setDescricaoAreaConhecimento(String descricaoAreaConhecimento) {
+        this.descricaoAreaConhecimento = descricaoAreaConhecimento;
+    }
+    //TO STRING 
     @Override
-    public String toString() {
-        return "classeAreaConhecimaneto{" + '}';
+    public String toString(){
+        return String.format("%d%d%s", idAreaConhecimento , cdd , descricaoAreaConhecimento);
     }
 
 }
