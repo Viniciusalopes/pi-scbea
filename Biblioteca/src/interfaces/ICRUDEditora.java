@@ -5,10 +5,21 @@
  */
 package interfaces;
 
+import classes.Editora;
+import java.util.ArrayList;
+
 /**
  *
  * @author vovostudio
  */
 public interface ICRUDEditora {
-    
+
+    ArrayList<Editora> listar() throws Exception;
+
+    void incluir(Editora editora) throws Exception;
+
+    void alterar(Editora editora) throws Exception;
+
+    void excluir(int idEditora) throws Exception;
+
 }
