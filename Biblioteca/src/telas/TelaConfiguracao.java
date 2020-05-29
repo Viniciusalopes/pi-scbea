@@ -5,17 +5,31 @@
  */
 package telas;
 
+import controle.ControleConfiguracao;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author vovostudio
  */
-public class TelaConfiguracao extends javax.swing.JFrame {
+public class TelaConfiguracao extends javax.swing.JDialog {
 
     /**
      * Creates new form TelaConfiguracao
      */
-    public TelaConfiguracao() {
+    public TelaConfiguracao(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
+
+        this.setLocationRelativeTo(rootPane);
+
+        jSpinnerLimiteLivros.setValue(Integer.valueOf(Vai.CONFIGURACAO.getLimiteDeLivros()));
+        jSpinnerDiasEmprestimo.setValue(Integer.valueOf(Vai.CONFIGURACAO.getDiasDeEmprestimo()));
+        jFormattedTextFieldValorMultaDiaria.setValue(Float.valueOf(Vai.CONFIGURACAO.getValorMultaDiaria()));
+        jTextFieldCaminhoBdCliente.setText(Vai.CONFIGURACAO.getCaminhoBdCliente());
+        jTextFieldCaminhoBdServidor.setText(Vai.CONFIGURACAO.getCaminhoBdServidor());
     }
 
     /**
@@ -27,21 +41,192 @@ public class TelaConfiguracao extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabelLimiteLivros = new javax.swing.JLabel();
+        jSpinnerLimiteLivros = new javax.swing.JSpinner();
+        jLabelDiasEmprestimo = new javax.swing.JLabel();
+        jSpinnerDiasEmprestimo = new javax.swing.JSpinner();
+        jLabelValorMultaDiaria = new javax.swing.JLabel();
+        jFormattedTextFieldValorMultaDiaria = new javax.swing.JFormattedTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabelCaminhoBdCliente = new javax.swing.JLabel();
+        jTextFieldCaminhoBdCliente = new javax.swing.JTextField();
+        jButtonNavegar = new javax.swing.JButton();
+        jLabelCaminhoBdServidor = new javax.swing.JLabel();
+        jTextFieldCaminhoBdServidor = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jButtonSalvar = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("CONFIGURAÇÃO");
+        setModalityType(java.awt.Dialog.ModalityType.TOOLKIT_MODAL);
+        setResizable(false);
+
+        jLabelLimiteLivros.setText("Limite de livros emprestados por colaborador:");
+
+        jSpinnerLimiteLivros.setModel(new javax.swing.SpinnerNumberModel(5, 1, 10, 1));
+
+        jLabelDiasEmprestimo.setText("Quantidade de dias para empréstimo ou renovação:");
+
+        jSpinnerDiasEmprestimo.setModel(new javax.swing.SpinnerNumberModel(7, 1, 365, 1));
+
+        jLabelValorMultaDiaria.setText("Valor da multa por dia de atraso: R$");
+
+        jFormattedTextFieldValorMultaDiaria.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        jFormattedTextFieldValorMultaDiaria.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        jLabelCaminhoBdCliente.setText("Caminho da base de dados local:");
+
+        jTextFieldCaminhoBdCliente.setEditable(false);
+
+        jButtonNavegar.setText("[...]");
+        jButtonNavegar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNavegarActionPerformed(evt);
+            }
+        });
+
+        jLabelCaminhoBdServidor.setText("Caminho da base de dados remota:");
+
+        jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSeparator1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelDiasEmprestimo, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelLimiteLivros, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelValorMultaDiaria, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jFormattedTextFieldValorMultaDiaria, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerLimiteLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerDiasEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabelCaminhoBdCliente)
+                        .addComponent(jLabelCaminhoBdServidor)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextFieldCaminhoBdServidor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                                .addComponent(jTextFieldCaminhoBdCliente, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButtonNavegar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator2))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSpinnerLimiteLivros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLimiteLivros))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDiasEmprestimo)
+                    .addComponent(jSpinnerDiasEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jFormattedTextFieldValorMultaDiaria, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelValorMultaDiaria))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelCaminhoBdCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldCaminhoBdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonNavegar))
+                .addGap(22, 22, 22)
+                .addComponent(jLabelCaminhoBdServidor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldCaminhoBdServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonSalvar)
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonNavegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNavegarActionPerformed
+        // FONTE: https://www.rgagnon.com/javadetails/java-0370.html
+        JFileChooser chooser = new JFileChooser();
+        String choosertitle = "Selecionar diretório";
+
+        chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File(Vai.CONFIGURACAO.getCaminhoBdCliente()));
+        chooser.setDialogTitle(choosertitle);
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        // disable the "All files" option.
+        chooser.setAcceptAllFileFilterUsed(false);
+
+        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            jTextFieldCaminhoBdCliente.setText("" + chooser.getSelectedFile());
+        } else {
+            JOptionPane.showMessageDialog(rootPane,
+                    "O caminho da base de dados local não foi alterado.",
+                    "Informação", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonNavegarActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        try {
+//            if (jTextFieldCaminhoBdCliente.getText().trim().length() == 0) {
+//                throw new Exception("O caminho da base de dados local não pode ficar em branco");
+//            }
+
+            float valorMultaDiaria = Float.valueOf(jFormattedTextFieldValorMultaDiaria.getText().replace(",", "."));
+
+            if (valorMultaDiaria < 0) {
+                throw new Exception("O valor da multa diária deve ser maior ou igual a 0!");
+            }
+
+            String caminho = new String(jTextFieldCaminhoBdCliente.getText());
+            if (caminho.trim().length() == 0) {
+                throw new Exception("O caminho da base de dados local não pode ficar em branco!");
+            }
+
+            if (!new File(caminho).exists()) {
+                throw new Exception("O caminho da base de dados local é inválido!");
+            }
+
+            caminho = new String(jTextFieldCaminhoBdServidor.getText());
+            if (caminho.trim().length() == 0) {
+                throw new Exception("O caminho da base de dados remota não pode ficar em branco!");
+            }
+
+            if (!caminho.contains(".") || !caminho.contains(":")) {
+                throw new Exception("O caminho da base de dados remota é inválido!");
+            }
+
+            Vai.CONFIGURACAO.setLimiteDeLivros(Integer.parseInt(jSpinnerLimiteLivros.getValue().toString()));
+            Vai.CONFIGURACAO.setDiasDeEmprestimo(Integer.parseInt(jSpinnerDiasEmprestimo.getValue().toString()));
+            Vai.CONFIGURACAO.setValorMultaDiaria(valorMultaDiaria);
+            Vai.CONFIGURACAO.setCaminhoBdCliente(jTextFieldCaminhoBdCliente.getText());
+            Vai.CONFIGURACAO.setCaminhoBdServidor(jTextFieldCaminhoBdServidor.getText());
+
+            new ControleConfiguracao().atualizar(Vai.CONFIGURACAO);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, ((e.getMessage() == null) ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,14 +255,35 @@ public class TelaConfiguracao extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaConfiguracao().setVisible(true);
+                TelaConfiguracao dialog = new TelaConfiguracao(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonNavegar;
+    private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JFormattedTextField jFormattedTextFieldValorMultaDiaria;
+    private javax.swing.JLabel jLabelCaminhoBdCliente;
+    private javax.swing.JLabel jLabelCaminhoBdServidor;
+    private javax.swing.JLabel jLabelDiasEmprestimo;
+    private javax.swing.JLabel jLabelLimiteLivros;
+    private javax.swing.JLabel jLabelValorMultaDiaria;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSpinner jSpinnerDiasEmprestimo;
+    private javax.swing.JSpinner jSpinnerLimiteLivros;
+    private javax.swing.JTextField jTextFieldCaminhoBdCliente;
+    private javax.swing.JTextField jTextFieldCaminhoBdServidor;
     // End of variables declaration//GEN-END:variables
 }

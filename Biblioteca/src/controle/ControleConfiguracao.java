@@ -22,8 +22,13 @@ public class ControleConfiguracao implements ICRUDConfiguracao {
     }
 
     @Override
+    public Configuracao ler() throws Exception {
+        return persistencia.ler();
+    }
+
+    @Override
     public void atualizar(Configuracao configuracao) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        persistencia.atualizar(configuracao);
     }
 
     @Override
@@ -31,9 +36,7 @@ public class ControleConfiguracao implements ICRUDConfiguracao {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public Configuracao ler() throws Exception {
-        return persistencia.ler();
+    private boolean validar(Configuracao configuracao) throws Exception{
+        return true;
     }
-
 }

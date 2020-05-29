@@ -5,8 +5,8 @@
  */
 package telas;
 
-import classes.Colaborador;
 import enumeradores.EnumPerfil;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,21 +15,17 @@ import javax.swing.JOptionPane;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    private Colaborador usuario = null;
-
     /**
      * Creates new form JFramePrincipal
      */
-    public TelaPrincipal(Colaborador usuario) {
-
-        this.usuario = usuario;
+    public TelaPrincipal() {
 
         initComponents();
 
         // Centraliza o form na tela
         this.setLocationRelativeTo(rootPane);
 
-        jButtonConfiguracoes.setVisible(this.usuario.getPerfil().equals(EnumPerfil.ADMINISTRADOR));
+        jButtonConfiguracoes.setVisible(Vai.USUARIO.getPerfil().equals(EnumPerfil.ADMINISTRADOR));
 
     }
 
@@ -77,9 +73,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         buttonGroupCadastros.add(jRadioButtonEmprestimos);
         jRadioButtonEmprestimos.setText("Empréstimos");
+        jRadioButtonEmprestimos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonEmprestimosActionPerformed(evt);
+            }
+        });
 
         buttonGroupCadastros.add(jRadioButtonReservas);
         jRadioButtonReservas.setText("Reservas");
+        jRadioButtonReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonReservasActionPerformed(evt);
+            }
+        });
 
         buttonGroupCadastros.add(jRadioButtonAreas);
         jRadioButtonAreas.setText("Áreas de conhecimento");
@@ -173,10 +179,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jSeparatorCadastrosBotoes.setPreferredSize(new java.awt.Dimension(50, 5));
 
         jButtonIncluir.setText("Incluir");
+        jButtonIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIncluirActionPerformed(evt);
+            }
+        });
 
         jButtonEditar.setText("Editar");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
 
         jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelBotoesLayout = new javax.swing.GroupLayout(jPanelBotoes);
         jPanelBotoes.setLayout(jPanelBotoesLayout);
@@ -245,8 +266,42 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfiguracoesActionPerformed
+    private void jRadioButtonLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLivrosActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonLivrosActionPerformed
+
+    private void jRadioButtonEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEmprestimosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonEmprestimosActionPerformed
+
+    private void jRadioButtonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonReservasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonReservasActionPerformed
+
+    private void jRadioButtonAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAreasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonAreasActionPerformed
+
+    private void jRadioButtonEditorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEditorasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonEditorasActionPerformed
+
+    private void jRadioButtonAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAutoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonAutoresActionPerformed
+
+    private void jRadioButtonColaboradoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonColaboradoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonColaboradoresActionPerformed
+
+    private void jButtonConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfiguracoesActionPerformed
+        try {
+            JOptionPane.showMessageDialog(rootPane, "Refazer todos os componentes\nPegar o metodo de Search file");
+            new TelaConfiguracao(this, true).setVisible(true);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, ((e.getMessage() == null) ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonConfiguracoesActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
@@ -256,25 +311,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonSairActionPerformed
 
-    private void jRadioButtonColaboradoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonColaboradoresActionPerformed
+    private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonColaboradoresActionPerformed
+    }//GEN-LAST:event_jButtonIncluirActionPerformed
 
-    private void jRadioButtonAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAutoresActionPerformed
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonAutoresActionPerformed
+    }//GEN-LAST:event_jButtonEditarActionPerformed
 
-    private void jRadioButtonEditorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEditorasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonEditorasActionPerformed
-
-    private void jRadioButtonAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAreasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonAreasActionPerformed
-
-    private void jRadioButtonLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLivrosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonLivrosActionPerformed
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        new JDialog().setVisible(true);
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     /**
      * @param args the command line arguments

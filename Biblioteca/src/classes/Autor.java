@@ -12,33 +12,46 @@ Autor
 package classes;
 
 /**
-classe autor 
+ * classe autor
  */
 public class Autor {
-    private int idAutor() {
-        idAutor ();
-        return 0;
-        
-    }
-    private int nomeAutor(){
-        nomeAutor();
-        return 0;
-  }     
-//-GETRS - STERS -
-    public void getidAutor(){
-    
-}
-     public void setidAutor(){
-    
-}
 
-//
+    // Atributos
+    private int idAutor;
+    private String nomeAutor;
+
+    // Construtores
+    public Autor() {
+    }
+
+    public Autor(Autor autor) {
+        idAutor = autor.idAutor;
+        nomeAutor = autor.nomeAutor;
+    }
+
+    public Autor(int idAutor, String nomeAutor) {
+        this.idAutor = idAutor;
+        this.nomeAutor = nomeAutor;
+    }
+
+    public int getIdAutor() {
+        return idAutor;
+    }
+
+    public void setIdAutor(int idAutor) {
+        this.idAutor = idAutor;
+    }
+
+    public String getNomeAutor() {
+        return nomeAutor;
+    }
+
+    public void setNomeAutor(String nomeAutor) {
+        this.nomeAutor = nomeAutor;
+    }
 
     @Override
     public String toString() {
-        return "Autor{" + '}';
+        return String.format("%d;%s", idAutor, nomeAutor);
     }
-
-
-   
 }

@@ -15,7 +15,7 @@ public class Configuracao {
     private int diasDeEmprestimo = 7;
     private float valorMultaDiaria = 2;
     private String caminhoBdCliente = System.getProperty("user.dir") + "/BibliotecaBd/";
-    private String caminhoBdServidor = "_";
+    private String caminhoBdServidor = "192.168.15.3:4567";
 
     public int getLimiteDeLivros() {
         return limiteDeLivros;
@@ -45,9 +45,10 @@ public class Configuracao {
         return caminhoBdCliente;
     }
 
-//    public void setCaminhoBdCliente(String caminhoBdCliente) {
-//        this.caminhoBdCliente = caminhoBdCliente;
-//    }
+    public void setCaminhoBdCliente(String caminhoBdCliente) {
+        this.caminhoBdCliente = caminhoBdCliente;
+    }
+
     public String getCaminhoBdServidor() {
         return caminhoBdServidor;
     }

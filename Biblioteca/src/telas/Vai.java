@@ -21,13 +21,14 @@ import java.util.ArrayList;
 public class Vai {
 
     public static Configuracao CONFIGURACAO;
-
+    public static Colaborador USUARIO;
+    
     public static void main(String[] args) {
 
         try {
 
             CONFIGURACAO = new Configuracao();
-
+            
             ArquivoTXT arquivoTXT = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.CONFIGURACAO.getNomeArquivo());
             IArquivoTXT controleArquivoTXT = new ControleArquivoTXT(arquivoTXT);
             ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);

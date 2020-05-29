@@ -13,15 +13,15 @@ import java.util.Map;
  * @author vovostudio
  */
 public enum EnumArquivosBd {
-    AREACONHECIMENTO("areaconhecimento"),
-    AUTOR("autor"),
-    COLABORADOR("colaborador"),
-    CONFIGURACAO("configuracao"),
-    EDITORA("editora"),
-    EMPRESTIMO("emprestimo"),
-    EXEMPLAR("exemplar"),
-    LIVRO("livro"),
-    RESERVA("reserva");
+    AREACONHECIMENTO("bibliotecaAreaconhecimento.txt"),
+    AUTOR("bibliotecaAutores.txt"),
+    COLABORADOR("bibliotecaColaboradores.txt"),
+    CONFIGURACAO("bibliotecaConfiguracao.txt"),
+    EDITORA("bibliotecaEditoras.txt"),
+    EMPRESTIMO("bibliotecaEmprestimos.txt"),
+    EXEMPLAR("bibliotecaExemplares.txt"),
+    LIVRO("bibliotecaLivros.txt"),
+    RESERVA("bibliotecaReservas.txt");
 
     private String nomeArquivo;
 

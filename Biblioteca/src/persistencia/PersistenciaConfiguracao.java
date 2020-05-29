@@ -11,6 +11,8 @@ import controle.ControleArquivoTXT;
 import enumeradores.EnumArquivosBd;
 import interfaces.IArquivoTXT;
 import interfaces.ICRUDConfiguracao;
+import java.util.ArrayList;
+import telas.Vai;
 import static telas.Vai.CONFIGURACAO;
 
 /**
@@ -43,7 +45,10 @@ public class PersistenciaConfiguracao implements ICRUDConfiguracao {
 
     @Override
     public void atualizar(Configuracao configuracao) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<String>linhas = new ArrayList<>();
+        linhas.add(configuracao.toString());
+        arquivoTXT.setLinhas(linhas);
+        controleArquivoTXT.escreverArquivo(arquivoTXT);
     }
 
     @Override

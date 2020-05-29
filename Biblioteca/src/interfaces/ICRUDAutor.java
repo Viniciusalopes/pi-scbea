@@ -5,10 +5,20 @@
  */
 package interfaces;
 
+import classes.Autor;
+import java.util.ArrayList;
+
 /**
  *
  * @author vovostudio
  */
 public interface ICRUDAutor {
+
+    ArrayList<Autor> listar() throws Exception;
+
+    void incluir(Autor autor) throws Exception;
     
+    void atualizar(Autor autor) throws Exception;
+    
+    void excluir(int idAutor) throws Exception;
 }
