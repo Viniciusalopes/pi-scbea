@@ -5,8 +5,8 @@
  */
 package telas;
 
+import classes.Configuracao;
 import controle.ControleConfiguracao;
-import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
  * @author vovostudio
  */
 public class TelaConfiguracao extends javax.swing.JDialog {
+
+    private Configuracao configuracao = null;
 
     /**
      * Creates new form TelaConfiguracao
@@ -100,31 +102,35 @@ public class TelaConfiguracao extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelCaminhoBdCliente)
+                            .addComponent(jLabelCaminhoBdServidor)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelValorMultaDiaria, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabelDiasEmprestimo, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelLimiteLivros, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelValorMultaDiaria, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(jLabelLimiteLivros, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jFormattedTextFieldValorMultaDiaria, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinnerLimiteLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinnerDiasEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addComponent(jLabelCaminhoBdCliente)
-                        .addComponent(jLabelCaminhoBdServidor)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextFieldCaminhoBdServidor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                                .addComponent(jTextFieldCaminhoBdCliente, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButtonNavegar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator2))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSpinnerLimiteLivros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerDiasEmprestimo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFormattedTextFieldValorMultaDiaria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(109, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldCaminhoBdServidor, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldCaminhoBdCliente))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonNavegar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
+            .addComponent(jSeparator2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +160,7 @@ public class TelaConfiguracao extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldCaminhoBdServidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonSalvar)
                 .addGap(20, 20, 20))
@@ -164,64 +170,42 @@ public class TelaConfiguracao extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNavegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNavegarActionPerformed
-        // FONTE: https://www.rgagnon.com/javadetails/java-0370.html
-        JFileChooser chooser = new JFileChooser();
-        String choosertitle = "Selecionar diretório";
 
-        chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new java.io.File(Vai.CONFIGURACAO.getCaminhoBdCliente()));
-        chooser.setDialogTitle(choosertitle);
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        try {
+            // FONTE: https://www.rgagnon.com/javadetails/java-0370.html
+            JFileChooser chooser = new JFileChooser();
+            String choosertitle = "Selecionar diretório";
 
-        // disable the "All files" option.
-        chooser.setAcceptAllFileFilterUsed(false);
+            chooser = new JFileChooser();
+            chooser.setCurrentDirectory(new java.io.File(Vai.CONFIGURACAO.getCaminhoBdCliente()));
+            chooser.setDialogTitle(choosertitle);
+            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
-        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            jTextFieldCaminhoBdCliente.setText("" + chooser.getSelectedFile());
-        } else {
-            JOptionPane.showMessageDialog(rootPane,
-                    "O caminho da base de dados local não foi alterado.",
-                    "Informação", JOptionPane.INFORMATION_MESSAGE);
+            // disable the "All files" option.
+            chooser.setAcceptAllFileFilterUsed(false);
+
+            if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                jTextFieldCaminhoBdCliente.setText("" + chooser.getSelectedFile());
+            } else {
+                JOptionPane.showMessageDialog(rootPane,
+                        "O caminho da base de dados local não foi alterado.",
+                        "Informação", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, ((e.getMessage() == null) ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonNavegarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         try {
-//            if (jTextFieldCaminhoBdCliente.getText().trim().length() == 0) {
-//                throw new Exception("O caminho da base de dados local não pode ficar em branco");
-//            }
+            configuracao = new Configuracao(
+                    Integer.valueOf(jSpinnerDiasEmprestimo.getValue().toString()),
+                    Integer.valueOf(jSpinnerLimiteLivros.getValue().toString()),
+                    Float.parseFloat(jFormattedTextFieldValorMultaDiaria.getValue().toString()),
+                    jTextFieldCaminhoBdCliente.getText(), jTextFieldCaminhoBdServidor.getText());
+            new ControleConfiguracao().atualizar(configuracao);
 
-            float valorMultaDiaria = Float.valueOf(jFormattedTextFieldValorMultaDiaria.getText().replace(",", "."));
-
-            if (valorMultaDiaria < 0) {
-                throw new Exception("O valor da multa diária deve ser maior ou igual a 0!");
-            }
-
-            String caminho = new String(jTextFieldCaminhoBdCliente.getText());
-            if (caminho.trim().length() == 0) {
-                throw new Exception("O caminho da base de dados local não pode ficar em branco!");
-            }
-
-            if (!new File(caminho).exists()) {
-                throw new Exception("O caminho da base de dados local é inválido!");
-            }
-
-            caminho = new String(jTextFieldCaminhoBdServidor.getText());
-            if (caminho.trim().length() == 0) {
-                throw new Exception("O caminho da base de dados remota não pode ficar em branco!");
-            }
-
-            if (!caminho.contains(".") || !caminho.contains(":")) {
-                throw new Exception("O caminho da base de dados remota é inválido!");
-            }
-
-            Vai.CONFIGURACAO.setLimiteDeLivros(Integer.parseInt(jSpinnerLimiteLivros.getValue().toString()));
-            Vai.CONFIGURACAO.setDiasDeEmprestimo(Integer.parseInt(jSpinnerDiasEmprestimo.getValue().toString()));
-            Vai.CONFIGURACAO.setValorMultaDiaria(valorMultaDiaria);
-            Vai.CONFIGURACAO.setCaminhoBdCliente(jTextFieldCaminhoBdCliente.getText());
-            Vai.CONFIGURACAO.setCaminhoBdServidor(jTextFieldCaminhoBdServidor.getText());
-
-            new ControleConfiguracao().atualizar(Vai.CONFIGURACAO);
+            JOptionPane.showMessageDialog(rootPane, "Configuração salva com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, ((e.getMessage() == null) ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
