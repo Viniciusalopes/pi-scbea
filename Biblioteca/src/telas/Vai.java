@@ -8,6 +8,7 @@ import controle.ControleConfiguracao;
 import enumeradores.EnumArquivosBd;
 import interfaces.IArquivoTXT;
 import java.util.ArrayList;
+import utilidades.Hash;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -45,10 +46,35 @@ public class Vai {
             controleArquivoTXT = new ControleArquivoTXT(arquivoTXT);
             linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
             if (linhas.size() == 0) {
-                // Cria o primeiro arquivo de colaboradores, com os valores da classe Colaborador
+                // Cria os colaboradores do grupo do pi para testes
                 Colaborador colaborador = new Colaborador();
-                colaborador.setNomeColaborador("Vovolinux");
+                
+                colaborador.setIdColaborador(1);
+                colaborador.setNomeColaborador("João Pedro");
+                colaborador.setMatricula(1);
+                colaborador.setSenha(Hash.criptografar("jp", "SHA-256"));
                 linhas.add(colaborador.toString());
+                
+                colaborador.setIdColaborador(2);
+                colaborador.setNomeColaborador("Lucas Araujo");
+                colaborador.setMatricula(2);
+                colaborador.setSenha(Hash.criptografar("lucas", "SHA-256"));
+                linhas.add(colaborador.toString());
+                
+                colaborador.setIdColaborador(3);
+                colaborador.setNomeColaborador("Marcos Job");
+                colaborador.setMatricula(3);
+                colaborador.setSenha(Hash.criptografar("job", "SHA-256"));
+                linhas.add(colaborador.toString());
+                
+                
+                colaborador.setIdColaborador(4);
+                colaborador.setNomeColaborador("Vinicius Lopes");
+                colaborador.setMatricula(4);
+                colaborador.setSenha(Hash.criptografar("vovo", "SHA-256"));
+                linhas.add(colaborador.toString());
+                
+                
                 arquivoTXT.setLinhas(linhas);
                 controleArquivoTXT.escreverArquivo(arquivoTXT);
             }

@@ -17,6 +17,26 @@ public class Configuracao {
     private String caminhoBdCliente = System.getProperty("user.dir") + "/BibliotecaBd/";
     private String caminhoBdServidor = "192.168.15.3:4567";
 
+    public Configuracao() {
+    }
+
+    public Configuracao(Configuracao configuracao) {
+        limiteDeLivros = configuracao.limiteDeLivros;
+        diasDeEmprestimo = configuracao.diasDeEmprestimo;
+        valorMultaDiaria = configuracao.valorMultaDiaria;
+        caminhoBdCliente = configuracao.caminhoBdCliente;
+        caminhoBdServidor = configuracao.caminhoBdServidor;
+    }
+
+    public Configuracao(int limiteDeLivros, int diasDeEmprestimo, float valorMultaDiaria,
+            String caminhoBdCliente, String caminhoBdServidor) {
+        this.limiteDeLivros = limiteDeLivros;
+        this.diasDeEmprestimo = diasDeEmprestimo;
+        this.valorMultaDiaria = valorMultaDiaria;
+        this.caminhoBdCliente = caminhoBdCliente;
+        this.caminhoBdServidor = caminhoBdServidor;
+    }
+
     public int getLimiteDeLivros() {
         return limiteDeLivros;
     }

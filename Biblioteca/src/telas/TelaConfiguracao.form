@@ -28,42 +28,47 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jSeparator1" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jSeparator1" alignment="0" min="-2" pref="333" max="-2" attributes="0"/>
+                          <Component id="jLabelCaminhoBdCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelCaminhoBdServidor" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabelValorMultaDiaria" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelDiasEmprestimo" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelLimiteLivros" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelValorMultaDiaria" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jFormattedTextFieldValorMultaDiaria" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="jSpinnerLimiteLivros" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="jSpinnerDiasEmprestimo" min="-2" pref="80" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jSpinnerLimiteLivros" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="jSpinnerDiasEmprestimo" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="jFormattedTextFieldValorMultaDiaria" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <Component id="jLabelCaminhoBdCliente" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelCaminhoBdServidor" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jTextFieldCaminhoBdServidor" alignment="0" pref="371" max="32767" attributes="0"/>
-                              <Component id="jTextFieldCaminhoBdCliente" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButtonNavegar" min="-2" pref="80" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="jButtonSalvar" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace pref="109" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jSeparator2" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jTextFieldCaminhoBdServidor" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextFieldCaminhoBdCliente" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonNavegar" min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  </Group>
               </Group>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jButtonSalvar" min="-2" pref="80" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
+          <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -98,7 +103,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTextFieldCaminhoBdServidor" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSeparator2" min="-2" pref="6" max="-2" attributes="0"/>
+              <Component id="jSeparator2" min="-2" pref="2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButtonSalvar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>

@@ -296,9 +296,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfiguracoesActionPerformed
         try {
-            JOptionPane.showMessageDialog(rootPane, "Refazer todos os componentes\nPegar o metodo de Search file");
             new TelaConfiguracao(this, true).setVisible(true);
-            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, ((e.getMessage() == null) ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
         }

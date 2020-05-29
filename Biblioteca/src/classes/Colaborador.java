@@ -19,11 +19,11 @@ public class Colaborador {
     private String nomeColaborador;
     private EnumPerfil perfil = EnumPerfil.ADMINISTRADOR;
     private int matricula = 0;
-    private EnumCargo cargo = EnumCargo.PROPRIETARIO;
-    private String oab = "1";
-    private String senha = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
-    private String email = "suporte@vovolinux.com.br";
-    private String telefone = "62-98888-7777";
+    private EnumCargo cargo = EnumCargo.DESENVOLVEDOR;
+    private String oab = "";
+    private String senha = "";
+    private String email = "";
+    private String telefone = "";
     private EnumTipoStatus status = EnumTipoStatus.ATIVO;
 
     public Colaborador() {

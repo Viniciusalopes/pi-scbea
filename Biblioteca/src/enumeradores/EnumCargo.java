@@ -14,5 +14,6 @@ public enum EnumCargo {
     BIBLIOTECARIO,
     ESTAGIARIO,
     PROPRIETARIO,
-    SECRETARIA
+    SECRETARIA,
+    DESENVOLVEDOR
 }

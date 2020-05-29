@@ -45,10 +45,25 @@ public class PersistenciaConfiguracao implements ICRUDConfiguracao {
 
     @Override
     public void atualizar(Configuracao configuracao) throws Exception {
-        ArrayList<String>linhas = new ArrayList<>();
+        // Linhas do arquivo de configuração
+        ArrayList<String> linhas = new ArrayList<>();
         linhas.add(configuracao.toString());
+
+        // Atualizo o arquivo padrão com a nova configuração
+        Configuracao padrao = new Configuracao();
+        arquivoTXT = new ArquivoTXT(padrao.getCaminhoBdCliente(), EnumArquivosBd.CONFIGURACAO.getNomeArquivo());
         arquivoTXT.setLinhas(linhas);
         controleArquivoTXT.escreverArquivo(arquivoTXT);
+
+        // Crio o novo arquivo de configuração caso seja em outro local
+        if (!padrao.getCaminhoBdCliente().equals(configuracao.getCaminhoBdCliente())) {
+            arquivoTXT = new ArquivoTXT(configuracao.getCaminhoBdCliente(), EnumArquivosBd.CONFIGURACAO.getNomeArquivo());
+            arquivoTXT.setLinhas(linhas);
+            controleArquivoTXT.escreverArquivo(arquivoTXT);
+        }
+
+        // Atualizo a configuração global
+        Vai.CONFIGURACAO = new Configuracao(configuracao);
     }
 
     @Override
