@@ -15,66 +15,107 @@ Livro
 + toString() : void
  */
 package classes;
-
 /**
  * CLASSE LIVRO
  */
 public class Livro {
-
-    private int idLivro() {
-        idLivro();
-        return 0;
-
+//-------------------------------------
+    //atributos 
+    private int idLivro;
+    private Editora editora;
+    private Autor autor;
+    private AreaConhecimento areaConhecimento;
+    private String titulo;
+    private String descricaoLivro;
+    private String isbn;
+    private int anoPublicacao;
+ //-------------------------------------
+ //construtores 
+ //-------------------------------------
+    public Livro(){
+        
+    }
+    public Livro (Livro livro){
+        //-------------------------------------
+        idLivro = livro.idLivro;
+        Editora = livro.Editora;
+        Autor = livro.Autor;
+        AreaConhecimento = livro.AreaConhecimento;
+        titulo = livro.titulo;
+        descricaoLivro = livro.descricaoLivro;
+        isbn = livro.isbn;
+        anoPublicacao = livro.anoPublicacao;
+        //-------------------------------------
+        
+        
+    }
+    public Livro (int idLivro , editora Editora ,Autor auto , AreaConhecimento areaConhecimento
+    String titulo , String descricaoLivro , String isbn , int anoPublicacao ){
+    
+    
+}
+    public int getIdLivro() {
+        return idLivro;
     }
 
-    private editora Editora() {
-        Editora();
-        return Editora();
-
+    public void setIdLivro(int idLivro) {
+        this.idLivro = idLivro;
     }
 
-    private autor Autor() {
-        Autor();
-        return Autor();
-
+    public editora getEditora() {
+        return Editora;
     }
 
-    private areaConhecimento AreaConhecimento() {
-        AreaConhecimento();
-        return AreaConhecimento();
-
+    public void setEditora(editora Editora) {
+        this.Editora = Editora;
     }
 
-    private String titulo() {
-        titulo();
-        return titulo();
-
+    public autor getAutor() {
+        return Autor;
     }
 
-    private String descricaoLivro() {
-        descricaoLivro();
-        return descricaoLivro();
-
+    public void setAutor(autor Autor) {
+        this.Autor = Autor;
     }
 
-    private String isbn() {
-        isbn();
-        return isbn();
-
+    public areaConhecimento getAreaConhecimento() {
+        return AreaConhecimento;
     }
 
-    private int anoPublicacao() {
-        anoPublicacao();
-        return 0;
-
+    public void setAreaConhecimento(areaConhecimento AreaConhecimento) {
+        this.AreaConhecimento = AreaConhecimento;
     }
 
-    public void getLivro() {
-
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setLivro() {
-
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
+    public String getDescricaoLivro() {
+        return descricaoLivro;
+    }
+
+    public void setDescricaoLivro(String descricaoLivro) {
+        this.descricaoLivro = descricaoLivro;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public int getAnoPublicacao() {
+        return anoPublicacao;
+    }
+
+    public void setAnoPublicacao(int anoPublicacao) {
+        this.anoPublicacao = anoPublicacao;
+    }
+    
 }
