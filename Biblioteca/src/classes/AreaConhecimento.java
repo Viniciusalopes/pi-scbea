@@ -64,7 +64,7 @@ public class AreaConhecimento {
     //TO STRING 
     @Override
     public String toString(){
-        return String.format("%d%d%s", idAreaConhecimento , cdd , descricaoAreaConhecimento);
+        return (idAreaConhecimento + ";" + cdd + ";" +  descricaoAreaConhecimento );
     }
 
 }

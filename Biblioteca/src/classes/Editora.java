@@ -60,7 +60,7 @@ public class Editora {
     //-------------------------------------
     @Override 
     public String toString(){
-        return String.format("%d;%s", idEditora , nomeEditora);
+        return (idEditora + " ; "+ nomeEditora+ ";");
         
     }
            
