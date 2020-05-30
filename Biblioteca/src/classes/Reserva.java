@@ -22,8 +22,8 @@ public class Reserva {
 
     //atributos 
     private int idReserva;
-    private livro Livro;
-    private colaborador Colaborador;
+    private Livro livro;
+    private Colaborador colaborador;
     private Date dataReserva;
 
     public Reserva() {
@@ -33,15 +33,15 @@ public class Reserva {
 
     public Reserva(Reserva reserva) {
         idReserva = reserva.idReserva;
-        Livro = reserva.Livro;
-        Colaborador = reserva.Colaborador;
+        livro = reserva.livro;
+        colaborador = reserva.colaborador;
         dataReserva = reserva.dataReserva;
     }
 
     public Reserva(int idReserva, Livro livro, Colaborador colaborador, Date dataReserva) {
         this.idReserva = idReserva;
-        this.Livro = livro;
-        this.Colaborador = colaborador;
+        this.livro = livro;
+        this.colaborador = colaborador;
         this.dataReserva = dataReserva;
     }
 
@@ -54,20 +54,20 @@ public class Reserva {
         this.idReserva = idReserva;
     }
 
-    public livro getLivro() {
-        return Livro;
+    public Livro getLivro() {
+        return livro;
     }
 
-    public void setLivro(livro Livro) {
-        this.Livro = Livro;
+    public void setLivro(Livro Livro) {
+        this.livro = Livro;
     }
 
-    public colaborador getColaborador() {
-        return Colaborador;
+    public Colaborador getColaborador() {
+        return colaborador;
     }
 
-    public void setColaborador(colaborador Colaborador) {
-        this.Colaborador = Colaborador;
+    public void setColaborador(Colaborador Colaborador) {
+        this.colaborador = Colaborador;
     }
 
     public Date getdataReserva() {
@@ -80,10 +80,9 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return String.format("%d;%s;$;$s", idReserva, Livro, Colaborador, dataReserva)
-        {
+        return idReserva + ";" + livro.getIdLivro() + ";" + colaborador.getIdColaborador() + ";" + dataReserva;
+    
+}
 
-        }
-    }
 
 }

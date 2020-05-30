@@ -15,12 +15,14 @@ Livro
 + toString() : void
  */
 package classes;
+
 /**
  * CLASSE LIVRO
  */
 public class Livro {
 //-------------------------------------
     //atributos 
+
     private int idLivro;
     private Editora editora;
     private Autor autor;
@@ -29,31 +31,44 @@ public class Livro {
     private String descricaoLivro;
     private String isbn;
     private int anoPublicacao;
- //-------------------------------------
- //construtores 
- //-------------------------------------
-    public Livro(){
-        
+    //-------------------------------------
+    //construtores 
+    //-------------------------------------
+
+    public Livro() {
+
     }
-    public Livro (Livro livro){
+
+    public Livro(Livro livro) {
         //-------------------------------------
         idLivro = livro.idLivro;
-        Editora = livro.Editora;
-        Autor = livro.Autor;
-        AreaConhecimento = livro.AreaConhecimento;
+        editora = livro.editora;
+        autor = livro.autor;
+        areaConhecimento = livro.areaConhecimento;
         titulo = livro.titulo;
         descricaoLivro = livro.descricaoLivro;
         isbn = livro.isbn;
         anoPublicacao = livro.anoPublicacao;
         //-------------------------------------
-        
-        
+
     }
-    public Livro (int idLivro , editora Editora ,Autor auto , AreaConhecimento areaConhecimento
-    String titulo , String descricaoLivro , String isbn , int anoPublicacao ){
-    
-    
-}
+
+    public Livro(int idLivro, Editora editora, Autor autor, AreaConhecimento areaConhecimento,
+            String titulo, String descricaoLivro, String isbn, int anoPublicacao) {
+        //-------------------------------------
+        this.idLivro = idLivro;
+        this.editora = editora;
+        this.autor = autor;
+        this.areaConhecimento = areaConhecimento;
+        this.titulo = titulo;
+        this.descricaoLivro = descricaoLivro;
+        this.isbn = isbn;
+        this.anoPublicacao = anoPublicacao;
+        //-------------------------------------      
+    }
+
+    //-------------------------------------
+    //getrs e setrs 
     public int getIdLivro() {
         return idLivro;
     }
@@ -62,28 +77,28 @@ public class Livro {
         this.idLivro = idLivro;
     }
 
-    public editora getEditora() {
-        return Editora;
+    public Editora getEditora() {
+        return editora;
     }
 
-    public void setEditora(editora Editora) {
-        this.Editora = Editora;
+    public void setEditora(Editora editora) {
+        this.editora = editora;
     }
 
-    public autor getAutor() {
-        return Autor;
+    public Autor getAutor() {
+        return autor;
     }
 
-    public void setAutor(autor Autor) {
-        this.Autor = Autor;
+    public void setAutor(Autor autor) {
+        this.autor = autor;
     }
 
-    public areaConhecimento getAreaConhecimento() {
-        return AreaConhecimento;
+    public AreaConhecimento getAreaConhecimento() {
+        return areaConhecimento;
     }
 
-    public void setAreaConhecimento(areaConhecimento AreaConhecimento) {
-        this.AreaConhecimento = AreaConhecimento;
+    public void setAreaConhecimento(AreaConhecimento AreaConhecimento) {
+        this.areaConhecimento = AreaConhecimento;
     }
 
     public String getTitulo() {
@@ -117,5 +132,13 @@ public class Livro {
     public void setAnoPublicacao(int anoPublicacao) {
         this.anoPublicacao = anoPublicacao;
     }
-    
+
+    @Override
+    public String toString() {
+        return idLivro + ";" + editora.getIdEditora() + ";" + autor.getIdAutor() + ";"
+                + areaConhecimento.getIdAreaConhecimento() + ";" + titulo + ";"
+                + descricaoLivro + ";" + isbn + ";" + anoPublicacao;
+
+    }
+
 }

@@ -18,8 +18,8 @@ public class Editora {
     
     //Atributos 
     //-------------------------------------
-    public int idEditora;
-    public String nomeEditora;
+    private int idEditora;
+    private String nomeEditora;
     
 
     //------------------------------------
