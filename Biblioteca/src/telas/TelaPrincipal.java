@@ -229,12 +229,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "ID", "Nome", "Perfil", "Matrícula", "Cargo", "OAB", "E-mail", "Telefone", "Status"
             }
-        ));
-        jTableLista.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTableLista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jTableLista);
+        if (jTableLista.getColumnModel().getColumnCount() > 0) {
+            jTableLista.getColumnModel().getColumn(0).setPreferredWidth(60);
+            jTableLista.getColumnModel().getColumn(1).setMinWidth(200);
+            jTableLista.getColumnModel().getColumn(8).setMinWidth(100);
+            jTableLista.getColumnModel().getColumn(8).setMaxWidth(200);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -267,31 +280,59 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButtonLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLivrosActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jRadioButtonLivrosActionPerformed
 
     private void jRadioButtonEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEmprestimosActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jRadioButtonEmprestimosActionPerformed
 
     private void jRadioButtonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonReservasActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jRadioButtonReservasActionPerformed
 
     private void jRadioButtonAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAreasActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jRadioButtonAreasActionPerformed
 
     private void jRadioButtonEditorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEditorasActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jRadioButtonEditorasActionPerformed
 
     private void jRadioButtonAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAutoresActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jRadioButtonAutoresActionPerformed
 
     private void jRadioButtonColaboradoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonColaboradoresActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jRadioButtonColaboradoresActionPerformed
 
     private void jButtonConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfiguracoesActionPerformed
@@ -303,22 +344,38 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonConfiguracoesActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-        if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente sair?", "Confirmação",
-                JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
-            this.dispose();
+        try {
+            if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente sair?", "Confirmação",
+                    JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+                this.dispose();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonIncluirActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        new JDialog().setVisible(true);
+        try {
+            new JDialog().setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     /**
