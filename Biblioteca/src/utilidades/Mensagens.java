@@ -27,6 +27,12 @@ public class Mensagens extends JFrame {
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
+    // Exibe mensagem de alerta
+    public void alerta(String mensagem) {
+        JOptionPane.showMessageDialog(rootPane, mensagem, "Eita!",
+                JOptionPane.WARNING_MESSAGE);
+    }
+    
     // Exibe uma mensagem de sucesso
     public void sucesso(String mensagem) {
         JOptionPane.showMessageDialog(rootPane, mensagem, "Sucesso!",
