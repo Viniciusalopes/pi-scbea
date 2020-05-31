@@ -5,7 +5,7 @@
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="CONFIGURA&#xc7;&#xc3;O"/>
     <Property name="modalityType" type="java.awt.Dialog$ModalityType" editor="org.netbeans.modules.form.editors.EnumEditor">
-      <Value id="TOOLKIT_MODAL"/>
+      <Value id="APPLICATION_MODAL"/>
     </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>

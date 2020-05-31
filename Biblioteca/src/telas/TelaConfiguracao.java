@@ -8,7 +8,7 @@ package telas;
 import classes.Configuracao;
 import controle.ControleConfiguracao;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
+import utilidades.Mensagens;
 
 /**
  *
@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 public class TelaConfiguracao extends javax.swing.JDialog {
 
     private Configuracao configuracao = null;
+    private Mensagens mensagem = new Mensagens();
 
     /**
      * Creates new form TelaConfiguracao
@@ -60,7 +61,7 @@ public class TelaConfiguracao extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CONFIGURAÇÃO");
-        setModalityType(java.awt.Dialog.ModalityType.TOOLKIT_MODAL);
+        setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setResizable(false);
 
         jLabelLimiteLivros.setText("Limite de livros emprestados por colaborador:");
@@ -185,14 +186,12 @@ public class TelaConfiguracao extends javax.swing.JDialog {
             chooser.setAcceptAllFileFilterUsed(false);
 
             if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-                jTextFieldCaminhoBdCliente.setText("" + chooser.getSelectedFile());
+                jTextFieldCaminhoBdCliente.setText(chooser.getSelectedFile() + "/");
             } else {
-                JOptionPane.showMessageDialog(rootPane,
-                        "O caminho da base de dados local não foi alterado.",
-                        "Informação", JOptionPane.INFORMATION_MESSAGE);
+                mensagem.informacao("O caminho da base de dados local não foi alterado.");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, ((e.getMessage() == null) ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jButtonNavegarActionPerformed
 
@@ -205,10 +204,10 @@ public class TelaConfiguracao extends javax.swing.JDialog {
                     jTextFieldCaminhoBdCliente.getText(), jTextFieldCaminhoBdServidor.getText());
             new ControleConfiguracao().atualizar(configuracao);
 
-            JOptionPane.showMessageDialog(rootPane, "Configuração salva com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+            mensagem.sucesso("Configuração salva com sucesso!");
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, ((e.getMessage() == null) ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 

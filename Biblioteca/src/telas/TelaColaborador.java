@@ -17,6 +17,8 @@ public class TelaColaborador extends javax.swing.JDialog {
     public TelaColaborador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(rootPane);
+
     }
 
     /**

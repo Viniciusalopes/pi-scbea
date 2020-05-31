@@ -6,11 +6,9 @@
 package controle;
 
 import classes.Colaborador;
-import enumeradores.EnumTipoStatus;
 import interfaces.ICRUDColaborador;
 import java.util.ArrayList;
 import persistencia.PersistenciaColaborador;
-import utilidades.Hash;
 
 /**
  *
@@ -23,7 +21,6 @@ public class ControleColaborador implements ICRUDColaborador {
 
     public ControleColaborador() throws Exception {
         persistencia = new PersistenciaColaborador();
-        colecao = persistencia.listar();
     }
 
     @Override
@@ -41,48 +38,5 @@ public class ControleColaborador implements ICRUDColaborador {
 
     @Override
     public void excluir(int idColaborador) {
-    }
-
-    public Colaborador autenticar(String login, String senha) throws Exception {
-
-        if (login.trim().length() == 0) {
-            throw new Exception("O campo Login é obrigatório!");
-        }
-
-        if (senha.trim().length() == 0) {
-            throw new Exception("O campo Senha é obrigatório!");
-        }
-
-        colecao = listar();
-
-        if (colecao.isEmpty()) {
-            throw new Exception("Nenhum colaborador cadastrado!");
-        }
-
-        Colaborador colaborador = new Colaborador();
-
-        for (Colaborador c : colecao) {
-            if (("" + c.getMatricula()).equals(login)
-                    || ("" + c.getOab()).equals(login)
-                    || (c.getEmail()).equals(login)) {
-                // Colaborador está cadastrado
-                colaborador = new Colaborador(c);
-                break;
-            }
-        }
-
-        if (colaborador.getNomeColaborador() == null) {
-            throw new Exception("Login inválido!");
-        }
-
-        if (colaborador.getStatus().equals(EnumTipoStatus.INATIVO)) {
-            throw new Exception("Colaborador inativo!");
-        }
-
-        if (!colaborador.getSenha().equals(Hash.criptografar(senha, "SHA-256"))) {
-            throw new Exception("Senha incorreta!");
-        }
-        
-        return colaborador;
     }
 }

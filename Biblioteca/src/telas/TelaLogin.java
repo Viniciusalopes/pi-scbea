@@ -5,15 +5,16 @@
  */
 package telas;
 
-import classes.Colaborador;
-import controle.ControleColaborador;
-import javax.swing.JOptionPane;
+import controle.ControleLogin;
+import utilidades.Mensagens;
 
 /**
  *
  * @author vovostudio
  */
 public class TelaLogin extends javax.swing.JFrame {
+
+    private Mensagens mensagem = new Mensagens();
 
     /**
      * Creates new form TelaLogin
@@ -48,6 +49,10 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabelLogin.setText("Login");
 
         jLabelSenha.setText("Senha");
+
+        jTextFieldLogin.setText("4");
+
+        jPasswordField.setText("vovo");
 
         jButtonNaoSeiMinhaSenha.setText("Não sei minha senha");
         jButtonNaoSeiMinhaSenha.setFocusable(false);
@@ -104,22 +109,22 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNaoSeiMinhaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNaoSeiMinhaSenhaActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Problema seu.", "Tonto!", JOptionPane.ERROR_MESSAGE);
+        mensagem.erro(new Exception("Problema seu."));
     }//GEN-LAST:event_jButtonNaoSeiMinhaSenhaActionPerformed
 
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
 
         try {
             // FONTE: https://www.guj.com.br/t/como-pegar-valor-do-jpasswordfield/227295/7
-            Vai.USUARIO = new ControleColaborador().autenticar(
+            Vai.USUARIO = new ControleLogin().autenticar(
                     jTextFieldLogin.getText(), new String(jPasswordField.getPassword()));
-            
+
             TelaPrincipal telaPrincipal = new TelaPrincipal();
             telaPrincipal.setVisible(true);
             this.dispose();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, ((e.getMessage() == null) ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jButtonOKActionPerformed
 

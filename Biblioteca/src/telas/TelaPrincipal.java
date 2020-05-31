@@ -5,9 +5,24 @@
  */
 package telas;
 
+import java.util.ArrayList;
 import enumeradores.EnumPerfil;
+import controle.ControleTelaPrincipal;
+import classes.ColunaGrid;
+import controle.ControleAutor;
+import controle.ControleColaborador;
+import controle.ControleEditora;
+import enumeradores.EnumCadastro;
+import interfaces.ICRUDAreaConhecimento;
+import interfaces.ICRUDAutor;
+import interfaces.ICRUDEditora;
+import interfaces.ICRUDColaborador;
+import interfaces.ICRUDEmprestimo;
+import interfaces.ICRUDExemplar;
+import interfaces.ICRUDLivro;
+import interfaces.ICRUDReserva;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
+import utilidades.Mensagens;
 
 /**
  *
@@ -15,6 +30,173 @@ import javax.swing.JOptionPane;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
+    //--- ATRIBUTOS ----------------------------------------------------------->
+    //    
+    // Controladores
+    private ControleTelaPrincipal controleTela = null;
+    private ICRUDAreaConhecimento controleAreaConhecimento = null;
+    private ICRUDAutor controleAutor = null;
+    private ICRUDColaborador controleColaborador = null;
+    private ICRUDEditora controleEditora = null;
+    private ICRUDEmprestimo controleEmprestimo = null;
+    private ICRUDExemplar controleExemplar = null;
+    private ICRUDLivro controleLivro = null;
+    private ICRUDReserva controleReserva = null;
+    private JDialog telaCadastro = null;
+    private Mensagens mensagem = new Mensagens();
+
+    // Nome do cadastro atual
+    private String cadastro = "";
+
+    //--- FIM ATRIBUTOS -------------------------------------------------------|
+    //
+    //--- MÉTODOS ------------------------------------------------------------->
+    //
+    //--- MÉTODOS PARA GRID --------------------------------------------------->
+    // Linhas do grid
+    private String[][] linhas = null;
+
+    // Colunas do grid
+    private ArrayList<ColunaGrid> colunas = null;
+
+    //
+    // Exibe os cadastros de uma tabela
+    private void exibirCadastros(Object colecao) throws Exception {
+        cadastro = buttonGroupCadastros.getSelection().getActionCommand().toUpperCase();
+        colunas = controleTela.getColunasParaGrid(EnumCadastro.valueOf(cadastro));
+        if (colecao == null) {
+            linhas = new String[][]{{}};
+            popularGrid(colunas, linhas);
+        } else {
+            linhas = controleTela.getLinhasParaGrid(colecao, EnumCadastro.valueOf(cadastro));
+            popularGrid(colunas, linhas);
+        }
+        // Limpa o texto de pesquisa e posiciona o cursor
+        jTextFieldPesquisar.setText("");
+        jTextFieldPesquisar.requestFocus();
+    }
+
+    // Popula o grid
+    private void popularGrid(ArrayList<ColunaGrid> colunas, String[][] linhas) throws Exception {
+
+        String nomeCadastro = EnumCadastro.valueOf(cadastro).getNomeCadastro();
+
+        this.setTitle("Biblioteca do G0dô - Cadastro de " + nomeCadastro);
+
+        if (linhas.length == 0 || linhas[0].length == 0) {
+            jLabelStatus.setText("Nenhum cadastro de " + nomeCadastro + ".");
+        } else {
+            jLabelStatus.setText("");
+        }
+
+        // Nomes das colunas do grid
+        String[] colunasNomes = new String[colunas.size()];
+        for (int i = 0; i < colunas.size(); i++) {
+            colunasNomes[i] = colunas.get(i).getNome();
+        }
+
+        // Bloqueia edição pelo grid de todas as colunas
+        boolean[] permiteEdicao = new boolean[colunas.size()];
+        for (boolean p : permiteEdicao) {
+            p = false;
+        }
+
+        // Preenche e configura o grid com as linhas e colunas
+        jTableLista.setModel(new javax.swing.table.DefaultTableModel(linhas, colunasNomes) {
+            boolean[] canEdit = permiteEdicao;
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        jTableLista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(jTableLista);
+        if (jTableLista.getColumnModel().getColumnCount() > 0) {
+
+            // Formatação das colunas
+            for (int i = 0; i < colunas.size(); i++) {
+                jTableLista.getColumnModel().getColumn(i).setCellRenderer(colunas.get(i).getAlinhamento());
+            }
+        }
+
+        // Desabilita botões Editar e Excluir
+        jButtonEditar.setEnabled(false);
+        jButtonExcluir.setEnabled(false);
+        jTextFieldPesquisar.requestFocus();
+    }
+
+    // Pesquisa nas linhas do grid
+    private void pesquisar(String texto) throws Exception {
+        if (linhas != null) {
+            if (texto.trim().length() == 0) {
+                popularGrid(colunas, linhas);
+            } else {
+                ArrayList<String[]> resultadoPesquisa = new ArrayList<>();
+                for (String[] linha : linhas) {
+                    for (String coluna : linha) {
+                        if (coluna.toLowerCase().contains(texto)) {
+                            resultadoPesquisa.add(linha);
+                            break; // Pára de pesquisar na linha atual
+                        }
+                    }
+                }
+
+                String[][] resultadoLinhas = new String[resultadoPesquisa.size()][colunas.size()];
+                for (int i = 0; i < resultadoPesquisa.size(); i++) {
+                    resultadoLinhas[i] = resultadoPesquisa.get(i);
+                }
+
+                popularGrid(colunas, resultadoLinhas);
+            }
+        }
+    }
+
+    // Retorna o id do cadastro selecionado no grid
+    private int getId() {
+
+        // Índice da coluna ID
+        int indiceID = 0;
+
+        // Atualiza o índice da coluna com o ID
+        for (int i = 0; i < jTableLista.getColumnCount(); i++) {
+            if (jTableLista.getColumnName(i).equals("ID")) {
+                indiceID = i;
+                break;
+            }
+        }
+        return Integer.parseInt(jTableLista.getValueAt(jTableLista.getSelectedRow(), indiceID).toString());
+    }
+
+    //--- FIM MÉTODOS PARA GRID -----------------------------------------------|
+    //
+    //--- MÉTODOS PARA CRUD --------------------------------------------------->
+    private void incluirCadastro() {
+        telaCadastro.setVisible(true);
+    }
+
+    private void editarCadastro() {
+        telaCadastro.setVisible(true);
+    }
+
+    private void detalheCadastro() {
+        telaCadastro.setVisible(true);
+    }
+
+    private void excluirCadastro() {
+        int id = getId();
+        String textoPergunta = "Deseja realmente excluir o cadastro selecionado?\n"
+                + "(-) " + cadastro + " ID: " + String.format("%04d", id);
+
+        if (mensagem.pergunta(textoPergunta) == 0) {
+            controleColaborador.excluir(id);
+            mensagem.sucesso(cadastro + " excluído com sucesso!");
+        }
+    }
+
+    //--- FIM MÉTODOS PARA CRUD -----------------------------------------------|
+    //
+    //--- FIM MÉTODOS ---------------------------------------------------------|
+    //
     /**
      * Creates new form JFramePrincipal
      */
@@ -27,6 +209,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jButtonConfiguracoes.setVisible(Vai.USUARIO.getPerfil().equals(EnumPerfil.ADMINISTRADOR));
 
+        try {
+            // Controladores
+            controleTela = new ControleTelaPrincipal();
+            //controleAreaConhecimento = new ControleAreaConhecimento();
+            controleAutor = new ControleAutor();
+            controleColaborador = new ControleColaborador();
+            controleEditora = new ControleEditora();
+            //controleEmprestimo = new ControleEmprestimo();
+            //controleExemplar = new ControleExemplar();
+            //controleLivro = new ControleLivro();
+            //controleReserva = new ControleReserva();
+
+            jRadioButtonLivrosActionPerformed(null);
+            jTextFieldPesquisar.requestFocus();
+
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
     }
 
     /**
@@ -54,6 +254,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonIncluir = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
+        jLabelStatus = new javax.swing.JLabel();
+        jLabelPesquisar = new javax.swing.JLabel();
+        jTextFieldPesquisar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLista = new javax.swing.JTable();
 
@@ -65,6 +268,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         buttonGroupCadastros.add(jRadioButtonLivros);
         jRadioButtonLivros.setSelected(true);
         jRadioButtonLivros.setText("Livros");
+        jRadioButtonLivros.setActionCommand("Livro");
         jRadioButtonLivros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonLivrosActionPerformed(evt);
@@ -73,6 +277,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         buttonGroupCadastros.add(jRadioButtonEmprestimos);
         jRadioButtonEmprestimos.setText("Empréstimos");
+        jRadioButtonEmprestimos.setActionCommand("Emprestimo");
         jRadioButtonEmprestimos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonEmprestimosActionPerformed(evt);
@@ -81,6 +286,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         buttonGroupCadastros.add(jRadioButtonReservas);
         jRadioButtonReservas.setText("Reservas");
+        jRadioButtonReservas.setActionCommand("Reserva");
         jRadioButtonReservas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonReservasActionPerformed(evt);
@@ -89,6 +295,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         buttonGroupCadastros.add(jRadioButtonAreas);
         jRadioButtonAreas.setText("Áreas de conhecimento");
+        jRadioButtonAreas.setActionCommand("AreaConhecimento");
         jRadioButtonAreas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonAreasActionPerformed(evt);
@@ -97,6 +304,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         buttonGroupCadastros.add(jRadioButtonEditoras);
         jRadioButtonEditoras.setText("Editoras");
+        jRadioButtonEditoras.setActionCommand("Editora");
         jRadioButtonEditoras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonEditorasActionPerformed(evt);
@@ -105,6 +313,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         buttonGroupCadastros.add(jRadioButtonAutores);
         jRadioButtonAutores.setText("Autores");
+        jRadioButtonAutores.setActionCommand("Autor");
         jRadioButtonAutores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonAutoresActionPerformed(evt);
@@ -113,6 +322,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         buttonGroupCadastros.add(jRadioButtonColaboradores);
         jRadioButtonColaboradores.setText("Colaboradores");
+        jRadioButtonColaboradores.setActionCommand("Colaborador");
         jRadioButtonColaboradores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonColaboradoresActionPerformed(evt);
@@ -186,6 +396,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         jButtonEditar.setText("Editar");
+        jButtonEditar.setEnabled(false);
         jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEditarActionPerformed(evt);
@@ -193,9 +404,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         jButtonExcluir.setText("Excluir");
+        jButtonExcluir.setEnabled(false);
         jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonExcluirActionPerformed(evt);
+            }
+        });
+
+        jLabelStatus.setText("jLabelStatus");
+
+        jLabelPesquisar.setText("Pesquisar");
+
+        jTextFieldPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldPesquisarKeyReleased(evt);
             }
         });
 
@@ -210,17 +432,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jButtonEditar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonExcluir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
+                .addComponent(jLabelStatus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 413, Short.MAX_VALUE)
+                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPesquisar))
+                .addGap(0, 0, 0))
         );
         jPanelBotoesLayout.setVerticalGroup(
             jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBotoesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonIncluir)
-                    .addComponent(jButtonEditar)
-                    .addComponent(jButtonExcluir))
-                .addGap(6, 6, 6))
+                .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonIncluir)
+                        .addComponent(jButtonEditar)
+                        .addComponent(jLabelStatus))
+                    .addComponent(jButtonExcluir, javax.swing.GroupLayout.Alignment.TRAILING)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotoesLayout.createSequentialGroup()
+                .addComponent(jLabelPesquisar)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTableLista.setAutoCreateRowSorter(true);
@@ -229,25 +462,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nome", "Perfil", "Matrícula", "Cargo", "OAB", "E-mail", "Telefone", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+            }
+        ));
+        jTableLista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTableLista.setRowHeight(18);
+        jTableLista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableLista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableListaMouseClicked(evt);
             }
         });
-        jTableLista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jTableLista);
-        if (jTableLista.getColumnModel().getColumnCount() > 0) {
-            jTableLista.getColumnModel().getColumn(0).setPreferredWidth(60);
-            jTableLista.getColumnModel().getColumn(1).setMinWidth(200);
-            jTableLista.getColumnModel().getColumn(8).setMinWidth(100);
-            jTableLista.getColumnModel().getColumn(8).setMaxWidth(200);
-        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -257,22 +483,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparatorCadastrosBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
-                    .addComponent(jPanelCadastros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelCadastros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelBotoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addComponent(jPanelCadastros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparatorCadastrosBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
                 .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -281,57 +505,64 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jRadioButtonLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLivrosActionPerformed
         try {
-            // TODO add your handling code here:
+            exibirCadastros(null);
+            telaCadastro = new TelaLivro(this, true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jRadioButtonLivrosActionPerformed
 
     private void jRadioButtonEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEmprestimosActionPerformed
         try {
-            // TODO add your handling code here:
+            exibirCadastros(null);
+            telaCadastro = new TelaEmprestimo(this, true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jRadioButtonEmprestimosActionPerformed
 
     private void jRadioButtonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonReservasActionPerformed
         try {
-            // TODO add your handling code here:
+            exibirCadastros(null);
+            telaCadastro = new TelaReserva(this, true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jRadioButtonReservasActionPerformed
 
     private void jRadioButtonAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAreasActionPerformed
         try {
-            // TODO add your handling code here:
+            exibirCadastros(null);
+            telaCadastro = new TelaAreaConhecimento(this, true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jRadioButtonAreasActionPerformed
 
     private void jRadioButtonEditorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEditorasActionPerformed
         try {
-            // TODO add your handling code here:
+            exibirCadastros(null);
+            telaCadastro = new TelaEditora(this, true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jRadioButtonEditorasActionPerformed
 
     private void jRadioButtonAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAutoresActionPerformed
         try {
-            // TODO add your handling code here:
+            exibirCadastros(null);
+            telaCadastro = new TelaAutor(this, true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jRadioButtonAutoresActionPerformed
 
     private void jRadioButtonColaboradoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonColaboradoresActionPerformed
         try {
-            // TODO add your handling code here:
+            exibirCadastros(controleColaborador.listar());
+            telaCadastro = new TelaColaborador(this, true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jRadioButtonColaboradoresActionPerformed
 
@@ -339,44 +570,73 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             new TelaConfiguracao(this, true).setVisible(true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, ((e.getMessage() == null) ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jButtonConfiguracoesActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         try {
-            if (JOptionPane.showConfirmDialog(rootPane, "Deseja realmente sair?", "Confirmação",
-                    JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
-                this.dispose();
+            if (mensagem.pergunta("Deseja realmente sair?") == 0) {
+                System.exit(0);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         try {
-            // TODO add your handling code here:
+            incluirCadastro();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jButtonIncluirActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         try {
-            // TODO add your handling code here:
+            editarCadastro();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         try {
-            new JDialog().setVisible(true);
+            excluirCadastro();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, (e.getMessage() == null ? e : e.getMessage()), "Opa!", JOptionPane.ERROR_MESSAGE);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jTableListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaMouseClicked
+        try {
+            boolean enabled = (jTableLista.getRowCount() > 0);
+
+            jButtonEditar.setEnabled(enabled);
+
+            // Desabilita o botão excluir para o cadastro do próprio colaborador logado
+            if (cadastro.equals(EnumCadastro.COLABORADOR.toString())) {
+                enabled = (Vai.USUARIO.getIdColaborador() != getId());
+            }
+
+            jButtonExcluir.setEnabled(enabled);
+
+            // Clique duplo, mostra detalhes do cadastro
+            if (evt.getClickCount() == 2) {
+                detalheCadastro();
+            }
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jTableListaMouseClicked
+
+    private void jTextFieldPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarKeyReleased
+        try {
+            pesquisar(jTextFieldPesquisar.getText().toLowerCase());
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jTextFieldPesquisarKeyReleased
 
     /**
      * @param args the command line arguments
@@ -395,13 +655,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -414,6 +678,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonIncluir;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JLabel jLabelPesquisar;
+    private javax.swing.JLabel jLabelStatus;
     private javax.swing.JPanel jPanelBotoes;
     private javax.swing.JPanel jPanelCadastros;
     private javax.swing.JRadioButton jRadioButtonAreas;
@@ -426,5 +692,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparatorCadastrosBotoes;
     public javax.swing.JTable jTableLista;
+    private javax.swing.JTextField jTextFieldPesquisar;
     // End of variables declaration//GEN-END:variables
 }
