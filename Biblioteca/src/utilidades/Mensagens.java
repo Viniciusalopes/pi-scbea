@@ -29,13 +29,13 @@ public class Mensagens extends JFrame {
 
     // Exibe uma mensagem de sucesso
     public void sucesso(String mensagem) {
-        JOptionPane.showMessageDialog(rootPane, mensagem, "Informação!",
+        JOptionPane.showMessageDialog(rootPane, mensagem, "Sucesso!",
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
     // Exibe pergunta e retorna a resposta do usuário
     public int pergunta(String textoPergunta) {
-        return JOptionPane.showConfirmDialog(rootPane, textoPergunta, "Confirmação",
+        return JOptionPane.showConfirmDialog(rootPane, textoPergunta, "Confirmação:",
                 JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE);
     }
 }
