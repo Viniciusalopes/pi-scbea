@@ -1,14 +1,30 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+=====================================
+ICRUDObjeto
+--------METODOS----------------------
++ listar() : ArrayList<Objeto>
++ incluir(objeto : Objeto) : void
++ atualizar(objeto : Objeto) : void
++ excluir(idObjeto : int) : void
+-------------------------------------
+-------------------------------------
  */
 package interfaces;
 
+import classes.AreaConhecimento;
+import java.util.ArrayList;
+
 /**
  *
- * @author vovostudio
+ * @author lucas
  */
 public interface ICRUDAreaConhecimento {
-    
+
+    ArrayList<AreaConhecimento> listar() throws Exception;
+
+    void incluir(AreaConhecimento areaConhecimento) throws Exception;
+
+    void alterar(AreaConhecimento areaConhecimento) throws Exception;
+
+    void excluir(AreaConhecimento areaConhecimento) throws Exception;
 }
