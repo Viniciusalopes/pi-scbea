@@ -1,0 +1,8 @@
+--------------------------
+fazer SÓ icrud :
+AreaConhecimento
+Emprestimo
+Exemplar
+Livro
+Reserva 
+--------------------------
