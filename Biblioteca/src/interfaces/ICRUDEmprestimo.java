@@ -1,14 +1,31 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+=====================================
+ICRUDObjeto
+--------METODOS----------------------
++ listar() : ArrayList<Objeto>
++ incluir(objeto : Objeto) : void
++ atualizar(objeto : Objeto) : void
++ excluir(idObjeto : int) : void
+-------------------------------------
+-------------------------------------
  */
 package interfaces;
 
+import classes.Emprestimo;
+import java.util.ArrayList;
+
 /**
  *
- * @author vovostudio
+ * @author lucas
  */
 public interface ICRUDEmprestimo {
-    
+
+    ArrayList<Emprestimo> listar() throws Exception;
+
+    void incluir(Emprestimo emprestimo) throws Exception;
+
+    void alterar(Emprestimo emprestimo) throws Exception;
+
+    void excluir(Emprestimo emprestimo) throws Exception;
+
 }
