@@ -95,11 +95,8 @@ public class Emprestimo {
     @Override
     public String toString() {
 
-        return String.format("%d;%d;%d%;%s;%s;%d;%.2f",
-                idEmprestimo, exemplar.getIdExemplar(), colaborador.getIdColaborador(),
-                new SimpleDateFormat("dd/MM/yyyy").format(dataEmprestimo),
-                new SimpleDateFormat("dd/MM/yyyy").format(dataDevolucao),
-                statusEmprestimo, valorMulta);
+        return (idEmprestimo + " ; " + exemplar + " ; " + colaborador + " ; " + dataEmprestimo + " ; " + dataDevolucao +
+                " ; " + statusEmprestimo + " ; " + valorMulta);
 
     }
 }

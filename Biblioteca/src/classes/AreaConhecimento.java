@@ -61,7 +61,7 @@ public class AreaConhecimento {
     public void setDescricaoAreaConhecimento(String descricaoAreaConhecimento) {
         this.descricaoAreaConhecimento = descricaoAreaConhecimento;
     }
-    //TO STRING 
+    //TO STRING  
     @Override
     public String toString(){
         return (idAreaConhecimento + ";" + cdd + ";" +  descricaoAreaConhecimento );
