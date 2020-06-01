@@ -1,53 +1,44 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+=====================================
+ICRUDObjeto
+--------METODOS----------------------
++ listar() : ArrayList<Objeto>
++ incluir(objeto : Objeto) : void
++ atualizar(objeto : Objeto) : void
++ excluir(idObjeto : int) : void
+-------------------------------------
+-------------------------------------
  */
 package controle;
 
 import classes.Editora;
 import interfaces.ICRUDEditora;
 import java.util.ArrayList;
-import persistencia.PersistenciaEditora;
 
 /**
  *
- * @author vovostudio
+ * @author lucas
  */
 public class ControleEditora implements ICRUDEditora {
 
-    private ICRUDEditora persistencia = null;
-    private ArrayList<Editora> colecao = null;
-
-    public ControleEditora() throws Exception {
-        persistencia = new PersistenciaEditora();
-        colecao = new ArrayList<>();
+    @Override
+    public ArrayList<Editora> listar() throws Exception {//ok
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Editora> listar() throws Exception {
-        return persistencia.listar();
+    public void incluir(Editora editora) throws Exception {//ok
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void incluir(Editora editora) throws Exception {
-        if (editora.getNomeEditora().trim().length() < 2) {
-            throw new Exception("O nome da editora precisa ter dois ou mais caracteres.");
-        }
-
-        persistencia.incluir(editora);
+    public void alterar(Editora editora) throws Exception {//ok
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void alterar(Editora editora) throws Exception {
-        
-        persistencia.alterar(editora);
-    }
-
-    @Override
-    public void excluir(int idEditora) throws Exception {
-        
-        persistencia.excluir(idEditora);
+    public void excluir(int idEditora) throws Exception {//ok
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
