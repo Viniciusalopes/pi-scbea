@@ -16,15 +16,15 @@ import enumeradores.EnumTipoStatus;
 public class Colaborador {
 
     private int idColaborador = 0;
-    private String nomeColaborador;
-    private EnumPerfil perfil = EnumPerfil.ADMINISTRADOR;
+    private String nomeColaborador = "";
+    private EnumPerfil perfil = null;
     private int matricula = 0;
-    private EnumCargo cargo = EnumCargo.DESENVOLVEDOR;
+    private EnumCargo cargo = null;
     private String oab = "";
     private String senha = "";
     private String email = "";
     private String telefone = "";
-    private EnumTipoStatus status = EnumTipoStatus.ATIVO;
+    private EnumTipoStatus status = null;
 
     public Colaborador() {
 

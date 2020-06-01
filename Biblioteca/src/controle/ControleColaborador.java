@@ -6,6 +6,7 @@
 package controle;
 
 import classes.Colaborador;
+import enumeradores.EnumCargo;
 import interfaces.ICRUDColaborador;
 import java.util.ArrayList;
 import persistencia.PersistenciaColaborador;
@@ -29,11 +30,32 @@ public class ControleColaborador implements ICRUDColaborador {
     }
 
     @Override
-    public void incluir(Colaborador objColaborador) throws Exception {
+    public Colaborador getColaboradorPeloId(int id) throws Exception {
+        return persistencia.getColaboradorPeloId(id);
     }
 
     @Override
-    public void atualizar(Colaborador objColaborador) {
+    public void incluir(Colaborador colaborador) throws Exception {
+        colecao = listar();
+        for (Colaborador c : colecao) {
+            if (c.getMatricula() == colaborador.getMatricula()) {
+                throw new Exception("Já existe um colaborador com esse número de matrícula!");
+            }
+
+            if (colaborador.getCargo().equals(EnumCargo.ADVOGADO) && c.getOab().equals(colaborador.getOab())) {
+                throw new Exception("Já existe um colaborador com esse número de OAB!");
+            }
+
+            if ((colaborador.getEmail().trim().length() > 0) && (c.getEmail().equals(colaborador.getEmail()))) {
+                throw new Exception("Já existe um colaborador com esse endereço de e-mail!");
+            }
+        }
+
+        persistencia.incluir(colaborador);
+    }
+
+    @Override
+    public void atualizar(Colaborador colaborador) {
     }
 
     @Override

@@ -15,10 +15,13 @@ import java.util.ArrayList;
 public interface ICRUDColaborador {
 
     ArrayList<Colaborador> listar() throws Exception;
-    
+
+    Colaborador getColaboradorPeloId(int id) throws Exception;
+
     void incluir(Colaborador objColaborador) throws Exception;
 
     void atualizar(Colaborador objColaborador);
 
     void excluir(int idColaborador);
+
 }
