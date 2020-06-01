@@ -45,7 +45,7 @@ public class Exemplar {
     //toString 
     @Override 
     public String toString(){
-        return (idExemplar + ";");
+        return (idExemplar + "");
     }
     
 
