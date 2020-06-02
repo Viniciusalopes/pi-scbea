@@ -16,6 +16,7 @@ import interfaces.IArquivoTXT;
 import interfaces.ICRUDColaborador;
 import java.util.ArrayList;
 import static telas.Vai.CONFIGURACAO;
+import utilidades.GeradorID;
 
 /**
  *
@@ -25,6 +26,9 @@ public class PersistenciaColaborador implements ICRUDColaborador {
 
     private ArquivoTXT arquivoTXT = null;
     private IArquivoTXT controleArquivoTXT = null;
+    private ArrayList<Colaborador> colecao = null;
+    private Colaborador colaborador = null;
+    private ArrayList<String> linhas = null;
 
     public PersistenciaColaborador() throws Exception {
         arquivoTXT = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.COLABORADOR.getNomeArquivo());
@@ -33,13 +37,13 @@ public class PersistenciaColaborador implements ICRUDColaborador {
 
     @Override
     public ArrayList<Colaborador> listar() throws Exception {
-        ArrayList<Colaborador> colaboradores = new ArrayList<>();
-        ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        colecao = new ArrayList<>();
+        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
 
         for (String linha : linhas) {
             String[] dados = linha.split(";");
 
-            Colaborador colaborador = new Colaborador(
+            colaborador = new Colaborador(
                     Integer.parseInt(dados[0]),
                     dados[1],
                     EnumPerfil.values()[Integer.parseInt(dados[2])],
@@ -51,24 +55,58 @@ public class PersistenciaColaborador implements ICRUDColaborador {
                     dados[8],
                     EnumTipoStatus.values()[Integer.parseInt(dados[9])]
             );
-            colaboradores.add(colaborador);
+            colecao.add(colaborador);
         }
-        return colaboradores;
+        return colecao;
     }
 
     @Override
-    public void incluir(Colaborador objColaborador) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Colaborador getColaboradorPeloId(int id) throws Exception {
+        listar();
+        colaborador = new Colaborador();
+        for (Colaborador c : colecao) {
+            if (c.getIdColaborador() == id) {
+                colaborador = new Colaborador(c);
+            }
+        }
+        return colaborador;
     }
 
     @Override
-    public void atualizar(Colaborador objColaborador) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void incluir(Colaborador colaborador) throws Exception {
+        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        colaborador.setIdColaborador(GeradorID.getProximoId());
+        linhas.add(colaborador.toString());
+        arquivoTXT.setLinhas(linhas);
+        controleArquivoTXT.escreverArquivo(arquivoTXT);
+        GeradorID.setProximoId();
     }
 
     @Override
-    public void excluir(int idColaborador) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void atualizar(Colaborador colaborador) throws Exception {
+        ArrayList<String> novasLinhas = new ArrayList<>();
+        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        for (String l : linhas) {
+            if (Integer.parseInt(l.split(";")[0]) == colaborador.getIdColaborador()) {
+                novasLinhas.add(colaborador.toString());
+            } else {
+                novasLinhas.add(l);
+            }
+        }
+        arquivoTXT.setLinhas(novasLinhas);
+        controleArquivoTXT.escreverArquivo(arquivoTXT);
     }
 
+    @Override
+    public void excluir(int idColaborador) throws Exception {
+        ArrayList<String> novasLinhas = new ArrayList<>();
+        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        for (String l : linhas) {
+            if (Integer.parseInt(l.split(";")[0]) != idColaborador) {
+                novasLinhas.add(l);
+            }
+        }
+        arquivoTXT.setLinhas(novasLinhas);
+        controleArquivoTXT.escreverArquivo(arquivoTXT);
+    }
 }

@@ -32,7 +32,7 @@ public class Mensagens extends JFrame {
         JOptionPane.showMessageDialog(rootPane, mensagem, "Eita!",
                 JOptionPane.WARNING_MESSAGE);
     }
-    
+
     // Exibe uma mensagem de sucesso
     public void sucesso(String mensagem) {
         JOptionPane.showMessageDialog(rootPane, mensagem, "Sucesso!",
@@ -43,5 +43,10 @@ public class Mensagens extends JFrame {
     public int pergunta(String textoPergunta) {
         return JOptionPane.showConfirmDialog(rootPane, textoPergunta, "Confirmação:",
                 JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE);
+    }
+
+    public int escolher(String mensagem, String[] opcoes) {
+        return JOptionPane.showOptionDialog(rootPane, mensagem, "Escolha uma opção:",
+                JOptionPane.CLOSED_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, 0);
     }
 }

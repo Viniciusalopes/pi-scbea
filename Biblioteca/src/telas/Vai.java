@@ -6,8 +6,12 @@ import classes.Configuracao;
 import controle.ControleArquivoTXT;
 import controle.ControleConfiguracao;
 import enumeradores.EnumArquivosBd;
+import enumeradores.EnumCargo;
+import enumeradores.EnumPerfil;
+import enumeradores.EnumTipoStatus;
 import interfaces.IArquivoTXT;
 import java.util.ArrayList;
+import utilidades.GeradorID;
 import utilidades.Hash;
 
 /*
@@ -23,13 +27,13 @@ public class Vai {
 
     public static Configuracao CONFIGURACAO;
     public static Colaborador USUARIO;
-    
+
     public static void main(String[] args) {
 
         try {
 
             CONFIGURACAO = new Configuracao();
-            
+
             ArquivoTXT arquivoTXT = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.CONFIGURACAO.getNomeArquivo());
             IArquivoTXT controleArquivoTXT = new ControleArquivoTXT(arquivoTXT);
             ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
@@ -42,44 +46,40 @@ public class Vai {
                 CONFIGURACAO = new ControleConfiguracao().ler();
             }
 
-            arquivoTXT = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.COLABORADOR.getNomeArquivo());
-            controleArquivoTXT = new ControleArquivoTXT(arquivoTXT);
-            linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
-            if (linhas.size() == 0) {
-                // Cria os colaboradores do grupo do pi para testes
-                Colaborador colaborador = new Colaborador();
-                
-                colaborador.setIdColaborador(1);
-                colaborador.setNomeColaborador("João Pedro");
-                colaborador.setMatricula(1);
-                colaborador.setSenha(Hash.criptografar("jp", "SHA-256"));
-                linhas.add(colaborador.toString());
-                
-                colaborador.setIdColaborador(2);
-                colaborador.setNomeColaborador("Lucas Araujo");
-                colaborador.setMatricula(2);
-                colaborador.setSenha(Hash.criptografar("lucas", "SHA-256"));
-                linhas.add(colaborador.toString());
-                
-                colaborador.setIdColaborador(3);
-                colaborador.setNomeColaborador("Marcos Job");
-                colaborador.setMatricula(3);
-                colaborador.setSenha(Hash.criptografar("job", "SHA-256"));
-                linhas.add(colaborador.toString());
-                
-                
-                colaborador.setIdColaborador(4);
-                colaborador.setNomeColaborador("Vinicius Lopes");
-                colaborador.setMatricula(4);
-                colaborador.setSenha(Hash.criptografar("vovo", "SHA-256"));
-                linhas.add(colaborador.toString());
-                
-                
-                arquivoTXT.setLinhas(linhas);
-                controleArquivoTXT.escreverArquivo(arquivoTXT);
-            }
-            //System.out.println(Hash.criptografar("123456", "SHA-256"));
+            for (EnumArquivosBd arquivo : EnumArquivosBd.values()) {
+                if (!arquivo.equals(EnumArquivosBd.CONFIGURACAO)) { // Não cria os arquivo de configuração porque ele já existe
 
+                    // Cria os arquivos caso não existam (primeira execução)
+                    arquivoTXT = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), arquivo.getNomeArquivo());
+                    controleArquivoTXT = new ControleArquivoTXT(arquivoTXT);
+
+                    if (arquivo.equals(EnumArquivosBd.COLABORADOR)) {
+                        // Cria o arquivo com os dados do proprietário se não existir (primeira excução)
+                        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+                        if (linhas.size() == 0) {
+                            // Cria os colaboradores do grupo do pi para testes
+                            Colaborador colaborador = new Colaborador(
+                                    GeradorID.getProximoId(),
+                                    "Godofredo das Couves Verdejantes",
+                                    EnumPerfil.ADMINISTRADOR,
+                                    1,
+                                    EnumCargo.PROPRIETARIO,
+                                    "2712-GO",
+                                    Hash.criptografar("123456", "SHA-256"),
+                                    "godofredo@cou.ve",
+                                    "(62) 9 8765-4321",
+                                    EnumTipoStatus.ATIVO
+                            );
+                            linhas.add(colaborador.toString());
+                            arquivoTXT.setLinhas(linhas);
+                            controleArquivoTXT.escreverArquivo(arquivoTXT);
+                            GeradorID.setProximoId();
+                        }
+                    }
+                }
+            }
+
+            //System.out.println(Hash.criptografar("123456", "SHA-256"));
             TelaLogin frmLogin = new TelaLogin();
             frmLogin.setVisible(true);
 

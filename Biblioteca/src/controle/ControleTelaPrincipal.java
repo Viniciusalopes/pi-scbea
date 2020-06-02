@@ -112,8 +112,7 @@ public class ControleTelaPrincipal {
                 c.getOab(),
                 c.getEmail(),
                 c.getTelefone(),
-                c.getStatus().toString(),
-                String.format("%.2f", 0.0)
+                c.getStatus().toString()
             };
             linhas[i] = linha;
             i++;
@@ -130,6 +129,5 @@ public class ControleTelaPrincipal {
         colunas.add(new ColunaGrid("E-mail"));
         colunas.add(new ColunaGrid("Telefone", renderer.getRendererDireita()));
         colunas.add(new ColunaGrid("Status", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("Saldo devedor", renderer.getRendererDireita()));
     }
 }
