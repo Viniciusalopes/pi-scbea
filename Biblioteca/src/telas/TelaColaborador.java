@@ -15,6 +15,7 @@ import enumeradores.EnumTipoStatus;
 import enumeradores.EnumUF;
 import interfaces.ICRUDColaborador;
 import interfaces.ITelaCadastro;
+import java.awt.Color;
 import static utilidades.Email.isValidEmailAddressRegex;
 import utilidades.Mensagens;
 import static utilidades.StringUtil.*;
@@ -30,6 +31,7 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
     private EnumAcao acao = null;
     private ICRUDColaborador controleColaborador = null;
     private Colaborador colaborador = null;
+    private boolean visible = false;
 
     @Override
     public void setId(int id) {
@@ -42,8 +44,6 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         this.setTitle(acao.toString() + " cadastro de colaborador");
     }
 
-    @override
-    
     private void popularControles() {
         jComboBoxCargo.removeAllItems();
         for (EnumCargo c : EnumCargo.values()) {
@@ -87,15 +87,25 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         jComboBoxCargo.setSelectedIndex(colaborador.getCargo().ordinal());
         jFormattedTextFieldMatricula.setText(String.format("%d", colaborador.getMatricula()));
         jTextFieldNome.setText(colaborador.getNomeColaborador());
+
         if (colaborador.getCargo().equals(EnumCargo.ADVOGADO)) {
             String[] oab = colaborador.getOab().split("-");
             jTextFieldOAB.setText(oab[0]);
             jComboBoxUF.setSelectedIndex(EnumUF.valueOf(oab[1]).ordinal());
         }
+        jComboBoxUF.setSelectedIndex(-1);
         jTextFieldEmail.setText(colaborador.getEmail());
         jFormattedTextFieldTelefone.setText(colaborador.getTelefone());
         jComboBoxPerfil.setSelectedIndex(colaborador.getPerfil().ordinal());
         jComboBoxStatus.setSelectedIndex(colaborador.getStatus().ordinal());
+
+        boolean oProprio = (Vai.USUARIO.getIdColaborador() == colaborador.getIdColaborador());
+        jLabelPerfil.setEnabled(!oProprio);
+        jComboBoxPerfil.setEnabled(!oProprio);
+        jLabelStatus.setEnabled(!oProprio);
+        jComboBoxStatus.setEnabled(!oProprio);
+
+        jButtonAlterarSenha.setEnabled(oProprio);
     }
 
     private void validarPreenchimento() throws Exception {
@@ -223,6 +233,8 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
             controleColaborador.atualizar(colaborador);
             mensagem.sucesso("Colaborador atualizado com sucesso!");
         }
+        visible = false;
+        this.dispose();
     }
 
     @Override
@@ -240,7 +252,7 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         } catch (Exception e) {
             mensagem.erro(e);
         }
-
+        visible = true;
         super.setVisible(b);
     }
 

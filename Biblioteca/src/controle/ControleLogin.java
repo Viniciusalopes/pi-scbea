@@ -44,7 +44,7 @@ public class ControleLogin {
             }
         }
 
-        if (colaborador.getNomeColaborador() == null) {
+        if (colaborador.getNomeColaborador() == "") {
             throw new Exception("Login inválido!");
         }
 

@@ -15,7 +15,6 @@ import enumeradores.EnumTipoStatus;
 import interfaces.IArquivoTXT;
 import interfaces.ICRUDColaborador;
 import java.util.ArrayList;
-import telas.Vai;
 import static telas.Vai.CONFIGURACAO;
 import utilidades.GeradorID;
 
@@ -94,7 +93,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
                 novasLinhas.add(l);
             }
         }
-        arquivoTXT.setLinhas(linhas);
+        arquivoTXT.setLinhas(novasLinhas);
         controleArquivoTXT.escreverArquivo(arquivoTXT);
     }
 

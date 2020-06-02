@@ -23,6 +23,7 @@ import interfaces.ICRUDExemplar;
 import interfaces.ICRUDLivro;
 import interfaces.ICRUDReserva;
 import interfaces.ITelaCadastro;
+import javax.swing.JOptionPane;
 import utilidades.Mensagens;
 
 /**
@@ -171,26 +172,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
     //--- FIM MÉTODOS PARA GRID -----------------------------------------------|
     //
     //--- MÉTODOS PARA CRUD --------------------------------------------------->
-    private void incluirCadastro() {
+    private void incluirCadastro() throws Exception {
         telaCadastro.setId(0);
         telaCadastro.setAcao(EnumAcao.Incluir);
         telaCadastro.setVisible(true);
-        
+        exibirCadastros(controleColaborador.listar());
+        telaCadastro = null;
     }
 
-    private void editarCadastro() {
+    private void editarCadastro() throws Exception {
         telaCadastro.setId(getId());
         telaCadastro.setAcao(EnumAcao.Editar);
         telaCadastro.setVisible(true);
+        exibirCadastros(controleColaborador.listar());
     }
 
-    private void detalheCadastro() {
+    private void detalheCadastro() throws Exception {
         telaCadastro.setId(getId());
         telaCadastro.setAcao(EnumAcao.Editar);
         telaCadastro.setVisible(true);
+        exibirCadastros(controleColaborador.listar());
     }
 
-    private void excluirCadastro() {
+    private void excluirCadastro() throws Exception {
         int id = getId();
         String textoPergunta = "Deseja realmente excluir o cadastro selecionado?\n"
                 + "(-) " + cadastro + " ID: " + String.format("%04d", id);
@@ -199,6 +203,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             controleColaborador.excluir(id);
             mensagem.sucesso(cadastro + " excluído com sucesso!");
         }
+        exibirCadastros(controleColaborador.listar());
     }
 
     //--- FIM MÉTODOS PARA CRUD -----------------------------------------------|
@@ -277,6 +282,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setTitle("Biblioteca Godofredo");
         setResizable(false);
         setSize(new java.awt.Dimension(1366, 768));
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
 
         buttonGroupCadastros.add(jRadioButtonLivros);
         jRadioButtonLivros.setSelected(true);
@@ -530,6 +540,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     //
     private void jRadioButtonLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLivrosActionPerformed
         try {
+            telaCadastro = null;
             exibirCadastros(null);
             //telaCadastro = new TelaLivro(this, true);
         } catch (Exception e) {
@@ -539,6 +550,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jRadioButtonEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEmprestimosActionPerformed
         try {
+            telaCadastro = null;
             exibirCadastros(null);
             //telaCadastro = new TelaEmprestimo(this, true);
         } catch (Exception e) {
@@ -548,6 +560,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jRadioButtonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonReservasActionPerformed
         try {
+            telaCadastro = null;
             exibirCadastros(null);
             //telaCadastro = new TelaReserva(this, true);
         } catch (Exception e) {
@@ -557,6 +570,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jRadioButtonAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAreasActionPerformed
         try {
+            telaCadastro = null;
             exibirCadastros(null);
             //telaCadastro = new TelaAreaConhecimento(this, true);
         } catch (Exception e) {
@@ -566,6 +580,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jRadioButtonEditorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEditorasActionPerformed
         try {
+            telaCadastro = null;
             exibirCadastros(null);
             //telaCadastro = new TelaEditora(this, true);
         } catch (Exception e) {
@@ -575,6 +590,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jRadioButtonAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAutoresActionPerformed
         try {
+            telaCadastro = null;
             exibirCadastros(null);
             //telaCadastro = new TelaAutor(this, true);
         } catch (Exception e) {
@@ -640,9 +656,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             jButtonEditar.setEnabled(enabled);
 
-            // Desabilita o botão excluir para o cadastro do próprio colaborador logado
+            // Verifica se está na tela de cadastro de Colaboradores
             if (cadastro.equals(EnumCadastro.COLABORADOR.toString())) {
-                enabled = (Vai.USUARIO.getIdColaborador() != getId());
+                enabled = (Vai.USUARIO.getPerfil().equals(EnumPerfil.ADMINISTRADOR)
+                        && Vai.USUARIO.getIdColaborador() != getId());
             }
 
             jButtonExcluir.setEnabled(enabled);
@@ -663,6 +680,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
             mensagem.erro(e);
         }
     }//GEN-LAST:event_jTextFieldPesquisarKeyReleased
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+
+    }//GEN-LAST:event_formFocusGained
 
     //--- FIM EVENTOS ---------------------------------------------------------|
     /**

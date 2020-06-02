@@ -17,5 +17,6 @@ public interface ITelaCadastro {
 
     void setAcao(EnumAcao acao);
 
-    public void setVisible(boolean b);
+    void setVisible(boolean b);
+
 }
