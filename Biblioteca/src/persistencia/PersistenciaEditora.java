@@ -16,6 +16,7 @@ import interfaces.IArquivoTXT;
 import interfaces.ICRUDEditora;
 import java.util.ArrayList;
 import telas.Vai;
+import utilidades.GeradorID;
 
 /**
  *
