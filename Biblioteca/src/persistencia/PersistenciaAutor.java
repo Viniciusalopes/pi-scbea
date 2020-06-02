@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package persistencia;
 
 import classes.ArquivoTXT;
@@ -46,16 +41,43 @@ public class PersistenciaAutor implements ICRUDAutor {
         ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
         linhas.add(autor.toString());
         controleArquivoTXT.escreverArquivo(arquivoTXT);
-   }
+    }
 
     @Override
     public void atualizar(Autor autor) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //cria uma operação na memoria que tem finalidade substituir o arquivo em disco, esta é chamada de "novas linhas" que é um Arraylist STRING
+          ArrayList<String> novaslinhas = new ArrayList<>();
+        // percorrer as linhas do arquivo.
+        ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        // loop, chama linhas de linhas e compara se é igual a que eu quero digitar, pra evitar editar uma outra linha)
+        for (String linha : linhas) {
+            int id = Integer.parseInt(linha.split(";")[0]); //pra comparar apenas o 1 elemento do array que é o ID o split foi usado.
+            if (id == autor.getIdAutor()) {
+                linhas.add(autor.toString());
+            } else {
+                linhas.add(linha);
+            }
+        }
+        arquivoTXT.setLinhas(novaslinhas);
+        controleArquivoTXT.escreverArquivo(arquivoTXT);
     }
 
     @Override
     public void excluir(int idAutor) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         //cria uma operação na memoria que tem finalidade substituir o arquivo em disco, esta é chamada de "novas linhas" que é um Arraylist STRING
+         ArrayList<String> novaslinhas = new ArrayList<>();
+        // percorrer as linhas do arquivo.
+        ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        // loop, chama linhas de linhas e compara se é igual a que eu quero digitar, pra evitar editar uma outra linha)
+       //.
+        for (String linha : linhas) {
+            int id = Integer.parseInt(linha.split(";")[0]); //pra comparar apenas o 1 elemento do array que é o ID o split foi usado.
+            if (id != idAutor) {
+                linhas.add(linha);
+            }
+            
+        }
+        arquivoTXT.setLinhas(novaslinhas);
+        controleArquivoTXT.escreverArquivo(arquivoTXT);
     }
-
 }
