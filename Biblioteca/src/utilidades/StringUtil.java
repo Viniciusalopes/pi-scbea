@@ -93,12 +93,11 @@ public class StringUtil {
                 case 11:
                     String comDDD = "(" + numeros.substring(0, 2) + ") " + numeros.substring(2, 3) + " " + numeros.substring(3, 7) + "-" + numeros.substring(7, 11);
                     String com0800 = numeros.substring(0, 4) + " " + numeros.substring(4, 7) + "-" + numeros.substring(7, 11);
-                    
+
                     // Ababandona o evento se já estiver no formato esperado
                     if (campoTelefone.getText().equals(comDDD) || campoTelefone.equals(com0800)) {
                         return;
                     }
-                    
                     if (new Mensagens().escolher("Selecione um formato para o número do telefone:", new String[]{comDDD, com0800}) == 0) {
                         mask.setMask("(##) # ####-####");
                         campoTelefone.setFormatterFactory(new DefaultFormatterFactory(mask));

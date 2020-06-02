@@ -50,9 +50,9 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabelSenha.setText("Senha");
 
-        jTextFieldLogin.setText("4");
+        jTextFieldLogin.setText("1");
 
-        jPasswordField.setText("vovo");
+        jPasswordField.setText("123456");
 
         jButtonNaoSeiMinhaSenha.setText("Não sei minha senha");
         jButtonNaoSeiMinhaSenha.setFocusable(false);

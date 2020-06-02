@@ -23,7 +23,6 @@ import interfaces.ICRUDExemplar;
 import interfaces.ICRUDLivro;
 import interfaces.ICRUDReserva;
 import interfaces.ITelaCadastro;
-import javax.swing.JDialog;
 import utilidades.Mensagens;
 
 /**
@@ -176,6 +175,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         telaCadastro.setId(0);
         telaCadastro.setAcao(EnumAcao.Incluir);
         telaCadastro.setVisible(true);
+        
     }
 
     private void editarCadastro() {

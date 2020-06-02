@@ -73,11 +73,10 @@ public class Vai {
                             linhas.add(colaborador.toString());
                             arquivoTXT.setLinhas(linhas);
                             controleArquivoTXT.escreverArquivo(arquivoTXT);
+                            GeradorID.setProximoId();
                         }
                     }
                 }
-                
-                
             }
 
             //System.out.println(Hash.criptografar("123456", "SHA-256"));

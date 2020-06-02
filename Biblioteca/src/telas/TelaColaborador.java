@@ -42,6 +42,8 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         this.setTitle(acao.toString() + " cadastro de colaborador");
     }
 
+    @override
+    
     private void popularControles() {
         jComboBoxCargo.removeAllItems();
         for (EnumCargo c : EnumCargo.values()) {
@@ -249,9 +251,11 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(rootPane);
-        if (acao.equals(EnumAcao.Incluir)) {
-            id = 0;
-            jButtonAlterarSenha.setText("Senha");
+        if (acao != null) {
+            if (acao.equals(EnumAcao.Incluir)) {
+                id = 0;
+                jButtonAlterarSenha.setText("Senha");
+            }
         }
     }
 

@@ -15,6 +15,7 @@ import enumeradores.EnumTipoStatus;
 import interfaces.IArquivoTXT;
 import interfaces.ICRUDColaborador;
 import java.util.ArrayList;
+import telas.Vai;
 import static telas.Vai.CONFIGURACAO;
 import utilidades.GeradorID;
 
@@ -83,13 +84,30 @@ public class PersistenciaColaborador implements ICRUDColaborador {
     }
 
     @Override
-    public void atualizar(Colaborador colaborador) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void atualizar(Colaborador colaborador) throws Exception {
+        ArrayList<String> novasLinhas = new ArrayList<>();
+        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        for (String l : linhas) {
+            if (Integer.parseInt(l.split(";")[0]) == colaborador.getIdColaborador()) {
+                novasLinhas.add(colaborador.toString());
+            } else {
+                novasLinhas.add(l);
+            }
+        }
+        arquivoTXT.setLinhas(linhas);
+        controleArquivoTXT.escreverArquivo(arquivoTXT);
     }
 
     @Override
-    public void excluir(int idColaborador) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void excluir(int idColaborador) throws Exception {
+        ArrayList<String> novasLinhas = new ArrayList<>();
+        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        for (String l : linhas) {
+            if (Integer.parseInt(l.split(";")[0]) != idColaborador) {
+                novasLinhas.add(l);
+            }
+        }
+        arquivoTXT.setLinhas(novasLinhas);
+        controleArquivoTXT.escreverArquivo(arquivoTXT);
     }
-
 }

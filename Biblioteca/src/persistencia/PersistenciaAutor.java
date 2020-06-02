@@ -50,12 +50,31 @@ public class PersistenciaAutor implements ICRUDAutor {
 
     @Override
     public void atualizar(Autor autor) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // ler o arquivo
+        ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        
+        //percorrer as linhas do arquivo procurando um autor igual ao autor do parametros
+        for (String linhaAtual : linhas) {
+            int id = Integer.parseInt(linhaAtual.split(";")[0]);
+            if(autor.getIdAutor() == id){
+                // se achar, substitui a linha
+                linhaAtual = autor.toString();
+                break;
+            }
+        }
+        // Atualiza as linhas no objeto ArquivoTXT
+        arquivoTXT.setLinhas(linhas);
+        
+        // grava o novo autor
+        controleArquivoTXT.escreverArquivo(arquivoTXT);
+        
     }
 
     @Override
     public void excluir(int idAutor) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // ler o arquivo
+        //percorrer as linhas do arquivo procurando um autor com id igual ao id parametros
+        // se achar exclui autor com o mesmo id
     }
 
 }

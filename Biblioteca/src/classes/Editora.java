@@ -13,21 +13,18 @@ package classes;
  * CLASSE Editora
  */
 public class Editora {
-    
 
-    
     //Atributos 
     //-------------------------------------
     private int idEditora;
     private String nomeEditora;
-    
 
     //------------------------------------
     //costrutores 
     public Editora() {
 
     }
-    
+
     public Editora(Editora editora) {
         idEditora = editora.idEditora;
         nomeEditora = editora.nomeEditora;
@@ -37,13 +34,14 @@ public class Editora {
         this.idEditora = idEditora;
         this.nomeEditora = nomeEditora;
     }
+
     //-------------------------------------
     //geters e sters 
     //-------------------------------------
     public int getIdEditora() {
         return idEditora;
     }
-     
+
     public void setIdEditora(int idEditora) {
         this.idEditora = idEditora;
     }
@@ -55,13 +53,14 @@ public class Editora {
     public void setNomeEditora(String nomeEditora) {
         this.nomeEditora = nomeEditora;
     }
+
     //-------------------------------------
     //toString 
     //-------------------------------------
-    @Override 
-    public String toString(){
-        return (idEditora + " ; "+ nomeEditora+ ";");
-        
+    @Override
+    public String toString() {
+        return (idEditora + " ; " + nomeEditora + ";");
+
     }
-           
+
 }
