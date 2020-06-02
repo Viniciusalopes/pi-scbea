@@ -40,7 +40,6 @@ public class PersistenciaEditora implements ICRUDEditora {
     public ArrayList<Editora> listar() throws Exception {
         editoras = new ArrayList<>();
         linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
-
         for (String linha : linhas) {
             String[] dados = linha.split(";");
 
