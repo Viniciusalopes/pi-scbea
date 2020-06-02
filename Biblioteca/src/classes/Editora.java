@@ -57,17 +57,12 @@ public class Editora {
     //-------------------------------------
     //toString 
     //-------------------------------------
-<<<<<<< HEAD
+
     @Override 
     public String toString(){
         return (idEditora + " ; "+ nomeEditora);
         
-=======
-    @Override
-    public String toString() {
-        return (idEditora + " ; " + nomeEditora + ";");
-
->>>>>>> colaborador
+  
     }
 
 }
