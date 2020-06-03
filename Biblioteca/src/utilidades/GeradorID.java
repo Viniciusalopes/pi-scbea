@@ -22,6 +22,8 @@ public class GeradorID {
         IArquivoTXT controle = new ControleArquivoTXT(arquivoID);
         ArrayList<String> linhas = controle.lerArquivo(arquivoID);
         if (linhas.size() == 0) {
+            // Arquivo não existe
+            
             linhas.add("1");
             arquivoID.setLinhas(linhas);
             controle.escreverArquivo(arquivoID);
