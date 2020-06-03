@@ -5,6 +5,7 @@
  */
 package controle;
 
+import classes.AreaConhecimento;
 import classes.Colaborador;
 import classes.ColunaGrid;
 import classes.Renderer;
@@ -28,8 +29,9 @@ public class ControleTelaPrincipal {
         colunas = new ArrayList<>();
         switch (cadastro.toString()) {
             case "AREACONHECIMENTO":
+                addColunasAreaConhecimento();
                 break;
-                
+
             case "AUTOR":
                 break;
 
@@ -63,6 +65,7 @@ public class ControleTelaPrincipal {
 
         switch (cadastro.toString()) {
             case "AREACONHECIMENTO":
+                addLinhasAreaConhecimento(colecao);
                 break;
 
             case "AUTOR":
@@ -129,5 +132,30 @@ public class ControleTelaPrincipal {
         colunas.add(new ColunaGrid("E-mail"));
         colunas.add(new ColunaGrid("Telefone", renderer.getRendererDireita()));
         colunas.add(new ColunaGrid("Status", renderer.getRendererCentro()));
+    }
+
+    private void addLinhasAreaConhecimento(Object colecao) {
+
+        ArrayList<AreaConhecimento> areaConhecimento = (ArrayList<AreaConhecimento>) colecao;
+
+        // Linhas do grid
+        linhas = new String[areaConhecimento.size()][10];
+
+        int i = 0;
+        for (AreaConhecimento a : areaConhecimento) {
+            linha = new String[]{
+                String.format("%04d", a.getIdAreaConhecimento()),
+                a.getCdd() + "",
+                a.getDescricaoAreaConhecimento()};
+            linhas[i] = linha;
+            i++;
+        }
+    }
+
+    private void addColunasAreaConhecimento() {
+        colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("CDD", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Descrição da área de conhecimento"));
+
     }
 }

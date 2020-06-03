@@ -45,7 +45,7 @@ public class PersistenciaAutor implements ICRUDAutor {
 
     @Override
     public void atualizar(Autor autor) throws Exception {
-<<<<<<< HEAD
+
         //cria uma operação na memoria que tem finalidade substituir o arquivo em disco, esta é chamada de "novas linhas" que é um Arraylist STRING
           ArrayList<String> novaslinhas = new ArrayList<>();
         // percorrer as linhas do arquivo.
@@ -61,9 +61,9 @@ public class PersistenciaAutor implements ICRUDAutor {
         }
         arquivoTXT.setLinhas(novaslinhas);
         controleArquivoTXT.escreverArquivo(arquivoTXT);
-=======
+
         // ler o arquivo
-        ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        //ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
         
         //percorrer as linhas do arquivo procurando um autor igual ao autor do parametros
         for (String linhaAtual : linhas) {
@@ -80,12 +80,12 @@ public class PersistenciaAutor implements ICRUDAutor {
         // grava o novo autor
         controleArquivoTXT.escreverArquivo(arquivoTXT);
         
->>>>>>> colaborador
+
     }
 
     @Override
     public void excluir(int idAutor) throws Exception {
-<<<<<<< HEAD
+
          //cria uma operação na memoria que tem finalidade substituir o arquivo em disco, esta é chamada de "novas linhas" que é um Arraylist STRING
          ArrayList<String> novaslinhas = new ArrayList<>();
         // percorrer as linhas do arquivo.
@@ -101,10 +101,10 @@ public class PersistenciaAutor implements ICRUDAutor {
         }
         arquivoTXT.setLinhas(novaslinhas);
         controleArquivoTXT.escreverArquivo(arquivoTXT);
-=======
+
         // ler o arquivo
         //percorrer as linhas do arquivo procurando um autor com id igual ao id parametros
         // se achar exclui autor com o mesmo id
->>>>>>> colaborador
+
     }
 }

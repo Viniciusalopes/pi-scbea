@@ -54,15 +54,10 @@ public class Editora {
         this.nomeEditora = nomeEditora;
     }
 
-    //-------------------------------------
-    //toString 
-    //-------------------------------------
 
     @Override 
     public String toString(){
         return (idEditora + " ; "+ nomeEditora);
         
-  
     }
-
 }

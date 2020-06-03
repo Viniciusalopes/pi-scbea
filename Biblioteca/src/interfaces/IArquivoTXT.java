@@ -17,4 +17,5 @@ public interface IArquivoTXT {
     ArrayList<String> lerArquivo(ArquivoTXT arquivoTXT) throws Exception;
 
     void escreverArquivo(ArquivoTXT arquivoTXT) throws Exception;
+    
 }
