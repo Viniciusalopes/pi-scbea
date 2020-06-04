@@ -26,9 +26,9 @@ public class PersistenciaEditora implements ICRUDEditora {
 
     private ArquivoTXT arquivoTXT = null;
     private IArquivoTXT controleArquivoTXT = null;
-    //ele e um arquivo txt 
+    private ArrayList<Editora> colecao = null;
+    private Editora editora = null;
     private ArrayList<String> linhas = null;
-    private ArrayList<Editora> editoras = null;
 
     public PersistenciaEditora() throws Exception {
         arquivoTXT = new ArquivoTXT(Vai.CONFIGURACAO.getCaminhoBdCliente(),
@@ -38,15 +38,25 @@ public class PersistenciaEditora implements ICRUDEditora {
 
     @Override
     public ArrayList<Editora> listar() throws Exception {
-        editoras = new ArrayList<>();
+        colecao = new ArrayList<>();
         linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
         for (String linha : linhas) {
             String[] dados = linha.split(";");
-
-            Editora editora = new Editora(Integer.parseInt(dados[0]), dados[1]);
-            editoras.add(editora);
+            editora = new Editora(Integer.parseInt(dados[0]), dados[1]);
+            colecao.add(editora);
         }
-        return editoras;
+        return colecao;
+    }
+
+    @Override
+    public Editora getEditoraPeloId(int idEditora) throws Exception {
+        colecao = listar();
+        for (Editora e : colecao) {
+            if (e.getIdEditora() == idEditora) {
+                return e;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -56,7 +66,7 @@ public class PersistenciaEditora implements ICRUDEditora {
         linhas.add(editora.toString());
         arquivoTXT.setLinhas(linhas);
         controleArquivoTXT.escreverArquivo(arquivoTXT);
-        GeradorID.getProximoID();
+        GeradorID.confirmaID();
 
     }
 
@@ -69,15 +79,14 @@ public class PersistenciaEditora implements ICRUDEditora {
     public void excluir(int idEditora) throws Exception {//OK
         ArrayList<String> novasLinhas = new ArrayList<>();
         linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
-        for(String l : linhas){
+        for (String l : linhas) {
             if (Integer.parseInt(l.split(";")[0]) != idEditora) {
                 novasLinhas.add(l);
             }
         }
         arquivoTXT.setLinhas(novasLinhas);
         controleArquivoTXT.escreverArquivo(arquivoTXT);
-            
-        
+
     }
 
 }
