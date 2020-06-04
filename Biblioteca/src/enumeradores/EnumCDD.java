@@ -7,8 +7,6 @@ package enumeradores;
 
 import java.util.HashMap;
 import java.util.Map;
-import static javax.management.Query.gt;
-import static javax.management.Query.lt;
 
 /**
  *
