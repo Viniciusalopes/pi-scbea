@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package utilidades;
 
 import classes.ArquivoTXT;
@@ -11,10 +6,6 @@ import interfaces.IArquivoTXT;
 import java.util.ArrayList;
 import telas.Vai;
 
-/**
- *
- * @author vovostudio
- */
 public class GeradorID {
 
     public static int getProximoId() throws Exception {

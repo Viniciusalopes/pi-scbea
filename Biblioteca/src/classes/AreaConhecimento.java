@@ -1,43 +1,34 @@
-/*
-AreaConhecimento
-- idAreaConhecimento : int
-- cdd : int
-- descricaoAreaConhecimento : String
--STERS--GETRS-
-+ get() : void
-+ set() : void
--TO-STRING-
-+ toString() : String
- */
 package classes;
 
 public class AreaConhecimento {
 
-    //atributos 
+//Atributos
     private int idAreaConhecimento;
-
     private int cdd;
-
     private String descricaoAreaConhecimento;
 
+//Construtor Padrão
     public AreaConhecimento() {
-   //construtor padrao 
+        idAreaConhecimento = 0;
+        cdd = 0;
+        descricaoAreaConhecimento = "";
     }
 
+//Construtor passando objeto
     public AreaConhecimento(AreaConhecimento areaComhecimento) {
         idAreaConhecimento = areaComhecimento.idAreaConhecimento;
         cdd = areaComhecimento.cdd;
         descricaoAreaConhecimento = areaComhecimento.descricaoAreaConhecimento;
-
     }
 
+//Construtor passando parâmetros
     public AreaConhecimento(int idAreaConhecimento, int cdd, String descricaoAreaConhecimento) {
         this.idAreaConhecimento = idAreaConhecimento;
         this.cdd = cdd;
         this.descricaoAreaConhecimento = descricaoAreaConhecimento;
     }
 
-    //STERS & GETRS 
+//Get's e Set's
     public int getIdAreaConhecimento() {
         return idAreaConhecimento;
     }
@@ -61,10 +52,11 @@ public class AreaConhecimento {
     public void setDescricaoAreaConhecimento(String descricaoAreaConhecimento) {
         this.descricaoAreaConhecimento = descricaoAreaConhecimento;
     }
-    //TO STRING  
-    @Override
-    public String toString(){
-        return (idAreaConhecimento + ";" + cdd + ";" +  descricaoAreaConhecimento );
-    }
 
+//Método responsável por retornar uma string com os dados de objetos AreaConhecimento
+//Formato de gravação TXT onde o char ; é o delimitador (para utlização em split's)
+    @Override
+    public String toString() {
+        return (idAreaConhecimento + ";" + cdd + ";" + descricaoAreaConhecimento);
+    }
 }

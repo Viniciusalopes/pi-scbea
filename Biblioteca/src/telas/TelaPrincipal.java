@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import enumeradores.EnumPerfil;
 import controle.ControleTelaPrincipal;
 import classes.ColunaGrid;
+import controle.ControleAreaConhecimento;
 import controle.ControleAutor;
 import controle.ControleColaborador;
 import controle.ControleEditora;
@@ -23,7 +24,6 @@ import interfaces.ICRUDExemplar;
 import interfaces.ICRUDLivro;
 import interfaces.ICRUDReserva;
 import interfaces.ITelaCadastro;
-import javax.swing.JOptionPane;
 import utilidades.Mensagens;
 
 /**
@@ -50,21 +50,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Nome do cadastro atual
     private String cadastro = "";
 
-    //--- FIM ATRIBUTOS -------------------------------------------------------|
-    //
-    //--- MÉTODOS ------------------------------------------------------------->
-    //
-    //--- MÉTODOS PARA GRID --------------------------------------------------->
     // Linhas do grid
     private String[][] linhas = null;
 
     // Colunas do grid
     private ArrayList<ColunaGrid> colunas = null;
 
+    private Object colecao = null;
+
+    //--- FIM ATRIBUTOS -------------------------------------------------------|
+    //
+    //--- MÉTODOS ------------------------------------------------------------->
+    //
+    //--- MÉTODOS PARA GRID --------------------------------------------------->
     //
     // Exibe os cadastros de uma tabela
-    private void exibirCadastros(Object colecao) throws Exception {
+    private void exibirCadastros() throws Exception {
+
         cadastro = buttonGroupCadastros.getSelection().getActionCommand().toUpperCase();
+        atualizaColecao();
         colunas = controleTela.getColunasParaGrid(EnumCadastro.valueOf(cadastro));
         if (colecao == null) {
             linhas = new String[][]{{}};
@@ -169,29 +173,65 @@ public class TelaPrincipal extends javax.swing.JFrame {
         return Integer.parseInt(jTableLista.getValueAt(jTableLista.getSelectedRow(), indiceID).toString());
     }
 
+    private void atualizaColecao() throws Exception {
+
+        this.colecao = null;
+
+        switch (cadastro.toString()) {
+            case "AREACONHECIMENTO":
+                colecao = controleAreaConhecimento.listar();
+                break;
+
+            case "AUTOR":
+                break;
+
+            case "COLABORADOR":
+                colecao = controleColaborador.listar();
+                break;
+
+            case "CONFIGURACAO":
+                break;
+
+            case "EDITORA":
+                break;
+
+            case "EMPRESTIMO":
+                break;
+
+            case "EXEMPLAR":
+                break;
+
+            case "LIVRO":
+                break;
+
+            case "RESERVA":
+                break;
+        }
+    }
+
     //--- FIM MÉTODOS PARA GRID -----------------------------------------------|
     //
     //--- MÉTODOS PARA CRUD --------------------------------------------------->
     private void incluirCadastro() throws Exception {
+
         telaCadastro.setId(0);
         telaCadastro.setAcao(EnumAcao.Incluir);
         telaCadastro.setVisible(true);
-        exibirCadastros(controleColaborador.listar());
-        telaCadastro = null;
+        exibirCadastros();
     }
 
     private void editarCadastro() throws Exception {
         telaCadastro.setId(getId());
         telaCadastro.setAcao(EnumAcao.Editar);
         telaCadastro.setVisible(true);
-        exibirCadastros(controleColaborador.listar());
+        exibirCadastros();
     }
 
     private void detalheCadastro() throws Exception {
         telaCadastro.setId(getId());
         telaCadastro.setAcao(EnumAcao.Editar);
         telaCadastro.setVisible(true);
-        exibirCadastros(controleColaborador.listar());
+        exibirCadastros();
     }
 
     private void excluirCadastro() throws Exception {
@@ -200,10 +240,41 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 + "(-) " + cadastro + " ID: " + String.format("%04d", id);
 
         if (mensagem.pergunta(textoPergunta) == 0) {
-            controleColaborador.excluir(id);
+            
+            switch (cadastro.toString()) {
+            case "AREACONHECIMENTO":
+                controleAreaConhecimento.excluir(id);
+                break;
+
+            case "AUTOR":
+                break;
+
+            case "COLABORADOR":
+                controleColaborador.excluir(id);
+                break;
+
+            case "CONFIGURACAO":
+                break;
+
+            case "EDITORA":
+                break;
+
+            case "EMPRESTIMO":
+                break;
+
+            case "EXEMPLAR":
+                break;
+
+            case "LIVRO":
+                break;
+
+            case "RESERVA":
+                break;
+        }           
+            
             mensagem.sucesso(cadastro + " excluído com sucesso!");
         }
-        exibirCadastros(controleColaborador.listar());
+        exibirCadastros();
     }
 
     //--- FIM MÉTODOS PARA CRUD -----------------------------------------------|
@@ -227,7 +298,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             // Controladores
             controleTela = new ControleTelaPrincipal();
-            //controleAreaConhecimento = new ControleAreaConhecimento();
+            controleAreaConhecimento = new ControleAreaConhecimento();
             controleAutor = new ControleAutor();
             controleColaborador = new ControleColaborador();
             controleEditora = new ControleEditora();
@@ -541,7 +612,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jRadioButtonLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLivrosActionPerformed
         try {
             telaCadastro = null;
-            exibirCadastros(null);
+            exibirCadastros();
             //telaCadastro = new TelaLivro(this, true);
         } catch (Exception e) {
             mensagem.erro(e);
@@ -551,7 +622,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jRadioButtonEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEmprestimosActionPerformed
         try {
             telaCadastro = null;
-            exibirCadastros(null);
+            exibirCadastros();
             //telaCadastro = new TelaEmprestimo(this, true);
         } catch (Exception e) {
             mensagem.erro(e);
@@ -561,7 +632,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jRadioButtonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonReservasActionPerformed
         try {
             telaCadastro = null;
-            exibirCadastros(null);
+            exibirCadastros();
             //telaCadastro = new TelaReserva(this, true);
         } catch (Exception e) {
             mensagem.erro(e);
@@ -571,8 +642,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jRadioButtonAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAreasActionPerformed
         try {
             telaCadastro = null;
-            exibirCadastros(null);
-            //telaCadastro = new TelaAreaConhecimento(this, true);
+            exibirCadastros();
+            telaCadastro = new TelaAreaConhecimento(this, true);
         } catch (Exception e) {
             mensagem.erro(e);
         }
@@ -581,7 +652,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jRadioButtonEditorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEditorasActionPerformed
         try {
             telaCadastro = null;
-            exibirCadastros(null);
+            exibirCadastros();
             //telaCadastro = new TelaEditora(this, true);
         } catch (Exception e) {
             mensagem.erro(e);
@@ -591,7 +662,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jRadioButtonAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAutoresActionPerformed
         try {
             telaCadastro = null;
-            exibirCadastros(null);
+            exibirCadastros();
             //telaCadastro = new TelaAutor(this, true);
         } catch (Exception e) {
             mensagem.erro(e);
@@ -601,7 +672,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jRadioButtonColaboradoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonColaboradoresActionPerformed
         try {
             telaCadastro = null;
-            exibirCadastros(controleColaborador.listar());
+            exibirCadastros();
             telaCadastro = new TelaColaborador(this, true);
         } catch (Exception e) {
             mensagem.erro(e);
