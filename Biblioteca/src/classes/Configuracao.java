@@ -5,6 +5,8 @@
  */
 package classes;
 
+import telas.Vai;
+
 /**
  *
  * @author vovostudio
@@ -14,7 +16,7 @@ public class Configuracao {
     private int limiteDeLivros = 5;
     private int diasDeEmprestimo = 7;
     private float valorMultaDiaria = 2;
-    private String caminhoBdCliente = System.getProperty("user.dir") + "/BibliotecaBd/";
+    private String caminhoBdCliente = System.getProperty("user.dir") + Vai.BARRA + "BibliotecaBd" + Vai.BARRA;
     private String caminhoBdServidor = "192.168.15.3:4567";
     private boolean lerID = true;
 
