@@ -186,7 +186,7 @@ public class TelaConfiguracao extends javax.swing.JDialog {
             chooser.setAcceptAllFileFilterUsed(false);
 
             if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-                jTextFieldCaminhoBdCliente.setText(chooser.getSelectedFile() + "/");
+                jTextFieldCaminhoBdCliente.setText(chooser.getSelectedFile() + Vai.BARRA);
             } else {
                 mensagem.informacao("O caminho da base de dados local não foi alterado.");
             }

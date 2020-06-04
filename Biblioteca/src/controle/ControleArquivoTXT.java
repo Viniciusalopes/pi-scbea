@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import telas.Vai;
 
 /**
  *
@@ -30,7 +31,7 @@ public class ControleArquivoTXT implements IArquivoTXT {
             arquivo.mkdirs();
             System.out.println("Criando diretório [" + arquivo.getAbsolutePath() + "]...");
         }
-        arquivo = new File(arquivoTXT.getCaminho() + arquivoTXT.getArquivo());
+        arquivo = new File(arquivoTXT.getCaminho() + Vai.BARRA + arquivoTXT.getArquivo());
         if (!arquivo.exists()) {
             arquivo.createNewFile();
             System.out.println("Criando arquivo [" + arquivo.getAbsolutePath() + "]...");
@@ -41,7 +42,7 @@ public class ControleArquivoTXT implements IArquivoTXT {
     public ArrayList<String> lerArquivo(ArquivoTXT arquivoTXT) throws Exception {
         try {
             ArrayList<String> linhas = new ArrayList<String>();
-            FileReader fr = new FileReader(arquivoTXT.getCaminho() + arquivoTXT.getArquivo());
+            FileReader fr = new FileReader(arquivoTXT.getCaminho() + Vai.BARRA + arquivoTXT.getArquivo());
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
             while ((linha = br.readLine()) != null) {
@@ -56,7 +57,7 @@ public class ControleArquivoTXT implements IArquivoTXT {
 
     @Override
     public void escreverArquivo(ArquivoTXT arquivoTXT) throws Exception {
-        FileWriter fw = new FileWriter(arquivoTXT.getCaminho() + arquivoTXT.getArquivo());
+        FileWriter fw = new FileWriter(arquivoTXT.getCaminho() + Vai.BARRA + arquivoTXT.getArquivo());
         BufferedWriter bw = new BufferedWriter(fw);
         for (String linha : arquivoTXT.getLinhas()) {
             bw.write(linha + "\n");

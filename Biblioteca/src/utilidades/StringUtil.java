@@ -114,4 +114,9 @@ public class StringUtil {
             throw e;
         }
     }
+
+    public static String barra() {
+        return (System.getProperty("os.name").toLowerCase().contains("windows") ? "\\" : "/");
+    }
+
 }

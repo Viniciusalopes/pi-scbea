@@ -13,6 +13,7 @@ import interfaces.IArquivoTXT;
 import java.util.ArrayList;
 import utilidades.GeradorID;
 import utilidades.Hash;
+import utilidades.StringUtil;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,11 +28,13 @@ public class Vai {
 
     public static Configuracao CONFIGURACAO;
     public static Colaborador USUARIO;
+    public static String BARRA;
 
     public static void main(String[] args) {
 
         try {
 
+            BARRA = StringUtil.barra();
             CONFIGURACAO = new Configuracao();
 
             ArquivoTXT arquivoTXT = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.CONFIGURACAO.getNomeArquivo());
