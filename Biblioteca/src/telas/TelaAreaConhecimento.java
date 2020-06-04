@@ -63,19 +63,21 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
 
     private void preencherCampos() throws Exception {
         areaConhecimento = controleAreaConhecimento.buscarPeloId(id);
+        jTextFieldID.setText(String.format("%04d", areaConhecimento.getIdAreaConhecimento()));
         jTextFieldCdd.setText(areaConhecimento.getCdd() + "");
-        jTextFieldDescricao.setText(areaConhecimento.getDescricaoAreaConhecimento());
+        jTextFieldDescricaoAreaConhecimento.setText(areaConhecimento.getDescricaoAreaConhecimento());
     }
 
     private void limparCampos() throws Exception {
         jTextFieldCdd.setText("");
-        jTextFieldDescricao.setText("");
+        jTextFieldDescricaoAreaConhecimento.setText("");
     }
 
     public TelaAreaConhecimento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(rootPane);
+        
 
     }
 
@@ -83,11 +85,17 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextFieldCdd = new javax.swing.JTextField();
-        jTextFieldDescricao = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
+        jLabelId = new javax.swing.JLabel();
+        jTextFieldID = new javax.swing.JTextField();
+        jPanelDadosAreaConhecimento = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldDescricaoAreaConhecimento = new javax.swing.JTextField();
+        jTextFieldCdd = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(567, 427));
 
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -96,32 +104,63 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
             }
         });
 
+        jLabelId.setText("ID:");
+
+        jTextFieldID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldID.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        jTextFieldID.setEnabled(false);
+
+        jPanelDadosAreaConhecimento.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados para área de conhecimento"));
+        jPanelDadosAreaConhecimento.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanelDadosAreaConhecimento.setPreferredSize(new java.awt.Dimension(522, 81));
+        jPanelDadosAreaConhecimento.setLayout(null);
+
+        jLabel1.setText("Código CDD");
+        jPanelDadosAreaConhecimento.add(jLabel1);
+        jLabel1.setBounds(10, 30, 66, 16);
+
+        jLabel2.setText("Derscrição");
+        jPanelDadosAreaConhecimento.add(jLabel2);
+        jLabel2.setBounds(170, 30, 63, 16);
+        jPanelDadosAreaConhecimento.add(jTextFieldDescricaoAreaConhecimento);
+        jTextFieldDescricaoAreaConhecimento.setBounds(170, 50, 340, 24);
+        jPanelDadosAreaConhecimento.add(jTextFieldCdd);
+        jTextFieldCdd.setBounds(10, 50, 79, 24);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldCdd, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jLabelId)
+                .addGap(6, 6, 6)
+                .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonSalvar)
-                .addGap(29, 29, 29))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanelDadosAreaConhecimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jTextFieldCdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelId)
+                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelDadosAreaConhecimento, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonSalvar)
-                .addGap(34, 34, 34))
+                .addGap(20, 20, 20))
         );
+
+        jPanelDadosAreaConhecimento.getAccessibleContext().setAccessibleName("Dados para área de conhecimento");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -132,7 +171,7 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
             validarPreencimento();
             AreaConhecimento areaConhecimento = new AreaConhecimento();
             areaConhecimento.setCdd(Integer.parseInt(jTextFieldCdd.getText()));
-            areaConhecimento.setDescricaoAreaConhecimento(jTextFieldDescricao.getText());
+            areaConhecimento.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
             controleAreaConhecimento.incluir(areaConhecimento);
             mensagem.sucesso("Área de conhecimento incluída com sucesso");
             visible = false;
@@ -186,7 +225,12 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelId;
+    private javax.swing.JPanel jPanelDadosAreaConhecimento;
     private javax.swing.JTextField jTextFieldCdd;
-    private javax.swing.JTextField jTextFieldDescricao;
+    private javax.swing.JTextField jTextFieldDescricaoAreaConhecimento;
+    private javax.swing.JTextField jTextFieldID;
     // End of variables declaration//GEN-END:variables
 }
