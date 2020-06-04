@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package interfaces;
 
 import classes.Autor;
@@ -10,11 +6,13 @@ import java.util.ArrayList;
 
 /**
  *
- * @author vovostudio
+ * @author João Pedro
  */
 public interface ICRUDAutor {
 
     ArrayList<Autor> listar() throws Exception;
+    
+    Autor getAutorPeloId(int id) throws Exception;
 
     void incluir(Autor autor) throws Exception;
     

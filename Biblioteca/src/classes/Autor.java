@@ -17,8 +17,8 @@ package classes;
 public class Autor {
 
     // Atributos
-    private int idAutor;
-    private String nomeAutor;
+    private int idAutor = 0;
+    private String nomeAutor = "";
 
     // Construtores
     public Autor() {

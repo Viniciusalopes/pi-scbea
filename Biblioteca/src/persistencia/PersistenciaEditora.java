@@ -8,12 +8,12 @@ ICRUDObjeto
  */
 package persistencia;
 
-import classes.ArquivoTXT;//importanto a classe do arquivo TXT
-import classes.Editora;//Importanto a classe eeditora e seus atribitos 
-import controle.ControleArquivoTXT;//importando a classe controle do arquivo TXT
-import enumeradores.EnumArquivosBd;//importando o enumerador  do arquivo do gerenciador de banco de dados  
-import interfaces.IArquivoTXT;//importando a classe de interface do ia arquivo txt 
-import interfaces.ICRUDEditora;// importando a classe interface 
+import classes.ArquivoTXT;
+import classes.Editora;
+import controle.ControleArquivoTXT;
+import enumeradores.EnumArquivosBd;
+import interfaces.IArquivoTXT;
+import interfaces.ICRUDEditora;
 import java.util.ArrayList;
 import telas.Vai;
 import utilidades.GeradorID;
@@ -23,15 +23,13 @@ import utilidades.GeradorID;
  * @author lucas
  */
 public class PersistenciaEditora implements ICRUDEditora {
-    
-    //atributos 
-    
+
     private ArquivoTXT arquivoTXT = null;
     private IArquivoTXT controleArquivoTXT = null;
-    private ArrayList<Editora> editoras = null;//obejto do tipo editora 
-    private Editora editora = null ;
+    //ele e um arquivo txt 
     private ArrayList<String> linhas = null;
-    
+    private ArrayList<Editora> editoras = null;
+
     public PersistenciaEditora() throws Exception {
         arquivoTXT = new ArquivoTXT(Vai.CONFIGURACAO.getCaminhoBdCliente(),
                 EnumArquivosBd.EDITORA.getNomeArquivo());
