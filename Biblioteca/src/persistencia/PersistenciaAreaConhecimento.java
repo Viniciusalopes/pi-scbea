@@ -40,13 +40,13 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
         //Criar Array list para linhas do arquivo, lendo o arquivo
         ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
         //Incluir objeto do parametro no array de linhas
-        areaConhecimento.setIdAreaConhecimento(GeradorID.getProximoId());
+        areaConhecimento.setIdAreaConhecimento(GeradorID.getProximoID());
         linhas.add(areaConhecimento.toString());
         //Atualizar as linhas do arquivoTXT
         arquivoTXT.setLinhas(linhas);
         //Escrever o aqruivoTXT novamente
         controleArquivoTXT.escreverArquivo(arquivoTXT);
-        GeradorID.setProximoId();
+        GeradorID.confirmaID();
     }
 
     @Override

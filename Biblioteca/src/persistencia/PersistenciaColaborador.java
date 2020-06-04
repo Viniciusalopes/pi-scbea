@@ -75,11 +75,11 @@ public class PersistenciaColaborador implements ICRUDColaborador {
     @Override
     public void incluir(Colaborador colaborador) throws Exception {
         linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
-        colaborador.setIdColaborador(GeradorID.getProximoId());
+        colaborador.setIdColaborador(GeradorID.getProximoID());
         linhas.add(colaborador.toString());
         arquivoTXT.setLinhas(linhas);
         controleArquivoTXT.escreverArquivo(arquivoTXT);
-        GeradorID.setProximoId();
+        GeradorID.confirmaID();
     }
 
     @Override

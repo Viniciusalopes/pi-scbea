@@ -13,7 +13,7 @@ import interfaces.IArquivoTXT;
 import java.util.ArrayList;
 import utilidades.GeradorID;
 import utilidades.Hash;
-import utilidades.StringUtil;
+import static utilidades.StringUtil.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -34,10 +34,12 @@ public class Vai {
 
         try {
 
-            BARRA = StringUtil.barra();
+            BARRA = barra();    // Obtém a barra de divisão de diretórios de acordo com o S.O.
             CONFIGURACAO = new Configuracao();
 
-            ArquivoTXT arquivoTXT = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.CONFIGURACAO.getNomeArquivo());
+//--- Lendo arquivo de configuração ------------------------------------------->
+            ArquivoTXT arquivoTXT
+                    = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.CONFIGURACAO.getNomeArquivo());
             IArquivoTXT controleArquivoTXT = new ControleArquivoTXT(arquivoTXT);
             ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
             if (linhas.size() == 0) {
@@ -48,9 +50,11 @@ public class Vai {
             } else {
                 CONFIGURACAO = new ControleConfiguracao().ler();
             }
+//--- FIM Lendo arquivo de configuração ---------------------------------------|
 
+//--- CrLeitura do arquivo de configuração ------------------------------------>
             for (EnumArquivosBd arquivo : EnumArquivosBd.values()) {
-                if (!arquivo.equals(EnumArquivosBd.CONFIGURACAO)) { // Não cria os arquivo de configuração porque ele já existe
+                if (!arquivo.equals(EnumArquivosBd.CONFIGURACAO)) { // Não cria o arquivo de configuração porque ele já existe
 
                     // Cria os arquivos caso não existam (primeira execução)
                     arquivoTXT = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), arquivo.getNomeArquivo());
@@ -62,7 +66,7 @@ public class Vai {
                         if (linhas.size() == 0) {
                             // Cria os colaboradores do grupo do pi para testes
                             Colaborador colaborador = new Colaborador(
-                                    GeradorID.getProximoId(),
+                                    GeradorID.getProximoID(),
                                     "Godofredo das Couves Verdejantes",
                                     EnumPerfil.ADMINISTRADOR,
                                     1,
@@ -76,12 +80,10 @@ public class Vai {
                             linhas.add(colaborador.toString());
                             arquivoTXT.setLinhas(linhas);
                             controleArquivoTXT.escreverArquivo(arquivoTXT);
-                            GeradorID.setProximoId();
                         }
                     }
                 }
             }
-
             //System.out.println(Hash.criptografar("123456", "SHA-256"));
             TelaLogin frmLogin = new TelaLogin();
             frmLogin.setVisible(true);

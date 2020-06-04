@@ -71,6 +71,7 @@ public class StringUtil {
         return true;
     }
 
+
     // FONTE: https://www.guj.com.br/t/classe-pronta-mascara-do-jformattedtextfield-para-telefones/335186
     public static void mudaMascaraTelefone(JFormattedTextField campoTelefone) throws Exception {
         try {

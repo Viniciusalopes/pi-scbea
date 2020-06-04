@@ -52,11 +52,11 @@ public class PersistenciaEditora implements ICRUDEditora {
     @Override
     public void incluir(Editora editora) throws Exception {//OK
         linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
-        editora.setIdEditora(GeradorID.getProximoId());
+        editora.setIdEditora(GeradorID.getProximoID());
         linhas.add(editora.toString());
         arquivoTXT.setLinhas(linhas);
         controleArquivoTXT.escreverArquivo(arquivoTXT);
-        GeradorID.getProximoId();
+        GeradorID.getProximoID();
 
     }
 

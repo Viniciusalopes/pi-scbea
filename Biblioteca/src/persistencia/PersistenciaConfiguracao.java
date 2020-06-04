@@ -39,7 +39,7 @@ public class PersistenciaConfiguracao implements ICRUDConfiguracao {
         configuracao.setDiasDeEmprestimo(Integer.parseInt(dados[1]));
         configuracao.setValorMultaDiaria(Float.parseFloat(dados[2].replace(",", ".")));
         configuracao.setCaminhoBdServidor(dados[4]);
-
+        configuracao.setLerId(dados[5].equals("0") ? false : true);
         return configuracao;
     }
 
