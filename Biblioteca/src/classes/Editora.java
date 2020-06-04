@@ -10,14 +10,14 @@ Editora
 package classes;
 
 /**
- * CLASSE Editora
+ *  lucas 
  */
 public class Editora {
 
     //Atributos 
     //-------------------------------------
-    private int idEditora;
-    private String nomeEditora;
+    private int idEditora = 0 ;
+    private String nomeEditora = "";
 
     //------------------------------------
     //costrutores 
@@ -56,7 +56,7 @@ public class Editora {
 
 
     @Override 
-    public String toString(){
+    public String toString(){//nome da editora + id da editora 
         return (idEditora + " ; "+ nomeEditora);
         
     }
