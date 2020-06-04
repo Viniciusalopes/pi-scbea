@@ -16,7 +16,7 @@ import java.util.Map;
  * https://www.guj.com.br/t/enum-obter-o-valor-do-atributo-do-enum-atraves-do-metodos/109311/2
  */
 public enum EnumCaracteres {
-    Letras("qwertyuiopasdfghjklçzxcvbnmQWERTYUIOPASDFGHJKLÇZXCVBNM"),
+    Letras("qwertyuiopasdfghjklçzxcvbnmQWERTYUIOPASDFGHJKLÇZXCVBNMàâãáéêòôõóúÀÂÂÁÉÊÒÔÕÓÚ"),
     Numeros("0123456789"),
     Email("@_-." + Numeros.caracteres + Letras.caracteres),
     Telefone("()- " + Numeros.caracteres),
