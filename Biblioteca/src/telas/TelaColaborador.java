@@ -230,7 +230,7 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
             controleColaborador.incluir(colaborador);
             mensagem.sucesso("Colaborador incluído com sucesso!");
         } else if (acao.equals(EnumAcao.Editar)) {
-            controleColaborador.atualizar(colaborador);
+            controleColaborador.alterar(colaborador);
             mensagem.sucesso("Colaborador atualizado com sucesso!");
         }
         visible = false;
