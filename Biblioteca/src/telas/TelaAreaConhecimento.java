@@ -77,7 +77,6 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(rootPane);
-        
 
     }
 
@@ -170,10 +169,21 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
         try {
             validarPreencimento();
             AreaConhecimento areaConhecimento = new AreaConhecimento();
-            areaConhecimento.setCdd(Integer.parseInt(jTextFieldCdd.getText()));
-            areaConhecimento.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
-            controleAreaConhecimento.incluir(areaConhecimento);
-            mensagem.sucesso("Área de conhecimento incluída com sucesso");
+
+            if (acao.equals(EnumAcao.Incluir)) {
+                areaConhecimento.setIdAreaConhecimento(id);
+                areaConhecimento.setCdd(Integer.parseInt(jTextFieldCdd.getText()));
+                areaConhecimento.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
+                controleAreaConhecimento.incluir(areaConhecimento);
+                mensagem.sucesso("Área de conhecimento incluída com sucesso");
+            } else if (acao.equals(EnumAcao.Editar)) {
+                areaConhecimento.setIdAreaConhecimento(id);
+                areaConhecimento.setCdd(Integer.parseInt(jTextFieldCdd.getText()));
+                areaConhecimento.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
+                controleAreaConhecimento.incluir(areaConhecimento);
+                mensagem.sucesso("Área de conhecimento editada com sucesso");
+            }
+
             visible = false;
             this.dispose();
         } catch (Exception e) {

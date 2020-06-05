@@ -3,7 +3,7 @@ ICRUDObjeto
 --------METODOS-----------------
 + listar() : ArrayList<Objeto>
 + incluir(objeto : Objeto) : void
-+ atualizar(objeto : Objeto) : void
++ alterar(objeto : Objeto) : void
 + excluir(idObjeto : int) : void
  */
 package persistencia;
@@ -49,7 +49,7 @@ public class PersistenciaEditora implements ICRUDEditora {
     }
 
     @Override
-    public Editora getEditoraPeloId(int idEditora) throws Exception {
+    public Editora buscarPeloID(int idEditora) throws Exception {
         colecao = listar();
         for (Editora e : colecao) {
             if (e.getIdEditora() == idEditora) {
@@ -72,7 +72,17 @@ public class PersistenciaEditora implements ICRUDEditora {
 
     @Override
     public void alterar(Editora editora) throws Exception {//OK
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       ArrayList<String> novasLinhas = new ArrayList<>();
+       linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        for (String linha : linhas ) {
+            if (Integer.parseInt(linha.split(";")[0])== editora.getIdEditora()) {
+            novasLinhas.add(editora.toString());
+            }else {
+                novasLinhas.add(linha);
+            }
+        }
+        arquivoTXT.setLinhas(linhas);
+        controleArquivoTXT.escreverArquivo(arquivoTXT);
     }
 
     @Override
@@ -86,7 +96,5 @@ public class PersistenciaEditora implements ICRUDEditora {
         }
         arquivoTXT.setLinhas(novasLinhas);
         controleArquivoTXT.escreverArquivo(arquivoTXT);
-
     }
-
 }

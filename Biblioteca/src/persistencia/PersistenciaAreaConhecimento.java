@@ -13,13 +13,30 @@ import utilidades.GeradorID;
 public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
 
 // Atributos
-    private ArquivoTXT arquivoTXT;
-    private IArquivoTXT controleArquivoTXT;
+    private ArquivoTXT arquivoTXT = null;
+    private IArquivoTXT controleArquivoTXT = null;
+    private ArrayList<AreaConhecimento> colecao = null;
+    private AreaConhecimento areaConhecimento = null;
+    private ArrayList<String> linhas = null;
 
 // Construtor padrão de persistência (direct caminho e nome arquivo)    
     public PersistenciaAreaConhecimento() throws Exception {
-        arquivoTXT = new ArquivoTXT(Vai.CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.AREACONHECIMENTO.getNomeArquivo());
+        arquivoTXT = new ArquivoTXT(Vai.CONFIGURACAO.getCaminhoBdCliente(),
+                EnumArquivosBd.AREACONHECIMENTO.getNomeArquivo());
         controleArquivoTXT = new ControleArquivoTXT(arquivoTXT);
+    }
+
+    @Override
+    public AreaConhecimento buscarPeloId(int idAreaConhecimento) throws Exception {
+
+        ArrayList<AreaConhecimento> colecao = listar();
+        for (AreaConhecimento a : colecao) {
+            if (a.getIdAreaConhecimento() == idAreaConhecimento) {
+                return a;
+            }
+        }
+        return null;
+
     }
 
     @Override
@@ -37,66 +54,42 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
 
     @Override
     public void incluir(AreaConhecimento areaConhecimento) throws Exception {
-        //Criar Array list para linhas do arquivo, lendo o arquivo
-        ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
-        //Incluir objeto do parametro no array de linhas
-        areaConhecimento.setIdAreaConhecimento(GeradorID.getProximoID());
-        linhas.add(areaConhecimento.toString());
-        //Atualizar as linhas do arquivoTXT
-        arquivoTXT.setLinhas(linhas);
-        //Escrever o aqruivoTXT novamente
+        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);                     //Criar Array list para linhas do arquivo, lendo o arquivo
+        areaConhecimento.setIdAreaConhecimento(GeradorID.getProximoID());       //Incluir objeto do parametro no array de linhas
+        linhas.add(areaConhecimento.toString());                                //Atualizar as linhas do arquivoTXT
+        arquivoTXT.setLinhas(linhas);                                           //Escrever o aqruivoTXT novamente
         controleArquivoTXT.escreverArquivo(arquivoTXT);
         GeradorID.confirmaID();
     }
 
     @Override
     public void alterar(AreaConhecimento areaConhecimento) throws Exception {
-        // Criar Array list para novas linhas do arquivo
-        ArrayList<String> novasLinhas = new ArrayList<>();
-        // ler arquivo
-        ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
-        // percorrer linhas do arquivo // if = incluir parametro na nova lista de linhas
-        for (String linha : linhas) {
-            if (Integer.parseInt(linha.split(";")[0]) == areaConhecimento.getIdAreaConhecimento()) {
+        ArrayList<String> novasLinhas = new ArrayList<>();                      // Criar Array list para novas linhas do arquivo
+        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);                     // ler arquivo
+        for (String linha : linhas) {                                           // percorrer linhas do arquivo // if = incluir parametro na nova lista de linhas
+            if (Integer.parseInt(linha.split(";")[0])
+                    == areaConhecimento.getIdAreaConhecimento()) {
                 novasLinhas.add(areaConhecimento.toString());
-            } else { // else incluir linha atual na nova lista de linhas
-                novasLinhas.add(linha);
+            } else {
+                novasLinhas.add(linha);                                         // incluir linha atual na nova lista de linhas
             }
         }
-        // Atualizar as linhas do arquivoTXT
-        arquivoTXT.setLinhas(novasLinhas);
-        // Escrever o arquivoTXT novamente  
-        controleArquivoTXT.escreverArquivo(arquivoTXT);
+        arquivoTXT.setLinhas(novasLinhas);                                      // Atualizar as linhas do arquivoTXT
+        controleArquivoTXT.escreverArquivo(arquivoTXT);                         // Escrever o arquivoTXT novamente  
     }
 
     @Override
     public void excluir(int idAreaConhecimento) throws Exception {
-        // Criar Array list para novas linhas do arquivo
-        ArrayList<String> novasLinhas = new ArrayList<>();
-        // ler arquivo
-        ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
-        // percorrer linhas do arquivo // if != incluir linha atual na nova lista de linhas
-        for (String linha : linhas) {
-            if (Integer.parseInt(linha.split(";")[0]) != idAreaConhecimento) {
+        ArrayList<String> novasLinhas = new ArrayList<>();                      // Criar Array list para novas linhas do arquivo
+        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);                     // ler arquivo
+        for (String linha : linhas) {                                           // percorrer linhas do arquivo // if != incluir linha atual na nova lista de linhas
+            if (Integer.parseInt(linha.split(";")[0])
+                    != idAreaConhecimento) {
                 novasLinhas.add(linha);
             }
         }
-        // Atualizar as linhas do arquivoTXT
-        arquivoTXT.setLinhas(novasLinhas);
-        // Escrever o arquivoTXT novamente  
-        controleArquivoTXT.escreverArquivo(arquivoTXT);
+        arquivoTXT.setLinhas(novasLinhas);                                      // Atualizar as linhas do arquivoTXT
+        controleArquivoTXT.escreverArquivo(arquivoTXT);                         // Escrever o arquivoTXT novamente  
     }
 
-    @Override
-    public AreaConhecimento buscarPeloId(int idAreaConhecimento) throws Exception {
-
-        ArrayList<AreaConhecimento> colecao = listar();
-        for (AreaConhecimento a : colecao) {
-            if (a.getIdAreaConhecimento() == idAreaConhecimento) {
-                return a;
-            }
-        }
-        return null;
-
-    }
 }
