@@ -88,13 +88,12 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
         jLabelId = new javax.swing.JLabel();
         jTextFieldID = new javax.swing.JTextField();
         jPanelDadosAreaConhecimento = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldDescricaoAreaConhecimento = new javax.swing.JTextField();
         jTextFieldCdd = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(567, 427));
 
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -114,17 +113,17 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
         jPanelDadosAreaConhecimento.setPreferredSize(new java.awt.Dimension(522, 81));
         jPanelDadosAreaConhecimento.setLayout(null);
 
-        jLabel1.setText("Código CDD");
-        jPanelDadosAreaConhecimento.add(jLabel1);
-        jLabel1.setBounds(10, 30, 66, 16);
-
         jLabel2.setText("Derscrição");
         jPanelDadosAreaConhecimento.add(jLabel2);
-        jLabel2.setBounds(170, 30, 63, 16);
+        jLabel2.setBounds(100, 30, 340, 16);
         jPanelDadosAreaConhecimento.add(jTextFieldDescricaoAreaConhecimento);
-        jTextFieldDescricaoAreaConhecimento.setBounds(170, 50, 340, 24);
+        jTextFieldDescricaoAreaConhecimento.setBounds(100, 50, 340, 24);
         jPanelDadosAreaConhecimento.add(jTextFieldCdd);
         jTextFieldCdd.setBounds(10, 50, 79, 24);
+
+        jLabel3.setText("Código CDD");
+        jPanelDadosAreaConhecimento.add(jLabel3);
+        jLabel3.setBounds(10, 30, 80, 16);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,17 +131,14 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabelId)
-                .addGap(6, 6, 6)
-                .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelDadosAreaConhecimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabelId)
+                            .addGap(6, 6, 6)
+                            .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanelDadosAreaConhecimento, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -158,8 +154,6 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
                 .addComponent(jButtonSalvar)
                 .addGap(20, 20, 20))
         );
-
-        jPanelDadosAreaConhecimento.getAccessibleContext().setAccessibleName("Dados para área de conhecimento");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -235,8 +229,8 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelId;
     private javax.swing.JPanel jPanelDadosAreaConhecimento;
     private javax.swing.JTextField jTextFieldCdd;
