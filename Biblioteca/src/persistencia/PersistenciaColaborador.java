@@ -24,6 +24,7 @@ import utilidades.GeradorID;
  */
 public class PersistenciaColaborador implements ICRUDColaborador {
 
+    // Atributos
     private ArquivoTXT arquivoTXT = null;
     private IArquivoTXT controleArquivoTXT = null;
     private ArrayList<Colaborador> colecao = null;
@@ -83,7 +84,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
     }
 
     @Override
-    public void atualizar(Colaborador colaborador) throws Exception {
+    public void alterar(Colaborador colaborador) throws Exception {
         ArrayList<String> novasLinhas = new ArrayList<>();
         linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
         for (String l : linhas) {

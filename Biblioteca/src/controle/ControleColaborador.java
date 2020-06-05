@@ -42,9 +42,9 @@ public class ControleColaborador implements ICRUDColaborador {
     }
 
     @Override
-    public void atualizar(Colaborador colaborador) throws Exception {
+    public void alterar(Colaborador colaborador) throws Exception {
         validarColaborador(colaborador, EnumAcao.Editar);
-        persistencia.atualizar(colaborador);
+        persistencia.alterar(colaborador);
     }
 
     @Override

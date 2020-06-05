@@ -20,7 +20,7 @@ public interface ICRUDColaborador {
 
     void incluir(Colaborador objColaborador) throws Exception;
 
-    void atualizar(Colaborador objColaborador) throws Exception;
+    void alterar(Colaborador objColaborador) throws Exception;
 
     void excluir(int idColaborador) throws Exception;
 
