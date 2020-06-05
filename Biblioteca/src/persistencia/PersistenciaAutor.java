@@ -22,6 +22,7 @@ public class PersistenciaAutor implements ICRUDAutor {
     private ArrayList<Autor> colecao = null;
     private Autor autor = null;
     private ArrayList<String> linhas = null;
+    private ArrayList<String> novasLinhas = null;
 
     public PersistenciaAutor() throws Exception {
         arquivoTXT = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.AUTOR.getNomeArquivo());
@@ -66,18 +67,18 @@ public class PersistenciaAutor implements ICRUDAutor {
     public void alterar(Autor autor) throws Exception {
 
         //cria uma operação na memoria que tem finalidade substituir o arquivo em disco, esta é chamada de "novas linhas" que é um Arraylist STRING
-        ArrayList<String> novaslinhas = new ArrayList<>();
+        novasLinhas = new ArrayList<>();
         // percorrer as linhas do arquivo.
         linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
         // loop, chama linhas de linhas e compara se é igual a que eu quero digitar, pra evitar editar uma outra linha)
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == autor.getIdAutor()) {
-                novaslinhas.add(autor.toString());
+                novasLinhas.add(autor.toString());
             } else {
-                novaslinhas.add(linha);
+                novasLinhas.add(linha);
             }
         }
-        arquivoTXT.setLinhas(novaslinhas);
+        arquivoTXT.setLinhas(novasLinhas);
         controleArquivoTXT.escreverArquivo(arquivoTXT);
     }
 
@@ -85,16 +86,16 @@ public class PersistenciaAutor implements ICRUDAutor {
     public void excluir(int idAutor) throws Exception {
 
         //cria uma operação na memoria que tem finalidade substituir o arquivo em disco, esta é chamada de "novas linhas" que é um Arraylist STRING
-        ArrayList<String> novaslinhas = new ArrayList<>();
+        novasLinhas = new ArrayList<>();
         // percorrer as linhas do arquivo.
         linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
         // loop, chama linhas de linhas e compara se é igual a que eu quero digitar, pra evitar editar uma outra linha)
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) != idAutor) {
-                novaslinhas.add(linha);
+                novasLinhas.add(linha);
             }
         }
-        arquivoTXT.setLinhas(novaslinhas);
+        arquivoTXT.setLinhas(novasLinhas);
         controleArquivoTXT.escreverArquivo(arquivoTXT);
 
         // ler o arquivo

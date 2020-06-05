@@ -18,6 +18,7 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
     private ArrayList<AreaConhecimento> colecao = null;
     private AreaConhecimento areaConhecimento = null;
     private ArrayList<String> linhas = null;
+    private ArrayList<String> novasLinhas = null;
 
 // Construtor padrão de persistência (direct caminho e nome arquivo)    
     public PersistenciaAreaConhecimento() throws Exception {
@@ -29,27 +30,26 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
     @Override
     public AreaConhecimento buscarPeloId(int idAreaConhecimento) throws Exception {
 
-        ArrayList<AreaConhecimento> colecao = listar();
+        colecao = listar();
         for (AreaConhecimento a : colecao) {
             if (a.getIdAreaConhecimento() == idAreaConhecimento) {
                 return a;
             }
         }
         return null;
-
     }
 
     @Override
     public ArrayList<AreaConhecimento> listar() throws Exception {
-        ArrayList<AreaConhecimento> areasConhecimento = new ArrayList<>();
-        ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        colecao = new ArrayList<>();
+        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
         for (String linha : linhas) {
             String[] dados = linha.split(";");
-            AreaConhecimento areaConhecimento = new AreaConhecimento(Integer.parseInt(dados[0]),
+            areaConhecimento = new AreaConhecimento(Integer.parseInt(dados[0]),
                     Integer.parseInt(dados[1]), dados[2]);
-            areasConhecimento.add(areaConhecimento);
+            colecao.add(areaConhecimento);
         }
-        return (areasConhecimento);
+        return (colecao);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
 
     @Override
     public void alterar(AreaConhecimento areaConhecimento) throws Exception {
-        ArrayList<String> novasLinhas = new ArrayList<>();                      // Criar Array list para novas linhas do arquivo
+        novasLinhas = new ArrayList<>();                      // Criar Array list para novas linhas do arquivo
         linhas = controleArquivoTXT.lerArquivo(arquivoTXT);                     // ler arquivo
         for (String linha : linhas) {                                           // percorrer linhas do arquivo // if = incluir parametro na nova lista de linhas
             if (Integer.parseInt(linha.split(";")[0])
@@ -80,7 +80,7 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
 
     @Override
     public void excluir(int idAreaConhecimento) throws Exception {
-        ArrayList<String> novasLinhas = new ArrayList<>();                      // Criar Array list para novas linhas do arquivo
+        novasLinhas = new ArrayList<>();                      // Criar Array list para novas linhas do arquivo
         linhas = controleArquivoTXT.lerArquivo(arquivoTXT);                     // ler arquivo
         for (String linha : linhas) {                                           // percorrer linhas do arquivo // if != incluir linha atual na nova lista de linhas
             if (Integer.parseInt(linha.split(";")[0])
@@ -91,5 +91,4 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
         arquivoTXT.setLinhas(novasLinhas);                                      // Atualizar as linhas do arquivoTXT
         controleArquivoTXT.escreverArquivo(arquivoTXT);                         // Escrever o arquivoTXT novamente  
     }
-
 }

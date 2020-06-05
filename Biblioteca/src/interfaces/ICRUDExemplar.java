@@ -22,6 +22,8 @@ public interface ICRUDExemplar {
 
     ArrayList<Exemplar> listar() throws Exception;
 
+    Exemplar buscarPeloId(int idExmplar) throws Exception;
+
     void incluir(Exemplar exemplar) throws Exception;
 
     void alterar(Exemplar exemplar) throws Exception;

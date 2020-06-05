@@ -15,7 +15,6 @@ import enumeradores.EnumTipoStatus;
 import enumeradores.EnumUF;
 import interfaces.ICRUDColaborador;
 import interfaces.ITelaCadastro;
-import java.awt.Color;
 import static utilidades.Email.isValidEmailAddressRegex;
 import utilidades.Mensagens;
 import static utilidades.StringUtil.*;
@@ -241,7 +240,7 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
     public void setVisible(boolean b) {
         try {
             controleColaborador = new ControleColaborador();
-            colaborador = controleColaborador.getColaboradorPeloId(id);
+            colaborador = controleColaborador.buscarPeloId(id);
             popularControles();
 
             if (acao.equals(EnumAcao.Incluir)) {

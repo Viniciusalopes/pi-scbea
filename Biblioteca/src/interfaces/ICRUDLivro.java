@@ -22,6 +22,8 @@ public interface ICRUDLivro {
 
     ArrayList<Livro> listar() throws Exception;
 
+    Livro buscarPeloId(int id) throws Exception;
+
     void incluir(Livro livro) throws Exception;
 
     void alterar(Livro livro) throws Exception;

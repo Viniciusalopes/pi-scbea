@@ -29,6 +29,7 @@ public class PersistenciaEditora implements ICRUDEditora {
     private ArrayList<Editora> colecao = null;
     private Editora editora = null;
     private ArrayList<String> linhas = null;
+    private ArrayList<String> novasLinhas = null;
 
     public PersistenciaEditora() throws Exception {
         arquivoTXT = new ArquivoTXT(Vai.CONFIGURACAO.getCaminhoBdCliente(),
@@ -67,7 +68,6 @@ public class PersistenciaEditora implements ICRUDEditora {
         arquivoTXT.setLinhas(linhas);
         controleArquivoTXT.escreverArquivo(arquivoTXT);
         GeradorID.confirmaID();
-
     }
 
     @Override
@@ -77,7 +77,7 @@ public class PersistenciaEditora implements ICRUDEditora {
 
     @Override
     public void excluir(int idEditora) throws Exception {//OK
-        ArrayList<String> novasLinhas = new ArrayList<>();
+        novasLinhas = new ArrayList<>();
         linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
         for (String l : linhas) {
             if (Integer.parseInt(l.split(";")[0]) != idEditora) {
@@ -86,7 +86,5 @@ public class PersistenciaEditora implements ICRUDEditora {
         }
         arquivoTXT.setLinhas(novasLinhas);
         controleArquivoTXT.escreverArquivo(arquivoTXT);
-
     }
-
 }
