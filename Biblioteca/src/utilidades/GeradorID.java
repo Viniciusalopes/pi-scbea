@@ -33,9 +33,9 @@ public class GeradorID {
                     String primeiraLinha = "";
                     int idNoArquivo = 0;
 
-                    controleID = new ControleArquivoTXT(arquivoID);         //    Instancia o controle
-                    linhasID = controleID.lerArquivo(arquivoID);            //    Lê o arquivo
-                    primeiraLinha = linhasID.get(0).trim();                 //    Armazena a primeira linha
+                    controleID = new ControleArquivoTXT(arquivoID);         //  Instancia o controle
+                    linhasID = controleID.lerArquivo(arquivoID);            //  Lê o arquivo
+                    primeiraLinha = linhasID.get(0).trim();                 //  Armazena a primeira linha
 
                     if (primeiraLinha.length() == 0) {                      // Se a linha está em branco
                         reindexarID();                                      //    Reindexa o ID
@@ -59,7 +59,7 @@ public class GeradorID {
         } catch (Exception e) {                                             // Erro de leitura do arquivo ou contrução de classes
             reindexarID();
         }
-        return id + 1;                                                       // Retorna o próximo id válido
+        return id + 1;                                                      // Retorna o próximo id válido
     }
 
     public static void confirmaID() throws Exception {
