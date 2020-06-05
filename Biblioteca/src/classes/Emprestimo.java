@@ -22,20 +22,47 @@ import java.util.Date;
  */
 public class Emprestimo {
 
+    // ATRIBUTOS
     private int idEmprestimo;
-
     private Exemplar exemplar;
-
     private Colaborador colaborador;
-
     private Date dataEmprestimo;
-
     private Date dataDevolucao;
-
     private EnumTipoStatus statusEmprestimo;
-
     private float valorMulta;
+    private SimpleDateFormat formatoData;
+    // CONSTRUTORES
+    public Emprestimo() {
+        formatoData = new SimpleDateFormat("dd/MM/yyyy");
+    }
 
+    public Emprestimo(Emprestimo emprestimo) {
+        idEmprestimo = emprestimo.idEmprestimo;
+        exemplar = emprestimo.exemplar;
+        colaborador = emprestimo.colaborador;
+        dataEmprestimo = emprestimo.dataEmprestimo;
+        dataDevolucao = emprestimo.dataDevolucao;
+        valorMulta = emprestimo.valorMulta;
+        formatoData = new SimpleDateFormat("dd/MM/yyyy");
+    }
+
+    public Emprestimo(int idEmprestimo,
+            Exemplar exemplar,
+            Colaborador colaborador,
+            Date dataEmprestimo,
+            Date dataDevolucao,
+            EnumTipoStatus statusEmprestimo,
+            float valorMulta) {
+        this.idEmprestimo = idEmprestimo;
+        this.exemplar = exemplar;
+        this.colaborador = colaborador;
+        this.dataEmprestimo = dataEmprestimo;
+        this.dataDevolucao = dataDevolucao;
+        this.valorMulta = valorMulta;
+        formatoData = new SimpleDateFormat("dd/MM/yyyy");
+    }
+
+    // MÉTODOS
     public int getIdEmprestimo() {
         return idEmprestimo;
     }
@@ -94,9 +121,15 @@ public class Emprestimo {
 
     @Override
     public String toString() {
-
-        return (idEmprestimo + " ; " + exemplar + " ; " + colaborador + " ; " + dataEmprestimo + " ; " + dataDevolucao +
-                " ; " + statusEmprestimo + " ; " + valorMulta);
+        return String.format("%d;%d;%d;%s;%s;%d;%.2f",
+                idEmprestimo,
+                exemplar,
+                colaborador,
+                formatoData.format(dataEmprestimo),
+                formatoData.format(dataDevolucao),
+                statusEmprestimo,
+                valorMulta
+        );
 
     }
 }

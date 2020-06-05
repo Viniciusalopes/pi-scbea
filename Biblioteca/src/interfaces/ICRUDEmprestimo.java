@@ -22,10 +22,12 @@ public interface ICRUDEmprestimo {
 
     ArrayList<Emprestimo> listar() throws Exception;
 
+    Emprestimo buscarPeloId(int idEmprestimo) throws Exception;
+
     void incluir(Emprestimo emprestimo) throws Exception;
 
     void alterar(Emprestimo emprestimo) throws Exception;
 
-    void excluir(Emprestimo emprestimo) throws Exception;
+    void excluir(int idEmprestimo) throws Exception;
 
 }
