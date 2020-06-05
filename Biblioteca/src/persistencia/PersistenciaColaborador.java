@@ -30,6 +30,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
     private ArrayList<Colaborador> colecao = null;
     private Colaborador colaborador = null;
     private ArrayList<String> linhas = null;
+    private ArrayList<String> novasLinhas = null;
 
     public PersistenciaColaborador() throws Exception {
         arquivoTXT = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.COLABORADOR.getNomeArquivo());
@@ -62,7 +63,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
     }
 
     @Override
-    public Colaborador getColaboradorPeloId(int id) throws Exception {
+    public Colaborador buscarPeloId(int id) throws Exception {
         listar();
         colaborador = new Colaborador();
         for (Colaborador c : colecao) {
@@ -85,7 +86,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
 
     @Override
     public void alterar(Colaborador colaborador) throws Exception {
-        ArrayList<String> novasLinhas = new ArrayList<>();
+        novasLinhas = new ArrayList<>();
         linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
         for (String l : linhas) {
             if (Integer.parseInt(l.split(";")[0]) == colaborador.getIdColaborador()) {
@@ -100,7 +101,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
 
     @Override
     public void excluir(int idColaborador) throws Exception {
-        ArrayList<String> novasLinhas = new ArrayList<>();
+        novasLinhas = new ArrayList<>();
         linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
         for (String l : linhas) {
             if (Integer.parseInt(l.split(";")[0]) != idColaborador) {

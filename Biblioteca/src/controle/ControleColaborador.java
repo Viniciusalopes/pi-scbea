@@ -31,8 +31,8 @@ public class ControleColaborador implements ICRUDColaborador {
     }
 
     @Override
-    public Colaborador getColaboradorPeloId(int id) throws Exception {
-        return persistencia.getColaboradorPeloId(id);
+    public Colaborador buscarPeloId(int id) throws Exception {
+        return persistencia.buscarPeloId(id);
     }
 
     @Override
