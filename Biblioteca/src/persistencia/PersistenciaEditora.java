@@ -49,7 +49,7 @@ public class PersistenciaEditora implements ICRUDEditora {
     }
 
     @Override
-    public Editora getEditoraPeloId(int idEditora) throws Exception {
+    public Editora buscarPeloId(int idEditora) throws Exception {
         colecao = listar();
         for (Editora e : colecao) {
             if (e.getIdEditora() == idEditora) {

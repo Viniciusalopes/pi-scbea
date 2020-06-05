@@ -30,6 +30,11 @@ public class ControleAutor implements ICRUDAutor {
     }
 
     @Override
+    public Autor buscarPeloId(int id) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public void incluir(Autor autor) throws Exception {
 
         if (autor.getNomeAutor().trim().length() < 2) {
@@ -46,13 +51,13 @@ public class ControleAutor implements ICRUDAutor {
                 throw new Exception("Já existe um autor cadastrado com este nome!");
             }
         }
-        
+
         persistencia.incluir(autor);
 
     }
 
     @Override
-    public void atualizar(Autor autor) throws Exception {
+    public void alterar(Autor autor) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

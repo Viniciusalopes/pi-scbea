@@ -16,7 +16,7 @@ public interface ICRUDEditora {
 
     ArrayList<Editora> listar() throws Exception;
     
-    Editora geEditoraPeloId(int id) throws Exception;
+    Editora buscarPeloId(int id) throws Exception;
     
     void incluir(Editora editora) throws Exception;
 
