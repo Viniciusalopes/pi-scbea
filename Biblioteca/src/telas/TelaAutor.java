@@ -5,20 +5,24 @@
  */
 package telas;
 
+import classes.Autor;
+import enumeradores.EnumAcao;
+import interfaces.ITelaCadastro;
+
 /**
  *
- * @author Vinicius
+ * @author Joao Pedro
  */
-public class TelaAutor extends javax.swing.JDialog {
-
-    /**
-     * Creates new form TelaAutor
-     */
+public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
+    private int id;
+    private EnumAcao acao = null;
+    private Autor autor = null;
     public TelaAutor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-
+    
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,6 +73,7 @@ public class TelaAutor extends javax.swing.JDialog {
 
         jLabel1.setText("ID:");
 
+        jTextField2.setEditable(false);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -76,6 +81,11 @@ public class TelaAutor extends javax.swing.JDialog {
         });
 
         jButton1.setText("Salvar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,9 +127,16 @@ public class TelaAutor extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      try {
+            salvar();
+        } catch (Exception e) {
+            
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+     
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -168,4 +185,31 @@ public class TelaAutor extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public void setAcao(EnumAcao acao) {
+        this.acao = acao;
+        this.setTitle(acao.toString() + " Cadastro de autor ");
+    }
+    
+    private void salvar() throws Exception { 
+        
+        autor = new Autor();
+        
+        if (acao.equals(EnumAcao.Incluir)) {
+            autor.setIdAutor(id);
+        } else if (acao.equals(EnumAcao.Editar)) {
+            autor.setIdAutor(id);
+        }
+        autor.setNomeAutor(jTextField3.getText());
+        System.out.println(jTextField3.getText());
+     
+     }
 }
+
+
