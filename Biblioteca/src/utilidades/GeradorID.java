@@ -22,7 +22,7 @@ public class GeradorID {
                         if (linha.trim().length() > 1 && linha.contains(";")) {                         // Verifica se o tem pelo menos uma coluna
                             String texto = "";
                             if (arquivo.getNomeArquivo().equals(EnumArquivosBd.LOG)) {                  // Verifica se é o arquivo de log
-                                texto = linha.split("|")[4].split(";")[0];                              // Armazena o texto com o ID do registro do log
+                                texto = linha.split("_")[4].split(";")[0];                              // Armazena o texto com o ID do registro do log
                             } else {
                                 texto = linha.split(";")[0];                                            // Armazena o texto com o ID do registro
                             }

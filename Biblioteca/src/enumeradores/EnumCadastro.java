@@ -21,7 +21,8 @@ public enum EnumCadastro {
     EMPRESTIMO("Empréstimo"),
     EXEMPLAR("Exemplar"),
     LIVRO("Livro"),
-    RESERVA("Reserva");
+    RESERVA("Reserva"),
+    LOG("Log");
 
     private String nomeCadastro;
 

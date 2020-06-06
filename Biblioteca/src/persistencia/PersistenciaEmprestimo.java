@@ -10,6 +10,7 @@ import classes.Log;
 import controle.ControleArquivoTXT;
 import controle.ControleColaborador;
 import controle.ControleExemplar;
+import controle.ControleLog;
 import enumeradores.EnumAcao;
 import enumeradores.EnumArquivosBd;
 import enumeradores.EnumCadastro;
@@ -102,7 +103,7 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == idEmprestimo) {
                 controleArquivoTXT.excluirLinha(linha);
-                new Log().gravarLog(EnumAcao.Excluir, EnumCadastro.EMPRESTIMO, linha);
+                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.EMPRESTIMO, linha);
                 break;
             }
         }

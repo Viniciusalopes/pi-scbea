@@ -11,6 +11,7 @@ package persistencia;
 import classes.Editora;
 import classes.Log;
 import controle.ControleArquivoTXT;
+import controle.ControleLog;
 import enumeradores.EnumAcao;
 import enumeradores.EnumArquivosBd;
 import enumeradores.EnumCadastro;
@@ -84,7 +85,7 @@ public class PersistenciaEditora implements ICRUDEditora {
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == idEditora) {
                 controleArquivoTXT.excluirLinha(linha);
-                new Log().gravarLog(EnumAcao.Excluir, EnumCadastro.EDITORA, linha);
+                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.EDITORA, linha);
                 break;
             }
         }

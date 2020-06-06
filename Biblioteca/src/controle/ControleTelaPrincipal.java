@@ -8,7 +8,9 @@ package controle;
 import classes.AreaConhecimento;
 import classes.Colaborador;
 import classes.ColunaGrid;
+import classes.Log;
 import classes.Renderer;
+import enumeradores.EnumAcao;
 import enumeradores.EnumCadastro;
 import java.util.ArrayList;
 
@@ -22,7 +24,9 @@ public class ControleTelaPrincipal {
     private String linha[] = null;
     private ArrayList<ColunaGrid> colunas = null;
     private Renderer renderer = new Renderer();
+    private int cont = 0;
 
+    //--- COLUNAS DO GRID ----------------------------------------------------->
     public ArrayList<ColunaGrid> getColunasParaGrid(EnumCadastro cadastro) {
 
         // Colunas do grid
@@ -56,11 +60,44 @@ public class ControleTelaPrincipal {
 
             case "RESERVA":
                 break;
+
+            case "LOG":
+                addColunasLog();
         }
 
         return colunas;
     }
 
+    private void addColunasAreaConhecimento() {
+        colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("CDD", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Descrição da área de conhecimento"));
+
+    }
+
+    private void addColunasColaborador() {
+        colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Nome"));
+        colunas.add(new ColunaGrid("Perfil", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Matrícula", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Cargo", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("OAB", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("E-mail"));
+        colunas.add(new ColunaGrid("Telefone", renderer.getRendererDireita()));
+        colunas.add(new ColunaGrid("Status", renderer.getRendererCentro()));
+    }
+
+    private void addColunasLog() {
+        colunas.add(new ColunaGrid("Data", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Usuário"));
+        colunas.add(new ColunaGrid("Ação", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Cadastro", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Registro"));
+    }
+
+    //--- FIM COLUNAS DO GRID -------------------------------------------------|
+    //
+    //--- LINHAS DO GRID ------------------------------------------------------>
     public String[][] getLinhasParaGrid(Object colecao, EnumCadastro cadastro) throws Exception {
 
         switch (cadastro.toString()) {
@@ -92,9 +129,31 @@ public class ControleTelaPrincipal {
 
             case "RESERVA":
                 break;
+
+            case "LOG":
+                addLinhasLog(colecao);
+                break;
         }
 
         return linhas;
+    }
+
+    private void addLinhasAreaConhecimento(Object colecao) {
+
+        ArrayList<AreaConhecimento> areasConhecimento = (ArrayList<AreaConhecimento>) colecao;
+
+        // Linhas do grid
+        linhas = new String[areasConhecimento.size()][colunas.size()];
+
+        cont = 0;
+        for (AreaConhecimento a : areasConhecimento) {
+            linha = new String[]{
+                String.format("%04d", a.getIdAreaConhecimento()),
+                a.getCdd() + "",
+                a.getDescricaoAreaConhecimento()};
+            linhas[cont] = linha;
+            cont++;
+        }
     }
 
     private void addLinhasColaborador(Object colecao) {
@@ -102,9 +161,9 @@ public class ControleTelaPrincipal {
         ArrayList<Colaborador> colaboradores = (ArrayList<Colaborador>) colecao;
 
         // Linhas do grid
-        linhas = new String[colaboradores.size()][10];
+        linhas = new String[colaboradores.size()][colunas.size()];
 
-        int i = 0;
+        cont = 0;
         for (Colaborador c : colaboradores) {
             linha = new String[]{
                 String.format("%04d", c.getIdColaborador()),
@@ -117,45 +176,31 @@ public class ControleTelaPrincipal {
                 c.getTelefone(),
                 c.getStatus().toString()
             };
-            linhas[i] = linha;
-            i++;
+            linhas[cont] = linha;
+            cont++;
         }
     }
 
-    private void addColunasColaborador() {
-        colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("Nome"));
-        colunas.add(new ColunaGrid("Perfil", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("Matrícula", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("Cargo", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("OAB", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("E-mail"));
-        colunas.add(new ColunaGrid("Telefone", renderer.getRendererDireita()));
-        colunas.add(new ColunaGrid("Status", renderer.getRendererCentro()));
-    }
+    private void addLinhasLog(Object colecao) {
 
-    private void addLinhasAreaConhecimento(Object colecao) {
-
-        ArrayList<AreaConhecimento> areaConhecimento = (ArrayList<AreaConhecimento>) colecao;
+        ArrayList<Log> logs = (ArrayList<Log>) colecao;
 
         // Linhas do grid
-        linhas = new String[areaConhecimento.size()][10];
+        linhas = new String[logs.size()][colunas.size()];
 
-        int i = 0;
-        for (AreaConhecimento a : areaConhecimento) {
+        cont = 0;
+        for (Log l : logs) {
             linha = new String[]{
-                String.format("%04d", a.getIdAreaConhecimento()),
-                a.getCdd() + "",
-                a.getDescricaoAreaConhecimento()};
-            linhas[i] = linha;
-            i++;
+                String.format("%s", l.getDataLog()),
+                l.getUsuario().getIdColaborador() + " - " + l.getUsuario().getNomeColaborador().split(" ")[0],
+                l.getAcao().toString(),
+                l.getCadastro().getNomeCadastro(),
+                l.getRegistro()
+            };
+            linhas[cont] = linha;
+            cont++;
         }
     }
+    //--- FIM LINHAS DO GRID --------------------------------------------------|
 
-    private void addColunasAreaConhecimento() {
-        colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("CDD", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("Descrição da área de conhecimento"));
-
-    }
 }

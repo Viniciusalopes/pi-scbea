@@ -10,6 +10,7 @@ import enumeradores.EnumAcao;
 import enumeradores.EnumArquivosBd;
 import enumeradores.EnumCadastro;
 import interfaces.IArquivoTXT;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import telas.Vai;
 
@@ -19,25 +20,83 @@ import telas.Vai;
  */
 public class Log {
 
-    private Date dataExclusao = null;
-    private IArquivoTXT controleArquivoTXT = null;
+    // ATRIBUTOS
+    private Date dataLog = null;
+    private Colaborador usuario = null;
+    private EnumAcao acao = null;
+    private EnumCadastro cadastro = null;
+    private String registro = "";
 
-    public Log() throws Exception {
-        controleArquivoTXT = new ControleArquivoTXT(
-                Vai.CONFIGURACAO.getCaminhoBdCliente(),
-                EnumArquivosBd.LOG.getNomeArquivo()
-        );
+    // CONSTRUTORES
+    public Log() {
+
     }
 
-    public void gravarLog(EnumAcao acao, EnumCadastro cadastro, String registro) throws Exception {
-        controleArquivoTXT.incluirLinha(
-                String.format("%s|%d|%d|%d|%s",
-                        new Date(),
-                        Vai.USUARIO.getIdColaborador(),
-                        acao.ordinal(),
-                        cadastro.ordinal(),
-                        registro.replace("|", "_")
-                )
+    public Log(Log log) {
+        dataLog = log.dataLog;
+        usuario = log.usuario;
+        acao = log.acao;
+        cadastro = log.cadastro;
+        registro = log.registro;
+    }
+
+    public Log(Date dataLog, Colaborador usuario, EnumAcao acao, EnumCadastro cadastro, String registro) {
+        this.dataLog = dataLog;
+        this.usuario = usuario;
+        this.acao = acao;
+        this.cadastro = cadastro;
+        this.registro = registro;
+    }
+
+    // MÉTODOS
+    public Date getDataLog() {
+        return dataLog;
+    }
+
+    public void setDataLog(Date dataLog) {
+        this.dataLog = dataLog;
+    }
+
+    public Colaborador getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Colaborador usuario) {
+        this.usuario = usuario;
+    }
+
+    public EnumAcao getAcao() {
+        return acao;
+    }
+
+    public void setAcao(EnumAcao acao) {
+        this.acao = acao;
+    }
+
+    public EnumCadastro getCadastro() {
+        return cadastro;
+    }
+
+    public void setCadastro(EnumCadastro cadastro) {
+        this.cadastro = cadastro;
+    }
+
+    public String getRegistro() {
+        return registro;
+    }
+
+    public void setRegistro(String registro) {
+        this.registro = registro;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s|%d|%d|%d|%s",
+                new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(dataLog),
+                Vai.USUARIO.getIdColaborador(),
+                acao.ordinal(),
+                cadastro.ordinal(),
+                registro.replace("_", "-")
         );
     }
 }

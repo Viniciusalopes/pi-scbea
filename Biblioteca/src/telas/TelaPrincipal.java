@@ -13,6 +13,7 @@ import controle.ControleAreaConhecimento;
 import controle.ControleAutor;
 import controle.ControleColaborador;
 import controle.ControleEditora;
+import controle.ControleLog;
 import enumeradores.EnumAcao;
 import enumeradores.EnumCadastro;
 import interfaces.ICRUDAreaConhecimento;
@@ -22,6 +23,7 @@ import interfaces.ICRUDColaborador;
 import interfaces.ICRUDEmprestimo;
 import interfaces.ICRUDExemplar;
 import interfaces.ICRUDLivro;
+import interfaces.ICRUDLog;
 import interfaces.ICRUDReserva;
 import interfaces.ITelaCadastro;
 import utilidades.Mensagens;
@@ -44,6 +46,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private ICRUDExemplar controleExemplar = null;
     private ICRUDLivro controleLivro = null;
     private ICRUDReserva controleReserva = null;
+    private ICRUDLog controleLog = null;
     private ITelaCadastro telaCadastro = null;
     private Mensagens mensagem = new Mensagens();
 
@@ -206,6 +209,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             case "RESERVA":
                 break;
+
+            case "LOG":
+                colecao = controleLog.listar();
+                break;
+
         }
     }
 
@@ -240,38 +248,38 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 + "(-) " + cadastro + " ID: " + String.format("%04d", id);
 
         if (mensagem.pergunta(textoPergunta) == 0) {
-            
+
             switch (cadastro.toString()) {
-            case "AREACONHECIMENTO":
-                controleAreaConhecimento.excluir(id);
-                break;
+                case "AREACONHECIMENTO":
+                    controleAreaConhecimento.excluir(id);
+                    break;
 
-            case "AUTOR":
-                break;
+                case "AUTOR":
+                    break;
 
-            case "COLABORADOR":
-                controleColaborador.excluir(id);
-                break;
+                case "COLABORADOR":
+                    controleColaborador.excluir(id);
+                    break;
 
-            case "CONFIGURACAO":
-                break;
+                case "CONFIGURACAO":
+                    break;
 
-            case "EDITORA":
-                break;
+                case "EDITORA":
+                    break;
 
-            case "EMPRESTIMO":
-                break;
+                case "EMPRESTIMO":
+                    break;
 
-            case "EXEMPLAR":
-                break;
+                case "EXEMPLAR":
+                    break;
 
-            case "LIVRO":
-                break;
+                case "LIVRO":
+                    break;
 
-            case "RESERVA":
-                break;
-        }           
-            
+                case "RESERVA":
+                    break;
+            }
+
             mensagem.sucesso(cadastro + " excluído com sucesso!");
         }
         exibirCadastros();
@@ -306,6 +314,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             //controleExemplar = new ControleExemplar();
             //controleLivro = new ControleLivro();
             //controleReserva = new ControleReserva();
+            controleLog = new ControleLog();
 
             jRadioButtonLivrosActionPerformed(null);
             jTextFieldPesquisar.requestFocus();
@@ -337,6 +346,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jRadioButtonColaboradores = new javax.swing.JRadioButton();
         jButtonSair = new javax.swing.JButton();
         jButtonConfiguracoes = new javax.swing.JButton();
+        jRadioButtonLog = new javax.swing.JRadioButton();
         jSeparatorCadastrosBotoes = new javax.swing.JSeparator();
         jPanelBotoes = new javax.swing.JPanel();
         jButtonIncluir = new javax.swing.JButton();
@@ -353,11 +363,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setTitle("Biblioteca Godofredo");
         setResizable(false);
         setSize(new java.awt.Dimension(1366, 768));
-        addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                formFocusGained(evt);
-            }
-        });
 
         buttonGroupCadastros.add(jRadioButtonLivros);
         jRadioButtonLivros.setSelected(true);
@@ -437,6 +442,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        buttonGroupCadastros.add(jRadioButtonLog);
+        jRadioButtonLog.setText("Logs");
+        jRadioButtonLog.setActionCommand("Log");
+        jRadioButtonLog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonLogActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelCadastrosLayout = new javax.swing.GroupLayout(jPanelCadastros);
         jPanelCadastros.setLayout(jPanelCadastrosLayout);
         jPanelCadastrosLayout.setHorizontalGroup(
@@ -444,19 +458,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanelCadastrosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jRadioButtonLivros)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButtonEmprestimos)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButtonReservas)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButtonAreas)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButtonEditoras)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButtonAutores)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButtonColaboradores)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButtonLog)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonConfiguracoes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonSair)
@@ -475,7 +491,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(jButtonConfiguracoes)
                     .addComponent(jButtonSair)
                     .addComponent(jRadioButtonEmprestimos)
-                    .addComponent(jRadioButtonReservas))
+                    .addComponent(jRadioButtonReservas)
+                    .addComponent(jRadioButtonLog))
                 .addGap(0, 0, 0))
         );
 
@@ -687,6 +704,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonConfiguracoesActionPerformed
 
+    private void jRadioButtonLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLogActionPerformed
+        try {
+            telaCadastro = null;
+            exibirCadastros();
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jRadioButtonLogActionPerformed
+
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         try {
             if (mensagem.pergunta("Deseja realmente sair?") == 0) {
@@ -752,10 +778,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldPesquisarKeyReleased
 
-    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-
-    }//GEN-LAST:event_formFocusGained
-
     //--- FIM EVENTOS ---------------------------------------------------------|
     /**
      * @param args the command line arguments
@@ -808,6 +830,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonEditoras;
     private javax.swing.JRadioButton jRadioButtonEmprestimos;
     private javax.swing.JRadioButton jRadioButtonLivros;
+    private javax.swing.JRadioButton jRadioButtonLog;
     private javax.swing.JRadioButton jRadioButtonReservas;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparatorCadastrosBotoes;
