@@ -3,7 +3,7 @@ ICRUDObjeto
 --------METODOS-----------------
 + listar() : ArrayList<Objeto>
 + incluir(objeto : Objeto) : void
-+ atualizar(objeto : Objeto) : void
++ alterar(objeto : Objeto) : void
 + excluir(idObjeto : int) : void
  */
 package persistencia;
@@ -76,7 +76,7 @@ public class PersistenciaEditora implements ICRUDEditora {
                 break;
             }
         }
-    }
+            }
 
     @Override
     public void excluir(int idEditora) throws Exception {//OK

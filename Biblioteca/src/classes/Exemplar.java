@@ -12,8 +12,8 @@ package classes;
 public class Exemplar {
     //atributos 
     //-------------------------------------
-    int idExemplar;
-    
+   private int idExemplar = 0 ;
+ 
     //-------------------------------------
     
     //-------------------------------------
@@ -28,6 +28,10 @@ public class Exemplar {
     
     public Exemplar (int idExemplar){
         this.idExemplar = idExemplar;
+    }
+
+    public Exemplar(int parseInt, String dado) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     //-------------------------------------
     //geters e seters 
