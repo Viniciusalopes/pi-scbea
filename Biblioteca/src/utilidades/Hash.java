@@ -16,7 +16,12 @@ import java.security.NoSuchAlgorithmException;
 public class Hash {
 
     public static String criptografar(String texto, String algoritmo) throws Exception {
-        return stringHexa(gerarHash(texto, algoritmo));
+        try {
+
+            return stringHexa(gerarHash(texto, algoritmo));
+        } catch (Exception e) {
+            throw new Exception("Erro ao criptografar a senha!");
+        }
     }
 
     private static byte[] gerarHash(String frase, String algoritmo) throws Exception {

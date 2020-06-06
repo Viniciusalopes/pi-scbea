@@ -39,7 +39,7 @@ public class GeradorID {
             return id + 1;  // Retorna o próximo ID único não utilizado
 
         } catch (Exception e) {
-            throw new Exception("Erro ao buscar IDs utilizados!\n" + e);
+            throw new Exception("Erro ao gerar o ID!\n" + e);
         }
     }
 }

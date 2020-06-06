@@ -29,52 +29,67 @@ public class ControleArquivoTXT implements IArquivoTXT {
     }
 
     public ControleArquivoTXT(String caminho, String arquivo) throws Exception {
+        try {
+            File dir = new File(caminho);
+            if (!dir.exists()) {
+                dir.mkdirs();
+                System.out.println("Criando diretório [" + dir.getAbsolutePath() + "]...");
+            }
 
-        File dir = new File(caminho);
-        if (!dir.exists()) {
-            dir.mkdirs();
-            System.out.println("Criando diretório [" + dir.getAbsolutePath() + "]...");
+            File file = new File(caminho + Vai.BARRA + arquivo);
+            if (!file.exists()) {
+                file.createNewFile();
+                System.out.println("Criando arquivo [" + file.getAbsolutePath() + "]...");
+            }
+
+            arquivoTXT = new ArquivoTXT(caminho, arquivo);
+        } catch (Exception e) {
+            throw new Exception("Erro ao construir a classe ControleArquivoTXT[" + arquivo + "]!\n" + e);
         }
-
-        File file = new File(caminho + Vai.BARRA + arquivo);
-        if (!file.exists()) {
-            file.createNewFile();
-            System.out.println("Criando arquivo [" + file.getAbsolutePath() + "]...");
-        }
-
-        arquivoTXT = new ArquivoTXT(caminho, arquivo);
     }
 
     @Override
     public void incluirLinha(String linha) throws Exception {
-        linhas = lerArquivo();
-        linhas.add(linha);
-        arquivoTXT.setLinhas(linhas);
-        escreverArquivo();
+        try {
+            linhas = lerArquivo();
+            linhas.add(linha);
+            arquivoTXT.setLinhas(linhas);
+            escreverArquivo();
+        } catch (Exception e) {
+            throw new Exception("Erro ao incluir linha no arquivo [" + arquivoTXT.getArquivo() + "]! (ControleArquivoTXT)\n" + e);
+        }
     }
 
     @Override
     public void alterarLinha(String linhaAntes, String linhaDepois) throws Exception {
-        linhas = lerArquivo();
-        for (String linha : linhas) {
-            if (linha.equals(linhaAntes)) {
-                linhas.set(linhas.indexOf(linhaAntes), linhaDepois);
-                break;
+        try {
+            linhas = lerArquivo();
+            for (String linha : linhas) {
+                if (linha.equals(linhaAntes)) {
+                    linhas.set(linhas.indexOf(linhaAntes), linhaDepois);
+                    break;
+                }
             }
+        } catch (Exception e) {
+            throw new Exception("Erro ao alterar linha do arquivo [" + arquivoTXT.getArquivo() + "]! (ControleArquivoTXT)\n" + e);
         }
     }
 
     @Override
     public void excluirLinha(String linha) throws Exception {
-        linhas = lerArquivo();
-        for (String l : linhas) {
-            if (l.equals(linha)) {
-                linhas.remove(linha);
-                break;
+        try {
+            linhas = lerArquivo();
+            for (String l : linhas) {
+                if (l.equals(linha)) {
+                    linhas.remove(linha);
+                    break;
+                }
             }
+            arquivoTXT.setLinhas(linhas);
+            escreverArquivo();
+        } catch (Exception e) {
+            throw new Exception("Erro ao excluir linha do arquivo [" + arquivoTXT.getArquivo() + "]! (ControleArquivoTXT)\n" + e);
         }
-        arquivoTXT.setLinhas(linhas);
-        escreverArquivo();
     }
 
     @Override
@@ -90,7 +105,7 @@ public class ControleArquivoTXT implements IArquivoTXT {
             br.close();
             return linhas;
         } catch (Exception e) {
-            throw new Exception("Erro ao ler o arquivo [" + arquivoTXT.getArquivo() + "]\n" + e);
+            throw new Exception("Erro ao ler o arquivo [" + arquivoTXT.getArquivo() + "]!\n" + e);
         }
     }
 
@@ -103,7 +118,7 @@ public class ControleArquivoTXT implements IArquivoTXT {
             }
             bw.close();
         } catch (Exception e) {
-            throw new Exception("Erro ao escrever no arquivo [" + arquivoTXT.getArquivo() + "]\n" + e);
+            throw new Exception("Erro ao escrever no arquivo [" + arquivoTXT.getArquivo() + "]!\n" + e);
         }
     }
 }
