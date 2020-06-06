@@ -1,8 +1,11 @@
 package persistencia;
 
 import classes.AreaConhecimento;
+import classes.Log;
 import controle.ControleArquivoTXT;
+import enumeradores.EnumAcao;
 import enumeradores.EnumArquivosBd;
+import enumeradores.EnumCadastro;
 import interfaces.IArquivoTXT;
 import interfaces.ICRUDAreaConhecimento;
 import java.util.ArrayList;
@@ -75,6 +78,7 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
         for (String linha : linhas) {                                           // percorrer linhas do arquivo // if != incluir linha atual na nova lista de linhas
             if (Integer.parseInt(linha.split(";")[0]) == idAreaConhecimento) {
                 controleArquivoTXT.excluirLinha(linha);
+                new Log().gravarLog(EnumAcao.Excluir, EnumCadastro.AREACONHECIMENTO, linha);
                 break;
             }
         }

@@ -5,10 +5,12 @@
  */
 package persistencia;
 
-import classes.ArquivoTXT;
 import classes.Colaborador;
+import classes.Log;
 import controle.ControleArquivoTXT;
+import enumeradores.EnumAcao;
 import enumeradores.EnumArquivosBd;
+import enumeradores.EnumCadastro;
 import enumeradores.EnumCargo;
 import enumeradores.EnumPerfil;
 import enumeradores.EnumTipoStatus;
@@ -96,6 +98,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == idColaborador) {
                 controleArquivoTXT.excluirLinha(linha);
+                new Log().gravarLog(EnumAcao.Excluir, EnumCadastro.COLABORADOR, linha);
                 break;
             }
         }

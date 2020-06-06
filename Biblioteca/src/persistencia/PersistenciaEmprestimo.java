@@ -6,10 +6,13 @@
 package persistencia;
 
 import classes.Emprestimo;
+import classes.Log;
 import controle.ControleArquivoTXT;
 import controle.ControleColaborador;
 import controle.ControleExemplar;
+import enumeradores.EnumAcao;
 import enumeradores.EnumArquivosBd;
+import enumeradores.EnumCadastro;
 import enumeradores.EnumTipoStatus;
 import interfaces.IArquivoTXT;
 import interfaces.ICRUDColaborador;
@@ -99,6 +102,7 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == idEmprestimo) {
                 controleArquivoTXT.excluirLinha(linha);
+                new Log().gravarLog(EnumAcao.Excluir, EnumCadastro.EMPRESTIMO, linha);
                 break;
             }
         }

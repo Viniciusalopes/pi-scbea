@@ -3,8 +3,11 @@ package persistencia;
 import classes.ArquivoTXT;
 import interfaces.IArquivoTXT;
 import classes.Autor;
+import classes.Log;
 import controle.ControleArquivoTXT;
+import enumeradores.EnumAcao;
 import enumeradores.EnumArquivosBd;
+import enumeradores.EnumCadastro;
 import interfaces.ICRUDAutor;
 import java.util.ArrayList;
 import static telas.Vai.CONFIGURACAO;
@@ -77,6 +80,7 @@ public class PersistenciaAutor implements ICRUDAutor {
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) != idAutor) {
                 controleArquivoTXT.excluirLinha(linha);
+                new Log().gravarLog(EnumAcao.Excluir, EnumCadastro.AUTOR, linha);
                 break;
             }
         }
