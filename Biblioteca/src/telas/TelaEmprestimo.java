@@ -292,60 +292,60 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private void initComponents() {
 
         jPanelComandos = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonDevolver = new javax.swing.JButton();
+        jButtonEmprestar = new javax.swing.JButton();
+        jButtonReservar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
         jPanelLivros = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableLivro = new javax.swing.JTable();
         jLabelPesquisarLivro = new javax.swing.JLabel();
         jTextFieldPesquisarLivro = new javax.swing.JTextField();
         jComboBoxFiltrarLivro = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jLabelPesquisarLivro1 = new javax.swing.JLabel();
+        jLabelFliltrarLivro = new javax.swing.JLabel();
+        jLabelPesquisarCDD = new javax.swing.JLabel();
         jTextFieldPesquisarCDD = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableExemplarDetalhe = new javax.swing.JTable();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextAreaMotivoDesativacao2 = new javax.swing.JTextArea();
+        jTextAreaLivroDescricao = new javax.swing.JTextArea();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTableExemplares = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jLabelExemplaresLivro = new javax.swing.JLabel();
+        jLabelMotivoDesativacao = new javax.swing.JLabel();
+        jTextFieldMotivoDesativacao = new javax.swing.JTextField();
+        jLabelLivroDetalhe = new javax.swing.JLabel();
+        jPanelColaboradores = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableColaboradores = new javax.swing.JTable();
         jLabelPesquisarColaborador = new javax.swing.JLabel();
         jTextFieldPesquisarColaborador = new javax.swing.JTextField();
         jComboBoxFiltrarColaborador = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelFiltrarColaborador = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableColaboradorDetalhe = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelStatus = new javax.swing.JLabel();
+        jLabelColaboradorDetalhe = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(1366, 768));
 
-        jButton1.setText("Devolver");
+        jButtonDevolver.setText("Devolver");
 
-        jButton2.setText("Emprestar");
+        jButtonEmprestar.setText("Emprestar");
 
-        jButton3.setText("Reservar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonReservar.setText("Reservar");
+        jButtonReservar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonReservarActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Cancelar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonCancelarActionPerformed(evt);
             }
         });
 
@@ -355,23 +355,23 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelComandosLayout.createSequentialGroup()
                 .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+                    .addComponent(jButtonDevolver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonEmprestar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonReservar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         jPanelComandosLayout.setVerticalGroup(
             jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelComandosLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addComponent(jButton3)
+                .addComponent(jButtonReservar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(jButtonCancelar)
                 .addGap(271, 271, 271)
-                .addComponent(jButton2)
+                .addComponent(jButtonEmprestar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jButtonDevolver)
                 .addGap(103, 103, 103))
         );
 
@@ -407,9 +407,9 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
 
         jComboBoxFiltrarLivro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Ativos", "Inativos", "Emprestados", "Reservados" }));
 
-        jLabel1.setText("Filtrar por");
+        jLabelFliltrarLivro.setText("Filtrar por");
 
-        jLabelPesquisarLivro1.setText("Pesquisar CDD");
+        jLabelPesquisarCDD.setText("Pesquisar CDD");
 
         jTableExemplarDetalhe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -443,9 +443,9 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             jTableExemplarDetalhe.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
-        jTextAreaMotivoDesativacao2.setColumns(20);
-        jTextAreaMotivoDesativacao2.setRows(2);
-        jScrollPane8.setViewportView(jTextAreaMotivoDesativacao2);
+        jTextAreaLivroDescricao.setColumns(20);
+        jTextAreaLivroDescricao.setRows(2);
+        jScrollPane8.setViewportView(jTextAreaLivroDescricao);
 
         jTableExemplares.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -470,11 +470,11 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             jTableExemplares.getColumnModel().getColumn(0).setMaxWidth(60);
         }
 
-        jLabel6.setText("Exemplares do livro:");
+        jLabelExemplaresLivro.setText("Exemplares do livro:");
 
-        jLabel7.setText("Motivo da desativação:");
+        jLabelMotivoDesativacao.setText("Motivo da desativação:");
 
-        jLabel5.setText("Detalhes do livro:");
+        jLabelLivroDetalhe.setText("Detalhes do livro:");
 
         javax.swing.GroupLayout jPanelLivrosLayout = new javax.swing.GroupLayout(jPanelLivros);
         jPanelLivros.setLayout(jPanelLivrosLayout);
@@ -490,10 +490,10 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(jPanelLivrosLayout.createSequentialGroup()
                                 .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
+                                    .addComponent(jLabelExemplaresLivro)
+                                    .addComponent(jLabelMotivoDesativacao))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jTextField1)))
+                            .addComponent(jTextFieldMotivoDesativacao)))
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelLivrosLayout.createSequentialGroup()
                         .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -502,13 +502,13 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                         .addGap(18, 18, 18)
                         .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldPesquisarCDD, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelPesquisarLivro1))
+                            .addComponent(jLabelPesquisarCDD))
                         .addGap(18, 18, 18)
                         .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxFiltrarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)))
+                            .addComponent(jLabelFliltrarLivro)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabelLivroDetalhe))
                 .addContainerGap())
         );
         jPanelLivrosLayout.setVerticalGroup(
@@ -519,8 +519,8 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                     .addComponent(jLabelPesquisarLivro)
                     .addGroup(jPanelLivrosLayout.createSequentialGroup()
                         .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelPesquisarLivro1)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabelPesquisarCDD)
+                            .addComponent(jLabelFliltrarLivro))
                         .addGap(0, 0, 0)
                         .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldPesquisarCDD, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -529,24 +529,24 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addComponent(jLabelLivroDetalhe)
                 .addGap(0, 0, 0)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
+                .addComponent(jLabelExemplaresLivro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelLivrosLayout.createSequentialGroup()
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7))
+                        .addComponent(jLabelMotivoDesativacao))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldMotivoDesativacao, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Colaboradores"));
+        jPanelColaboradores.setBorder(javax.swing.BorderFactory.createTitledBorder("Colaboradores"));
 
         jTableColaboradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -579,7 +579,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
 
         jComboBoxFiltrarColaborador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Ativos", "Inativos", "Advogado", "Estagiário", "Secretária", "Adimplente", "Inadimplente", " " }));
 
-        jLabel3.setText("Filtrar por");
+        jLabelFiltrarColaborador.setText("Filtrar por");
 
         jTableColaboradorDetalhe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -624,50 +624,50 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             jTableColaboradorDetalhe.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        jLabel8.setText("jLabelStatus");
+        jLabelStatus.setText("jLabelStatus");
 
-        jLabel4.setText("Detalhes do colaborador:");
+        jLabelColaboradorDetalhe.setText("Detalhes do colaborador:");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelColaboradoresLayout = new javax.swing.GroupLayout(jPanelColaboradores);
+        jPanelColaboradores.setLayout(jPanelColaboradoresLayout);
+        jPanelColaboradoresLayout.setHorizontalGroup(
+            jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelColaboradoresLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelColaboradoresLayout.createSequentialGroup()
+                        .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldPesquisarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelPesquisarColaborador))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
+                        .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelFiltrarColaborador)
                             .addComponent(jComboBoxFiltrarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel4)
+                    .addComponent(jLabelStatus)
+                    .addComponent(jLabelColaboradorDetalhe)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanelColaboradoresLayout.setVerticalGroup(
+            jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelColaboradoresLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPesquisarColaborador)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabelFiltrarColaborador))
                 .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldPesquisarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxFiltrarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(jLabelColaboradorDetalhe)
                 .addGap(0, 0, 0)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
+                .addComponent(jLabelStatus)
                 .addContainerGap())
         );
 
@@ -677,7 +677,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelColaboradores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelLivros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -690,7 +690,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelLivros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelColaboradores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanelComandos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
@@ -698,13 +698,13 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReservarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonReservarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -749,23 +749,23 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonDevolver;
+    private javax.swing.JButton jButtonEmprestar;
+    private javax.swing.JButton jButtonReservar;
     private javax.swing.JComboBox<String> jComboBoxFiltrarColaborador;
     private javax.swing.JComboBox<String> jComboBoxFiltrarLivro;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelColaboradorDetalhe;
+    private javax.swing.JLabel jLabelExemplaresLivro;
+    private javax.swing.JLabel jLabelFiltrarColaborador;
+    private javax.swing.JLabel jLabelFliltrarLivro;
+    private javax.swing.JLabel jLabelLivroDetalhe;
+    private javax.swing.JLabel jLabelMotivoDesativacao;
+    private javax.swing.JLabel jLabelPesquisarCDD;
     private javax.swing.JLabel jLabelPesquisarColaborador;
     private javax.swing.JLabel jLabelPesquisarLivro;
-    private javax.swing.JLabel jLabelPesquisarLivro1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabelStatus;
+    private javax.swing.JPanel jPanelColaboradores;
     private javax.swing.JPanel jPanelComandos;
     private javax.swing.JPanel jPanelLivros;
     private javax.swing.JScrollPane jScrollPane1;
@@ -779,8 +779,8 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private javax.swing.JTable jTableExemplarDetalhe;
     private javax.swing.JTable jTableExemplares;
     private javax.swing.JTable jTableLivro;
-    private javax.swing.JTextArea jTextAreaMotivoDesativacao2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextArea jTextAreaLivroDescricao;
+    private javax.swing.JTextField jTextFieldMotivoDesativacao;
     private javax.swing.JTextField jTextFieldPesquisarCDD;
     private javax.swing.JTextField jTextFieldPesquisarColaborador;
     private javax.swing.JTextField jTextFieldPesquisarLivro;
