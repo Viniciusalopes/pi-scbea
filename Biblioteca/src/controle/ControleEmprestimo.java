@@ -8,6 +8,7 @@ package controle;
 import classes.Emprestimo;
 import interfaces.ICRUDEmprestimo;
 import java.util.ArrayList;
+import persistencia.PersistenciaEmprestimo;
 
 /**
  *
@@ -15,14 +16,21 @@ import java.util.ArrayList;
  */
 public class ControleEmprestimo implements ICRUDEmprestimo {
 
+    private ICRUDEmprestimo persistencia = null;
+    private ArrayList<Emprestimo> colecao = null;
+
+    public ControleEmprestimo() throws Exception {
+        persistencia = new PersistenciaEmprestimo();
+    }
+
     @Override
     public ArrayList<Emprestimo> listar() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return persistencia.listar();
     }
 
     @Override
     public Emprestimo buscarPeloId(int idEmprestimo) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return persistencia.buscarPeloId(idEmprestimo);
     }
 
     @Override

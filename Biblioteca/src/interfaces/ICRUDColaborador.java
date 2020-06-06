@@ -16,7 +16,7 @@ public interface ICRUDColaborador {
 
     ArrayList<Colaborador> listar() throws Exception;
 
-    Colaborador buscarPeloId(int id) throws Exception;
+    Colaborador buscarPeloId(int idColaborador) throws Exception;
 
     void incluir(Colaborador objColaborador) throws Exception;
 
