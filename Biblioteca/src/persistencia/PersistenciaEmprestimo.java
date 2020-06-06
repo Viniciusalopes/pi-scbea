@@ -39,73 +39,97 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
     private SimpleDateFormat formatoData = null;
 
     public PersistenciaEmprestimo() throws Exception {
-        controleArquivoTXT = new ControleArquivoTXT(
-                Vai.CONFIGURACAO.getCaminhoBdCliente(),
-                EnumArquivosBd.EMPRESTIMO.getNomeArquivo()
-        );
-        controleExemplar = new ControleExemplar();
-        controleColaborador = new ControleColaborador();
-        formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            controleArquivoTXT = new ControleArquivoTXT(
+                    Vai.CONFIGURACAO.getCaminhoBdCliente(),
+                    EnumArquivosBd.EMPRESTIMO.getNomeArquivo()
+            );
+            controleExemplar = new ControleExemplar();
+            controleColaborador = new ControleColaborador();
+            formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        } catch (Exception e) {
+            throw new Exception("Erro ao construir a classe PersistenciaEmprestimo!\n" + e);
+        }
     }
 
     @Override
     public ArrayList<Emprestimo> listar() throws Exception {
-        colecao = new ArrayList<>();
-        linhas = controleArquivoTXT.lerArquivo();
+        try {
+            colecao = new ArrayList<>();
+            linhas = controleArquivoTXT.lerArquivo();
 
-        for (String linha : linhas) {
-            String[] dados = linha.split(";");
-            emprestimo = new Emprestimo(
-                    Integer.parseInt(dados[0]),
-                    controleExemplar.buscarPeloId(Integer.parseInt(dados[1])),
-                    controleColaborador.buscarPeloId(Integer.parseInt(dados[2])),
-                    formatoData.parse(dados[3]),
-                    formatoData.parse(dados[4]),
-                    EnumTipoStatus.values()[Integer.parseInt(dados[5])],
-                    Float.parseFloat(dados[6].replace(",", "."))
-            );
-            colecao.add(emprestimo);
+            for (String linha : linhas) {
+                String[] dados = linha.split(";");
+                emprestimo = new Emprestimo(
+                        Integer.parseInt(dados[0]),
+                        controleExemplar.buscarPeloId(Integer.parseInt(dados[1])),
+                        controleColaborador.buscarPeloId(Integer.parseInt(dados[2])),
+                        formatoData.parse(dados[3]),
+                        formatoData.parse(dados[4]),
+                        EnumTipoStatus.values()[Integer.parseInt(dados[5])],
+                        Float.parseFloat(dados[6].replace(",", "."))
+                );
+                colecao.add(emprestimo);
+            }
+            return colecao;
+        } catch (Exception e) {
+            throw new Exception("Erro ao listar os empréstimos! (Persistência)");
         }
-        return colecao;
     }
 
     @Override
     public Emprestimo buscarPeloId(int idEmprestimo) throws Exception {
-        listar();
-        for (Emprestimo e : colecao) {
-            if (e.getIdEmprestimo() == idEmprestimo) {
-                return e;
+        try {
+            listar();
+            for (Emprestimo e : colecao) {
+                if (e.getIdEmprestimo() == idEmprestimo) {
+                    return e;
+                }
             }
+            return null;
+        } catch (Exception e) {
+            throw new Exception("Erro ao buscar empréstimo pelo ID! (Persistência)");
         }
-        return null;
     }
 
     @Override
     public void incluir(Emprestimo emprestimo) throws Exception {
-        emprestimo.setIdEmprestimo(GeradorID.getProximoID());
-        controleArquivoTXT.incluirLinha(emprestimo.toString());
+        try {
+            emprestimo.setIdEmprestimo(GeradorID.getProximoID());
+            controleArquivoTXT.incluirLinha(emprestimo.toString());
+        } catch (Exception e) {
+            throw new Exception("Erro ao incluir o empréstimo! (Persistência)");
+        }
     }
 
     @Override
     public void alterar(Emprestimo emprestimo) throws Exception {
-        linhas = controleArquivoTXT.lerArquivo();
-        for (String linha : linhas) {
-            if (Integer.parseInt(linha.split(";")[0]) == emprestimo.getIdEmprestimo()) {
-                controleArquivoTXT.alterarLinha(linha, emprestimo.toString());
-                break;
+        try {
+            linhas = controleArquivoTXT.lerArquivo();
+            for (String linha : linhas) {
+                if (Integer.parseInt(linha.split(";")[0]) == emprestimo.getIdEmprestimo()) {
+                    controleArquivoTXT.alterarLinha(linha, emprestimo.toString());
+                    break;
+                }
             }
+        } catch (Exception e) {
+            throw new Exception("Erro ao alterar o empréstimo! (Persistência)");
         }
     }
 
     @Override
     public void excluir(int idEmprestimo) throws Exception {
-        linhas = controleArquivoTXT.lerArquivo();
-        for (String linha : linhas) {
-            if (Integer.parseInt(linha.split(";")[0]) == idEmprestimo) {
-                controleArquivoTXT.excluirLinha(linha);
-                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.EMPRESTIMO, linha);
-                break;
+        try {
+            linhas = controleArquivoTXT.lerArquivo();
+            for (String linha : linhas) {
+                if (Integer.parseInt(linha.split(";")[0]) == idEmprestimo) {
+                    controleArquivoTXT.excluirLinha(linha);
+                    new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.EMPRESTIMO, linha);
+                    break;
+                }
             }
+        } catch (Exception e) {
+            throw new Exception("Erro ao excluir o empréstimo! (Persistência)");
         }
     }
 }

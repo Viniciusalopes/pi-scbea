@@ -25,42 +25,54 @@ public class PersistenciaConfiguracao implements ICRUDConfiguracao {
     private Configuracao configuracao = null;
 
     public PersistenciaConfiguracao() throws Exception {
-        controleArquivoTXT = new ControleArquivoTXT(
-                CONFIGURACAO.getCaminhoBdCliente(),
-                EnumArquivosBd.CONFIGURACAO.getNomeArquivo()
-        );
+        try {
+
+            controleArquivoTXT = new ControleArquivoTXT(
+                    CONFIGURACAO.getCaminhoBdCliente(),
+                    EnumArquivosBd.CONFIGURACAO.getNomeArquivo()
+            );
+        } catch (Exception e) {
+            throw new Exception("Erro ao construir a classe PersistenciaConfiguracao!\n" + e);
+        }
     }
 
     @Override
     public Configuracao ler() throws Exception {
-        String[] dados = controleArquivoTXT.lerArquivo().get(0).split(";");
+        try {
+            String[] dados = controleArquivoTXT.lerArquivo().get(0).split(";");
 
-        configuracao = new Configuracao();
-        configuracao.setLimiteDeLivros(Integer.parseInt(dados[0]));
-        configuracao.setDiasDeEmprestimo(Integer.parseInt(dados[1]));
-        configuracao.setValorMultaDiaria(Float.parseFloat(dados[2].replace(",", ".")));
-        configuracao.setCaminhoBdServidor(dados[4]);
-        configuracao.setLerId(dados[5].equals("0") ? false : true);
+            configuracao = new Configuracao();
+            configuracao.setLimiteDeLivros(Integer.parseInt(dados[0]));
+            configuracao.setDiasDeEmprestimo(Integer.parseInt(dados[1]));
+            configuracao.setValorMultaDiaria(Float.parseFloat(dados[2].replace(",", ".")));
+            configuracao.setCaminhoBdServidor(dados[4]);
+            configuracao.setLerId(dados[5].equals("0") ? false : true);
 
-        return configuracao;
+            return configuracao;
+        } catch (Exception e) {
+            throw new Exception("Erro ao ler a configuração! (Persistência)\n" + e);
+        }
     }
 
     @Override
     public void atualizar(Configuracao configuracao) throws Exception {
+        try {
+            // Atualizo o arquivo de configuracao
+            controleArquivoTXT.alterarLinha(controleArquivoTXT.lerArquivo().get(0), configuracao.toString());
 
-        // Atualizo o arquivo de configuracao
-        controleArquivoTXT.alterarLinha(controleArquivoTXT.lerArquivo().get(0), configuracao.toString());
+            // Atualizo o arquivo padrão com a nova configuração
+            ControleArquivoTXT controlePadrao = new ControleArquivoTXT(
+                    new Configuracao().getCaminhoBdCliente(),
+                    EnumArquivosBd.CONFIGURACAO.getNomeArquivo()
+            );
+            controlePadrao.incluirLinha(configuracao.toString());
+            controlePadrao.escreverArquivo();
 
-        // Atualizo o arquivo padrão com a nova configuração
-        ControleArquivoTXT controlePadrao = new ControleArquivoTXT(
-                new Configuracao().getCaminhoBdCliente(),
-                EnumArquivosBd.CONFIGURACAO.getNomeArquivo()
-        );
-        controlePadrao.incluirLinha(configuracao.toString());
-        controlePadrao.escreverArquivo();
-
-        // Atualizo a configuração global
-        Vai.CONFIGURACAO = new Configuracao(configuracao);
+            // Atualizo a configuração global
+            Vai.CONFIGURACAO = new Configuracao(configuracao);
+        } catch (Exception e) {
+            throw new Exception("Erro ao atualizar a configuração! (Persistência)\n" + e);
+        }
     }
 
     @Override
