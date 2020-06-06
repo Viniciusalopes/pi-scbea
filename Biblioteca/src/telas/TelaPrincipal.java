@@ -301,7 +301,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // Centraliza o form na tela
         this.setLocationRelativeTo(rootPane);
 
-        jButtonConfiguracoes.setVisible(Vai.USUARIO.getPerfil().equals(EnumPerfil.ADMINISTRADOR));
+        // Oculta controles restritos a administradores
+        boolean visible = Vai.USUARIO.getPerfil().equals(EnumPerfil.ADMINISTRADOR);
+        jButtonConfiguracoes.setVisible(visible);
+        jRadioButtonLog.setVisible(visible);
 
         try {
             // Controladores
