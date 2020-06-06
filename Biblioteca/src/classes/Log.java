@@ -5,11 +5,8 @@
  */
 package classes;
 
-import controle.ControleArquivoTXT;
 import enumeradores.EnumAcao;
-import enumeradores.EnumArquivosBd;
 import enumeradores.EnumCadastro;
-import interfaces.IArquivoTXT;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import telas.Vai;
