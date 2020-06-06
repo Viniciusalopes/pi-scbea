@@ -17,22 +17,19 @@ import utilidades.GeradorID;
 public class PersistenciaAutor implements ICRUDAutor {
 
     //atributos
-    private ArquivoTXT arquivoTXT = null;
     private IArquivoTXT controleArquivoTXT = null;
     private ArrayList<Autor> colecao = null;
     private Autor autor = null;
     private ArrayList<String> linhas = null;
-    private ArrayList<String> novasLinhas = null;
 
     public PersistenciaAutor() throws Exception {
-        arquivoTXT = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.AUTOR.getNomeArquivo());
-        controleArquivoTXT = new ControleArquivoTXT(arquivoTXT);
+        controleArquivoTXT = new ControleArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.AUTOR.getNomeArquivo());
     }
 
     @Override
     public ArrayList<Autor> listar() throws Exception {
         colecao = new ArrayList<>();  // Lista para retorno do listar
-        linhas = controleArquivoTXT.lerArquivo(arquivoTXT); // Lê e escreve no arquivo respectivel na bd
+        linhas = controleArquivoTXT.lerArquivo(); // Lê e escreve no arquivo respectivel na bd
 
         for (String linha : linhas) {
             String[] dados = linha.split(";");
@@ -44,7 +41,7 @@ public class PersistenciaAutor implements ICRUDAutor {
 
     @Override
     public Autor buscarPeloId(int idAutor) throws Exception {
-        colecao = listar();
+        listar();
         for (Autor a : colecao) {
             if (a.getIdAutor() == idAutor) {
                 return a;
@@ -55,51 +52,33 @@ public class PersistenciaAutor implements ICRUDAutor {
 
     @Override
     public void incluir(Autor autor) throws Exception {
-        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
         autor.setIdAutor(GeradorID.getProximoID());
-        linhas.add(autor.toString());
-        arquivoTXT.setLinhas(linhas);
-        controleArquivoTXT.escreverArquivo(arquivoTXT);
-        GeradorID.confirmaID();
+        controleArquivoTXT.incluirLinha(autor.toString());
     }
 
     @Override
     public void alterar(Autor autor) throws Exception {
-
-        //cria uma operação na memoria que tem finalidade substituir o arquivo em disco, esta é chamada de "novas linhas" que é um Arraylist STRING
-        novasLinhas = new ArrayList<>();
-        // percorrer as linhas do arquivo.
-        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
-        // loop, chama linhas de linhas e compara se é igual a que eu quero digitar, pra evitar editar uma outra linha)
+        // obter as linhas do arquivo.
+        linhas = controleArquivoTXT.lerArquivo();
+        // loop, chama linhas de linhas e compara se o ID é igual a que eu quero digitar, pra evitar editar uma outra linha)
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == autor.getIdAutor()) {
-                novasLinhas.add(autor.toString());
-            } else {
-                novasLinhas.add(linha);
+                controleArquivoTXT.alterarLinha(linha, autor.toString());
+                break;
             }
         }
-        arquivoTXT.setLinhas(novasLinhas);
-        controleArquivoTXT.escreverArquivo(arquivoTXT);
     }
 
     @Override
     public void excluir(int idAutor) throws Exception {
-
-        //cria uma operação na memoria que tem finalidade substituir o arquivo em disco, esta é chamada de "novas linhas" que é um Arraylist STRING
-        novasLinhas = new ArrayList<>();
-        // percorrer as linhas do arquivo.
-        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
-        // loop, chama linhas de linhas e compara se é igual a que eu quero digitar, pra evitar editar uma outra linha)
+        // obter as linhas do arquivo.
+        linhas = controleArquivoTXT.lerArquivo();
+        // loop, chama linhas de linhas e compara se o ID é igual a que eu quero digitar, pra evitar excluirr uma outra linha)
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) != idAutor) {
-                novasLinhas.add(linha);
+                controleArquivoTXT.excluirLinha(linha);
+                break;
             }
         }
-        arquivoTXT.setLinhas(novasLinhas);
-        controleArquivoTXT.escreverArquivo(arquivoTXT);
-
-        // ler o arquivo
-        //percorrer as linhas do arquivo procurando um autor com id igual ao id parametros
-        // se achar exclui autor com o mesmo id
     }
 }

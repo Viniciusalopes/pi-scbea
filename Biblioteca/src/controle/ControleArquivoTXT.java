@@ -21,27 +21,66 @@ import telas.Vai;
  */
 public class ControleArquivoTXT implements IArquivoTXT {
 
+    private ArrayList<String> linhas = null;
+    private ArquivoTXT arquivoTXT = null;
+
     public ControleArquivoTXT() {
 
     }
 
-    public ControleArquivoTXT(ArquivoTXT arquivoTXT) throws Exception {
-        File arquivo = new File(arquivoTXT.getCaminho());
-        if (!arquivo.exists()) {
-            arquivo.mkdirs();
-            System.out.println("Criando diretório [" + arquivo.getAbsolutePath() + "]...");
+    public ControleArquivoTXT(String caminho, String arquivo) throws Exception {
+
+        File dir = new File(caminho);
+        if (!dir.exists()) {
+            dir.mkdirs();
+            System.out.println("Criando diretório [" + dir.getAbsolutePath() + "]...");
         }
-        arquivo = new File(arquivoTXT.getCaminho() + Vai.BARRA + arquivoTXT.getArquivo());
-        if (!arquivo.exists()) {
-            arquivo.createNewFile();
-            System.out.println("Criando arquivo [" + arquivo.getAbsolutePath() + "]...");
+
+        File file = new File(caminho + Vai.BARRA + arquivo);
+        if (!file.exists()) {
+            file.createNewFile();
+            System.out.println("Criando arquivo [" + file.getAbsolutePath() + "]...");
+        }
+
+        arquivoTXT = new ArquivoTXT(caminho, arquivo);
+    }
+
+    @Override
+    public void incluirLinha(String linha) throws Exception {
+        linhas = lerArquivo();
+        linhas.add(linha);
+        arquivoTXT.setLinhas(linhas);
+        escreverArquivo();
+    }
+
+    @Override
+    public void alterarLinha(String linhaAntes, String linhaDepois) throws Exception {
+        linhas = lerArquivo();
+        for (String linha : linhas) {
+            if (linha.equals(linhaAntes)) {
+                linhas.set(linhas.indexOf(linhaAntes), linhaDepois);
+                break;
+            }
         }
     }
 
     @Override
-    public ArrayList<String> lerArquivo(ArquivoTXT arquivoTXT) throws Exception {
+    public void excluirLinha(String linha) throws Exception {
+        linhas = lerArquivo();
+        for (String l : linhas) {
+            if (l.equals(linha)) {
+                linhas.remove(linha);
+                break;
+            }
+        }
+        arquivoTXT.setLinhas(linhas);
+        escreverArquivo();
+    }
+
+    @Override
+    public ArrayList<String> lerArquivo() throws Exception {
         try {
-            ArrayList<String> linhas = new ArrayList<String>();
+            linhas = new ArrayList<String>();
             FileReader fr = new FileReader(arquivoTXT.getCaminho() + Vai.BARRA + arquivoTXT.getArquivo());
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
@@ -55,13 +94,16 @@ public class ControleArquivoTXT implements IArquivoTXT {
         }
     }
 
-    @Override
-    public void escreverArquivo(ArquivoTXT arquivoTXT) throws Exception {
-        FileWriter fw = new FileWriter(arquivoTXT.getCaminho() + Vai.BARRA + arquivoTXT.getArquivo());
-        BufferedWriter bw = new BufferedWriter(fw);
-        for (String linha : arquivoTXT.getLinhas()) {
-            bw.write(linha + "\n");
+    public void escreverArquivo() throws Exception {
+        try {
+            FileWriter fw = new FileWriter(arquivoTXT.getCaminho() + Vai.BARRA + arquivoTXT.getArquivo());
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (String linha : arquivoTXT.getLinhas()) {
+                bw.write(linha + "\n");
+            }
+            bw.close();
+        } catch (Exception e) {
+            throw new Exception("Erro ao escrever no arquivo [" + arquivoTXT.getArquivo() + "]\n" + e);
         }
-        bw.close();
     }
 }

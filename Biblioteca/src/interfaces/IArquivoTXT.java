@@ -14,8 +14,11 @@ import java.util.ArrayList;
  */
 public interface IArquivoTXT {
 
-    ArrayList<String> lerArquivo(ArquivoTXT arquivoTXT) throws Exception;
+    ArrayList<String> lerArquivo() throws Exception;
 
-    void escreverArquivo(ArquivoTXT arquivoTXT) throws Exception;
-    
+    void incluirLinha(String linha) throws Exception;
+
+    void alterarLinha(String linhaAntes, String linhaDepois) throws Exception;
+
+    void excluirLinha(String linha) throws Exception;
 }

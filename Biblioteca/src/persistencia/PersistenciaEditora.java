@@ -8,10 +8,12 @@ ICRUDObjeto
  */
 package persistencia;
 
-import classes.ArquivoTXT;
 import classes.Editora;
+import classes.Log;
 import controle.ControleArquivoTXT;
+import enumeradores.EnumAcao;
 import enumeradores.EnumArquivosBd;
+import enumeradores.EnumCadastro;
 import interfaces.IArquivoTXT;
 import interfaces.ICRUDEditora;
 import java.util.ArrayList;
@@ -24,23 +26,22 @@ import utilidades.GeradorID;
  */
 public class PersistenciaEditora implements ICRUDEditora {
 
-    private ArquivoTXT arquivoTXT = null;
     private IArquivoTXT controleArquivoTXT = null;
     private ArrayList<Editora> colecao = null;
     private Editora editora = null;
     private ArrayList<String> linhas = null;
-    private ArrayList<String> novasLinhas = null;
 
     public PersistenciaEditora() throws Exception {
-        arquivoTXT = new ArquivoTXT(Vai.CONFIGURACAO.getCaminhoBdCliente(),
-                EnumArquivosBd.EDITORA.getNomeArquivo());
-        controleArquivoTXT = new ControleArquivoTXT(arquivoTXT);
+        controleArquivoTXT = new ControleArquivoTXT(
+                Vai.CONFIGURACAO.getCaminhoBdCliente(),
+                EnumArquivosBd.EDITORA.getNomeArquivo()
+        );
     }
 
     @Override
     public ArrayList<Editora> listar() throws Exception {
         colecao = new ArrayList<>();
-        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        linhas = controleArquivoTXT.lerArquivo();
         for (String linha : linhas) {
             String[] dados = linha.split(";");
             editora = new Editora(Integer.parseInt(dados[0]), dados[1]);
@@ -51,7 +52,7 @@ public class PersistenciaEditora implements ICRUDEditora {
 
     @Override
     public Editora buscarPeloId(int idEditora) throws Exception {
-        colecao = listar();
+        listar();
         for (Editora e : colecao) {
             if (e.getIdEditora() == idEditora) {
                 return e;
@@ -62,29 +63,30 @@ public class PersistenciaEditora implements ICRUDEditora {
 
     @Override
     public void incluir(Editora editora) throws Exception {//OK
-        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
         editora.setIdEditora(GeradorID.getProximoID());
-        linhas.add(editora.toString());
-        arquivoTXT.setLinhas(linhas);
-        controleArquivoTXT.escreverArquivo(arquivoTXT);
-        GeradorID.confirmaID();
+        controleArquivoTXT.incluirLinha(editora.toString());
     }
 
     @Override
     public void alterar(Editora editora) throws Exception {//OK
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        linhas = controleArquivoTXT.lerArquivo();
+        for (String linha : linhas) {
+            if (Integer.parseInt(linha.split(";")[0]) == editora.getIdEditora()) {
+                controleArquivoTXT.alterarLinha(linha, editora.toString());
+                break;
+            }
+        }
     }
 
     @Override
     public void excluir(int idEditora) throws Exception {//OK
-        novasLinhas = new ArrayList<>();
-        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
-        for (String l : linhas) {
-            if (Integer.parseInt(l.split(";")[0]) != idEditora) {
-                novasLinhas.add(l);
+        linhas = controleArquivoTXT.lerArquivo();
+        for (String linha : linhas) {
+            if (Integer.parseInt(linha.split(";")[0]) == idEditora) {
+                controleArquivoTXT.excluirLinha(linha);
+                new Log().gravarLog(EnumAcao.Excluir, EnumCadastro.EDITORA, linha);
+                break;
             }
         }
-        arquivoTXT.setLinhas(novasLinhas);
-        controleArquivoTXT.escreverArquivo(arquivoTXT);
     }
 }

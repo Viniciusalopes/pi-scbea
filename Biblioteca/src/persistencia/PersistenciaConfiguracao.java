@@ -21,46 +21,43 @@ import static telas.Vai.CONFIGURACAO;
  */
 public class PersistenciaConfiguracao implements ICRUDConfiguracao {
 
-    private ArquivoTXT arquivoTXT = null;
     private IArquivoTXT controleArquivoTXT = null;
+    private Configuracao configuracao = null;
 
     public PersistenciaConfiguracao() throws Exception {
-        arquivoTXT = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.CONFIGURACAO.getNomeArquivo());
-        controleArquivoTXT = new ControleArquivoTXT(arquivoTXT);
+        controleArquivoTXT = new ControleArquivoTXT(
+                CONFIGURACAO.getCaminhoBdCliente(),
+                EnumArquivosBd.CONFIGURACAO.getNomeArquivo()
+        );
     }
 
     @Override
     public Configuracao ler() throws Exception {
-        arquivoTXT.setLinhas(controleArquivoTXT.lerArquivo(arquivoTXT));
-        String[] dados = arquivoTXT.getLinhas().get(0).split(";");
+        String[] dados = controleArquivoTXT.lerArquivo().get(0).split(";");
 
-        Configuracao configuracao = new Configuracao();
+        configuracao = new Configuracao();
         configuracao.setLimiteDeLivros(Integer.parseInt(dados[0]));
         configuracao.setDiasDeEmprestimo(Integer.parseInt(dados[1]));
         configuracao.setValorMultaDiaria(Float.parseFloat(dados[2].replace(",", ".")));
         configuracao.setCaminhoBdServidor(dados[4]);
         configuracao.setLerId(dados[5].equals("0") ? false : true);
+
         return configuracao;
     }
 
     @Override
     public void atualizar(Configuracao configuracao) throws Exception {
-        // Linhas do arquivo de configuração
-        ArrayList<String> linhas = new ArrayList<>();
-        linhas.add(configuracao.toString());
+
+        // Atualizo o arquivo de configuracao
+        controleArquivoTXT.alterarLinha(controleArquivoTXT.lerArquivo().get(0), configuracao.toString());
 
         // Atualizo o arquivo padrão com a nova configuração
-        Configuracao padrao = new Configuracao();
-        arquivoTXT = new ArquivoTXT(padrao.getCaminhoBdCliente(), EnumArquivosBd.CONFIGURACAO.getNomeArquivo());
-        arquivoTXT.setLinhas(linhas);
-        controleArquivoTXT.escreverArquivo(arquivoTXT);
-
-        // Crio o novo arquivo de configuração caso seja em outro local
-        if (!padrao.getCaminhoBdCliente().equals(configuracao.getCaminhoBdCliente())) {
-            arquivoTXT = new ArquivoTXT(configuracao.getCaminhoBdCliente(), EnumArquivosBd.CONFIGURACAO.getNomeArquivo());
-            arquivoTXT.setLinhas(linhas);
-            controleArquivoTXT.escreverArquivo(arquivoTXT);
-        }
+        ControleArquivoTXT controlePadrao = new ControleArquivoTXT(
+                new Configuracao().getCaminhoBdCliente(),
+                EnumArquivosBd.CONFIGURACAO.getNomeArquivo()
+        );
+        controlePadrao.incluirLinha(configuracao.toString());
+        controlePadrao.escreverArquivo();
 
         // Atualizo a configuração global
         Vai.CONFIGURACAO = new Configuracao(configuracao);

@@ -5,7 +5,6 @@
  */
 package persistencia;
 
-import classes.ArquivoTXT;
 import classes.Emprestimo;
 import controle.ControleArquivoTXT;
 import controle.ControleColaborador;
@@ -27,20 +26,19 @@ import utilidades.GeradorID;
  */
 public class PersistenciaEmprestimo implements ICRUDEmprestimo {
 
-    private ArquivoTXT arquivoTXT = null;
     private IArquivoTXT controleArquivoTXT = null;
     private ArrayList<Emprestimo> colecao = null;
     private Emprestimo emprestimo = null;
     private ArrayList<String> linhas = null;
-    private ArrayList<String> novasLinhas = null;
     private ICRUDExemplar controleExemplar = null;
     private ICRUDColaborador controleColaborador = null;
     private SimpleDateFormat formatoData = null;
 
     public PersistenciaEmprestimo() throws Exception {
-        arquivoTXT = new ArquivoTXT(Vai.CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.EMPRESTIMO.getNomeArquivo());
-        controleArquivoTXT = new ControleArquivoTXT(arquivoTXT);
-
+        controleArquivoTXT = new ControleArquivoTXT(
+                Vai.CONFIGURACAO.getCaminhoBdCliente(),
+                EnumArquivosBd.EMPRESTIMO.getNomeArquivo()
+        );
         controleExemplar = new ControleExemplar();
         controleColaborador = new ControleColaborador();
         formatoData = new SimpleDateFormat("dd/MM/yyyy");
@@ -49,7 +47,7 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
     @Override
     public ArrayList<Emprestimo> listar() throws Exception {
         colecao = new ArrayList<>();
-        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        linhas = controleArquivoTXT.lerArquivo();
 
         for (String linha : linhas) {
             String[] dados = linha.split(";");
@@ -69,7 +67,7 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
 
     @Override
     public Emprestimo buscarPeloId(int idEmprestimo) throws Exception {
-        colecao = listar();
+        listar();
         for (Emprestimo e : colecao) {
             if (e.getIdEmprestimo() == idEmprestimo) {
                 return e;
@@ -80,39 +78,29 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
 
     @Override
     public void incluir(Emprestimo emprestimo) throws Exception {
-        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
         emprestimo.setIdEmprestimo(GeradorID.getProximoID());
-        linhas.add(emprestimo.toString());
-        arquivoTXT.setLinhas(linhas);
-        controleArquivoTXT.escreverArquivo(arquivoTXT);
-        GeradorID.confirmaID();
+        controleArquivoTXT.incluirLinha(emprestimo.toString());
     }
 
     @Override
     public void alterar(Emprestimo emprestimo) throws Exception {
-        novasLinhas = new ArrayList<>();
-        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        linhas = controleArquivoTXT.lerArquivo();
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == emprestimo.getIdEmprestimo()) {
-                novasLinhas.add(emprestimo.toString());
-            } else {
-                novasLinhas.add(linha);
+                controleArquivoTXT.alterarLinha(linha, emprestimo.toString());
+                break;
             }
         }
-        arquivoTXT.setLinhas(novasLinhas);
-        controleArquivoTXT.escreverArquivo(arquivoTXT);
     }
 
     @Override
     public void excluir(int idEmprestimo) throws Exception {
-        novasLinhas = new ArrayList<>();
-        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        linhas = controleArquivoTXT.lerArquivo();
         for (String linha : linhas) {
-            if (Integer.parseInt(linha.split(";")[0]) != emprestimo.getIdEmprestimo()) {
-                novasLinhas.add(linha);
+            if (Integer.parseInt(linha.split(";")[0]) == idEmprestimo) {
+                controleArquivoTXT.excluirLinha(linha);
+                break;
             }
         }
-        arquivoTXT.setLinhas(novasLinhas);
-        controleArquivoTXT.escreverArquivo(arquivoTXT);
     }
 }

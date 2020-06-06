@@ -25,22 +25,21 @@ import utilidades.GeradorID;
 public class PersistenciaColaborador implements ICRUDColaborador {
 
     // Atributos
-    private ArquivoTXT arquivoTXT = null;
     private IArquivoTXT controleArquivoTXT = null;
     private ArrayList<Colaborador> colecao = null;
     private Colaborador colaborador = null;
     private ArrayList<String> linhas = null;
-    private ArrayList<String> novasLinhas = null;
 
     public PersistenciaColaborador() throws Exception {
-        arquivoTXT = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.COLABORADOR.getNomeArquivo());
-        controleArquivoTXT = new ControleArquivoTXT(arquivoTXT);
+        controleArquivoTXT = new ControleArquivoTXT(
+                CONFIGURACAO.getCaminhoBdCliente(),
+                EnumArquivosBd.COLABORADOR.getNomeArquivo());
     }
 
     @Override
     public ArrayList<Colaborador> listar() throws Exception {
         colecao = new ArrayList<>();
-        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+        linhas = controleArquivoTXT.lerArquivo();
 
         for (String linha : linhas) {
             String[] dados = linha.split(";");
@@ -76,39 +75,29 @@ public class PersistenciaColaborador implements ICRUDColaborador {
 
     @Override
     public void incluir(Colaborador colaborador) throws Exception {
-        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
         colaborador.setIdColaborador(GeradorID.getProximoID());
-        linhas.add(colaborador.toString());
-        arquivoTXT.setLinhas(linhas);
-        controleArquivoTXT.escreverArquivo(arquivoTXT);
-        GeradorID.confirmaID();
+        controleArquivoTXT.incluirLinha(colaborador.toString());
     }
 
     @Override
     public void alterar(Colaborador colaborador) throws Exception {
-        novasLinhas = new ArrayList<>();
-        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
-        for (String l : linhas) {
-            if (Integer.parseInt(l.split(";")[0]) == colaborador.getIdColaborador()) {
-                novasLinhas.add(colaborador.toString());
-            } else {
-                novasLinhas.add(l);
+        linhas = controleArquivoTXT.lerArquivo();
+        for (String linha : linhas) {
+            if (Integer.parseInt(linha.split(";")[0]) == colaborador.getIdColaborador()) {
+                controleArquivoTXT.alterarLinha(linha, colaborador.toString());
+                break;
             }
         }
-        arquivoTXT.setLinhas(novasLinhas);
-        controleArquivoTXT.escreverArquivo(arquivoTXT);
     }
 
     @Override
     public void excluir(int idColaborador) throws Exception {
-        novasLinhas = new ArrayList<>();
-        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
-        for (String l : linhas) {
-            if (Integer.parseInt(l.split(";")[0]) != idColaborador) {
-                novasLinhas.add(l);
+        linhas = controleArquivoTXT.lerArquivo();
+        for (String linha : linhas) {
+            if (Integer.parseInt(linha.split(";")[0]) == idColaborador) {
+                controleArquivoTXT.excluirLinha(linha);
+                break;
             }
         }
-        arquivoTXT.setLinhas(novasLinhas);
-        controleArquivoTXT.escreverArquivo(arquivoTXT);
     }
 }

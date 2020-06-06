@@ -29,6 +29,8 @@ public class Vai {
     public static Configuracao CONFIGURACAO;
     public static Colaborador USUARIO;
     public static String BARRA;
+    private static IArquivoTXT controleArquivoTXT = null;
+    private static ArrayList<String> linhas = null;
 
     public static void main(String[] args) {
 
@@ -37,49 +39,44 @@ public class Vai {
             BARRA = barra();    // Obtém a barra de divisão de diretórios de acordo com o S.O.
             CONFIGURACAO = new Configuracao();
 
-//--- Lendo arquivo de configuração ------------------------------------------->
-            ArquivoTXT arquivoTXT
-                    = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.CONFIGURACAO.getNomeArquivo());
-            IArquivoTXT controleArquivoTXT = new ControleArquivoTXT(arquivoTXT);
-            ArrayList<String> linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+            controleArquivoTXT = new ControleArquivoTXT(
+                    CONFIGURACAO.getCaminhoBdCliente(),
+                    EnumArquivosBd.CONFIGURACAO.getNomeArquivo()
+            );
+
+            linhas = controleArquivoTXT.lerArquivo();
             if (linhas.size() == 0) {
                 // Cria o primeiro arquivo de configuração, com os valores da classe Configuracao
-                linhas.add(CONFIGURACAO.toString());
-                arquivoTXT.setLinhas(linhas);
-                controleArquivoTXT.escreverArquivo(arquivoTXT);
+                controleArquivoTXT.incluirLinha(CONFIGURACAO.toString());
             } else {
                 CONFIGURACAO = new ControleConfiguracao().ler();
             }
-//--- FIM Lendo arquivo de configuração ---------------------------------------|
 
-//--- CrLeitura do arquivo de configuração ------------------------------------>
             for (EnumArquivosBd arquivo : EnumArquivosBd.values()) {
                 if (!arquivo.equals(EnumArquivosBd.CONFIGURACAO)) { // Não cria o arquivo de configuração porque ele já existe
 
                     // Cria os arquivos caso não existam (primeira execução)
-                    arquivoTXT = new ArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), arquivo.getNomeArquivo());
-                    controleArquivoTXT = new ControleArquivoTXT(arquivoTXT);
+                    controleArquivoTXT = new ControleArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), arquivo.getNomeArquivo());
 
                     if (arquivo.equals(EnumArquivosBd.COLABORADOR)) {
                         // Cria o arquivo com os dados do proprietário se não existir (primeira excução)
-                        linhas = controleArquivoTXT.lerArquivo(arquivoTXT);
+                        linhas = controleArquivoTXT.lerArquivo();
                         if (linhas.size() == 0) {
-                            // Cria os colaboradores do grupo do pi para testes
-                            Colaborador colaborador = new Colaborador(
-                                    GeradorID.getProximoID(),
-                                    "Godofredo das Couves Verdejantes",
-                                    EnumPerfil.ADMINISTRADOR,
-                                    1,
-                                    EnumCargo.PROPRIETARIO,
-                                    "2712-GO",
-                                    Hash.criptografar("123456", "SHA-256"),
-                                    "godofredo@cou.ve",
-                                    "(62) 9 8765-4321",
-                                    EnumTipoStatus.ATIVO
+                            // Cria o cadastro do proprietário da biblioteca como colaborador
+                            controleArquivoTXT.incluirLinha(
+                                    new Colaborador(
+                                            GeradorID.getProximoID(),
+                                            "Godofredo das Couves Verdejantes",
+                                            EnumPerfil.ADMINISTRADOR,
+                                            1,
+                                            EnumCargo.PROPRIETARIO,
+                                            "2712-GO",
+                                            Hash.criptografar("123456", "SHA-256"),
+                                            "godofredo@cou.ve",
+                                            "(62) 9 8765-4321",
+                                            EnumTipoStatus.ATIVO
+                                    ).toString()
                             );
-                            linhas.add(colaborador.toString());
-                            arquivoTXT.setLinhas(linhas);
-                            controleArquivoTXT.escreverArquivo(arquivoTXT);
                         }
                     }
                 }

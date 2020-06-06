@@ -21,8 +21,9 @@ public enum EnumArquivosBd {
     EMPRESTIMO("bibliotecaEmprestimos.txt"),
     EXEMPLAR("bibliotecaExemplares.txt"),
     LIVRO("bibliotecaLivros.txt"),
-    RESERVA("bibliotecaReservas.txt");
-
+    RESERVA("bibliotecaReservas.txt"),
+    LOG("log.txt");
+    
     private String nomeArquivo;
 
     /**
