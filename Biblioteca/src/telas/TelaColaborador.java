@@ -43,6 +43,25 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         this.setTitle(acao.toString() + " cadastro de colaborador");
     }
 
+    @Override
+    public void setVisible(boolean b) {
+        try {
+            controleColaborador = new ControleColaborador();
+            colaborador = controleColaborador.buscarPeloId(id);
+            popularControles();
+
+            if (acao.equals(EnumAcao.Incluir)) {
+                limparCampos();
+            } else if (acao.equals(EnumAcao.Editar)) {
+                preencherCampos();
+            }
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+        visible = true;
+        super.setVisible(b);
+    }
+
     private void popularControles() {
         jComboBoxCargo.removeAllItems();
         for (EnumCargo c : EnumCargo.values()) {
@@ -234,25 +253,6 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         }
         visible = false;
         this.dispose();
-    }
-
-    @Override
-    public void setVisible(boolean b) {
-        try {
-            controleColaborador = new ControleColaborador();
-            colaborador = controleColaborador.buscarPeloId(id);
-            popularControles();
-
-            if (acao.equals(EnumAcao.Incluir)) {
-                limparCampos();
-            } else if (acao.equals(EnumAcao.Editar)) {
-                preencherCampos();
-            }
-        } catch (Exception e) {
-            mensagem.erro(e);
-        }
-        visible = true;
-        super.setVisible(b);
     }
 
     /**

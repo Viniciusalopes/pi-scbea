@@ -13,6 +13,7 @@ import controle.ControleAreaConhecimento;
 import controle.ControleAutor;
 import controle.ControleColaborador;
 import controle.ControleEditora;
+import controle.ControleEmprestimo;
 import controle.ControleLog;
 import enumeradores.EnumAcao;
 import enumeradores.EnumCadastro;
@@ -70,195 +71,141 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Exibe os cadastros de uma tabela
     private void exibirCadastros() throws Exception {
 
-        cadastro = buttonGroupCadastros.getSelection().getActionCommand().toUpperCase();
-        atualizaColecao();
-        colunas = controleTela.getColunasParaGrid(EnumCadastro.valueOf(cadastro));
-        if (colecao == null) {
-            linhas = new String[][]{{}};
-            popularGrid(colunas, linhas);
-        } else {
-            linhas = controleTela.getLinhasParaGrid(colecao, EnumCadastro.valueOf(cadastro));
-            popularGrid(colunas, linhas);
+        try {
+            cadastro = buttonGroupCadastros.getSelection().getActionCommand().toUpperCase();
+            atualizaColecao();
+            colunas = controleTela.getColunasParaGrid(EnumCadastro.valueOf(cadastro));
+            if (colecao == null) {
+                linhas = new String[][]{{}};
+                popularGrid(colunas, linhas);
+            } else {
+                linhas = controleTela.getLinhasParaGrid(colecao, EnumCadastro.valueOf(cadastro));
+                popularGrid(colunas, linhas);
+            }
+            // Limpa o texto de pesquisa e posiciona o cursor
+            jTextFieldPesquisar.setText("");
+            jTextFieldPesquisar.requestFocus();
+        } catch (Exception e) {
+            throw new Exception("Erro ao exibir cadastros de " + cadastro + "!\n" + e);
         }
-        // Limpa o texto de pesquisa e posiciona o cursor
-        jTextFieldPesquisar.setText("");
-        jTextFieldPesquisar.requestFocus();
     }
 
     // Popula o grid
     private void popularGrid(ArrayList<ColunaGrid> colunas, String[][] linhas) throws Exception {
+        try {
+            String nomeCadastro = EnumCadastro.valueOf(cadastro).getNomeCadastro();
 
-        String nomeCadastro = EnumCadastro.valueOf(cadastro).getNomeCadastro();
+            this.setTitle("Biblioteca do G0dô - Cadastro de " + nomeCadastro);
 
-        this.setTitle("Biblioteca do G0dô - Cadastro de " + nomeCadastro);
-
-        if (linhas.length == 0 || linhas[0].length == 0) {
-            jLabelStatusTop.setText("Nenhum cadastro de " + nomeCadastro + ".");
-        } else {
-            jLabelStatusTop.setText("");
-        }
-
-        // Nomes das colunas do grid
-        String[] colunasNomes = new String[colunas.size()];
-        for (int i = 0; i < colunas.size(); i++) {
-            colunasNomes[i] = colunas.get(i).getNome();
-        }
-
-        // Bloqueia edição pelo grid de todas as colunas
-        boolean[] permiteEdicao = new boolean[colunas.size()];
-        for (boolean p : permiteEdicao) {
-            p = false;
-        }
-
-        // Preenche e configura o grid com as linhas e colunas
-        jTableLista.setModel(new javax.swing.table.DefaultTableModel(linhas, colunasNomes) {
-            boolean[] canEdit = permiteEdicao;
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+            if (linhas.length == 0 || linhas[0].length == 0) {
+                jLabelStatusTop.setText("Nenhum cadastro de " + nomeCadastro + ".");
+            } else {
+                jLabelStatusTop.setText("");
             }
-        });
-        jTableLista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setViewportView(jTableLista);
-        if (jTableLista.getColumnModel().getColumnCount() > 0) {
 
-            // Formatação das colunas
+            // Nomes das colunas do grid
+            String[] colunasNomes = new String[colunas.size()];
             for (int i = 0; i < colunas.size(); i++) {
-                jTableLista.getColumnModel().getColumn(i).setCellRenderer(colunas.get(i).getAlinhamento());
+                colunasNomes[i] = colunas.get(i).getNome();
             }
-        }
 
-        // Desabilita botões Editar e Excluir
-        jButtonEditar.setEnabled(false);
-        jButtonExcluir.setEnabled(false);
-        jTextFieldPesquisar.requestFocus();
+            // Bloqueia edição pelo grid de todas as colunas
+            boolean[] permiteEdicao = new boolean[colunas.size()];
+            for (boolean p : permiteEdicao) {
+                p = false;
+            }
+
+            // Preenche e configura o grid com as linhas e colunas
+            jTableLista.setModel(new javax.swing.table.DefaultTableModel(linhas, colunasNomes) {
+                boolean[] canEdit = permiteEdicao;
+
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit[columnIndex];
+                }
+            });
+            jTableLista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            jScrollPane1.setViewportView(jTableLista);
+            if (jTableLista.getColumnModel().getColumnCount() > 0) {
+
+                // Formatação das colunas
+                for (int i = 0; i < colunas.size(); i++) {
+                    jTableLista.getColumnModel().getColumn(i).setCellRenderer(colunas.get(i).getAlinhamento());
+                }
+            }
+
+            // Desabilita botões Editar e Excluir
+            jButtonEditar.setEnabled(false);
+            jButtonExcluir.setEnabled(false);
+            jTextFieldPesquisar.requestFocus();
+        } catch (Exception e) {
+            throw new Exception("Erro ao popular o grid de " + cadastro + "!\n" + e);
+        }
     }
 
     // Pesquisa nas linhas do grid
     private void pesquisar(String texto) throws Exception {
-        if (linhas != null) {
-            if (texto.trim().length() == 0) {
-                popularGrid(colunas, linhas);
-            } else {
-                ArrayList<String[]> resultadoPesquisa = new ArrayList<>();
-                for (String[] linha : linhas) {
-                    for (String coluna : linha) {
-                        if (coluna.toLowerCase().contains(texto)) {
-                            resultadoPesquisa.add(linha);
-                            break; // Pára de pesquisar na linha atual
+        try {
+            if (linhas != null) {
+                if (texto.trim().length() == 0) {
+                    popularGrid(colunas, linhas);
+                } else {
+                    ArrayList<String[]> resultadoPesquisa = new ArrayList<>();
+                    for (String[] linha : linhas) {
+                        for (String coluna : linha) {
+                            if (coluna.toLowerCase().contains(texto)) {
+                                resultadoPesquisa.add(linha);
+                                break; // Pára de pesquisar na linha atual
+                            }
                         }
                     }
-                }
 
-                String[][] resultadoLinhas = new String[resultadoPesquisa.size()][colunas.size()];
-                for (int i = 0; i < resultadoPesquisa.size(); i++) {
-                    resultadoLinhas[i] = resultadoPesquisa.get(i);
-                }
+                    String[][] resultadoLinhas = new String[resultadoPesquisa.size()][colunas.size()];
+                    for (int i = 0; i < resultadoPesquisa.size(); i++) {
+                        resultadoLinhas[i] = resultadoPesquisa.get(i);
+                    }
 
-                popularGrid(colunas, resultadoLinhas);
+                    popularGrid(colunas, resultadoLinhas);
+                }
             }
+        } catch (Exception e) {
+            throw new Exception("Erro ao pesquisar " + cadastro + "!\n" + e);
         }
     }
 
     // Retorna o id do cadastro selecionado no grid
-    private int getId() {
+    private int getId() throws Exception {
+        try {
+            // Índice da coluna ID
+            int indiceID = 0;
 
-        // Índice da coluna ID
-        int indiceID = 0;
-
-        // Atualiza o índice da coluna com o ID
-        for (int i = 0; i < jTableLista.getColumnCount(); i++) {
-            if (jTableLista.getColumnName(i).equals("ID")) {
-                indiceID = i;
-                break;
+            // Atualiza o índice da coluna com o ID
+            for (int i = 0; i < jTableLista.getColumnCount(); i++) {
+                if (jTableLista.getColumnName(i).equals("ID")) {
+                    indiceID = i;
+                    break;
+                }
             }
+            return Integer.parseInt(jTableLista.getValueAt(jTableLista.getSelectedRow(), indiceID).toString());
+
+        } catch (Exception e) {
+            throw new Exception("Erro ao obter ID!\n" + e);
         }
-        return Integer.parseInt(jTableLista.getValueAt(jTableLista.getSelectedRow(), indiceID).toString());
     }
 
     private void atualizaColecao() throws Exception {
-
-        this.colecao = null;
-
-        switch (cadastro.toString()) {
-            case "AREACONHECIMENTO":
-                colecao = controleAreaConhecimento.listar();
-                break;
-
-            case "AUTOR":
-                break;
-
-            case "COLABORADOR":
-                colecao = controleColaborador.listar();
-                break;
-
-            case "CONFIGURACAO":
-                break;
-
-            case "EDITORA":
-                break;
-
-            case "EMPRESTIMO":
-                break;
-
-            case "EXEMPLAR":
-                break;
-
-            case "LIVRO":
-                break;
-
-            case "RESERVA":
-                break;
-
-            case "LOG":
-                colecao = controleLog.listar();
-                break;
-
-        }
-    }
-
-    //--- FIM MÉTODOS PARA GRID -----------------------------------------------|
-    //
-    //--- MÉTODOS PARA CRUD --------------------------------------------------->
-    private void incluirCadastro() throws Exception {
-
-        telaCadastro.setId(0);
-        telaCadastro.setAcao(EnumAcao.Incluir);
-        telaCadastro.setVisible(true);
-        exibirCadastros();
-    }
-
-    private void editarCadastro() throws Exception {
-        telaCadastro.setId(getId());
-        telaCadastro.setAcao(EnumAcao.Editar);
-        telaCadastro.setVisible(true);
-        exibirCadastros();
-    }
-
-    private void detalheCadastro() throws Exception {
-        telaCadastro.setId(getId());
-        telaCadastro.setAcao(EnumAcao.Editar);
-        telaCadastro.setVisible(true);
-        exibirCadastros();
-    }
-
-    private void excluirCadastro() throws Exception {
-        int id = getId();
-        String textoPergunta = "Deseja realmente excluir o cadastro selecionado?\n"
-                + "(-) " + cadastro + " ID: " + String.format("%04d", id);
-
-        if (mensagem.pergunta(textoPergunta) == 0) {
+        try {
+            this.colecao = null;
 
             switch (cadastro.toString()) {
                 case "AREACONHECIMENTO":
-                    controleAreaConhecimento.excluir(id);
+                    colecao = controleAreaConhecimento.listar();
                     break;
 
                 case "AUTOR":
                     break;
 
                 case "COLABORADOR":
-                    controleColaborador.excluir(id);
+                    colecao = controleColaborador.listar();
                     break;
 
                 case "CONFIGURACAO":
@@ -268,6 +215,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     break;
 
                 case "EMPRESTIMO":
+                    colecao = controleEmprestimo.listar();
                     break;
 
                 case "EXEMPLAR":
@@ -278,11 +226,98 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
                 case "RESERVA":
                     break;
-            }
 
-            mensagem.sucesso(cadastro + " excluído com sucesso!");
+                case "LOG":
+                    colecao = controleLog.listar();
+                    break;
+
+            }
+        } catch (Exception e) {
+            throw new Exception("Erro ao atualizar a coleção!\n" + e);
         }
-        exibirCadastros();
+    }
+
+    //--- FIM MÉTODOS PARA GRID -----------------------------------------------|
+    //
+    //--- MÉTODOS PARA CRUD --------------------------------------------------->
+    private void incluirCadastro() throws Exception {
+        try {
+            telaCadastro.setId(0);
+            telaCadastro.setAcao(EnumAcao.Incluir);
+            telaCadastro.setVisible(true);
+            exibirCadastros();
+        } catch (Exception e) {
+            throw new Exception("Erro ao incluir o cadastro!\n" + e);
+        }
+    }
+
+    private void editarCadastro() throws Exception {
+        try {
+            telaCadastro.setId(getId());
+            telaCadastro.setAcao(EnumAcao.Editar);
+            telaCadastro.setVisible(true);
+            exibirCadastros();
+        } catch (Exception e) {
+            throw new Exception("Erro ao editar o cadastro!\n" + e);
+        }
+    }
+
+    private void detalheCadastro() throws Exception {
+        try {
+            telaCadastro.setId(getId());
+            telaCadastro.setAcao(EnumAcao.Editar);
+            telaCadastro.setVisible(true);
+            exibirCadastros();
+        } catch (Exception e) {
+            throw new Exception("Erro ao detalhar o cadastro!\n" + e);
+        }
+    }
+
+    private void excluirCadastro() throws Exception {
+        try {
+            int id = getId();
+            String textoPergunta = "Deseja realmente excluir o cadastro selecionado?\n"
+                    + "(-) " + cadastro + " ID: " + String.format("%04d", id);
+
+            if (mensagem.pergunta(textoPergunta) == 0) {
+
+                switch (cadastro.toString()) {
+                    case "AREACONHECIMENTO":
+                        controleAreaConhecimento.excluir(id);
+                        break;
+
+                    case "AUTOR":
+                        break;
+
+                    case "COLABORADOR":
+                        controleColaborador.excluir(id);
+                        break;
+
+                    case "CONFIGURACAO":
+                        break;
+
+                    case "EDITORA":
+                        break;
+
+                    case "EMPRESTIMO":
+                        break;
+
+                    case "EXEMPLAR":
+                        break;
+
+                    case "LIVRO":
+                        break;
+
+                    case "RESERVA":
+                        break;
+                }
+
+                mensagem.sucesso(cadastro + " excluído com sucesso!");
+            }
+            exibirCadastros();
+        } catch (Exception e) {
+            throw new Exception("Erro ao excluir o cadastro!\n" + e);
+        }
     }
 
     //--- FIM MÉTODOS PARA CRUD -----------------------------------------------|
@@ -313,7 +348,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             controleAutor = new ControleAutor();
             controleColaborador = new ControleColaborador();
             controleEditora = new ControleEditora();
-            //controleEmprestimo = new ControleEmprestimo();
+            controleEmprestimo = new ControleEmprestimo();
             //controleExemplar = new ControleExemplar();
             //controleLivro = new ControleLivro();
             //controleReserva = new ControleReserva();
@@ -323,7 +358,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jTextFieldPesquisar.requestFocus();
             jLabelStatusBottom.setText(String.format("USUÁRIO: %04d - %s", Vai.USUARIO.getIdColaborador(), Vai.USUARIO.getNomeColaborador()));
         } catch (Exception e) {
-            mensagem.erro(e);
+            mensagem.erro(new Exception("Erro ao construir a tela principal!\n" + e));
         }
     }
     //    
@@ -643,21 +678,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             telaCadastro = null;
             exibirCadastros();
-            //telaCadastro = new TelaEmprestimo(this, true);
+            telaCadastro = new TelaEmprestimo(this, true);
         } catch (Exception e) {
             mensagem.erro(e);
         }
     }//GEN-LAST:event_jRadioButtonEmprestimosActionPerformed
-
-    private void jRadioButtonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonReservasActionPerformed
-        try {
-            telaCadastro = null;
-            exibirCadastros();
-            //telaCadastro = new TelaReserva(this, true);
-        } catch (Exception e) {
-            mensagem.erro(e);
-        }
-    }//GEN-LAST:event_jRadioButtonReservasActionPerformed
 
     private void jRadioButtonAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAreasActionPerformed
         try {
@@ -780,6 +805,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
             mensagem.erro(e);
         }
     }//GEN-LAST:event_jTextFieldPesquisarKeyReleased
+
+    private void jRadioButtonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonReservasActionPerformed
+        try {
+            telaCadastro = null;
+            exibirCadastros();
+            //telaCadastro = new TelaReserva(this, true);
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jRadioButtonReservasActionPerformed
 
     //--- FIM EVENTOS ---------------------------------------------------------|
     /**
