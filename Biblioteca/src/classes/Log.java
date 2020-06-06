@@ -91,7 +91,7 @@ public class Log {
 
     @Override
     public String toString() {
-        return String.format("%s|%d|%d|%d|%s",
+        return String.format("%s_%d_%d_%d_%s",
                 new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(dataLog),
                 Vai.USUARIO.getIdColaborador(),
                 acao.ordinal(),
