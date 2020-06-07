@@ -21,7 +21,7 @@ import utilidades.GeradorID;
  *
  * @author vovostudio
  */
-public abstract class PersistenciaExemplar implements ICRUDExemplar {
+public class PersistenciaExemplar implements ICRUDExemplar {
 
     private IArquivoTXT controleArquivoTXT = null;
     private ArrayList<Exemplar> colecao = null;
@@ -75,7 +75,7 @@ public abstract class PersistenciaExemplar implements ICRUDExemplar {
         }
     }
     
-//    @Override
+    
     public void excluir(int IdExemplar) throws Exception {
        linhas = controleArquivoTXT.lerArquivo();
         for (String linha : linhas) {
@@ -89,3 +89,4 @@ public abstract class PersistenciaExemplar implements ICRUDExemplar {
     }
 }
 
+  
