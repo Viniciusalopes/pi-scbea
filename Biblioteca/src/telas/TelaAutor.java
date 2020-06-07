@@ -85,8 +85,9 @@ public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
     }
 
     private void preencherCampos() {
+        jTextFieldIdAutor.setText(String.format("%04d", autor.getIdAutor()));
         jTextFieldNomeAutor.setText(autor.getNomeAutor());
-    }
+    }  
 
     private void salvar() throws Exception {
         validarPreenchimento();
@@ -129,7 +130,7 @@ public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
         jLabel2 = new javax.swing.JLabel();
         jTextFieldNomeAutor = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldIdAutor = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
@@ -165,10 +166,10 @@ public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
 
         jLabel1.setText("ID:");
 
-        jTextField2.setEditable(false);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldIdAutor.setEditable(false);
+        jTextFieldIdAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTextFieldIdAutorActionPerformed(evt);
             }
         });
 
@@ -190,7 +191,7 @@ public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldIdAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButtonSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
@@ -200,7 +201,7 @@ public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldIdAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -215,9 +216,9 @@ public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextFieldIdAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIdAutorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTextFieldIdAutorActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         try {
@@ -273,7 +274,7 @@ public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextFieldIdAutor;
     private javax.swing.JTextField jTextFieldNomeAutor;
     // End of variables declaration//GEN-END:variables
 
