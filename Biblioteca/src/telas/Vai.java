@@ -1,6 +1,5 @@
 package telas;
 
-import classes.ArquivoTXT;
 import classes.Colaborador;
 import classes.Configuracao;
 import controle.ControleArquivoTXT;
