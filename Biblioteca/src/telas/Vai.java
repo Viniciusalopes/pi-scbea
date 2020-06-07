@@ -13,6 +13,7 @@ import interfaces.IArquivoTXT;
 import java.util.ArrayList;
 import utilidades.GeradorID;
 import utilidades.Hash;
+import utilidades.ImportacaoCdd;
 import static utilidades.StringUtil.*;
 
 /*
@@ -81,6 +82,9 @@ public class Vai {
                     }
                 }
             }
+
+            new ImportacaoCdd().importarCdd();
+
             //System.out.println(Hash.criptografar("123456", "SHA-256"));
             TelaLogin frmLogin = new TelaLogin();
             frmLogin.setVisible(true);

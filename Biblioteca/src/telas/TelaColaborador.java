@@ -47,12 +47,12 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
     public void setVisible(boolean b) {
         try {
             controleColaborador = new ControleColaborador();
-            colaborador = controleColaborador.buscarPeloId(id);
             popularControles();
 
             if (acao.equals(EnumAcao.Incluir)) {
                 limparCampos();
             } else if (acao.equals(EnumAcao.Editar)) {
+                colaborador = controleColaborador.buscarPeloId(id);
                 preencherCampos();
             }
         } catch (Exception e) {
