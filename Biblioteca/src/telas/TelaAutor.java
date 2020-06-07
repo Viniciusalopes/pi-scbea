@@ -5,20 +5,116 @@
  */
 package telas;
 
+import classes.Autor;
+import controle.ControleAutor;
+import enumeradores.EnumAcao;
+import interfaces.ICRUDAutor;
+import interfaces.ITelaCadastro;
+import utilidades.Mensagens;
+import static utilidades.StringUtil.soTemLetras;
+
 /**
  *
- * @author Vinicius
+ * @author Joao Pedro
  */
-public class TelaAutor extends javax.swing.JDialog {
+public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
 
-    /**
-     * Creates new form TelaAutor
-     */
+    // atributos
+    private int id;
+    private EnumAcao acao = null;
+    private Autor autor = null;
+    private Mensagens mensagem = new Mensagens();
+    private ICRUDAutor controleAutor = null;
+    private boolean visible = false;
+
+    //fim atributos
+    //metodos
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public void setAcao(EnumAcao acao) {
+        this.acao = acao;
+        this.setTitle(acao.toString() + " cadastro de autor ");
+    }
+
+    @Override
+    public void setVisible(boolean b) {
+        try {
+            controleAutor = new ControleAutor();
+
+            //popularControles();
+            if (acao.equals(EnumAcao.Incluir)) {
+                limparCampos();
+            } else if (acao.equals(EnumAcao.Editar)) {
+                autor = controleAutor.buscarPeloId(id);
+                preencherCampos();
+            }
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+        visible = true;
+        super.setVisible(b);
+    }
+
+    public void validarPreenchimento() throws Exception {
+        //validarPreenchimento dos campos
+        String campo = new String(jTextFieldNomeAutor.getText().trim());
+        if (campo.length() == 0) {
+            jTextFieldNomeAutor.requestFocus();
+            throw new Exception("Informe o nome do colaborador!");
+        }
+
+        if (campo.length() < 2) {
+            jTextFieldNomeAutor.requestFocus();
+            jTextFieldNomeAutor.selectAll();
+            throw new Exception("O nome do colaborador precisa ter pelo menos duas letras!");
+        }
+
+        if (!soTemLetras(campo)) {
+            jTextFieldNomeAutor.requestFocus();
+            jTextFieldNomeAutor.selectAll();
+            throw new Exception("O nome do colaborador deve ter apenas letras e espaços!");
+        }
+    }
+
+    private void limparCampos() {
+        jTextFieldNomeAutor.setText("");
+    }
+
+    private void preencherCampos() {
+        jTextFieldNomeAutor.setText(autor.getNomeAutor());
+    }
+
+    private void salvar() throws Exception {
+        validarPreenchimento();
+        autor = new Autor();
+        autor.setNomeAutor(jTextFieldNomeAutor.getText());
+
+        if (acao.equals(EnumAcao.Incluir)) {
+            controleAutor.incluir(autor);
+            mensagem.sucesso("Autor incluído com sucesso!");
+        } else if (acao.equals(EnumAcao.Editar)) {
+            controleAutor.alterar(autor);
+            mensagem.sucesso("Autor atualizado com sucesso!");
+        }
+        visible = false;
+        this.dispose();
+
+    }
+    //fim metodos
+
+    //construtor
     public TelaAutor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(rootPane);
     }
+    // fim construtor
 
+    // eventos
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,10 +127,10 @@ public class TelaAutor extends javax.swing.JDialog {
         jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldNomeAutor = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jButtonSalvar = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -54,7 +150,7 @@ public class TelaAutor extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 354, Short.MAX_VALUE))
-                    .addComponent(jTextField3))
+                    .addComponent(jTextFieldNomeAutor))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -63,19 +159,25 @@ public class TelaAutor extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldNomeAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jLabel1.setText("ID:");
 
+        jTextField2.setEditable(false);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Salvar");
+        jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,7 +191,7 @@ public class TelaAutor extends javax.swing.JDialog {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -102,7 +204,7 @@ public class TelaAutor extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jButtonSalvar)
                 .addGap(20, 20, 20))
         );
 
@@ -117,9 +219,15 @@ public class TelaAutor extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        try {
+            salvar();
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+    // fim eventos
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -160,12 +268,13 @@ public class TelaAutor extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextFieldNomeAutor;
     // End of variables declaration//GEN-END:variables
+
 }

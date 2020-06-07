@@ -10,9 +10,7 @@ import enumeradores.EnumAcao;
 import enumeradores.EnumCadastro;
 import interfaces.ICRUDLog;
 import java.util.ArrayList;
-import java.util.Date;
 import persistencia.PersistenciaLog;
-import telas.Vai;
 
 /**
  *

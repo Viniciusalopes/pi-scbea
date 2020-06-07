@@ -8,10 +8,11 @@ package controle;
 import classes.AreaConhecimento;
 import classes.Colaborador;
 import classes.ColunaGrid;
+import classes.Emprestimo;
 import classes.Log;
 import classes.Renderer;
-import enumeradores.EnumAcao;
 import enumeradores.EnumCadastro;
+import enumeradores.EnumTipoStatus;
 import java.util.ArrayList;
 
 /**
@@ -50,6 +51,7 @@ public class ControleTelaPrincipal {
                 break;
 
             case "EMPRESTIMO":
+                addColunasEmprestimo();
                 break;
 
             case "EXEMPLAR":
@@ -87,6 +89,16 @@ public class ControleTelaPrincipal {
         colunas.add(new ColunaGrid("Status", renderer.getRendererCentro()));
     }
 
+    private void addColunasEmprestimo() {
+        colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Colaborador"));
+        colunas.add(new ColunaGrid("Livro"));
+        colunas.add(new ColunaGrid("Data Empréstimo ", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Status", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Data Devolução", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Multa", renderer.getRendererCentro()));
+    }
+
     private void addColunasLog() {
         colunas.add(new ColunaGrid("Data", renderer.getRendererCentro()));
         colunas.add(new ColunaGrid("Usuário"));
@@ -119,6 +131,7 @@ public class ControleTelaPrincipal {
                 break;
 
             case "EMPRESTIMO":
+                addLinhasEmprestimo(colecao);
                 break;
 
             case "EXEMPLAR":
@@ -175,6 +188,26 @@ public class ControleTelaPrincipal {
                 c.getEmail(),
                 c.getTelefone(),
                 c.getStatus().toString()
+            };
+            linhas[cont] = linha;
+            cont++;
+        }
+    }
+
+    private void addLinhasEmprestimo(Object colecao) {
+        ArrayList<Emprestimo> emprestimos = (ArrayList<Emprestimo>) colecao;
+        linhas = new String[emprestimos.size()][colunas.size()];
+        cont = 0;
+
+        for (Emprestimo e : emprestimos) {
+            linha = new String[]{
+                String.format("%s", e.getDataEmprestimo()),
+                e.getColaborador().getNomeColaborador(),
+                "e.getExemplar().getLivro().getTitulo()",
+                String.format("%s", e.getDataEmprestimo()),
+                e.getStatusEmprestimo().toString(),
+                String.format("%s", e.getDataDevolucao()),
+                String.format("%.2f", e.getValorMulta())
             };
             linhas[cont] = linha;
             cont++;

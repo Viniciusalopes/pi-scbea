@@ -6,7 +6,7 @@ import enumeradores.EnumAcao;
 import interfaces.ICRUDAreaConhecimento;
 import interfaces.ITelaCadastro;
 import utilidades.Mensagens;
-import static utilidades.StringUtil.soTemNumeros;
+import static utilidades.StringUtil.*;
 
 public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCadastro {
 
@@ -45,26 +45,24 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
     }
 
     // incluir métodos aqui
-    private void validarPreencimento() throws Exception {
+    private void validarPreenchimento() throws Exception {
 
-        if (!soTemNumeros(jTextFieldCdd.getText())) {
+        if (!soTemNumeros(jTextFieldCdd.getText().replace(".", ""))) {
             jTextFieldCdd.requestFocus();
             jTextFieldCdd.selectAll();
-            throw new Exception("O código do CDD precisa ter apenas números!");
+            throw new Exception("O código do CDD precisa ter apenas ponto e números!");
         }
 
-        if (jTextFieldCdd.getText().trim().length() != 6) {
-            jTextFieldCdd.requestFocus();
-            jTextFieldCdd.selectAll();
-            throw new Exception("O código do CDD precisa ter 6 dígitos!");
-
+        if (!tamanhoEntre(jTextFieldCdd.getText().trim().replace(".", ""), 3, 7)) {
+            throw new Exception("O código do CDD precisa ter nó mínimo 3 e no máximo 7 números!");
         }
     }
 
     private void preencherCampos() throws Exception {
         areaConhecimento = controleAreaConhecimento.buscarPeloId(id);
         jTextFieldID.setText(String.format("%04d", areaConhecimento.getIdAreaConhecimento()));
-        jTextFieldCdd.setText(areaConhecimento.getCdd() + "");
+        String cdd = String.format("%07d", areaConhecimento.getCdd());
+        jTextFieldCdd.setText(cdd.substring(0, 3) + "." + cdd.replace(cdd.substring(0, 3), ""));
         jTextFieldDescricaoAreaConhecimento.setText(areaConhecimento.getDescricaoAreaConhecimento());
     }
 
@@ -159,25 +157,22 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-
         try {
-            validarPreencimento();
-            AreaConhecimento areaConhecimento = new AreaConhecimento();
-
+            validarPreenchimento();
+            AreaConhecimento a = new AreaConhecimento();
             if (acao.equals(EnumAcao.Incluir)) {
-                areaConhecimento.setIdAreaConhecimento(id);
-                areaConhecimento.setCdd(Integer.parseInt(jTextFieldCdd.getText()));
-                areaConhecimento.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
-                controleAreaConhecimento.incluir(areaConhecimento);
+                a.setIdAreaConhecimento(id);
+                a.setCdd(Integer.parseInt(jTextFieldCdd.getText().replace(".", "")));
+                a.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
+                controleAreaConhecimento.incluir(a);
                 mensagem.sucesso("Área de conhecimento incluída com sucesso");
             } else if (acao.equals(EnumAcao.Editar)) {
-                areaConhecimento.setIdAreaConhecimento(id);
-                areaConhecimento.setCdd(Integer.parseInt(jTextFieldCdd.getText()));
-                areaConhecimento.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
-                controleAreaConhecimento.incluir(areaConhecimento);
+                a.setIdAreaConhecimento(id);
+                a.setCdd(Integer.parseInt(jTextFieldCdd.getText()));
+                a.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
+                controleAreaConhecimento.alterar(a);
                 mensagem.sucesso("Área de conhecimento editada com sucesso");
             }
-
             visible = false;
             this.dispose();
         } catch (Exception e) {

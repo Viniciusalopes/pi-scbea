@@ -74,12 +74,12 @@ public class PersistenciaColaborador implements ICRUDColaborador {
     }
 
     @Override
-    public Colaborador buscarPeloId(int id) throws Exception {
+    public Colaborador buscarPeloId(int idColaborador) throws Exception {
         try {
             listar();
             colaborador = new Colaborador();
             for (Colaborador c : colecao) {
-                if (c.getIdColaborador() == id) {
+                if (c.getIdColaborador() == idColaborador) {
                     colaborador = new Colaborador(c);
                 }
             }

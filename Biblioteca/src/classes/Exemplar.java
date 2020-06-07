@@ -5,37 +5,53 @@
  */
 package classes;
 
+import enumeradores.EnumTipoStatus;
+import java.util.Date;
+import sun.dc.pr.PRException;
+
 /**
  *
  * @author vovostudio
  */
 public class Exemplar {
+
     //atributos 
     //-------------------------------------
-   private int idExemplar = 0 ;
- 
+    private int idExemplar = 0;
+    private Livro livro = null;
+    private EnumTipoStatus statusExemplar = null;
+    private Date dataAquisicao = null;
+    private float precoCompra = 0;
+    private String motivoDesativado = "";
     //-------------------------------------
-    
+
     //-------------------------------------
     //contrutores 
-    public Exemplar(){
-        
-    }
-    
-    public Exemplar (Exemplar exemplar ){
-        idExemplar = exemplar.idExemplar;
-    }
-    
-    public Exemplar (int idExemplar){
-        this.idExemplar = idExemplar;
+    public Exemplar() {
+
     }
 
-    public Exemplar(int parseInt, String dado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Exemplar(Exemplar exemplar) {
+        idExemplar = exemplar.idExemplar;
+        livro = exemplar.livro;
+        statusExemplar = exemplar.statusExemplar;
+        dataAquisicao = exemplar.dataAquisicao;
+        precoCompra = exemplar.precoCompra;
+        motivoDesativado = exemplar.motivoDesativado;
+
     }
-    //-------------------------------------
-    //geters e seters 
-    //-------------------------------------
+
+    public Exemplar(int idExemplar, Livro livro, EnumTipoStatus statusExemplar,
+            Date dataAquisicao, float precoCompra, String motivoDesativado) {
+        this.idExemplar = idExemplar;
+        this.livro = livro;
+        this.statusExemplar = statusExemplar;
+        this.dataAquisicao = dataAquisicao;
+        this.precoCompra = precoCompra;
+        this.motivoDesativado = motivoDesativado;
+
+    }
+
     public int getIdExemplar() {
         return idExemplar;
     }
@@ -43,14 +59,51 @@ public class Exemplar {
     public void setIdExemplar(int idExemplar) {
         this.idExemplar = idExemplar;
     }
-    //-------------------------------------
-    
-    //-------------------------------------
-    //toString 
-    @Override 
-    public String toString(){
-        return (idExemplar + "");
+
+    public Livro getLivro() {
+        return livro;
     }
-    
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
+    }
+
+    public EnumTipoStatus getStatusExemplar() {
+        return statusExemplar;
+    }
+
+    public void setStatusExemplar(EnumTipoStatus statusExemplar) {
+        this.statusExemplar = statusExemplar;
+    }
+
+    public Date getDataAquisicao() {
+        return dataAquisicao;
+    }
+
+    public void setDataAquisicao(Date dataAquisicao) {
+        this.dataAquisicao = dataAquisicao;
+    }
+
+    public float getPrecoCompra() {
+        return precoCompra;
+    }
+
+    public void setPrecoCompra(float precoCompra) {
+        this.precoCompra = precoCompra;
+    }
+
+    public String getMotivoDesativado() {
+        return motivoDesativado;
+    }
+
+    public void setMotivoDesativado(String motivoDesativado) {
+        this.motivoDesativado = motivoDesativado;
+    }
+
+    @Override
+    public String toString() {
+        return "Exemplar{" + ";" + idExemplar + ";" + livro + " ; " + statusExemplar + ";" + dataAquisicao + ";" + precoCompra
+                + ";" + motivoDesativado;
+    }
 
 }

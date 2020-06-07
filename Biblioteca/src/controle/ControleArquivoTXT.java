@@ -67,9 +67,12 @@ public class ControleArquivoTXT implements IArquivoTXT {
             for (String linha : linhas) {
                 if (linha.equals(linhaAntes)) {
                     linhas.set(linhas.indexOf(linhaAntes), linhaDepois);
+                    arquivoTXT.setLinhas(linhas);
                     break;
                 }
             }
+            escreverArquivo();
+
         } catch (Exception e) {
             throw new Exception("Erro ao alterar linha do arquivo [" + arquivoTXT.getArquivo() + "]! (ControleArquivoTXT)\n" + e);
         }
