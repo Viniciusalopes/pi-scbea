@@ -28,5 +28,5 @@ public interface ICRUDExemplar {
 
     void alterar(Exemplar exemplar) throws Exception;
 
-    void excluir(Exemplar exemplar) throws Exception;
+    void excluir(int idExemplar) throws Exception;
 }
