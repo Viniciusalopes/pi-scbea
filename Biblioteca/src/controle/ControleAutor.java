@@ -30,8 +30,14 @@ public class ControleAutor implements ICRUDAutor {
     }
 
     @Override
-    public Autor buscarPeloId(int id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Autor buscarPeloId(int idAutor) throws Exception {
+        colecao = listar();
+        for (Autor autor : colecao) {
+            if (autor.getIdAutor() == idAutor) {
+                return autor;
+            }
+        }
+        return null;
     }
 
     @Override
