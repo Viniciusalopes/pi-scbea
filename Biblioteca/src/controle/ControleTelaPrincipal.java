@@ -6,13 +6,13 @@
 package controle;
 
 import classes.AreaConhecimento;
+import classes.Autor;
 import classes.Colaborador;
 import classes.ColunaGrid;
 import classes.Emprestimo;
 import classes.Log;
 import classes.Renderer;
 import enumeradores.EnumCadastro;
-import enumeradores.EnumTipoStatus;
 import java.util.ArrayList;
 
 /**
@@ -38,6 +38,7 @@ public class ControleTelaPrincipal {
                 break;
 
             case "AUTOR":
+                addColunasAutor();
                 break;
 
             case "COLABORADOR":
@@ -75,6 +76,11 @@ public class ControleTelaPrincipal {
         colunas.add(new ColunaGrid("CDD", renderer.getRendererCentro()));
         colunas.add(new ColunaGrid("Descrição da área de conhecimento"));
 
+    }
+
+    private void addColunasAutor() {
+        colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Nome"));
     }
 
     private void addColunasColaborador() {
@@ -118,6 +124,7 @@ public class ControleTelaPrincipal {
                 break;
 
             case "AUTOR":
+                addLinhasAutor(colecao);
                 break;
 
             case "COLABORADOR":
@@ -164,6 +171,20 @@ public class ControleTelaPrincipal {
                 String.format("%04d", a.getIdAreaConhecimento()),
                 a.getCdd() + "",
                 a.getDescricaoAreaConhecimento()};
+            linhas[cont] = linha;
+            cont++;
+        }
+    }
+
+    private void addLinhasAutor(Object colecao) {
+        ArrayList<Autor> autores = (ArrayList<Autor>) colecao;
+        linhas = new String[autores.size()][colunas.size()];
+
+        cont = 0;
+        for (Autor a : autores) {
+            linha = new String[]{
+                String.format("%04d", a.getIdAutor()),
+                a.getNomeAutor(),};
             linhas[cont] = linha;
             cont++;
         }

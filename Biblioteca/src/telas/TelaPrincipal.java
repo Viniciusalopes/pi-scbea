@@ -77,11 +77,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             colunas = controleTela.getColunasParaGrid(EnumCadastro.valueOf(cadastro));
             if (colecao == null) {
                 linhas = new String[][]{{}};
-                popularGrid(colunas, linhas);
             } else {
                 linhas = controleTela.getLinhasParaGrid(colecao, EnumCadastro.valueOf(cadastro));
-                popularGrid(colunas, linhas);
             }
+            popularGrid(colunas, linhas);
+
             // Limpa o texto de pesquisa e posiciona o cursor
             jTextFieldPesquisar.setText("");
             jTextFieldPesquisar.requestFocus();
@@ -202,6 +202,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     break;
 
                 case "AUTOR":
+                    colecao = controleAutor.listar();
                     break;
 
                 case "COLABORADOR":
@@ -708,7 +709,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             telaCadastro = null;
             exibirCadastros();
-            //telaCadastro = new TelaAutor(this, true);
+            telaCadastro = new TelaAutor(this, true);
         } catch (Exception e) {
             mensagem.erro(e);
         }

@@ -82,7 +82,7 @@ public class Vai {
                 }
             }
 
-            new ImportacaoCdd().importarCdd();
+            //new ImportacaoCdd().importarCdd();
 
             //System.out.println(Hash.criptografar("123456", "SHA-256"));
             TelaLogin frmLogin = new TelaLogin();
