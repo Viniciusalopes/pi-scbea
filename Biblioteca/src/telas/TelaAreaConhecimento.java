@@ -159,25 +159,22 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-
         try {
             validarPreencimento();
-            AreaConhecimento areaConhecimento = new AreaConhecimento();
-
+            AreaConhecimento ac = new AreaConhecimento();
             if (acao.equals(EnumAcao.Incluir)) {
-                areaConhecimento.setIdAreaConhecimento(id);
-                areaConhecimento.setCdd(Integer.parseInt(jTextFieldCdd.getText()));
-                areaConhecimento.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
-                controleAreaConhecimento.incluir(areaConhecimento);
+                ac.setIdAreaConhecimento(id);
+                ac.setCdd(Integer.parseInt(jTextFieldCdd.getText()));
+                ac.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
+                controleAreaConhecimento.incluir(ac);
                 mensagem.sucesso("Área de conhecimento incluída com sucesso");
             } else if (acao.equals(EnumAcao.Editar)) {
-                areaConhecimento.setIdAreaConhecimento(id);
-                areaConhecimento.setCdd(Integer.parseInt(jTextFieldCdd.getText()));
-                areaConhecimento.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
-                controleAreaConhecimento.incluir(areaConhecimento);
+                ac.setIdAreaConhecimento(id);
+                ac.setCdd(Integer.parseInt(jTextFieldCdd.getText()));
+                ac.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
+                controleAreaConhecimento.alterar(ac);
                 mensagem.sucesso("Área de conhecimento editada com sucesso");
             }
-
             visible = false;
             this.dispose();
         } catch (Exception e) {
