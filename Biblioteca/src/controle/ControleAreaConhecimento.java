@@ -57,8 +57,12 @@ public class ControleAreaConhecimento implements ICRUDAreaConhecimento {
 
     private void validarPreenchimento(int cdd, String descricao) throws Exception {
         // Verificar qtd de caracteres de acordo com padrão de cada campo (CDD e Descrição)
-        if (cdd <= 99999) {
-            throw new Exception("O código do CDD precisa ter 6 dígitos!");
+
+//        if (String.format("%07d", cdd).charAt(0) == '0') {
+//            throw new Exception("O código do CDD não pode iniciar com 0!");
+//        }
+        if (cdd < 99 && cdd >= 9999999) {
+            throw new Exception("O código do CDD precisa ter nó mínimo 3 e no máximo 7 números!");
         }
         if (descricao.trim().length() < 2) {
             throw new Exception("A descrição da área de conhecimento precisa ter no mínimo 2 caracteres!");
