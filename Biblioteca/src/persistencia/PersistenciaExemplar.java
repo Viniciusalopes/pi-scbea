@@ -75,7 +75,7 @@ public class PersistenciaExemplar implements ICRUDExemplar {
         }
     }
     
-    
+    @Override
     public void excluir(int IdExemplar) throws Exception {
        linhas = controleArquivoTXT.lerArquivo();
         for (String linha : linhas) {
