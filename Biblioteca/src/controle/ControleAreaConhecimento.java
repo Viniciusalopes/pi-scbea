@@ -22,10 +22,13 @@ public class ControleAreaConhecimento implements ICRUDAreaConhecimento {
     }
 
     @Override
+    public AreaConhecimento buscarPeloId(int idAreaConhecimento) throws Exception {
+        return persistencia.buscarPeloId(idAreaConhecimento);
+    }
+
+    @Override
     public void incluir(AreaConhecimento areaConhecimento) throws Exception {
-        int cdd = areaConhecimento.getCdd();
-        String descricao = areaConhecimento.getDescricaoAreaConhecimento();
-        validarPreenchimento(cdd, descricao);
+        validarPreenchimento(areaConhecimento.getCdd(), areaConhecimento.getDescricaoAreaConhecimento());
         colecao = listar();
         validarDuplicidade(areaConhecimento);
         persistencia.incluir(areaConhecimento);
@@ -33,9 +36,7 @@ public class ControleAreaConhecimento implements ICRUDAreaConhecimento {
 
     @Override
     public void alterar(AreaConhecimento areaConhecimento) throws Exception {
-        int cdd = areaConhecimento.getCdd();
-        String descricao = areaConhecimento.getDescricaoAreaConhecimento();
-        validarPreenchimento(cdd, descricao);
+        validarPreenchimento(areaConhecimento.getCdd(), areaConhecimento.getDescricaoAreaConhecimento());
         colecao = listar();
         validarDuplicidade(areaConhecimento);
         persistencia.alterar(areaConhecimento);
@@ -65,7 +66,6 @@ public class ControleAreaConhecimento implements ICRUDAreaConhecimento {
     }
 
     private void validarDuplicidade(AreaConhecimento areaConhecimento) throws Exception {
-
         for (AreaConhecimento objAreaConhecimento : colecao) {
             int idArea = objAreaConhecimento.getIdAreaConhecimento();
             int cddCadastro = objAreaConhecimento.getCdd();
@@ -81,7 +81,4 @@ public class ControleAreaConhecimento implements ICRUDAreaConhecimento {
         }
     }
 
-    public AreaConhecimento buscarPeloId(int idAreaConhecimento) throws Exception {
-        return persistencia.buscarPeloId(idAreaConhecimento);
-    }
 }
