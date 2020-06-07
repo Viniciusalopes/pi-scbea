@@ -22,37 +22,53 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
 
 // Construtor padrão de persistência (direct caminho e nome arquivo)    
     public PersistenciaAreaConhecimento() throws Exception {
-        controleArquivoTXT = new ControleArquivoTXT(
-                Vai.CONFIGURACAO.getCaminhoBdCliente(),
-                EnumArquivosBd.AREACONHECIMENTO.getNomeArquivo()
-        );
+        try {
+            controleArquivoTXT = new ControleArquivoTXT(
+                    Vai.CONFIGURACAO.getCaminhoBdCliente(),
+                    EnumArquivosBd.AREACONHECIMENTO.getNomeArquivo());
+        } catch (Exception e) {
+            throw new Exception("Erro ao construir a classe AreaConhecimento\n"
+                    + "Entre em contato com o suporte técnico!\n" + e);
+        }
     }
 
     @Override
     public ArrayList<AreaConhecimento> listar() throws Exception {
-        colecao = new ArrayList<>();
-        linhas = controleArquivoTXT.lerArquivo();
-        for (String linha : linhas) {
-            String[] dados = linha.split(";");
-            areaConhecimento = new AreaConhecimento(
-                    Integer.parseInt(dados[0]),
-                    Integer.parseInt(dados[1]),
-                    dados[2]);
+        try {
+            colecao = new ArrayList<>();
+            linhas = controleArquivoTXT.lerArquivo();
 
-            colecao.add(areaConhecimento);
+            for (String linha : linhas) {
+                String[] dados = linha.split(";");
+
+                areaConhecimento = new AreaConhecimento(
+                        Integer.parseInt(dados[0]),
+                        Integer.parseInt(dados[1]),
+                        dados[2]
+                );
+                colecao.add(areaConhecimento);
+            }
+            return colecao;
+
+        } catch (Exception e) {
+            throw new Exception("Erro ao listar os colaboradores! (Persistência)\n"
+                    + "Entre em contato com o suporte técnico!\n" + e);
         }
-        return (colecao);
     }
 
     @Override
     public AreaConhecimento buscarPeloId(int idAreaConhecimento) throws Exception {
-        listar();
-        for (AreaConhecimento a : colecao) {
-            if (a.getIdAreaConhecimento() == idAreaConhecimento) {
-                return a;
+        try {
+            listar();
+            for (AreaConhecimento a : colecao) {
+                if (a.getIdAreaConhecimento() == idAreaConhecimento) {
+                    return a;
+                }
             }
+            return null;
+        } catch (Exception e) {
+            throw new Exception("Erro ao buscar colaborador pelo ID! (Persistência)\n" + e);
         }
-        return null;
     }
 
     @Override
@@ -63,13 +79,18 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
 
     @Override
     public void alterar(AreaConhecimento areaConhecimento) throws Exception {
-        linhas = controleArquivoTXT.lerArquivo();                               // ler linhas do arquivo
-        for (String linha : linhas) {                                           // percorrer linhas do arquivo // if = incluir parametro na nova lista de linhas
-            if (Integer.parseInt(linha.split(";")[0]) == areaConhecimento.getIdAreaConhecimento()) {
-                controleArquivoTXT.alterarLinha(linha, areaConhecimento.toString());
-                break;
+        try {
+            linhas = controleArquivoTXT.lerArquivo();                               // ler linhas do arquivo
+            for (String linha : linhas) {                                           // percorrer linhas do arquivo // if = incluir parametro na nova lista de linhas
+                if (Integer.parseInt(linha.split(";")[0]) == areaConhecimento.getIdAreaConhecimento()) {
+                    controleArquivoTXT.alterarLinha(linha, areaConhecimento.toString());
+                    break;
+                }
             }
+        } catch (Exception e) {
+            throw new Exception("Erro ao alterar a Área de conhecimento! (Persistência)\n" + e);
         }
+
     }
 
     @Override
