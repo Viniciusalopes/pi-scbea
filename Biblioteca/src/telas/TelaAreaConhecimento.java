@@ -71,6 +71,25 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
         jTextFieldDescricaoAreaConhecimento.setText("");
     }
 
+    private void salvar() throws Exception {
+        validarPreenchimento();
+        AreaConhecimento a = new AreaConhecimento();
+        a.setCdd(Integer.parseInt(jTextFieldCdd.getText().replace(".", "")));
+        a.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
+
+        if (acao.equals(EnumAcao.Incluir)) {
+            controleAreaConhecimento.incluir(a);
+            mensagem.sucesso("Área de conhecimento incluída com sucesso!");
+        } else if (acao.equals(EnumAcao.Editar)) {
+            a.setIdAreaConhecimento(id);
+            controleAreaConhecimento.alterar(a);
+            mensagem.sucesso("Área de conhecimento editada com sucesso!");
+        }
+
+        visible = false;
+        this.dispose();
+    }
+
     public TelaAreaConhecimento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -158,23 +177,7 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         try {
-            validarPreenchimento();
-            AreaConhecimento a = new AreaConhecimento();
-            if (acao.equals(EnumAcao.Incluir)) {
-                a.setIdAreaConhecimento(id);
-                a.setCdd(Integer.parseInt(jTextFieldCdd.getText().replace(".", "")));
-                a.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
-                controleAreaConhecimento.incluir(a);
-                mensagem.sucesso("Área de conhecimento incluída com sucesso");
-            } else if (acao.equals(EnumAcao.Editar)) {
-                a.setIdAreaConhecimento(id);
-                a.setCdd(Integer.parseInt(jTextFieldCdd.getText()));
-                a.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
-                controleAreaConhecimento.alterar(a);
-                mensagem.sucesso("Área de conhecimento editada com sucesso");
-            }
-            visible = false;
-            this.dispose();
+            salvar();
         } catch (Exception e) {
             mensagem.erro(e);
         }

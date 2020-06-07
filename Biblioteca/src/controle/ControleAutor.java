@@ -42,29 +42,15 @@ public class ControleAutor implements ICRUDAutor {
 
     @Override
     public void incluir(Autor autor) throws Exception {
-
-        if (autor.getNomeAutor().trim().length() < 2) {
-            throw new Exception("Nome não pode ficar em branco!");
-        }
-
-        if (autor.getNomeAutor().toLowerCase().charAt(0) == autor.getNomeAutor().toLowerCase().charAt(1)) {
-            throw new Exception("Nome com duas letras, e ainda iguais?? ta de brinks...");
-        }
-
-        colecao = persistencia.listar();
-        for (Autor objAutor : colecao) {
-            if (objAutor.getNomeAutor().equals(autor.getNomeAutor())) {
-                throw new Exception("Já existe um autor cadastrado com este nome!");
-            }
-        }
-
+        validarPreenchimento(autor);
         persistencia.incluir(autor);
 
     }
 
     @Override
     public void alterar(Autor autor) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        validarPreenchimento(autor);
+        persistencia.alterar(autor);
     }
 
     @Override
@@ -72,4 +58,24 @@ public class ControleAutor implements ICRUDAutor {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    private void validarPreenchimento(Autor autor) throws Exception {
+
+        String nome = autor.getNomeAutor().trim();
+        if (nome.length() < 2) {
+            throw new Exception("O nome precisa ter duas letras ou mais!");
+        }
+
+        if (nome.toLowerCase().charAt(0) == autor.getNomeAutor().toLowerCase().charAt(1)
+                && nome.length() == 2) {
+            throw new Exception("Nome com duas letras, e ainda iguais?? ta de brinks...");
+        }
+
+        colecao = persistencia.listar();
+        for (Autor objAutor : colecao) {
+            if (objAutor.getNomeAutor().equals(autor.getNomeAutor())
+                    && objAutor.getIdAutor() != autor.getIdAutor()) {
+                throw new Exception("Já existe um autor cadastrado com este nome!");
+            }
+        }
+    }
 }

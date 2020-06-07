@@ -63,6 +63,7 @@ public class ControleArquivoTXT implements IArquivoTXT {
     @Override
     public void alterarLinha(String linhaAntes, String linhaDepois) throws Exception {
         try {
+
             linhas = lerArquivo();
             for (String linha : linhas) {
                 if (linha.equals(linhaAntes)) {

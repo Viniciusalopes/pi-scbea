@@ -10,22 +10,14 @@ import classes.Emprestimo;
 import classes.Exemplar;
 import classes.Livro;
 import classes.Reserva;
-import controle.ControleColaborador;
 import enumeradores.EnumAcao;
-import enumeradores.EnumCargo;
-import enumeradores.EnumPerfil;
-import enumeradores.EnumTipoStatus;
-import enumeradores.EnumUF;
 import interfaces.ICRUDColaborador;
 import interfaces.ICRUDEmprestimo;
 import interfaces.ICRUDExemplar;
 import interfaces.ICRUDLivro;
 import interfaces.ICRUDReserva;
 import interfaces.ITelaCadastro;
-import static utilidades.Email.isValidEmailAddressRegex;
 import utilidades.Mensagens;
-import static utilidades.StringUtil.soTemLetras;
-import static utilidades.StringUtil.telefoneValido;
 
 /**
  *
