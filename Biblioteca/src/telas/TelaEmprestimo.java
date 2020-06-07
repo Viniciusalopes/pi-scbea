@@ -10,6 +10,7 @@ import classes.Emprestimo;
 import classes.Exemplar;
 import classes.Livro;
 import classes.Reserva;
+import controle.ControleColaborador;
 import enumeradores.EnumAcao;
 import interfaces.ICRUDColaborador;
 import interfaces.ICRUDEmprestimo;
@@ -54,6 +55,8 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     @Override
     public void setVisible(boolean b) {
         try {
+            
+            controleColaborador = new ControleColaborador();
             //controleReserva = new ControleColaborador();
             //emprestimo = controleReserva.buscarPeloId(id);
             //popularControles();
