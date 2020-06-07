@@ -71,6 +71,9 @@ public class StringUtil {
         return true;
     }
 
+    public static boolean tamanhoEntre(String texto, int minimo, int maximo) {
+        return (texto.trim().length() >= minimo && texto.trim().length() <= maximo);
+    }
 
     // FONTE: https://www.guj.com.br/t/classe-pronta-mascara-do-jformattedtextfield-para-telefones/335186
     public static void mudaMascaraTelefone(JFormattedTextField campoTelefone) throws Exception {
