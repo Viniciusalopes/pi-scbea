@@ -8,12 +8,21 @@ package controle;
 import classes.Exemplar;
 import interfaces.ICRUDExemplar;
 import java.util.ArrayList;
+import persistencia.PersistenciaExemplar;
 
 /**
  *
  * @author vovostudio
  */
 public class ControleExemplar implements ICRUDExemplar {
+    private ICRUDExemplar persistencia = null ;
+    private ArrayList<Exemplar> colecao;
+
+    public ControleExemplar() throws Exception {
+        persistencia = new PersistenciaExemplar();
+        this.colecao = colecao;
+    }
+    
 
     @Override
     public ArrayList<Exemplar> listar() throws Exception {
