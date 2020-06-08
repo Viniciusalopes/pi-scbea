@@ -11,6 +11,7 @@ import classes.Colaborador;
 import classes.ColunaGrid;
 import classes.Editora;
 import classes.Emprestimo;
+import classes.Livro;
 import classes.Log;
 import classes.Renderer;
 import enumeradores.EnumCadastro;
@@ -76,6 +77,13 @@ public class ControleTelaPrincipal {
 
     private void addColunasLivro() {
         colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Título", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Autor", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Editora", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Edição", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Ano", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Área de Conhecimento", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("ISBN", renderer.getRendererCentro()));
     }
 
     private void addColunasAreaConhecimento() {
@@ -173,7 +181,26 @@ public class ControleTelaPrincipal {
     }
 
     private void addLinhasLivro(Object colecao) {
-        linhas = new String[][]{{}};
+        ArrayList<Livro> livros = (ArrayList<Livro>) colecao;
+
+        // Linhas do grid
+        linhas = new String[livros.size()][colunas.size()];
+
+        cont = 0;
+        for (Livro l : livros) {
+            linha = new String[]{
+                String.format("%04d", l.getIdLivro()),
+                l.getTitulo(),
+                l.getAutor().getNomeAutor(),
+                l.getEditora().getNomeEditora(),
+                l.getEdicao() + "",
+                l.getAnoPublicacao() + "",
+                l.getAreaConhecimento().getCdd() + "-" + l.getAreaConhecimento().getDescricaoAreaConhecimento(),
+                l.getIsbn()
+            };
+            linhas[cont] = linha;
+            cont++;
+        }
     }
 
     private void addLinhasAreaConhecimento(Object colecao) {

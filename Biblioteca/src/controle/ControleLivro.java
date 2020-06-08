@@ -8,6 +8,7 @@ package controle;
 import classes.Livro;
 import interfaces.ICRUDLivro;
 import java.util.ArrayList;
+import persistencia.PersistenciaLivro;
 
 /**
  *
@@ -15,29 +16,44 @@ import java.util.ArrayList;
  */
 public class ControleLivro implements ICRUDLivro {
 
-    @Override
-    public ArrayList<Livro> listar() {
-        return new ArrayList<>();
+    private ICRUDLivro persistencia = null;
+    private ArrayList<Livro> colecao = null;
+
+    public ControleLivro() throws Exception {
+        persistencia = new PersistenciaLivro();
     }
 
     @Override
-    public Livro buscarPeloId(int id) throws Exception {
-        return new Livro();
+    public ArrayList<Livro> listar() throws Exception {
+        return persistencia.listar();
     }
 
     @Override
+    public Livro buscarPeloId(int idLivro) throws Exception {
+        return persistencia.buscarPeloId(idLivro);
+    }
+
+    @Override
+
     public void incluir(Livro livro) throws Exception {
-        
+        // Fazer a validação
+        //validarPreenchimento(areaConhecimento.getCdd(), areaConhecimento.getDescricaoAreaConhecimento());
+        //colecao = listar();
+        //validarDuplicidade(areaConhecimento);
+        persistencia.incluir(livro);
     }
 
     @Override
     public void alterar(Livro livro) throws Exception {
+        // Fazer validação
+        persistencia.alterar(livro);
 
     }
 
     @Override
     public void excluir(int idLivro) throws Exception {
 
+        // Fazer validação para excluir
+        persistencia.excluir(idLivro);
     }
-
 }
