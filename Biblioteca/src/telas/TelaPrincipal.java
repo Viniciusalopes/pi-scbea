@@ -119,6 +119,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         break;
 
                     case "AUTOR":
+                        controleAutor.excluir(id);
                         break;
 
                     case "COLABORADOR":
@@ -129,23 +130,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         break;
 
                     case "EDITORA":
+                        controleEditora.excluir(id);
                         break;
 
                     case "EMPRESTIMO":
+                        controleEmprestimo.excluir(id);
                         break;
 
                     case "EXEMPLAR":
+                        controleExemplar.excluir(id);
                         break;
 
                     case "LIVRO":
-                       controleLivro.excluir(id);
+                        controleLivro.excluir(id);
                         break;
 
                     case "RESERVA":
+                        controleReserva.excluir(id);
                         break;
                 }
 
-                mensagem.sucesso(cadastro + " excluído com sucesso!");
+                mensagem.sucesso("Cadastro de " + cadastro + " excluído com sucesso!");
             }
             exibirCadastros();
         } catch (Exception e) {
