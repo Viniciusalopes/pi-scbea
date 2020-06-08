@@ -60,11 +60,96 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Colunas do grid
     private ArrayList<ColunaGrid> colunas = null;
 
+    // Objeto genérico para armazenar as coleções de objetos
     private Object colecao = null;
 
     //--- FIM ATRIBUTOS -------------------------------------------------------|
     //
     //--- MÉTODOS ------------------------------------------------------------->
+    //
+    //--- MÉTODOS PARA CRUD --------------------------------------------------->
+    //
+    private void incluirCadastro() throws Exception {
+        try {
+            telaCadastro.setId(0);
+            telaCadastro.setAcao(EnumAcao.Incluir);
+            telaCadastro.setVisible(true);
+            exibirCadastros();
+        } catch (Exception e) {
+            throw new Exception("Erro ao incluir o cadastro!\n" + e);
+        }
+    }
+
+    private void editarCadastro() throws Exception {
+        try {
+            telaCadastro.setId(getId());
+            telaCadastro.setAcao(EnumAcao.Editar);
+            telaCadastro.setVisible(true);
+            exibirCadastros();
+        } catch (Exception e) {
+            throw new Exception("Erro ao editar o cadastro!\n" + e);
+        }
+    }
+
+    private void detalheCadastro() throws Exception {
+        try {
+            telaCadastro.setId(getId());
+            telaCadastro.setAcao(EnumAcao.Editar);
+            telaCadastro.setVisible(true);
+            exibirCadastros();
+        } catch (Exception e) {
+            throw new Exception("Erro ao detalhar o cadastro!\n" + e);
+        }
+    }
+
+    private void excluirCadastro() throws Exception {
+        try {
+            int id = getId();
+            String textoPergunta = "Deseja realmente excluir o cadastro selecionado?\n"
+                    + "(-) " + cadastro + " ID: " + String.format("%04d", id);
+
+            if (mensagem.pergunta(textoPergunta) == 0) {
+
+                switch (cadastro.toString()) {
+                    case "AREACONHECIMENTO":
+                        controleAreaConhecimento.excluir(id);
+                        break;
+
+                    case "AUTOR":
+                        break;
+
+                    case "COLABORADOR":
+                        controleColaborador.excluir(id);
+                        break;
+
+                    case "CONFIGURACAO":
+                        break;
+
+                    case "EDITORA":
+                        break;
+
+                    case "EMPRESTIMO":
+                        break;
+
+                    case "EXEMPLAR":
+                        break;
+
+                    case "LIVRO":
+                        break;
+
+                    case "RESERVA":
+                        break;
+                }
+
+                mensagem.sucesso(cadastro + " excluído com sucesso!");
+            }
+            exibirCadastros();
+        } catch (Exception e) {
+            throw new Exception("Erro ao excluir o cadastro!\n" + e);
+        }
+    }
+
+    //--- FIM MÉTODOS PARA CRUD -----------------------------------------------|
     //
     //--- MÉTODOS PARA GRID --------------------------------------------------->
     //
@@ -239,89 +324,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     //--- FIM MÉTODOS PARA GRID -----------------------------------------------|
-    //
-    //--- MÉTODOS PARA CRUD --------------------------------------------------->
-    private void incluirCadastro() throws Exception {
-        try {
-            telaCadastro.setId(0);
-            telaCadastro.setAcao(EnumAcao.Incluir);
-            telaCadastro.setVisible(true);
-            exibirCadastros();
-        } catch (Exception e) {
-            throw new Exception("Erro ao incluir o cadastro!\n" + e);
-        }
-    }
-
-    private void editarCadastro() throws Exception {
-        try {
-            telaCadastro.setId(getId());
-            telaCadastro.setAcao(EnumAcao.Editar);
-            telaCadastro.setVisible(true);
-            exibirCadastros();
-        } catch (Exception e) {
-            throw new Exception("Erro ao editar o cadastro!\n" + e);
-        }
-    }
-
-    private void detalheCadastro() throws Exception {
-        try {
-            telaCadastro.setId(getId());
-            telaCadastro.setAcao(EnumAcao.Editar);
-            telaCadastro.setVisible(true);
-            exibirCadastros();
-        } catch (Exception e) {
-            throw new Exception("Erro ao detalhar o cadastro!\n" + e);
-        }
-    }
-
-    private void excluirCadastro() throws Exception {
-        try {
-            int id = getId();
-            String textoPergunta = "Deseja realmente excluir o cadastro selecionado?\n"
-                    + "(-) " + cadastro + " ID: " + String.format("%04d", id);
-
-            if (mensagem.pergunta(textoPergunta) == 0) {
-
-                switch (cadastro.toString()) {
-                    case "AREACONHECIMENTO":
-                        controleAreaConhecimento.excluir(id);
-                        break;
-
-                    case "AUTOR":
-                        break;
-
-                    case "COLABORADOR":
-                        controleColaborador.excluir(id);
-                        break;
-
-                    case "CONFIGURACAO":
-                        break;
-
-                    case "EDITORA":
-                        break;
-
-                    case "EMPRESTIMO":
-                        break;
-
-                    case "EXEMPLAR":
-                        break;
-
-                    case "LIVRO":
-                        break;
-
-                    case "RESERVA":
-                        break;
-                }
-
-                mensagem.sucesso(cadastro + " excluído com sucesso!");
-            }
-            exibirCadastros();
-        } catch (Exception e) {
-            throw new Exception("Erro ao excluir o cadastro!\n" + e);
-        }
-    }
-
-    //--- FIM MÉTODOS PARA CRUD -----------------------------------------------|
     //
     //--- FIM MÉTODOS ---------------------------------------------------------|
     //

@@ -3,21 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package enumeradores;
+package classes;
 
 /**
  *
  * @author vovostudio
  */
-public enum EnumTipoStatus {
-    ATIVO,
-    INATIVO,
-    DISPONIVEL,
-    EMPRESTADO,
-    PENDENTE,
-    ATRASADO,
-    DEVOLVIDO,
-    ADIMPLENTE,
-    INADIMPLENTE,
-    RESERVADO
+public class ReservasDoColaborador {
+
+    public int getQuantidadeReservas() {
+        return 0;
+    }
 }

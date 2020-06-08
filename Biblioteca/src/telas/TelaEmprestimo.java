@@ -5,19 +5,13 @@
  */
 package telas;
 
-import classes.Colaborador;
-import classes.Emprestimo;
-import classes.Exemplar;
-import classes.Livro;
-import classes.Reserva;
-import controle.ControleColaborador;
+import controle.ControleTelaEmprestimo;
 import enumeradores.EnumAcao;
-import interfaces.ICRUDColaborador;
-import interfaces.ICRUDEmprestimo;
-import interfaces.ICRUDExemplar;
-import interfaces.ICRUDLivro;
-import interfaces.ICRUDReserva;
+import enumeradores.EnumCargo;
+import enumeradores.EnumFiltrosColaborador;
+import enumeradores.EnumTipoStatus;
 import interfaces.ITelaCadastro;
+import java.util.ArrayList;
 import utilidades.Mensagens;
 
 /**
@@ -26,21 +20,32 @@ import utilidades.Mensagens;
  */
 public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro {
 
-    private int id;
+    //--- ATRIBUTOS ----------------------------------------------------------->
+    private int id = 0;
+    private int linha = 0;
+    private int coluna = 0;
+    private int valor = 0;
+    private int cont = 0;
+    private boolean incluirNoResultado = true;
+
     private Mensagens mensagem = new Mensagens();
     private EnumAcao acao = null;
-    private ICRUDColaborador controleColaborador = null;
-    private Colaborador colaborador = null;
-    private ICRUDLivro controleLivro = null;
-    private Livro livro = null;
-    private ICRUDExemplar controleExemplar = null;
-    private Exemplar exemplar = null;
-    private ICRUDEmprestimo controleEmprestimo = null;
-    private Emprestimo emprestimo = null;
-    private ICRUDReserva controleReserva = null;
-    private Reserva reserva = null;
     private boolean visible = false;
+    private ControleTelaEmprestimo controleEmprestimos = null;
 
+    // Matrizes e vetores
+    private String[][] matrizFiltro = null;
+    private String[][] matrizPesquisa = null;
+    private ArrayList<String[]> resultadoPesquisa = null;
+    private String[][] matrizColaboradores = null;
+    private String[] vetorDetalhesColaborador = null;
+
+    //--- FIM ATRIBUTOS -------------------------------------------------------|
+    //
+    //--- MÉTODOS ------------------------------------------------------------->
+    //
+    //--- MÉTODOS OVERRIDE ---------------------------------------------------->
+    //
     @Override
     public void setId(int id) {
         this.id = id;
@@ -55,12 +60,20 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     @Override
     public void setVisible(boolean b) {
         try {
-            
-            controleColaborador = new ControleColaborador();
-            //controleReserva = new ControleColaborador();
-            //emprestimo = controleReserva.buscarPeloId(id);
-            //popularControles();
+            controleEmprestimos = new ControleTelaEmprestimo();
+            matrizColaboradores = controleEmprestimos.getMatrizColaboradores();
+            preencherJTableColaboradores(matrizColaboradores);
+            preencherJTableColaboradorDetalhe();
 
+            popularControles();
+            jComboBoxFiltrarColaborador.setSelectedIndex(0);
+
+            jButtonReservar.setEnabled(false);
+            jButtonCancelar.setEnabled(false);
+            jButtonEmprestar.setEnabled(false);
+            jButtonDevolver.setEnabled(false);
+
+            //emprestimo = controleReserva.buscarPeloId(id);
             if (acao.equals(EnumAcao.Incluir)) {
                 //limparCampos();
             } else if (acao.equals(EnumAcao.Editar)) {
@@ -73,29 +86,207 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         super.setVisible(b);
     }
 
-    private void popularControles() {
-//        jComboBoxCargo.removeAllItems();
-//        for (EnumCargo c : EnumCargo.values()) {
-//            jComboBoxCargo.addItem(c.toString());
-//        }
-//
-//        jComboBoxPerfil.removeAllItems();
-//        for (EnumPerfil p : EnumPerfil.values()) {
-//            jComboBoxPerfil.addItem(p.toString());
-//        }
-//
-//        jComboBoxStatus.removeAllItems();
-//        for (EnumTipoStatus t : EnumTipoStatus.values()) {
-//            if (t.equals(EnumTipoStatus.ATIVO) || t.equals(EnumTipoStatus.INATIVO)) {
-//                jComboBoxStatus.addItem(t.toString());
-//            }
-//        }
-//
-//        jComboBoxUF.removeAllItems();
-//        for (EnumUF u : EnumUF.values()) {
-//            jComboBoxUF.addItem(u.toString());
-//        }
+    //--- FIM MÉTODOS OVERRIDE ------------------------------------------------|
+    //
+    //--- MÉTODOS PARA CRUD --------------------------------------------------->
+    //
+    private void incluirCadastro() throws Exception {
+    }
 
+    private void editarCadastro() throws Exception {
+    }
+
+    private void detalheCadastro() throws Exception {
+    }
+
+    private void excluirCadastro() throws Exception {
+    }
+
+    //--- FIM MÉTODOS PARA CRUD -----------------------------------------------|
+    //
+    //--- MÉTODOS PARA GRID --------------------------------------------------->
+    //
+    private void filtrarColaboradores(int filtro) throws Exception {
+        if (matrizColaboradores != null) {
+            if (matrizColaboradores.length > 0) {
+                if (filtro >= 0) {
+                    resultadoPesquisa = new ArrayList<>();
+                    coluna = 0;
+
+                    for (int i = 0; i < matrizColaboradores.length; i++) {
+                        incluirNoResultado = false;
+                        switch (filtro) {
+                            case -1: // Não tem filtro selecionado
+                                break;
+
+                            case 0: // TODOS
+                                matrizPesquisa = matrizColaboradores;
+                                incluirNoResultado = true;
+                                break;
+
+                            case 1: // ATIVOS
+                                incluirNoResultado = (EnumTipoStatus.valueOf(matrizColaboradores[i][8]) == EnumTipoStatus.ATIVO);
+                                break;
+
+                            case 2: // INATIVOS
+                                incluirNoResultado = (EnumTipoStatus.valueOf(matrizColaboradores[i][8]) == EnumTipoStatus.INATIVO);
+                                break;
+
+                            case 3: // ADIMPLENTE
+                                incluirNoResultado = (Float.parseFloat(matrizColaboradores[i][10].replace(",", ".")) == 0.0);
+                                break;
+
+                            case 4: // INADIMPLENTE
+                                incluirNoResultado = (Float.parseFloat(matrizColaboradores[i][10].replace(",", ".")) > 0.0);
+                                break;
+
+                            case 5: // COM_EMPRESTIMOS
+                                coluna = 9;
+                                incluirNoResultado = (Integer.parseInt(matrizColaboradores[i][9]) > 0);
+                                break;
+
+                            case 6: // COM_RESERVAS
+                                incluirNoResultado = (Integer.parseInt(matrizColaboradores[i][11]) > 0);
+                                break;
+
+                            default:
+                                incluirNoResultado = (EnumCargo.valueOf(matrizColaboradores[i][3])
+                                        == EnumCargo.valueOf(jComboBoxFiltrarColaborador.getSelectedItem().toString()
+                                        ));
+                                break;
+
+                        }
+
+                        if (incluirNoResultado) {
+                            resultadoPesquisa.add(matrizColaboradores[i]);
+                        }
+                    }
+
+                    matrizFiltro = new String[resultadoPesquisa.size()][matrizColaboradores[0].length];
+
+                    for (int i = 0; i < resultadoPesquisa.size(); i++) {
+                        matrizFiltro[i] = resultadoPesquisa.get(i);
+                    }
+                    preencherJTableColaboradores(matrizFiltro);
+                    pesquisarColaboradores(jTextFieldPesquisarColaborador.getText().toLowerCase());
+                    preencherJTableColaboradorDetalhe();
+                }
+            }
+        }
+    }
+
+    private void pesquisarColaboradores(String texto) throws Exception {
+        try {
+            if (matrizFiltro != null) {
+                if (matrizFiltro.length > 0) {
+                    texto = texto.toLowerCase().trim();
+                    if (texto.length() == 0) {
+                        matrizPesquisa = matrizFiltro;
+                    } else {
+                        resultadoPesquisa = new ArrayList<>();
+
+                        for (int i = 0; i < matrizFiltro.length; i++) {
+                            if (matrizFiltro[i][0].toLowerCase().contains(texto)
+                                    || matrizFiltro[i][1].toLowerCase().contains(texto)
+                                    || matrizFiltro[i][2].toLowerCase().contains(texto)) {
+                                resultadoPesquisa.add(matrizFiltro[i]);
+                            }
+                        }
+
+                        matrizPesquisa = new String[resultadoPesquisa.size()][matrizFiltro[0].length];
+
+                        for (int i = 0; i < resultadoPesquisa.size(); i++) {
+                            matrizPesquisa[i] = resultadoPesquisa.get(i);
+                        }
+                    }
+                }
+                preencherJTableColaboradores(matrizPesquisa);
+                preencherJTableColaboradorDetalhe();
+            }
+
+        } catch (Exception e) {
+            mensagem.erro(new Exception("Erro ao pesquisar!" + e));
+        }
+
+    }
+
+    private void preencherJTableColaboradores(String[][] matriz) throws Exception {
+
+        jTableColaboradores.setModel(
+                new javax.swing.table.DefaultTableModel(
+                        matriz,
+                        new String[]{"ID", "Matrícula", "Nome"}) {
+
+            boolean[] canEdit = new boolean[]{false, false, false};
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+    }
+
+    private void preencherJTableColaboradorDetalhe() throws Exception {
+        linha = jTableColaboradores.getSelectedRow();
+        if (linha >= 0) {
+            id = Integer.parseInt(jTableColaboradores.getValueAt(linha, 0).toString());
+
+            for (int i = 0; i < matrizFiltro.length; i++) {
+                if (Integer.parseInt(matrizFiltro[i][0]) == id) {
+                    String[] dados = matrizFiltro[i];
+
+                    jTableColaboradorDetalhe.setValueAt(dados[0], 0, 1);
+                    jTableColaboradorDetalhe.setValueAt(dados[1], 1, 1);
+                    jTableColaboradorDetalhe.setValueAt(dados[2], 2, 1);
+                    jTableColaboradorDetalhe.setValueAt(dados[3], 3, 1);
+                    jTableColaboradorDetalhe.setValueAt(dados[4], 4, 1);
+                    jTableColaboradorDetalhe.setValueAt(dados[5], 5, 1);
+                    jTableColaboradorDetalhe.setValueAt(dados[6], 6, 1);
+                    jTableColaboradorDetalhe.setValueAt(dados[7], 7, 1);
+                    jTableColaboradorDetalhe.setValueAt(dados[8], 8, 1);
+                    jTableColaboradorDetalhe.setValueAt(dados[9], 9, 1);
+                    jTableColaboradorDetalhe.setValueAt(dados[10], 10, 1);
+                    jTableColaboradorDetalhe.setValueAt(dados[11], 11, 1);
+
+                }
+            }
+        } else {
+            for (int i = 0; i < 12; i++) {
+                jTableColaboradorDetalhe.setValueAt("", i, 1);
+            }
+        }
+    }
+
+    //--- FIM MÉTODOS PARA GRID -----------------------------------------------|
+    //
+    //--- MÉTODOS PARA AÇÕES DE BOTÕES ---------------------------------------->
+    //
+    //--- FIM MÉTODOS PARA AÇÕES DE BOTÕES  -----------------------------------|
+    //
+    //--- MÉTODOS PARA PREENCHIMENTO DA TELA ---------------------------------->
+    //
+    private void popularControles() {
+        jComboBoxFiltrarColaborador.removeAllItems();
+        jComboBoxFiltrarColaborador.addItem(EnumFiltrosColaborador.TODOS.toString());
+        jComboBoxFiltrarColaborador.addItem(EnumTipoStatus.ATIVO.toString());
+        jComboBoxFiltrarColaborador.addItem(EnumTipoStatus.INATIVO.toString());
+        jComboBoxFiltrarColaborador.addItem(EnumTipoStatus.ADIMPLENTE.toString());
+        jComboBoxFiltrarColaborador.addItem(EnumTipoStatus.INADIMPLENTE.toString());
+        jComboBoxFiltrarColaborador.addItem(EnumFiltrosColaborador.COM_EMPRÉSTIMOS.toString().replace("_", " "));
+        jComboBoxFiltrarColaborador.addItem(EnumFiltrosColaborador.COM_RESERVAS.toString().replace("_", " "));
+
+        for (EnumCargo c : EnumCargo.values()) {
+            jComboBoxFiltrarColaborador.addItem(c.toString());
+        }
+        jComboBoxFiltrarColaborador.setSelectedIndex(-1);
+
+        jComboBoxFiltrarLivro.removeAllItems();
+        jComboBoxFiltrarLivro.addItem("TODOS");
+        jComboBoxFiltrarLivro.addItem(EnumTipoStatus.ATIVO.toString());
+        jComboBoxFiltrarLivro.addItem(EnumTipoStatus.INATIVO.toString());
+        jComboBoxFiltrarLivro.addItem(EnumTipoStatus.DISPONIVEL.toString());
+        jComboBoxFiltrarLivro.addItem(EnumTipoStatus.RESERVADO.toString());
+        jComboBoxFiltrarLivro.addItem(EnumTipoStatus.EMPRESTADO.toString());
+        jComboBoxFiltrarLivro.setSelectedIndex(-1);
     }
 
     private void limparCampos() {
@@ -137,135 +328,15 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
 //        jButtonAlterarSenha.setEnabled(oProprio);
     }
 
-    private void validarPreenchimento() throws Exception {
-
-//        if (jComboBoxCargo.getSelectedIndex() == -1) {
-//            jComboBoxCargo.requestFocus();
-//            throw new Exception("Selecione o cargo!");
-//
-//        }
-//
-//        String campo = new String(jFormattedTextFieldMatricula.getText().trim());
-//        if (campo.length() == 0) {
-//            jFormattedTextFieldMatricula.requestFocus();
-//            throw new Exception("Informe o número da matrícula!");
-//        }
-//
-//        if (Integer.parseInt(campo) == 0) {
-//            jFormattedTextFieldMatricula.requestFocus();
-//            throw new Exception("O número da matrícula deve ser maior que 0 (zero)");
-//        }
-//
-//        campo = new String(jTextFieldNome.getText().trim());
-//        if (campo.length() == 0) {
-//            jTextFieldNome.requestFocus();
-//            throw new Exception("Informe o nome do colaborador!");
-//        }
-//
-//        if (campo.length() < 2) {
-//            jTextFieldNome.requestFocus();
-//            jTextFieldNome.selectAll();
-//            throw new Exception("O nome do colaborador precisa ter pelo menos duas letras!");
-//        }
-//
-//        if (!soTemLetras(campo)) {
-//            jTextFieldNome.requestFocus();
-//            jTextFieldNome.selectAll();
-//            throw new Exception("O nome do colaborador deve ter apenas letras e espaços!");
-//        }
-//
-//        campo = new String(jTextFieldOAB.getText().trim());
-//        if (campo.length() == 0) {  // Se o campo estiver vazio
-//            if (jComboBoxCargo.getSelectedItem().equals(EnumCargo.ADVOGADO.toString())) { // e for advogado
-//                throw new Exception("Informe o número da OAB");
-//            } else {
-//                if (jComboBoxUF.getSelectedIndex() != -1) { // ou selecionou a UF
-//                    if (mensagem.pergunta("Deseja informar o número da OAB ?") == 0) {
-//                        jTextFieldOAB.requestFocus();
-//                    } else {
-//                        jComboBoxUF.setSelectedIndex(-1);
-//                    }
-//                }
-//            }
-//        } else { // Se o campo não está vazio
-//
-//            if (Integer.parseInt(jTextFieldOAB.getText()) == 0) {
-//                jTextFieldOAB.requestFocus();
-//                jTextFieldOAB.selectAll();
-//                throw new Exception("O campo nº OAB precisa ser diferente de 0 (zero)");
-//            }
-//
-//            if (jComboBoxUF.getSelectedIndex() == -1) { // e não selecionou UF
-//                jTextFieldOAB.requestFocus();
-//                jTextFieldOAB.selectAll();
-//                throw new Exception("Selecione a UF da OAB!");
-//            }
-//        }
-//
-//        campo = new String(jTextFieldEmail.getText().trim());
-//        if (campo.trim().length() > 0 && !isValidEmailAddressRegex(campo)) {
-//            jTextFieldEmail.requestFocus();
-//            jTextFieldEmail.selectAll();
-//            throw new Exception("Informe um e-mail válido!");
-//        }
-//
-//        campo = new String(jFormattedTextFieldTelefone.getText().trim());
-//        if (campo.length() > 0 && !telefoneValido(campo)) {
-//            jFormattedTextFieldTelefone.requestFocus();
-//            jFormattedTextFieldTelefone.selectAll();
-//            throw new Exception("Informe um número de telefone válido!\n\n"
-//                    + "Formato válidos:\n"
-//                    + "9999-8888\n"
-//                    + "9 8888-7777\n"
-//                    + "(99) 8888-7777\n"
-//                    + "(99) 8 7777-6666");
-//        }
-//
-//        if (jComboBoxPerfil.getSelectedIndex() == -1) {
-//            jComboBoxPerfil.requestFocus();
-//            throw new Exception("Selecione o perfil!");
-//        }
-//
-//        if (jComboBoxStatus.getSelectedIndex() == -1) {
-//            throw new Exception("Selecione o status do colaborador!");
-//        }
-    }
-
-    private void salvar() throws Exception {
-//        validarPreenchimento();
-//
-//        String senha = (acao.equals(EnumAcao.Editar)) ? emprestimo.getSenha() : "";
-//
-//        emprestimo = new Colaborador();
-//
-//        if (acao.equals(EnumAcao.Incluir)) {
-//            emprestimo.setIdColaborador(id);
-//        } else if (acao.equals(EnumAcao.Editar)) {
-//            emprestimo.setIdColaborador(id);
-//        }
-//
-//        emprestimo.setNomeColaborador(jTextFieldNome.getText());
-//        emprestimo.setPerfil(EnumPerfil.valueOf(jComboBoxPerfil.getSelectedItem().toString()));
-//        emprestimo.setMatricula(Integer.parseInt(jFormattedTextFieldMatricula.getText()));
-//        emprestimo.setCargo(EnumCargo.valueOf(jComboBoxCargo.getSelectedItem().toString()));
-//        emprestimo.setOab((jTextFieldOAB.getText().trim().length() == 0) ? ""
-//                : String.format("%s-%s", jTextFieldOAB.getText(), jComboBoxUF.getSelectedItem().toString()));
-//        emprestimo.setSenha(senha);
-//        emprestimo.setEmail(jTextFieldEmail.getText());
-//        emprestimo.setTelefone(jFormattedTextFieldTelefone.getText());
-//        emprestimo.setStatus(EnumTipoStatus.valueOf(jComboBoxStatus.getSelectedItem().toString()));
-//
-//        if (acao.equals(EnumAcao.Incluir)) {
-//            controleReserva.incluir(emprestimo);
-//            mensagem.sucesso("Colaborador incluído com sucesso!");
-//        } else if (acao.equals(EnumAcao.Editar)) {
-//            controleReserva.alterar(emprestimo);
-//            mensagem.sucesso("Colaborador atualizado com sucesso!");
-//        }
-//        visible = false;
-//        this.dispose();
-    }
-
+    //--- FIM MÉTODOS PARA PREENCHIMENTO DA TELA ------------------------------|
+    //
+    //--- MÉTODOS PARA BOTÕES  ------------------------------------------------>
+    //
+    //--- FIM MÉTODOS PARA BOTÕES ---------------------------------------------|
+    //
+    //
+    //--- CONSTRUTOR ---------------------------------------------------------->
+    //
     /**
      * Creates new form TelaEmprestimo
      */
@@ -277,6 +348,8 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         this.setLocationRelativeTo(rootPane);
     }
 
+    //--- FIM CONSTRUTOR ------------------------------------------------------|
+    //
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -330,9 +403,20 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
 
         jLabelPesquisarColaborador.setText("Pesquisar");
 
+        jTextFieldPesquisarColaborador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldPesquisarColaboradorKeyReleased(evt);
+            }
+        });
+
         jLabelFiltrarColaborador.setText("Filtrar por");
 
-        jComboBoxFiltrarColaborador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Ativos", "Inativos", "Advogado", "Estagiário", "Secretária", "Adimplente", "Inadimplente", " " }));
+        jComboBoxFiltrarColaborador.setMaximumRowCount(13);
+        jComboBoxFiltrarColaborador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxFiltrarColaboradorActionPerformed(evt);
+            }
+        });
 
         jLabelColaboradorDetalhe.setText("Detalhes do colaborador:");
 
@@ -354,6 +438,11 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         });
         jTableColaboradores.getTableHeader().setResizingAllowed(false);
         jTableColaboradores.getTableHeader().setReorderingAllowed(false);
+        jTableColaboradores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableColaboradoresMouseClicked(evt);
+            }
+        });
         jScrollPaneColaborador.setViewportView(jTableColaboradores);
         if (jTableColaboradores.getColumnModel().getColumnCount() > 0) {
             jTableColaboradores.getColumnModel().getColumn(0).setMinWidth(60);
@@ -366,13 +455,13 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         jTableColaboradorDetalhe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"ID", null},
-                {"Nome", null},
-                {"Perfil", null},
                 {"Matrícula", null},
+                {"Nome", null},
                 {"Cargo", null},
                 {"OAB", null},
                 {"Email", null},
                 {"Telefone", null},
+                {"Perfil", null},
                 {"Status", null},
                 {"Empréstimos", null},
                 {"Saldo Devedor", null},
@@ -415,31 +504,33 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             .addGroup(jPanelColaboradoresLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPaneColaborador, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
-                    .addGroup(jPanelColaboradoresLayout.createSequentialGroup()
-                        .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldPesquisarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelPesquisarColaborador))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelFiltrarColaborador)
-                            .addComponent(jComboBoxFiltrarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPaneColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jLabelStatus)
                     .addComponent(jLabelColaboradorDetalhe)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(jPanelColaboradoresLayout.createSequentialGroup()
+                        .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelColaboradoresLayout.createSequentialGroup()
+                                .addComponent(jLabelFiltrarColaborador)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jComboBoxFiltrarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelPesquisarColaborador)
+                            .addComponent(jTextFieldPesquisarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelColaboradoresLayout.setVerticalGroup(
             jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelColaboradoresLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelPesquisarColaborador)
-                    .addComponent(jLabelFiltrarColaborador))
+                .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelFiltrarColaborador)
+                    .addComponent(jLabelPesquisarColaborador, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(0, 0, 0)
-                .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldPesquisarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxFiltrarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxFiltrarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldPesquisarColaborador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPaneColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -459,8 +550,6 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
 
         jLabelFliltrarLivro.setText("Filtrar por");
 
-        jComboBoxFiltrarLivro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Ativos", "Inativos", "Emprestados", "Reservados" }));
-
         jTableLivro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -477,6 +566,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 return canEdit [columnIndex];
             }
         });
+        jTableLivro.getTableHeader().setReorderingAllowed(false);
         jScrollPaneLivro.setViewportView(jTableLivro);
         if (jTableLivro.getColumnModel().getColumnCount() > 0) {
             jTableLivro.getColumnModel().getColumn(0).setMinWidth(60);
@@ -543,6 +633,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 return canEdit [columnIndex];
             }
         });
+        jTableExemplares.getTableHeader().setReorderingAllowed(false);
         jScrollPaneExemplares.setViewportView(jTableExemplares);
         if (jTableExemplares.getColumnModel().getColumnCount() > 0) {
             jTableExemplares.getColumnModel().getColumn(0).setMinWidth(60);
@@ -683,6 +774,30 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTableColaboradoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableColaboradoresMouseClicked
+        try {
+            preencherJTableColaboradorDetalhe();
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jTableColaboradoresMouseClicked
+
+    private void jTextFieldPesquisarColaboradorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarColaboradorKeyReleased
+        try {
+            pesquisarColaboradores(jTextFieldPesquisarColaborador.getText().toLowerCase());
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jTextFieldPesquisarColaboradorKeyReleased
+
+    private void jComboBoxFiltrarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFiltrarColaboradorActionPerformed
+        try {
+            filtrarColaboradores(jComboBoxFiltrarColaborador.getSelectedIndex());
+        } catch (Exception e) {
+            mensagem.erro(new Exception("Erro ao filtrar colaboradores!\n" + e));
+        }
+    }//GEN-LAST:event_jComboBoxFiltrarColaboradorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -700,13 +815,17 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEmprestimo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEmprestimo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEmprestimo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaEmprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEmprestimo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

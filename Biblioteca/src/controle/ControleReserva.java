@@ -5,10 +5,39 @@
  */
 package controle;
 
+import classes.Reserva;
+import interfaces.ICRUDReserva;
+import java.util.ArrayList;
+
 /**
  *
  * @author vovostudio
  */
-public class ControleReserva {
-    
+public class ControleReserva implements ICRUDReserva {
+
+    @Override
+    public ArrayList<Reserva> listar() throws Exception {
+        throw new UnsupportedOperationException("Método não implementado: ICRUDReserva, listar()"); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Reserva buscarPeloId(int id) throws Exception {
+        throw new UnsupportedOperationException("Método não implementado: ICRUDReserva, buscarPeloId()"); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void incluir(Reserva reserva) throws Exception {
+        throw new UnsupportedOperationException("Método não implementado: ICRUDReserva, incluir()"); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void alterar(Reserva reserva) throws Exception {
+        throw new UnsupportedOperationException("Método não implementado: ICRUDReserva, alterar()."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void excluir(Reserva reserva) throws Exception {
+        throw new UnsupportedOperationException("Método não implementado: ICRUDReserva, excluir()"); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

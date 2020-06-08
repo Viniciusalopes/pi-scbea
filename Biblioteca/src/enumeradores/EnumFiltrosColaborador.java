@@ -9,15 +9,8 @@ package enumeradores;
  *
  * @author vovostudio
  */
-public enum EnumTipoStatus {
-    ATIVO,
-    INATIVO,
-    DISPONIVEL,
-    EMPRESTADO,
-    PENDENTE,
-    ATRASADO,
-    DEVOLVIDO,
-    ADIMPLENTE,
-    INADIMPLENTE,
-    RESERVADO
+public enum EnumFiltrosColaborador {
+    TODOS,
+    COM_RESERVAS,
+    COM_EMPRÉSTIMOS
 }

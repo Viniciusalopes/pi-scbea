@@ -20,7 +20,6 @@
 21;3415;Disputas e conflitos entre países ( mediação de paz, cortes judiciais, ultimatos, coerções, sanções, intervenções)
 22;3416;Leis de guerra ( agressões, hostilidades, início de guerra )
 23;34169;Crimes de guerra
-24;3417;Cooperação internacional ( Defesa civil, forças de paz, missões militares, paz e desarmamento )
 25;34173;Paz  (direito internacional / conferências para a paz )
 26;341734;Controle de armas nucleares
 27;341735;Controle de armas químicas e biológicas

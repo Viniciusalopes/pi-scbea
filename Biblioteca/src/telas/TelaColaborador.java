@@ -84,7 +84,6 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         for (EnumUF u : EnumUF.values()) {
             jComboBoxUF.addItem(u.toString());
         }
-
     }
 
     private void limparCampos() {

@@ -3,21 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package enumeradores;
+package controle;
+
+import classes.Reserva;
+import interfaces.ICRUDReserva;
 
 /**
  *
  * @author vovostudio
  */
-public enum EnumTipoStatus {
-    ATIVO,
-    INATIVO,
-    DISPONIVEL,
-    EMPRESTADO,
-    PENDENTE,
-    ATRASADO,
-    DEVOLVIDO,
-    ADIMPLENTE,
-    INADIMPLENTE,
-    RESERVADO
+public class ControleTelaReserva {
+     private ICRUDReserva controleReserva = null;
+    private Reserva reserva = null;
 }
