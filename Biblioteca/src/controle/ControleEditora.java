@@ -12,7 +12,10 @@ ICRUDObjeto
 package controle;
 
 import classes.Editora;
+import classes.Livro;
 import interfaces.ICRUDEditora;
+import interfaces.ICRUDLivro;
+import interfaces.ICRUDReserva;
 import java.util.ArrayList;
 import persistencia.PersistenciaEditora;
 
@@ -21,20 +24,20 @@ import persistencia.PersistenciaEditora;
  * @author lucas
  */
 public class ControleEditora implements ICRUDEditora {
-     private ICRUDEditora persistencia ;
-     private ArrayList<Editora> colecao;
+
+    private ICRUDEditora persistencia = null;
+    private ArrayList<Editora> colecao = null;
+    private ICRUDLivro controleLivro = null;
 
     public ControleEditora() throws Exception {
         persistencia = new PersistenciaEditora();
         colecao = new ArrayList<>();
     }
-     
-     
-    
+
     @Override
     public ArrayList<Editora> listar() throws Exception {//ok
-    return persistencia.listar();
-    
+        return persistencia.listar();
+
     }
 
     @Override
@@ -44,14 +47,14 @@ public class ControleEditora implements ICRUDEditora {
 
     @Override
     public void incluir(Editora editora) throws Exception {//ok
-         if (editora.getNomeEditora().trim().length() < 2) {
+        if (editora.getNomeEditora().trim().length() < 2) {
             throw new Exception("Nome não pode ficar em branco!");
         }
 
         if (editora.getNomeEditora().toLowerCase().charAt(0) == editora.getNomeEditora().toLowerCase().charAt(1)) {
             throw new Exception("Nome com duas letras , e ainda iguais?? ta de brinks...");
         }
-         colecao = persistencia.listar();
+        colecao = persistencia.listar();
         for (Editora objAutor : colecao) {
             if (objAutor.getNomeEditora().equals(editora.getNomeEditora())) {
                 throw new Exception("Já existe um autor cadastrado com este nome!");
@@ -63,13 +66,20 @@ public class ControleEditora implements ICRUDEditora {
 
     @Override
     public void alterar(Editora editora) throws Exception {//ok
-       colecao = listar(); 
-       persistencia.alterar(editora);
+        colecao = listar();
+        persistencia.alterar(editora);
     }
 
     @Override
     public void excluir(int idEditora) throws Exception {//ok
-      
+        colecao = listar();
+        controleLivro = new ControleLivro();
+        for (Livro livro : controleLivro.listar()) {
+            if (livro.getEditora().getIdEditora() == idEditora) {
+                throw new Exception("A editora não pode ser excluída porque está "
+                        + "vinculada ao cadastro do livro " + livro.getIdLivro() + "-" + livro.getTitulo());
+            }
+        }
+        persistencia.excluir(idEditora);
     }
-
 }
