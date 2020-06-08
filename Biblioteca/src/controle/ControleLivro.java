@@ -36,7 +36,7 @@ public class ControleLivro implements ICRUDLivro {
     }
 
     @Override
-    public void excluir(Livro livro) throws Exception {
+    public void excluir(int idLivro) throws Exception {
 
     }
 
