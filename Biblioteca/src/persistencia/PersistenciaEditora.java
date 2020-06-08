@@ -9,7 +9,6 @@ ICRUDObjeto
 package persistencia;
 
 import classes.Editora;
-import classes.Log;
 import controle.ControleArquivoTXT;
 import controle.ControleLog;
 import enumeradores.EnumAcao;
@@ -77,7 +76,7 @@ public class PersistenciaEditora implements ICRUDEditora {
                 break;
             }
         }
-            }
+    }
 
     @Override
     public void excluir(int idEditora) throws Exception {//OK

@@ -71,6 +71,15 @@ public class StringUtil {
         return true;
     }
 
+    public static boolean nomeEditoraValido(String texto) {
+        for (char c : texto.toCharArray()) {
+            if (!EnumCaracteres.Editora.getCaracteres().contains(c + "")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static boolean tamanhoEntre(String texto, int minimo, int maximo) {
         return (texto.trim().length() >= minimo && texto.trim().length() <= maximo);
     }

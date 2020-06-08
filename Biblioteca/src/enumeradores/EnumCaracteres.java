@@ -20,6 +20,7 @@ public enum EnumCaracteres {
     Numeros("0123456789"),
     Email("@_-." + Numeros.caracteres + Letras.caracteres),
     Telefone("()- " + Numeros.caracteres),
+    Editora(Letras.caracteres + Numeros.caracteres + Email.caracteres + "- "),
     EspeciaisLcase("'-=´[~]\\,.;/"),
     EspeciaisLcaseAltGr("¬¹²³£¢¬{[]}\\§/?°®ŧ←↓→øþ´ªæßðđŋħĸł´~º«»©“”µ─·̣̣°°"),
     EspeciaisUcase("\"!@#$%¨&*()_+`{^}|<>:?"),

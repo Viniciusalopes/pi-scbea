@@ -188,7 +188,8 @@ public class ControleTelaPrincipal {
             linha = new String[]{
                 String.format("%04d", a.getIdAreaConhecimento()),
                 a.getCdd() + "",
-                a.getDescricaoAreaConhecimento()};
+                a.getDescricaoAreaConhecimento()
+            };
             linhas[cont] = linha;
             cont++;
         }
@@ -202,7 +203,8 @@ public class ControleTelaPrincipal {
         for (Autor a : autores) {
             linha = new String[]{
                 String.format("%04d", a.getIdAutor()),
-                a.getNomeAutor(),};
+                a.getNomeAutor()
+            };
             linhas[cont] = linha;
             cont++;
         }
@@ -216,7 +218,8 @@ public class ControleTelaPrincipal {
         for (Editora a : editoras) {
             linha = new String[]{
                 String.format("%04d", a.getIdEditora()),
-                a.getNomeEditora(),};
+                a.getNomeEditora()
+            };
             linhas[cont] = linha;
             cont++;
         }

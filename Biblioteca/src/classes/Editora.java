@@ -10,13 +10,13 @@ Editora
 package classes;
 
 /**
- *  lucas 
+ * lucas
  */
 public class Editora {
 
     //Atributos 
     //-------------------------------------
-    private int idEditora = 0 ;
+    private int idEditora = 0;
     private String nomeEditora = "";
 
     //------------------------------------
@@ -54,10 +54,8 @@ public class Editora {
         this.nomeEditora = nomeEditora;
     }
 
-
-    @Override 
-    public String toString(){//nome da editora + id da editora 
-        return (idEditora + " ; "+ nomeEditora);
-        
+    @Override
+    public String toString() {//nome da editora + id da editora 
+        return (idEditora + ";" + nomeEditora);
     }
 }

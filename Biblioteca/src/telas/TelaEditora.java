@@ -11,6 +11,7 @@ import enumeradores.EnumAcao;
 import interfaces.ICRUDEditora;
 import interfaces.ITelaCadastro;
 import utilidades.Mensagens;
+import utilidades.StringUtil;
 
 /**
  *
@@ -47,7 +48,7 @@ public class TelaEditora extends javax.swing.JDialog implements ITelaCadastro {
     public void setVisible(boolean b) {
         try {
             controleEditora = new ControleEditora();
-
+            mensagem = new Mensagens();
             if (acao.equals(EnumAcao.Incluir)) {
                 limparCampos();
             } else if (acao.equals(EnumAcao.Editar)) {
@@ -66,11 +67,51 @@ public class TelaEditora extends javax.swing.JDialog implements ITelaCadastro {
     //--- MÉTODOS ------------------------------------------------------------->
     //
     private void limparCampos() {
-
+        jTextFieldIdEditora.setText("");
+        jTextFieldNomeEditora.setText("");
     }
 
     private void preencherCampos() {
 
+        jTextFieldIdEditora.setText(String.format("%04d", editora.getIdEditora()));
+        jTextFieldNomeEditora.setText(editora.getNomeEditora());
+    }
+
+    private void salvar() throws Exception {
+        try {
+            validarPreenchimento();
+
+            editora = new Editora();
+            editora.setNomeEditora(jTextFieldNomeEditora.getText().trim());
+
+            if (acao.equals(EnumAcao.Incluir)) {
+                controleEditora.incluir(editora);
+                mensagem.sucesso("Editora incluída com sucesso!");
+            } else if (acao.equals(EnumAcao.Editar)) {
+                editora.setIdEditora(Integer.parseInt(jTextFieldIdEditora.getText()));
+                controleEditora.alterar(editora);
+                mensagem.sucesso("Editora alterada com sucesso!");
+            }
+
+            visible = false;
+            this.dispose();
+
+        } catch (Exception e) {
+            mensagem.erro(new Exception("Erro ao salvar: \n" + e));
+        }
+    }
+
+    private void validarPreenchimento() throws Exception {
+
+        String texto = jTextFieldNomeEditora.getText().trim();
+
+        if (texto.length() == 0) {
+            throw new Exception("Informe o nome da editora!");
+        }
+
+        if (!StringUtil.nomeEditoraValido(texto)) {
+            throw new Exception("Nome da editora possui caracteres inválidos!");
+        }
     }
 
     //--- FIM MÉTODOS ---------------------------------------------------------|
@@ -108,7 +149,10 @@ public class TelaEditora extends javax.swing.JDialog implements ITelaCadastro {
 
         jLabelIdEditora.setText("ID: ");
 
+        jTextFieldIdEditora.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jTextFieldIdEditora.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldIdEditora.setText("  ");
+        jTextFieldIdEditora.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextFieldIdEditora.setEnabled(false);
 
         jButtonSalvar.setText("Salvar");
@@ -195,7 +239,11 @@ public class TelaEditora extends javax.swing.JDialog implements ITelaCadastro {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        // TODO add your handling code here:
+        try {
+            salvar();
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jTextFieldNomeEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeEditoraActionPerformed
