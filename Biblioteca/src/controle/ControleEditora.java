@@ -15,9 +15,9 @@ import classes.Editora;
 import classes.Livro;
 import interfaces.ICRUDEditora;
 import interfaces.ICRUDLivro;
-import interfaces.ICRUDReserva;
 import java.util.ArrayList;
 import persistencia.PersistenciaEditora;
+import utilidades.StringUtil;
 
 /**
  *
@@ -47,26 +47,15 @@ public class ControleEditora implements ICRUDEditora {
 
     @Override
     public void incluir(Editora editora) throws Exception {//ok
-        if (editora.getNomeEditora().trim().length() < 2) {
-            throw new Exception("Nome não pode ficar em branco!");
-        }
-
-        if (editora.getNomeEditora().toLowerCase().charAt(0) == editora.getNomeEditora().toLowerCase().charAt(1)) {
-            throw new Exception("Nome com duas letras , e ainda iguais?? ta de brinks...");
-        }
-        colecao = persistencia.listar();
-        for (Editora objAutor : colecao) {
-            if (objAutor.getNomeEditora().equals(editora.getNomeEditora())) {
-                throw new Exception("Já existe um autor cadastrado com este nome!");
-            }
-        }
-
+        validarPreenchimento(editora);
+        validarDuplicidade(editora);
         persistencia.incluir(editora);
     }
 
     @Override
     public void alterar(Editora editora) throws Exception {//ok
-        colecao = listar();
+        validarPreenchimento(editora);
+        validarDuplicidade(editora);
         persistencia.alterar(editora);
     }
 
@@ -81,5 +70,29 @@ public class ControleEditora implements ICRUDEditora {
             }
         }
         persistencia.excluir(idEditora);
+    }
+
+    private void validarPreenchimento(Editora editora) throws Exception {
+        if (editora.getNomeEditora().trim().length() < 2) {
+            throw new Exception("Nome não pode ficar em branco!");
+        }
+
+        if (editora.getNomeEditora().toLowerCase().charAt(0) == editora.getNomeEditora().toLowerCase().charAt(1)) {
+            throw new Exception("Nome com duas letras , e ainda iguais?? ta de brinks...");
+        }
+
+        if (!StringUtil.nomeEditoraValido(editora.getNomeEditora())) {
+            throw new Exception("Nome da editora possui caracteres inválidos!");
+        }
+    }
+
+    private void validarDuplicidade(Editora editora) throws Exception {
+        colecao = listar();
+        for (Editora e : colecao) {
+            if (e.getNomeEditora().equalsIgnoreCase(editora.getNomeEditora())
+                    && e.getIdEditora() != editora.getIdEditora()) {
+                throw new Exception("Já existe uma editora cadastrada com este nome!");
+            }
+        }
     }
 }

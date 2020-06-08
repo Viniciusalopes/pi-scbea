@@ -28,6 +28,6 @@ public interface ICRUDReserva {
 
     void alterar(Reserva reserva) throws Exception;
 
-    void excluir(Reserva reserva) throws Exception;
+    void excluir(int idReserva) throws Exception;
 
 }

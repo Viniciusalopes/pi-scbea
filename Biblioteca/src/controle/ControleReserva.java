@@ -36,7 +36,7 @@ public class ControleReserva implements ICRUDReserva {
     }
 
     @Override
-    public void excluir(Reserva reserva) throws Exception {
+    public void excluir(int idReserva) throws Exception {
         throw new UnsupportedOperationException("Método não implementado: ICRUDReserva, excluir()"); //To change body of generated methods, choose Tools | Templates.
     }
 
