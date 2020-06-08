@@ -19,23 +19,24 @@ import persistencia.PersistenciaExemplar;
  * @author vovostudio
  */
 public class ControleExemplar implements ICRUDExemplar {
-    private ICRUDExemplar persistencia = null ;
-    private ArrayList<Exemplar> colecao;
+
+    private ICRUDExemplar persistencia = null;
+    private ArrayList<Exemplar> colecao = null;
 
     public ControleExemplar() throws Exception {
-        persistencia = new PersistenciaExemplar() {};
-        this.colecao = colecao;
+        persistencia = new PersistenciaExemplar();
+        colecao = new ArrayList<>();
     }
-    
 
     @Override
+
     public ArrayList<Exemplar> listar() throws Exception {
-     return persistencia.listar();
+        return persistencia.listar();
     }
 
     @Override
     public Exemplar buscarPeloId(int idExmplar) throws Exception {
-             return persistencia.buscarPeloId(idExmplar);
+        return persistencia.buscarPeloId(idExmplar);
 
     }
 
@@ -47,25 +48,22 @@ public class ControleExemplar implements ICRUDExemplar {
 
     @Override
     public void alterar(Exemplar exemplar) throws Exception {
-     colecao = listar();
-     persistencia.alterar(exemplar);
+        colecao = listar();
+        persistencia.alterar(exemplar);
     }
 
     @Override
     public void excluir(int idExemplar) throws Exception {
         ICRUDEmprestimo controleEmprestimo = new ControleEmprestimo();
-        
+
         ArrayList<Emprestimo> emprestimos = controleEmprestimo.listar();
         //se o livro ja foi alguma vez emprestado nao pode ser excluido 
         for (Emprestimo emprestimo : emprestimos) {
             if (emprestimo.getExemplar().getIdExemplar() == idExemplar) {
                 throw new Exception("este exemplar já foi emprestado por isso não pode ser excluido! ");
-                
-                
+
             }
         }
         persistencia.excluir(idExemplar);
     }
 }
-
-

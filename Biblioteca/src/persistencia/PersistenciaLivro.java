@@ -10,7 +10,10 @@ import controle.ControleAreaConhecimento;
 import controle.ControleArquivoTXT;
 import controle.ControleAutor;
 import controle.ControleEditora;
+import controle.ControleLog;
+import enumeradores.EnumAcao;
 import enumeradores.EnumArquivosBd;
+import enumeradores.EnumCadastro;
 import interfaces.IArquivoTXT;
 import interfaces.ICRUDAreaConhecimento;
 import interfaces.ICRUDAutor;
@@ -41,7 +44,6 @@ public class PersistenciaLivro implements ICRUDLivro {
             controleEditora = new ControleEditora();
             controleAutor = new ControleAutor();
             controleAreaConhecimento = new ControleAreaConhecimento();
-
         } catch (Exception e) {
             throw new Exception("Erro ao construir a classe Livro!\n" + e);
         }
@@ -90,7 +92,7 @@ public class PersistenciaLivro implements ICRUDLivro {
     @Override
     public void incluir(Livro livro) throws Exception {
         livro.setIdLivro(GeradorID.getProximoID());       //Obter o próximo ID único
-        controleArquivoTXT.incluirLinha(livro.toString());           //Gravar a linha no arquivoTXT
+        controleArquivoTXT.incluirLinha(livro.toString().replaceAll("\n", "____"));           //Gravar a linha no arquivoTXT
     }
 
     @Override
@@ -106,7 +108,14 @@ public class PersistenciaLivro implements ICRUDLivro {
 
     @Override
     public void excluir(int idLivro) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        linhas = controleArquivoTXT.lerArquivo();
+        for (String linha : linhas) {
+            if (Integer.parseInt(linha.split(";")[0]) == idLivro) {
+                controleArquivoTXT.excluirLinha(linha);
+                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.LIVRO, linha);
+                break;
+            }
+        }
     }
 
 }

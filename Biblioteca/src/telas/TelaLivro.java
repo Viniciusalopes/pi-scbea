@@ -163,7 +163,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
             visible = false;
             this.dispose();
         } catch (Exception e) {
-            throw new Exception("Erro ao salvar o cadastro do livro!");
+            throw new Exception("Erro ao salvar o cadastro do livro!\n" + e);
         }
     }
 

@@ -5,10 +5,15 @@
  */
 package controle;
 
+import classes.Emprestimo;
 import classes.Livro;
+import classes.Reserva;
+import interfaces.ICRUDEmprestimo;
 import interfaces.ICRUDLivro;
+import interfaces.ICRUDReserva;
 import java.util.ArrayList;
 import persistencia.PersistenciaLivro;
+import static utilidades.StringUtil.textoSoComNumeros;
 
 /**
  *
@@ -17,10 +22,13 @@ import persistencia.PersistenciaLivro;
 public class ControleLivro implements ICRUDLivro {
 
     private ICRUDLivro persistencia = null;
+    private ICRUDEmprestimo controleEmprestimo = null;
+    private ICRUDReserva controleReserva = null;
     private ArrayList<Livro> colecao = null;
 
     public ControleLivro() throws Exception {
         persistencia = new PersistenciaLivro();
+        colecao = new ArrayList<>();
     }
 
     @Override
@@ -36,16 +44,14 @@ public class ControleLivro implements ICRUDLivro {
     @Override
 
     public void incluir(Livro livro) throws Exception {
-        // Fazer a validação
-        //validarPreenchimento(areaConhecimento.getCdd(), areaConhecimento.getDescricaoAreaConhecimento());
-        //colecao = listar();
-        //validarDuplicidade(areaConhecimento);
+
+        validarDuplicidade(livro);
         persistencia.incluir(livro);
     }
 
     @Override
     public void alterar(Livro livro) throws Exception {
-        // Fazer validação
+        validarDuplicidade(livro);
         persistencia.alterar(livro);
 
     }
@@ -53,7 +59,40 @@ public class ControleLivro implements ICRUDLivro {
     @Override
     public void excluir(int idLivro) throws Exception {
 
-        // Fazer validação para excluir
+        controleEmprestimo = new ControleEmprestimo();
+        for (Emprestimo e : controleEmprestimo.listar()) {
+            if (e.getExemplar().getLivro().getIdLivro() == idLivro) {
+                throw new Exception("O livro já foi emprestado e não pode ser excluído!\n"
+                        + "Empréstimo: " + e.getIdEmprestimo() + "-" + e.getColaborador().getNomeColaborador());
+            }
+        }
+        controleReserva = new ControleReserva();
+        for (Reserva r : controleReserva.listar()) {
+            if (r.getLivro().getIdLivro() == idLivro) {
+                throw new Exception("O livro está reservador e não pode ser excluído!\n"
+                        + "Reserva: " + r.getIdReserva() + "-" + r.getColaborador().getNomeColaborador());
+            }
+        }
+
         persistencia.excluir(idLivro);
+    }
+
+    private void validarDuplicidade(Livro livro) throws Exception {
+
+        for (Livro l : persistencia.listar()) {
+            String identificacaoLivro = String.format("%04d", l.getIdLivro()) + "-" + l.getTitulo();
+
+            if (textoSoComNumeros(l.getIsbn()).equals(textoSoComNumeros(livro.getIsbn()))
+                    && l.getIdLivro() != livro.getIdLivro()) {
+                throw new Exception("Já existe um livro cadastrado com esse ISBN!\n"
+                        + "Livro: " + identificacaoLivro);
+            }
+
+            if (l.toString().replace(l.getIsbn(), "").equalsIgnoreCase(livro.toString().replace(livro.getIsbn(), ""))
+                    && l.getIdLivro() != livro.getIdLivro()) {
+                throw new Exception("Já existe um livro cadastrado com esses dados!\n"
+                        + "Livro: " + identificacaoLivro);
+            }
+        }
     }
 }
