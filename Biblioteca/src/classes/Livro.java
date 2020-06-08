@@ -23,18 +23,19 @@ public class Livro {
 //-------------------------------------
     //atributos 
 
-    private int idLivro;
-    private Editora editora;
-    private Autor autor;
-    private AreaConhecimento areaConhecimento;
-    private String titulo;
-    private String descricaoLivro;
-    private String isbn;
-    private int anoPublicacao;
+    private int idLivro = 0;
+    private Editora editora = null;
+    private Autor autor = null;
+    private AreaConhecimento areaConhecimento = null;
+    private String titulo = "";
+    private String descricaoLivro = "";
+    private int edicao = 0;
+    private String isbn = "";
+    private int anoPublicacao = 0;
+
     //-------------------------------------
     //construtores 
     //-------------------------------------
-
     public Livro() {
 
     }
@@ -47,6 +48,7 @@ public class Livro {
         areaConhecimento = livro.areaConhecimento;
         titulo = livro.titulo;
         descricaoLivro = livro.descricaoLivro;
+        edicao = livro.edicao;
         isbn = livro.isbn;
         anoPublicacao = livro.anoPublicacao;
         //-------------------------------------
@@ -54,7 +56,7 @@ public class Livro {
     }
 
     public Livro(int idLivro, Editora editora, Autor autor, AreaConhecimento areaConhecimento,
-            String titulo, String descricaoLivro, String isbn, int anoPublicacao) {
+            String titulo, String descricaoLivro, int edicao, String isbn, int anoPublicacao) {
         //-------------------------------------
         this.idLivro = idLivro;
         this.editora = editora;
@@ -62,6 +64,7 @@ public class Livro {
         this.areaConhecimento = areaConhecimento;
         this.titulo = titulo;
         this.descricaoLivro = descricaoLivro;
+        this.edicao = edicao;
         this.isbn = isbn;
         this.anoPublicacao = anoPublicacao;
         //-------------------------------------      
@@ -117,6 +120,14 @@ public class Livro {
         this.descricaoLivro = descricaoLivro;
     }
 
+    public int getEdicao() {
+        return edicao;
+    }
+
+    public void setEdicao(int edicao) {
+        this.edicao = edicao;
+    }
+
     public String getIsbn() {
         return isbn;
     }
@@ -137,8 +148,6 @@ public class Livro {
     public String toString() {
         return idLivro + ";" + editora.getIdEditora() + ";" + autor.getIdAutor() + ";"
                 + areaConhecimento.getIdAreaConhecimento() + ";" + titulo + ";"
-                + descricaoLivro + ";" + isbn + ";" + anoPublicacao;
-
+                + descricaoLivro + ";" + edicao + ";" + isbn + ";" + anoPublicacao;
     }
-
 }
