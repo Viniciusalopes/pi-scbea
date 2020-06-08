@@ -98,7 +98,7 @@ public class PersistenciaLivro implements ICRUDLivro {
         linhas = controleArquivoTXT.lerArquivo();
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == livro.getIdLivro()) {
-                controleArquivoTXT.alterarLinha(linha, livro.toString().replaceAll("\\\\n", "____"));
+                controleArquivoTXT.alterarLinha(linha, livro.toString().replaceAll("\n", "____"));
                 break;
             }
         }
