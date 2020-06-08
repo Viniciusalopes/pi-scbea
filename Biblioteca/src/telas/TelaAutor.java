@@ -64,19 +64,19 @@ public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
         String campo = new String(jTextFieldNomeAutor.getText().trim());
         if (campo.length() == 0) {
             jTextFieldNomeAutor.requestFocus();
-            throw new Exception("Informe o nome do colaborador!");
+            throw new Exception("Informe o nome do autor!");
         }
 
         if (campo.length() < 2) {
             jTextFieldNomeAutor.requestFocus();
             jTextFieldNomeAutor.selectAll();
-            throw new Exception("O nome do colaborador precisa ter pelo menos duas letras!");
+            throw new Exception("O nome do autor precisa ter pelo menos duas letras!");
         }
 
         if (!soTemLetras(campo)) {
             jTextFieldNomeAutor.requestFocus();
             jTextFieldNomeAutor.selectAll();
-            throw new Exception("O nome do colaborador deve ter apenas letras e espaços!");
+            throw new Exception("O nome do autor deve ter apenas letras e espaços!");
         }
     }
 
