@@ -1,4 +1,4 @@
-package modelos.utilidades;
+package utilidades;
 
 /**
  * Classe para validação do ISBN com 13 dígitos
