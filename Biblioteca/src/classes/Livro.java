@@ -148,6 +148,6 @@ public class Livro {
     public String toString() {
         return idLivro + ";" + editora.getIdEditora() + ";" + autor.getIdAutor() + ";"
                 + areaConhecimento.getIdAreaConhecimento() + ";" + titulo + ";"
-                + descricaoLivro + ";" + edicao + ";" + isbn + ";" + anoPublicacao;
+                + descricaoLivro.replaceAll("\\\\n", "\n") + ";" + edicao + ";" + isbn + ";" + anoPublicacao;
     }
 }
