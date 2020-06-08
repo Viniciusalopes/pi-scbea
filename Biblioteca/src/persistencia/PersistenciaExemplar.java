@@ -7,12 +7,16 @@ package persistencia;
 
 import classes.Exemplar;
 import controle.ControleArquivoTXT;
+import controle.ControleLivro;
 import controle.ControleLog;
 import enumeradores.EnumAcao;
 import enumeradores.EnumArquivosBd;
 import enumeradores.EnumCadastro;
+import enumeradores.EnumTipoStatus;
 import interfaces.IArquivoTXT;
 import interfaces.ICRUDExemplar;
+import interfaces.ICRUDLivro;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import telas.Vai;
 import utilidades.GeradorID;
@@ -27,20 +31,29 @@ public class PersistenciaExemplar implements ICRUDExemplar {
     private ArrayList<Exemplar> colecao = null;
     private Exemplar exemplar = null;
     private ArrayList<String> linhas = null;
+    private ICRUDLivro controleLivro = null;
 
     public PersistenciaExemplar() throws Exception {
         controleArquivoTXT = new ControleArquivoTXT(Vai.CONFIGURACAO.getCaminhoBdCliente(),
                 EnumArquivosBd.EXEMPLAR.getNomeArquivo()
         );
+        controleLivro = new ControleLivro();
     }
 
     @Override
     public ArrayList<Exemplar> listar() throws Exception {
-          colecao = new ArrayList<>();
+        colecao = new ArrayList<>();
         linhas = controleArquivoTXT.lerArquivo();
         for (String linha : linhas) {
             String[] dados = linha.split(";");
-            exemplar = new Exemplar(Integer.parseInt(dados[0]), dados[1]);
+            exemplar = new Exemplar(
+                    Integer.parseInt(dados[0]),
+                    controleLivro.buscarPeloId(Integer.parseInt(dados[1])),
+                    EnumTipoStatus.values()[Integer.parseInt(dados[2])],
+                    new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(dados[3]),
+                    Float.parseFloat(dados[4].replace(",", ".")),
+                    dados[5]
+            );
             colecao.add(exemplar);
         }
         return colecao;
@@ -48,25 +61,25 @@ public class PersistenciaExemplar implements ICRUDExemplar {
 
     @Override
     public Exemplar buscarPeloId(int idExmplar) throws Exception {
-    listar();
+        listar();
         for (Exemplar e : colecao) {
-            if (e.getIdExemplar()== idExmplar) {
+            if (e.getIdExemplar() == idExmplar) {
                 return e;
             }
         }
         return null;
-    
+
     }
 
     @Override
     public void incluir(Exemplar exemplar) throws Exception {
-       exemplar.setIdExemplar(GeradorID.getProximoID());
+        exemplar.setIdExemplar(GeradorID.getProximoID());
         controleArquivoTXT.incluirLinha(exemplar.toString());
     }
 
     @Override
     public void alterar(Exemplar exemplar) throws Exception {
-      linhas = controleArquivoTXT.lerArquivo();
+        linhas = controleArquivoTXT.lerArquivo();
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == exemplar.getIdExemplar()) {
                 controleArquivoTXT.alterarLinha(linha, exemplar.toString());
@@ -74,10 +87,10 @@ public class PersistenciaExemplar implements ICRUDExemplar {
             }
         }
     }
-    
+
     @Override
     public void excluir(int IdExemplar) throws Exception {
-       linhas = controleArquivoTXT.lerArquivo();
+        linhas = controleArquivoTXT.lerArquivo();
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == IdExemplar) {
                 controleArquivoTXT.excluirLinha(linha);
@@ -88,5 +101,3 @@ public class PersistenciaExemplar implements ICRUDExemplar {
 
     }
 }
-
-  

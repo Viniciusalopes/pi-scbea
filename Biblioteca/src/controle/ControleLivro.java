@@ -6,17 +6,38 @@
 package controle;
 
 import classes.Livro;
+import interfaces.ICRUDLivro;
 import java.util.ArrayList;
 
 /**
  *
  * @author vovostudio
  */
-public class ControleLivro {
+public class ControleLivro implements ICRUDLivro {
 
+    @Override
     public ArrayList<Livro> listar() {
-
         return new ArrayList<>();
+    }
+
+    @Override
+    public Livro buscarPeloId(int id) throws Exception {
+        return new Livro();
+    }
+
+    @Override
+    public void incluir(Livro livro) throws Exception {
+
+    }
+
+    @Override
+    public void alterar(Livro livro) throws Exception {
+
+    }
+
+    @Override
+    public void excluir(Livro livro) throws Exception {
+
     }
 
 }
