@@ -14,7 +14,10 @@ import controle.ControleAutor;
 import controle.ControleColaborador;
 import controle.ControleEditora;
 import controle.ControleEmprestimo;
+import controle.ControleExemplar;
+import controle.ControleLivro;
 import controle.ControleLog;
+import controle.ControleReserva;
 import enumeradores.EnumAcao;
 import enumeradores.EnumCadastro;
 import interfaces.ICRUDAreaConhecimento;
@@ -298,6 +301,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     break;
 
                 case "EDITORA":
+                    colecao = controleEditora.listar();
                     break;
 
                 case "EMPRESTIMO":
@@ -308,6 +312,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     break;
 
                 case "LIVRO":
+                    colecao = controleLivro.listar();
                     break;
 
                 case "RESERVA":
@@ -352,9 +357,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             controleColaborador = new ControleColaborador();
             controleEditora = new ControleEditora();
             controleEmprestimo = new ControleEmprestimo();
-            //controleExemplar = new ControleExemplar();
-            //controleLivro = new ControleLivro();
-            //controleReserva = new ControleReserva();
+            controleExemplar = new ControleExemplar();
+            controleLivro = new ControleLivro();
+            controleReserva = new ControleReserva();
             controleLog = new ControleLog();
 
             jRadioButtonLivrosActionPerformed(null);
@@ -671,7 +676,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             telaCadastro = null;
             exibirCadastros();
-            //telaCadastro = new TelaLivro(this, true);
+            telaCadastro = new TelaLivro(this, true);
         } catch (Exception e) {
             mensagem.erro(e);
         }
@@ -701,7 +706,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             telaCadastro = null;
             exibirCadastros();
-            //telaCadastro = new TelaEditora(this, true);
+            telaCadastro = new TelaEditora(this, true);
         } catch (Exception e) {
             mensagem.erro(e);
         }

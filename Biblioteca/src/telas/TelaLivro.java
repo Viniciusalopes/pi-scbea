@@ -5,12 +5,78 @@
  */
 package telas;
 
+import classes.Livro;
+import controle.ControleLivro;
+import enumeradores.EnumAcao;
+import interfaces.ICRUDLivro;
+import interfaces.ITelaCadastro;
+import utilidades.Mensagens;
+
 /**
  *
  * @author Vinicius
  */
-public class TelaLivro extends javax.swing.JDialog {
+public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
 
+    //--- ATRIBUTOS ----------------------------------------------------------->
+    //
+    private int id;
+    private EnumAcao acao = null;
+    private ICRUDLivro controleLivro = null;
+    private Mensagens mensagem = null;
+    private Livro livro = null;
+    private boolean visible = false;
+
+    //
+    //--- FIM ATRIBUTOS -------------------------------------------------------|
+    //
+    //--- OVERRIDE ------------------------------------------------------------>
+    //
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public void setAcao(EnumAcao acao) {
+        this.acao = acao;
+        this.setTitle(acao.toString() + " cadastro de livro");
+    }
+
+    @Override
+    public void setVisible(boolean b) {
+        try {
+            controleLivro = new ControleLivro();
+
+            if (acao.equals(EnumAcao.Incluir)) {
+                limparCampos();
+            } else if (acao.equals(EnumAcao.Editar)) {
+                livro = controleLivro.buscarPeloId(id);
+                preencherCampos();
+            }
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+        visible = true;
+        super.setVisible(b);
+    }
+
+    //--- FIM OVERRIDE --------------------------------------------------------|
+    //
+    //--- MÉTODOS ------------------------------------------------------------->
+    //
+    private void limparCampos() {
+
+    }
+
+    private void preencherCampos() {
+
+    }
+
+    //--- FIM MÉTODOS ---------------------------------------------------------|
+    //
+    //-- CONSTRUTOR ----------------------------------------------------------->
+    //
     /**
      * Creates new form TelaLivro
      */

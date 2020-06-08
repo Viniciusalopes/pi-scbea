@@ -9,6 +9,7 @@ import classes.AreaConhecimento;
 import classes.Autor;
 import classes.Colaborador;
 import classes.ColunaGrid;
+import classes.Editora;
 import classes.Emprestimo;
 import classes.Log;
 import classes.Renderer;
@@ -49,6 +50,7 @@ public class ControleTelaPrincipal {
                 break;
 
             case "EDITORA":
+                addColunasEditora();
                 break;
 
             case "EMPRESTIMO":
@@ -59,6 +61,7 @@ public class ControleTelaPrincipal {
                 break;
 
             case "LIVRO":
+                addColunasLivro();
                 break;
 
             case "RESERVA":
@@ -71,11 +74,20 @@ public class ControleTelaPrincipal {
         return colunas;
     }
 
+    private void addColunasLivro() {
+        colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
+    }
+
     private void addColunasAreaConhecimento() {
         colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
         colunas.add(new ColunaGrid("CDD", renderer.getRendererCentro()));
         colunas.add(new ColunaGrid("Descrição da área de conhecimento"));
 
+    }
+
+    private void addColunasEditora() {
+        colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Nome"));
     }
 
     private void addColunasAutor() {
@@ -135,6 +147,7 @@ public class ControleTelaPrincipal {
                 break;
 
             case "EDITORA":
+                addLinhasEditora(colecao);
                 break;
 
             case "EMPRESTIMO":
@@ -145,6 +158,7 @@ public class ControleTelaPrincipal {
                 break;
 
             case "LIVRO":
+                addLinhasLivro(colecao);
                 break;
 
             case "RESERVA":
@@ -156,6 +170,10 @@ public class ControleTelaPrincipal {
         }
 
         return linhas;
+    }
+
+    private void addLinhasLivro(Object colecao) {
+        linhas = new String[][]{{}};
     }
 
     private void addLinhasAreaConhecimento(Object colecao) {
@@ -185,6 +203,20 @@ public class ControleTelaPrincipal {
             linha = new String[]{
                 String.format("%04d", a.getIdAutor()),
                 a.getNomeAutor(),};
+            linhas[cont] = linha;
+            cont++;
+        }
+    }
+
+    private void addLinhasEditora(Object colecao) {
+        ArrayList<Editora> editoras = (ArrayList<Editora>) colecao;
+        linhas = new String[editoras.size()][colunas.size()];
+
+        cont = 0;
+        for (Editora a : editoras) {
+            linha = new String[]{
+                String.format("%04d", a.getIdEditora()),
+                a.getNomeEditora(),};
             linhas[cont] = linha;
             cont++;
         }
