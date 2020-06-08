@@ -28,5 +28,5 @@ public interface ICRUDLivro {
 
     void alterar(Livro livro) throws Exception;
 
-    void excluir(Livro livro) throws Exception;
+    void excluir(int idLivro ) throws Exception;
 }
