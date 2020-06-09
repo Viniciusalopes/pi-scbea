@@ -12,6 +12,7 @@ import interfaces.ICRUDEditora;
 import interfaces.ITelaCadastro;
 import utilidades.Mensagens;
 import utilidades.StringUtil;
+import static utilidades.StringUtil.soTemLetras;
 
 /**
  *
@@ -66,6 +67,26 @@ public class TelaEditora extends javax.swing.JDialog implements ITelaCadastro {
     //
     //--- MÉTODOS ------------------------------------------------------------->
     //
+     public void validarPreenchimento() throws Exception {
+        //validarPreenchimento dos campos
+        String campo = new String(jTextFieldNomeEditora.getText().trim());
+        if (campo.length() == 0) {
+            jTextFieldNomeEditora.requestFocus();
+            throw new Exception("Informe o nome do editora!");
+        }
+
+        if (campo.length() < 2) {
+            jTextFieldNomeEditora.requestFocus();
+            jTextFieldNomeEditora.selectAll();
+            throw new Exception("O nome da editora precisa ter pelo menos duas letras!");
+        }
+
+        if (!soTemLetras(campo)) {
+            jTextFieldNomeEditora.requestFocus();
+            jTextFieldNomeEditora.selectAll();
+            throw new Exception("O nome do autor deve ter apenas letras e espaços!");
+        }
+    }
     private void limparCampos() {
         jTextFieldIdEditora.setText("");
         jTextFieldNomeEditora.setText("");
@@ -101,18 +122,18 @@ public class TelaEditora extends javax.swing.JDialog implements ITelaCadastro {
         }
     }
 
-    private void validarPreenchimento() throws Exception {
-
-        String texto = jTextFieldNomeEditora.getText().trim();
-
-        if (texto.length() == 0) {
-            throw new Exception("Informe o nome da editora!");
-        }
-
-        if (!StringUtil.nomeEditoraValido(texto)) {
-            throw new Exception("Nome da editora possui caracteres inválidos!");
-        }
-    }
+//    private void validarPreenchimento() throws Exception {
+//
+//        String texto = jTextFieldNomeEditora.getText().trim();
+//
+//        if (texto.length() == 0) {
+//            throw new Exception("Informe o nome da editora!");
+//        }
+//
+//        if (!StringUtil.nomeEditoraValido(texto)) {
+//            throw new Exception("Nome da editora possui caracteres inválidos!");
+//        }
+//    }
 
     //--- FIM MÉTODOS ---------------------------------------------------------|
     //

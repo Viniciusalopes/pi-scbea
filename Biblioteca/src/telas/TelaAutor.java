@@ -57,6 +57,7 @@ public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
         }
         visible = true;
         super.setVisible(b);
+        
     }
 
     public void validarPreenchimento() throws Exception {
