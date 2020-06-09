@@ -168,7 +168,6 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                         matrizFiltro[i] = resultadoPesquisa.get(i);
                     }
                     preencherJTableColaboradores(matrizFiltro);
-                    pesquisarColaboradores(jTextFieldPesquisarColaborador.getText().toLowerCase());
                     preencherJTableColaboradorDetalhe();
                 }
             }
