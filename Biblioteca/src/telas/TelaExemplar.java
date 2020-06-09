@@ -5,15 +5,134 @@
  */
 package telas;
 
+import classes.Exemplar;
+import enumeradores.EnumAcao;
+import interfaces.ICRUDExemplar;
+import controle.ControleExemplar;
+import utilidades.Mensagens;
+import interfaces.ITelaCadastro;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javafx.scene.chart.PieChart;
+
 /**
  *
  * @author Vinicius
  */
-public class TelaExemplar extends javax.swing.JDialog {
+public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
 
-    /**
-     * Creates new form TelaExemplar
-     */
+//----------------ATRIBUTOS----------------------------------
+//ESSES ATRIBUTOS SAO PWRCORIDOS PELO SISTEMA 
+    //CLASSES--------------->
+    //ENUMERADORES---------->
+    //INTERFACE------------>
+    //PERSISTENCIA-------->
+    //CONTROLE----------->
+    private int id;
+    private EnumAcao acao = null;
+    private ICRUDExemplar controleExemplar = null;
+    private Mensagens mensagens = null;
+    private Exemplar exemplar = null;
+    private boolean visible = false;
+    private Date dataAquisicao = null;
+//---------------------end atributos-----------------------
+//override
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+        //isto e o id que vai percorrer cada uma das telas
+    }
+
+    @Override
+    public void setAcao(EnumAcao acao) {
+        this.acao = acao;
+        this.setTitle(acao.toString() + " cadastro exemplar");
+        // isto chama a açao para ser sequenciada dentro do cadastro exemeplar
+        // poer isso o metodo IAtelaCadastro 
+        // void setId(int id);
+        // void setAcao(EnumAcao acao);
+        // void setVisible(boolean b);
+
+    }
+
+    @Override
+    public void setVisible(boolean b) {
+        try {
+            controleExemplar = new ControleExemplar();
+            mensagens = new Mensagens();
+            if (acao.equals(EnumAcao.Incluir)) {
+                limpaTudo();
+            } else if (acao.equals(EnumAcao.Editar)) {
+                exemplar = controleExemplar.buscarPeloId(id);
+                prenecherTudo();
+            }
+        } catch (Exception e) {
+            mensagens.erro(e);
+        }
+        visible = true;
+        super.setVisible(b);
+    }
+    //--------------------end override------------------------------
+    //metodos 
+
+    //validador de prenchimentos dos campos
+    public void validardataAquisicao() throws Exception {
+        Date data = new Date(jTextFielddataAquisicao.getText().trim());
+        //fonte :https://www.devmedia.com.br/manipulando-datas-em-java/21765
+
+        SimpleDateFormat dataDigitada = new SimpleDateFormat("dd/MM/yyyy");
+        if (dataDigitada.DATE_FIELD == 0) {
+            jTextFielddataAquisicao.requestFocus();
+            throw new Exception("imforme a data de aquisão do exemplar");
+            //vai pegar a data digitaca pelo usuario que vai ser convertida 
+        }
+    }
+
+    public void validarprecoCompra() throws Exception {
+        DecimalFormat df = new DecimalFormat();
+        df.applyPattern("R$ 0.00");
+    }
+
+    private void limpaTudo() {
+        jTextFieldIDExemplar.setText("");
+        jTextFielddataAquisicao.setText("");
+        jTextAreamotivoDesativado.setText("");
+
+    }
+    
+    private void prenecherTudo(){
+         jTextFieldIDExemplar.setText(String.format("%04d", exemplar.getIdExemplar()));
+        jTextFielddataAquisicao.setText(String.format("dd/MM/yyyy", exemplar.getDataAquisicao()));
+        jTextAreamotivoDesativado.setText(String.format("%04d", jTextAreamotivoDesativado));
+    }
+     private void salvar() throws Exception {
+        try {
+            validardataAquisicao();
+            validarprecoCompra();
+
+            exemplar = new Exemplar();
+//            exemplar.setDataAquisicao(jTextFielddataAquisicao.getText());
+
+            if (acao.equals(EnumAcao.Incluir)) {
+                controleExemplar.incluir(exemplar);
+                mensagens.sucesso("Exemplar incluído com sucesso!");
+            } else if (acao.equals(EnumAcao.Editar)) {
+                exemplar.setIdExemplar(Integer.parseInt(jTextFieldIDExemplar.getText()));
+                controleExemplar.alterar(exemplar);
+                mensagens.sucesso("Exemplar alterado com sucesso!");
+            }
+
+            visible = false;
+            this.dispose();
+
+        } catch (Exception e) {
+            mensagens.erro(new Exception("Erro ao salvar: \n" + e));
+        
+        
+        }
+
     public TelaExemplar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -42,7 +161,7 @@ public class TelaExemplar extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jTextFielddataAquisicao = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxLivro = new javax.swing.JComboBox<>();
         jButtonSalvar = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
@@ -102,7 +221,7 @@ public class TelaExemplar extends javax.swing.JDialog {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel2)
                                             .addComponent(jLabel5)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jComboBoxLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(20, 20, 20)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel3)
@@ -128,7 +247,7 @@ public class TelaExemplar extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxstatusExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFielddataAquisicao, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -231,7 +350,7 @@ public class TelaExemplar extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxLivro;
     private javax.swing.JComboBox<String> jComboBoxstatusExemplar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -247,4 +366,5 @@ public class TelaExemplar extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFielddataAquisicao;
     private javax.swing.JTextField jTextFieldprecoCompra;
     // End of variables declaration//GEN-END:variables
+
 }
