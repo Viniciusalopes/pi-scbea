@@ -5,12 +5,10 @@
  */
 package controle;
 
-import classes.AreaConhecimento;
 import classes.Emprestimo;
 import classes.Exemplar;
 import interfaces.ICRUDEmprestimo;
 import interfaces.ICRUDExemplar;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import persistencia.PersistenciaExemplar;
 

@@ -23,15 +23,15 @@ public class Livro {
 //-------------------------------------
     //atributos 
 
-    private int idLivro = 0;
-    private Editora editora = null;
-    private Autor autor = null;
-    private AreaConhecimento areaConhecimento = null;
-    private String titulo = "";
-    private String descricaoLivro = "";
-    private int edicao = 0;
-    private String isbn = "";
-    private int anoPublicacao = 0;
+    protected int idLivro = 0;
+    protected Editora editora = null;
+    protected Autor autor = null;
+    protected AreaConhecimento areaConhecimento = null;
+    protected String titulo = "";
+    protected String descricaoLivro = "";
+    protected int edicao = 0;
+    protected String isbn = "";
+    protected int anoPublicacao = 0;
 
     //-------------------------------------
     //construtores 
