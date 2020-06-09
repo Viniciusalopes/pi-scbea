@@ -67,7 +67,8 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
                         formatoData.parse(dados[3]),
                         formatoData.parse(dados[4]),
                         EnumTipoStatus.values()[Integer.parseInt(dados[5])],
-                        Float.parseFloat(dados[6].replace(",", "."))
+                        Float.parseFloat(dados[6].replace(",", ".")),
+                        Float.parseFloat(dados[7].replace(",", "."))
                 );
                 colecao.add(emprestimo);
             }

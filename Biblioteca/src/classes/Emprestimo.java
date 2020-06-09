@@ -23,14 +23,16 @@ import java.util.Date;
 public class Emprestimo {
 
     // ATRIBUTOS
-    private int idEmprestimo;
-    private Exemplar exemplar;
-    private Colaborador colaborador;
-    private Date dataEmprestimo;
-    private Date dataDevolucao;
-    private EnumTipoStatus statusEmprestimo;
-    private float valorMulta;
-    private SimpleDateFormat formatoData;
+    private int idEmprestimo = 0;
+    private Exemplar exemplar = null;
+    private Colaborador colaborador = null;
+    private Date dataEmprestimo = null;
+    private Date dataDevolucao = null;
+    private EnumTipoStatus statusEmprestimo = null;
+    private float valorMulta = 0;
+    private float valorPago = 0;
+    private SimpleDateFormat formatoData = null;
+
     // CONSTRUTORES
     public Emprestimo() {
         formatoData = new SimpleDateFormat("dd/MM/yyyy");
@@ -43,6 +45,7 @@ public class Emprestimo {
         dataEmprestimo = emprestimo.dataEmprestimo;
         dataDevolucao = emprestimo.dataDevolucao;
         valorMulta = emprestimo.valorMulta;
+        valorPago = emprestimo.valorPago;
         formatoData = new SimpleDateFormat("dd/MM/yyyy");
     }
 
@@ -52,13 +55,15 @@ public class Emprestimo {
             Date dataEmprestimo,
             Date dataDevolucao,
             EnumTipoStatus statusEmprestimo,
-            float valorMulta) {
+            float valorMulta,
+            float valorPago) {
         this.idEmprestimo = idEmprestimo;
         this.exemplar = exemplar;
         this.colaborador = colaborador;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
         this.valorMulta = valorMulta;
+        this.valorPago = valorPago;
         formatoData = new SimpleDateFormat("dd/MM/yyyy");
     }
 
@@ -117,6 +122,18 @@ public class Emprestimo {
 
     public void setValorMulta(float valorMulta) {
         this.valorMulta = valorMulta;
+    }
+
+    public float getValorPago() {
+        return valorPago;
+    }
+
+    public void setValorPago(float valorPago) {
+        this.valorPago = valorPago;
+    }
+
+    public float getSaldoDevedor() {
+        return valorPago - valorMulta;
     }
 
     @Override
