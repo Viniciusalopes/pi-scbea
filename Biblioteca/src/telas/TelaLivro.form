@@ -80,7 +80,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jComboBoxAreaConhecimento" min="-2" pref="434" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonNovaAreaConhecimento" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelTitulo" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -91,7 +91,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jComboBoxEditora" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jButtonNovaEditora" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jTextFieldTitulo" min="-2" pref="350" max="-2" attributes="0"/>
                               </Group>
@@ -108,7 +108,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jComboBoxAutor" min="-2" pref="235" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButton3" min="-2" pref="76" max="-2" attributes="0"/>
+                                      <Component id="jButtonNovoAutor" min="-2" pref="76" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -149,7 +149,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jTextFieldTitulo" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="jComboBoxAutor" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonNovoAutor" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -163,7 +163,7 @@
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jComboBoxEditora" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonNovaEditora" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jSpinnerEdicao" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="jSpinnerAno" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="jTextFieldISBN" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
@@ -173,7 +173,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jComboBoxAreaConhecimento" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonNovaAreaConhecimento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabelDescricao" min="-2" max="-2" attributes="0"/>
@@ -297,17 +297,20 @@
             <Property name="text" type="java.lang.String" value="&#xc1;rea de Conhecimento"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="jButtonNovaEditora">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nova"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNovaEditoraActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="jButtonNovoAutor">
           <Properties>
             <Property name="text" type="java.lang.String" value="Novo"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNovoAutorActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel1">
@@ -411,10 +414,13 @@
             </Container>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton4">
+        <Component class="javax.swing.JButton" name="jButtonNovaAreaConhecimento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nova"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNovaAreaConhecimentoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
