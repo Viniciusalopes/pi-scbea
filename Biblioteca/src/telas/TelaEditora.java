@@ -11,8 +11,7 @@ import enumeradores.EnumAcao;
 import interfaces.ICRUDEditora;
 import interfaces.ITelaCadastro;
 import utilidades.Mensagens;
-import utilidades.StringUtil;
-import static utilidades.StringUtil.soTemLetras;
+import static utilidades.StringUtil.nomeEditoraValido;
 
 /**
  *
@@ -67,7 +66,7 @@ public class TelaEditora extends javax.swing.JDialog implements ITelaCadastro {
     //
     //--- MÉTODOS ------------------------------------------------------------->
     //
-     public void validarPreenchimento() throws Exception {
+    public void validarPreenchimento() throws Exception {
         //validarPreenchimento dos campos
         String campo = new String(jTextFieldNomeEditora.getText().trim());
         if (campo.length() == 0) {
@@ -81,12 +80,13 @@ public class TelaEditora extends javax.swing.JDialog implements ITelaCadastro {
             throw new Exception("O nome da editora precisa ter pelo menos duas letras!");
         }
 
-        if (!soTemLetras(campo)) {
+        if (!nomeEditoraValido(campo)) {
             jTextFieldNomeEditora.requestFocus();
             jTextFieldNomeEditora.selectAll();
             throw new Exception("O nome da editora deve ter apenas letras e espaços!");
         }
     }
+
     private void limparCampos() {
         jTextFieldIdEditora.setText("");
         jTextFieldNomeEditora.setText("");
@@ -134,7 +134,6 @@ public class TelaEditora extends javax.swing.JDialog implements ITelaCadastro {
 //            throw new Exception("Nome da editora possui caracteres inválidos!");
 //        }
 //    }
-
     //--- FIM MÉTODOS ---------------------------------------------------------|
     //
     //-- CONSTRUTOR ----------------------------------------------------------->

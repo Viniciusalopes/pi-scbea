@@ -126,6 +126,8 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
     private void popularControles() throws Exception {
 
         popularJComboBoxAutor();
+        popularJComboBoxEditora();
+        popularJComboBoxAreaConhecimento();
 
     }
 
@@ -240,7 +242,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
     /**
      * Creates new form TelaLivro
      */
-    public TelaLivro(java.awt.Frame parent, boolean modal) {
+    public TelaLivro(java.awt.Frame parent, boolean modal){
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(rootPane);
@@ -428,9 +430,9 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
                     .addComponent(jLabelDescricao)
                     .addGroup(jPanelLivroLayout.createSequentialGroup()
                         .addGroup(jPanelLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanelLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanelLivroLayout.createSequentialGroup()
-                                    .addComponent(jComboBoxEditora, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jButtonNovaEditora))
                                 .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))

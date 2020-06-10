@@ -14,3 +14,5 @@
 180;Lettore
 181;MP Editora
 182;Editora para excluir 1
+184;Editora@-.123
+185;Editora X
