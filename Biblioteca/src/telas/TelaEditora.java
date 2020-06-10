@@ -84,7 +84,7 @@ public class TelaEditora extends javax.swing.JDialog implements ITelaCadastro {
         if (!soTemLetras(campo)) {
             jTextFieldNomeEditora.requestFocus();
             jTextFieldNomeEditora.selectAll();
-            throw new Exception("O nome do autor deve ter apenas letras e espaços!");
+            throw new Exception("O nome da editora deve ter apenas letras e espaços!");
         }
     }
     private void limparCampos() {
