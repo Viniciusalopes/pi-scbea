@@ -5,6 +5,10 @@ import java.util.ArrayList;
 
 public interface ICRUDAreaConhecimento {
 
+//------------------------------------------------------------------------------
+//ASSINATURA DOS MÉTODOS PARA IMPLEMENTAÇÃO EM CONTROLE E PERSISTENCIA 
+//------------------------------------------------------------------------------ 
+
     ArrayList<AreaConhecimento> listar() throws Exception;
 
     AreaConhecimento buscarPeloId(int idAreaConhecimento) throws Exception;
