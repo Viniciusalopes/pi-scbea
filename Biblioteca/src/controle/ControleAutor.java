@@ -6,7 +6,9 @@
 package controle;
 
 import classes.Autor;
+import classes.Livro;
 import interfaces.ICRUDAutor;
+import interfaces.ICRUDLivro;
 import java.util.ArrayList;
 import persistencia.PersistenciaAutor;
 
@@ -17,6 +19,7 @@ import persistencia.PersistenciaAutor;
 public class ControleAutor implements ICRUDAutor {
 
     private ICRUDAutor persistencia;
+    private ICRUDLivro controleLivro;
     private ArrayList<Autor> colecao;
 
     public ControleAutor() throws Exception {
@@ -55,7 +58,13 @@ public class ControleAutor implements ICRUDAutor {
 
     @Override
     public void excluir(int idAutor) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controleLivro = new ControleLivro();
+        for (Livro livro : controleLivro.listar()) {
+            if (livro.getAutor().getIdAutor() == idAutor) {
+                throw new Exception("O livro " + livro.getTitulo() + " está cadastrado para esse autor e não poderá ser excluído!");
+            }
+        }
+        persistencia.excluir(idAutor);
     }
 
     private void validarPreenchimento(Autor autor) throws Exception {

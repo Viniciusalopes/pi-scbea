@@ -6,19 +6,18 @@
 package classes;
 
 import enumeradores.EnumTipoStatus;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import sun.dc.pr.PRException;
 
 /**
  *
  * @author vovostudio
  */
-public class Exemplar {
+public class Exemplar extends Livro {
 
     //atributos 
     //-------------------------------------
     private int idExemplar = 0;
-    private Livro livro = null;
     private EnumTipoStatus statusExemplar = null;
     private Date dataAquisicao = null;
     private float precoCompra = 0;
@@ -33,23 +32,33 @@ public class Exemplar {
 
     public Exemplar(Exemplar exemplar) {
         idExemplar = exemplar.idExemplar;
-        livro = exemplar.livro;
         statusExemplar = exemplar.statusExemplar;
         dataAquisicao = exemplar.dataAquisicao;
         precoCompra = exemplar.precoCompra;
         motivoDesativado = exemplar.motivoDesativado;
-
     }
 
-    public Exemplar(int idExemplar, Livro livro, EnumTipoStatus statusExemplar,
-            Date dataAquisicao, float precoCompra, String motivoDesativado) {
+    public Exemplar(int idExemplar,
+            Livro livro,
+            EnumTipoStatus statusExemplar,
+            Date dataAquisicao,
+            float precoCompra,
+            String motivoDesativado
+    ) {
         this.idExemplar = idExemplar;
-        this.livro = livro;
+        idLivro = livro.idLivro;
+        editora = livro.editora;
+        autor = livro.autor;
+        areaConhecimento = livro.areaConhecimento;
+        titulo = livro.titulo;
+        descricaoLivro = livro.descricaoLivro;
+        edicao = livro.edicao;
+        isbn = livro.isbn;
+        anoPublicacao = livro.anoPublicacao;
         this.statusExemplar = statusExemplar;
         this.dataAquisicao = dataAquisicao;
         this.precoCompra = precoCompra;
         this.motivoDesativado = motivoDesativado;
-
     }
 
     public int getIdExemplar() {
@@ -58,14 +67,6 @@ public class Exemplar {
 
     public void setIdExemplar(int idExemplar) {
         this.idExemplar = idExemplar;
-    }
-
-    public Livro getLivro() {
-        return livro;
-    }
-
-    public void setLivro(Livro livro) {
-        this.livro = livro;
     }
 
     public EnumTipoStatus getStatusExemplar() {
@@ -102,8 +103,13 @@ public class Exemplar {
 
     @Override
     public String toString() {
-        return "Exemplar{" + ";" + idExemplar + ";" + livro + " ; " + statusExemplar + ";" + dataAquisicao + ";" + precoCompra
-                + ";" + motivoDesativado;
+        return String.format("%d;%d;%d;%s;%.2f%;%s",
+                idExemplar,
+                idLivro,
+                statusExemplar,
+                new SimpleDateFormat("dd/MM/yyyy").format(dataAquisicao),
+                precoCompra,
+                motivoDesativado
+        );
     }
-
 }

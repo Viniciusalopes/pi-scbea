@@ -88,14 +88,14 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jTextFieldNomeAutor" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="jLabelNomeAutor" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="354" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="348" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jTextFieldNomeAutor" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -107,7 +107,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelNomeAutor" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextFieldNomeAutor" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldNomeAutor" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace pref="27" max="32767" attributes="0"/>
               </Group>
           </Group>

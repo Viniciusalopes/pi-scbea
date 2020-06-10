@@ -61,7 +61,7 @@ public class ControleLivro implements ICRUDLivro {
 
         controleEmprestimo = new ControleEmprestimo();
         for (Emprestimo e : controleEmprestimo.listar()) {
-            if (e.getExemplar().getLivro().getIdLivro() == idLivro) {
+            if (e.getExemplar().getIdLivro() == idLivro) {
                 throw new Exception("O livro já foi emprestado e não pode ser excluído!\n"
                         + "Empréstimo: " + e.getIdEmprestimo() + "-" + e.getColaborador().getNomeColaborador());
             }

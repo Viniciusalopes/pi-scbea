@@ -160,10 +160,10 @@ public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldNomeAutor)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelNomeAutor)
-                        .addGap(0, 354, Short.MAX_VALUE))
-                    .addComponent(jTextFieldNomeAutor))
+                        .addGap(0, 348, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -172,7 +172,7 @@ public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
                 .addContainerGap()
                 .addComponent(jLabelNomeAutor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldNomeAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldNomeAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 

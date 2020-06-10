@@ -77,7 +77,7 @@ public class PersistenciaAutor implements ICRUDAutor {
         linhas = controleArquivoTXT.lerArquivo();
         // loop, chama linhas de linhas e compara se o ID é igual a que eu quero digitar, pra evitar excluirr uma outra linha)
         for (String linha : linhas) {
-            if (Integer.parseInt(linha.split(";")[0]) != idAutor) {
+            if (Integer.parseInt(linha.split(";")[0]) == idAutor) {
                 controleArquivoTXT.excluirLinha(linha);
                 new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.AUTOR, linha);
                 break;
