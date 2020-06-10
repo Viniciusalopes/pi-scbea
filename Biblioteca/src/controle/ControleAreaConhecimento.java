@@ -8,14 +8,23 @@ import persistencia.PersistenciaAreaConhecimento;
 
 public class ControleAreaConhecimento implements ICRUDAreaConhecimento {
 
+//------------------------------------------------------------------------------
+//VARIÁVEIS DO ESCOPO CONTROLE AREA CONHECIMENTO
+//------------------------------------------------------------------------------ 
     private ICRUDAreaConhecimento persistencia = null;
     private ArrayList<AreaConhecimento> colecao;
 
+//------------------------------------------------------------------------------
+//CONSTRUTOR
+//------------------------------------------------------------------------------     
     public ControleAreaConhecimento() throws Exception {
         persistencia = new PersistenciaAreaConhecimento();
         colecao = new ArrayList<>();
     }
 
+//------------------------------------------------------------------------------
+//MÉTODOS HERDADOS DA INTERFACE ICRUD AREA CONHECIMENTO
+//------------------------------------------------------------------------------     
     @Override
     public ArrayList<AreaConhecimento> listar() throws Exception {
         return persistencia.listar();
@@ -55,15 +64,15 @@ public class ControleAreaConhecimento implements ICRUDAreaConhecimento {
         persistencia.excluir(idAreaConhecimento);
     }
 
+//------------------------------------------------------------------------------
+//MÉTODOS PARA VALIDAR SE DADOS ENCAMINHADOS VIA TELA PODEM PERSISTIR EM BD.TXT
+//------------------------------------------------------------------------------
     private void validarPreenchimento(int cdd, String descricao) throws Exception {
-        // Verificar qtd de caracteres de acordo com padrão de cada campo (CDD e Descrição)
 
-//        if (String.format("%07d", cdd).charAt(0) == '0') {
-//            throw new Exception("O código do CDD não pode iniciar com 0!");
-//        }
-        if (cdd < 99 && cdd >= 9999999) {
+        if (cdd < 99 || cdd >= 9999999) {
             throw new Exception("O código do CDD precisa ter nó mínimo 3 e no máximo 7 números!");
         }
+
         if (descricao.trim().length() < 2) {
             throw new Exception("A descrição da área de conhecimento precisa ter no mínimo 2 caracteres!");
         }
