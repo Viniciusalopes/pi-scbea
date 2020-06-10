@@ -14,13 +14,17 @@ import utilidades.GeradorID;
 
 public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
 
-// Atributos
+//------------------------------------------------------------------------------
+//VARIÁVEIS DO ESCOPO PERSISTENCIA AREA CONHECIMENTO
+//------------------------------------------------------------------------------
     private IArquivoTXT controleArquivoTXT = null;
     private ArrayList<AreaConhecimento> colecao = null;
     private AreaConhecimento areaConhecimento = null;
     private ArrayList<String> linhas = null;
 
-// Construtor padrão de persistência (direct caminho e nome arquivo)    
+//------------------------------------------------------------------------------
+//CONSTRUTOR
+//------------------------------------------------------------------------------   
     public PersistenciaAreaConhecimento() throws Exception {
         try {
             controleArquivoTXT = new ControleArquivoTXT(
@@ -31,6 +35,11 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
                     + "Entre em contato com o suporte técnico!\n" + e);
         }
     }
+    
+    
+//------------------------------------------------------------------------------
+//MÉTODOS HERDADOS DA INTERFACE ICRUD AREA CONHECIMENTO
+//------------------------------------------------------------------------------ 
 
     @Override
     public ArrayList<AreaConhecimento> listar() throws Exception {
