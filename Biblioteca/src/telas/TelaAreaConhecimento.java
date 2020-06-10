@@ -10,6 +10,9 @@ import static utilidades.StringUtil.*;
 
 public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCadastro {
 
+//------------------------------------------------------------------------------
+//VARIÁVEIS DO ESCOPO TELA AREA CONHECIMENTO
+//------------------------------------------------------------------------------    
     private int id;
     private Mensagens mensagem = new Mensagens();
     private EnumAcao acao = null;
@@ -17,6 +20,9 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
     private AreaConhecimento areaConhecimento = null;
     private boolean visible = false;
 
+//------------------------------------------------------------------------------
+//MÉTODOS HERDADOS DA TELA PRINCIPAL
+//------------------------------------------------------------------------------       
     @Override
     public void setId(int id) {
         this.id = id;
@@ -44,8 +50,14 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
         super.setVisible(b);
     }
 
-    // incluir métodos aqui
+//------------------------------------------------------------------------------
+//MÉTODOS
+//------------------------------------------------------------------------------    
     private void validarPreenchimento() throws Exception {
+
+        if (jTextFieldCdd.getText().substring(0, 1).equals("0")) {
+            throw new Exception("O código do CDD precisa iniciar com um número diferente de 0!");
+        }
 
         if (!soTemNumeros(jTextFieldCdd.getText().replace(".", ""))) {
             jTextFieldCdd.requestFocus();
@@ -90,6 +102,9 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
         this.dispose();
     }
 
+//------------------------------------------------------------------------------
+//CONSTRUTOR TELA
+//------------------------------------------------------------------------------    
     public TelaAreaConhecimento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -175,6 +190,9 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+//------------------------------------------------------------------------------
+//ELEMENTOS COM EVENTO
+//------------------------------------------------------------------------------      
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         try {
             salvar();
@@ -183,6 +201,9 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
+//------------------------------------------------------------------------------
+//CONFIGURAÇÕES TELA (GERADO NA ABA DESIGN)
+//------------------------------------------------------------------------------
     /**
      * @param args the command line arguments
      */
@@ -208,7 +229,7 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaAreaConhecimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        //</editor-fold>     
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -224,6 +245,10 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
             }
         });
     }
+
+//------------------------------------------------------------------------------
+//VARIÁVEIS DOS ELEMENTOS DA TELA
+//------------------------------------------------------------------------------  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSalvar;
