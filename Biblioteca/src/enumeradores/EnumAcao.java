@@ -12,5 +12,9 @@ package enumeradores;
 public enum EnumAcao {
     Incluir,
     Editar,
-    Excluir
+    Excluir,
+    Incluir_Emprestimo,
+    Incluir_Reserva,
+    Editar_Emprestimo,
+    Editar_Reserva
 }

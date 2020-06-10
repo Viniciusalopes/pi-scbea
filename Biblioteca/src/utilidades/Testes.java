@@ -5,7 +5,6 @@
  */
 package utilidades;
 
-import enumeradores.EnumCDD;
 
 /**
  *
@@ -13,12 +12,5 @@ import enumeradores.EnumCDD;
  */
 public class Testes {
 
-    public static void main(String[] args) {
 
-        for (EnumCDD cdd : EnumCDD.values()) {
-            System.out.println(cdd.toString()
-                    + " - " + cdd.getId()
-                    + " - " + cdd.getDescr());
-        }
-    }
 }

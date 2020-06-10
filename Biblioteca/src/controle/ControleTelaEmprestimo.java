@@ -8,6 +8,7 @@ package controle;
 import classes.Colaborador;
 import classes.Emprestimo;
 import classes.EmprestimosDoColaborador;
+import classes.Livro;
 import classes.Reserva;
 import classes.ReservasDoColaborador;
 import interfaces.ICRUDColaborador;
@@ -30,9 +31,10 @@ public class ControleTelaEmprestimo {
     private ICRUDLivro controleLivro = null;
     private ICRUDExemplar controleExemplar = null;
 
-    private ArrayList<Emprestimo> colecaoEmprestimo = null;
     private ArrayList<Colaborador> colecaoColaborador = null;
+    private ArrayList<Emprestimo> colecaoEmprestimo = null;
     private ArrayList<Reserva> colecaoReserva = null;
+    private ArrayList<Livro> colecaoLivro = null;
 
     private EmprestimosDoColaborador emprestimosDoColaborador = null;
     private ReservasDoColaborador reservasDoColaborador = null;
@@ -95,8 +97,33 @@ public class ControleTelaEmprestimo {
         return matriz;
     }
 
-    //public String[] getVetorDetalhesColaborador(int idColaborador) throws Exception {
-    //}
+    public String[][] getMatrizLivros() throws Exception {
+        controleLivro = new ControleLivro();
+        colecaoLivro = controleLivro.listar();
+        
+        qtdLinhas = colecaoLivro.size();
+        qtdColunas = 8;
+
+        matriz = new String[qtdLinhas][qtdColunas];
+        cont = 0;
+        for (Livro livro : colecaoLivro) {
+            vetor = new String[]{
+                livro.getIdLivro() + "",
+                livro.getTitulo(),
+                livro.getEditora().getNomeEditora(),
+                livro.getAutor().getNomeAutor(),
+                livro.getEdicao() + "",
+                livro.getAnoPublicacao() + "",
+                livro.getAreaConhecimento().getCdd() + " - "+ livro.getAreaConhecimento().getDescricaoAreaConhecimento(),
+                livro.getIsbn()
+            };
+
+            matriz[cont] = vetor;
+            cont++;
+        }
+        return matriz;
+    }
+
     //--- FIM MATRIZES E VETORES ----------------------------------------------|
     //
     //-- CONSULTAS ------------------------------------------------------------>

@@ -53,7 +53,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private ICRUDLog controleLog = null;
     private ITelaCadastro telaCadastro = null;
     private Mensagens mensagem = new Mensagens();
-
+    private EnumAcao acao = null;
     // Nome do cadastro atual
     private String cadastro = "";
 
@@ -74,9 +74,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     //
     private void incluirCadastro() throws Exception {
         try {
+
+            if (cadastro == EnumCadastro.EMPRESTIMO.toString()) {
+                acao = EnumAcao.Incluir_Emprestimo;
+            } else if (cadastro == EnumCadastro.RESERVA.toString()) {
+                acao = EnumAcao.Incluir_Reserva;
+            } else {
+                acao = EnumAcao.Incluir;
+            }
+
             telaCadastro.setId(0);
-            telaCadastro.setAcao(EnumAcao.Incluir);
+            telaCadastro.setAcao(acao);
+           
+            this.setVisible(false);
             telaCadastro.setVisible(true);
+            this.setVisible(true);
+            
             exibirCadastros();
         } catch (Exception e) {
             throw new Exception("Erro ao incluir o cadastro!\n" + e);
@@ -85,9 +98,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void editarCadastro() throws Exception {
         try {
+
+            if (cadastro == EnumCadastro.EMPRESTIMO.toString()) {
+                acao = EnumAcao.Editar_Emprestimo;
+            } else if (cadastro == EnumCadastro.RESERVA.toString()) {
+                acao = EnumAcao.Editar_Reserva;
+            } else {
+                acao = EnumAcao.Editar;
+            }
+
             telaCadastro.setId(getId());
-            telaCadastro.setAcao(EnumAcao.Editar);
+            telaCadastro.setAcao(acao);
+            
+            this.setVisible(false);
             telaCadastro.setVisible(true);
+            this.setVisible(true);
+            
             exibirCadastros();
         } catch (Exception e) {
             throw new Exception("Erro ao editar o cadastro!\n" + e);
@@ -824,7 +850,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             telaCadastro = null;
             exibirCadastros();
-            //telaCadastro = new TelaReserva(this, true);
+            telaCadastro = new TelaEmprestimo(this, true);
         } catch (Exception e) {
             mensagem.erro(e);
         }

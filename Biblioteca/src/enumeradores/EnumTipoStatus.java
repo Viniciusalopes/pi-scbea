@@ -19,5 +19,6 @@ public enum EnumTipoStatus {
     DEVOLVIDO,
     ADIMPLENTE,
     INADIMPLENTE,
-    RESERVADO
+    RESERVADO,
+    TODOS
 }

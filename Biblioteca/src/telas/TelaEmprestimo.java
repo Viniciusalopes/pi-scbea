@@ -34,10 +34,13 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private ControleTelaEmprestimo controleEmprestimos = null;
 
     // Matrizes e vetores
-    private String[][] matrizFiltro = null;
-    private String[][] matrizPesquisa = null;
+    private String[][] matrizFiltroColaborador = null;
+    private String[][] matrizPesquisaColaborador = null;
+    private String[][] matrizFiltroLivro = null;
+    private String[][] matrizPesquisaLivro = null;
     private ArrayList<String[]> resultadoPesquisa = null;
     private String[][] matrizColaboradores = null;
+    private String[][] matrizLivros = null;
     private String[] vetorDetalhesColaborador = null;
 
     //--- FIM ATRIBUTOS -------------------------------------------------------|
@@ -61,9 +64,14 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     public void setVisible(boolean b) {
         try {
             controleEmprestimos = new ControleTelaEmprestimo();
+
             matrizColaboradores = controleEmprestimos.getMatrizColaboradores();
             preencherJTableColaboradores(matrizColaboradores);
             preencherJTableColaboradorDetalhe();
+
+            matrizLivros = controleEmprestimos.getMatrizLivros();
+            preencherJTableLivro(matrizLivros);
+            preencherJTableLivroDetalhe();
 
             popularControles();
             jComboBoxFiltrarColaborador.setSelectedIndex(0);
@@ -119,8 +127,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                             case -1: // Não tem filtro selecionado
                                 break;
 
-                            case 0: // TODOS
-                                matrizPesquisa = matrizColaboradores;
+                            case 0: // TODOS_OS_REGISTROS
                                 incluirNoResultado = true;
                                 break;
 
@@ -162,44 +169,48 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                         }
                     }
 
-                    matrizFiltro = new String[resultadoPesquisa.size()][matrizColaboradores[0].length];
+                    matrizFiltroColaborador = new String[resultadoPesquisa.size()][matrizColaboradores[0].length];
 
                     for (int i = 0; i < resultadoPesquisa.size(); i++) {
-                        matrizFiltro[i] = resultadoPesquisa.get(i);
+                        matrizFiltroColaborador[i] = resultadoPesquisa.get(i);
                     }
-                    preencherJTableColaboradores(matrizFiltro);
+                    preencherJTableColaboradores(matrizFiltroColaborador);
                     preencherJTableColaboradorDetalhe();
                 }
             }
         }
     }
 
+    private void filtrarLivros(int filtro) throws Exception {
+        matrizFiltroLivro = matrizLivros;
+    }
+
     private void pesquisarColaboradores(String texto) throws Exception {
         try {
-            if (matrizFiltro != null) {
-                if (matrizFiltro.length > 0) {
+            if (matrizFiltroColaborador != null) {
+                if (matrizFiltroColaborador.length > 0) {
                     texto = texto.toLowerCase().trim();
                     if (texto.length() == 0) {
-                        matrizPesquisa = matrizFiltro;
+                        matrizPesquisaColaborador = matrizFiltroColaborador;
                     } else {
                         resultadoPesquisa = new ArrayList<>();
 
-                        for (int i = 0; i < matrizFiltro.length; i++) {
-                            if (matrizFiltro[i][0].toLowerCase().contains(texto)
-                                    || matrizFiltro[i][1].toLowerCase().contains(texto)
-                                    || matrizFiltro[i][2].toLowerCase().contains(texto)) {
-                                resultadoPesquisa.add(matrizFiltro[i]);
+                        for (int i = 0; i < matrizFiltroColaborador.length; i++) {
+                            if (matrizFiltroColaborador[i][0].toLowerCase().contains(texto)
+                                    || matrizFiltroColaborador[i][1].toLowerCase().contains(texto)
+                                    || matrizFiltroColaborador[i][2].toLowerCase().contains(texto)) {
+                                resultadoPesquisa.add(matrizFiltroColaborador[i]);
                             }
                         }
 
-                        matrizPesquisa = new String[resultadoPesquisa.size()][matrizFiltro[0].length];
+                        matrizPesquisaColaborador = new String[resultadoPesquisa.size()][matrizFiltroColaborador[0].length];
 
                         for (int i = 0; i < resultadoPesquisa.size(); i++) {
-                            matrizPesquisa[i] = resultadoPesquisa.get(i);
+                            matrizPesquisaColaborador[i] = resultadoPesquisa.get(i);
                         }
                     }
                 }
-                preencherJTableColaboradores(matrizPesquisa);
+                preencherJTableColaboradores(matrizPesquisaColaborador);
                 preencherJTableColaboradorDetalhe();
             }
 
@@ -229,28 +240,57 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         if (linha >= 0) {
             id = Integer.parseInt(jTableColaboradores.getValueAt(linha, 0).toString());
 
-            for (int i = 0; i < matrizFiltro.length; i++) {
-                if (Integer.parseInt(matrizFiltro[i][0]) == id) {
-                    String[] dados = matrizFiltro[i];
+            for (int i = 0; i < matrizFiltroColaborador.length; i++) {
+                if (Integer.parseInt(matrizFiltroColaborador[i][0]) == id) {
+                    String[] dados = matrizFiltroColaborador[i];
 
-                    jTableColaboradorDetalhe.setValueAt(dados[0], 0, 1);
-                    jTableColaboradorDetalhe.setValueAt(dados[1], 1, 1);
-                    jTableColaboradorDetalhe.setValueAt(dados[2], 2, 1);
-                    jTableColaboradorDetalhe.setValueAt(dados[3], 3, 1);
-                    jTableColaboradorDetalhe.setValueAt(dados[4], 4, 1);
-                    jTableColaboradorDetalhe.setValueAt(dados[5], 5, 1);
-                    jTableColaboradorDetalhe.setValueAt(dados[6], 6, 1);
-                    jTableColaboradorDetalhe.setValueAt(dados[7], 7, 1);
-                    jTableColaboradorDetalhe.setValueAt(dados[8], 8, 1);
-                    jTableColaboradorDetalhe.setValueAt(dados[9], 9, 1);
-                    jTableColaboradorDetalhe.setValueAt(dados[10], 10, 1);
-                    jTableColaboradorDetalhe.setValueAt(dados[11], 11, 1);
-
+                    for (int j = 0; j < jTableColaboradorDetalhe.getRowCount(); j++) {
+                        jTableColaboradorDetalhe.setValueAt(dados[j], j, 1);
+                    }
                 }
             }
         } else {
-            for (int i = 0; i < 12; i++) {
+            for (int i = 0; i < jTableColaboradorDetalhe.getRowCount(); i++) {
                 jTableColaboradorDetalhe.setValueAt("", i, 1);
+            }
+        }
+    }
+
+    private void preencherJTableLivro(String[][] matriz) throws Exception {
+
+        jTableLivro.setModel(new javax.swing.table.DefaultTableModel(
+                matriz,
+                new String[]{
+                    "ID", "Título", "Autor", "Edição"
+                }
+        ) {
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+    }
+
+    private void preencherJTableLivroDetalhe() throws Exception {
+        linha = jTableLivro.getSelectedRow();
+        if (linha >= 0) {
+            id = Integer.parseInt(jTableLivro.getValueAt(linha, 0).toString());
+
+            for (int i = 0; i < matrizFiltroLivro.length; i++) {
+                if (Integer.parseInt(matrizFiltroLivro[i][0]) == id) {
+                    String[] dados = matrizFiltroLivro[i];
+
+                    for (int j = 0; j < jTableLivroDetalhe.getRowCount(); j++) {
+                        jTableLivroDetalhe.setValueAt(dados[j], j, 1);
+                    }
+                }
+            }
+        } else {
+            for (int i = 0; i < jTableLivroDetalhe.getRowCount(); i++) {
+                jTableLivroDetalhe.setValueAt("", i, 1);
             }
         }
     }
@@ -279,7 +319,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         jComboBoxFiltrarColaborador.setSelectedIndex(-1);
 
         jComboBoxFiltrarLivro.removeAllItems();
-        jComboBoxFiltrarLivro.addItem("TODOS");
+        jComboBoxFiltrarLivro.addItem(EnumTipoStatus.TODOS.toString());
         jComboBoxFiltrarLivro.addItem(EnumTipoStatus.ATIVO.toString());
         jComboBoxFiltrarLivro.addItem(EnumTipoStatus.INATIVO.toString());
         jComboBoxFiltrarLivro.addItem(EnumTipoStatus.DISPONIVEL.toString());
@@ -390,9 +430,11 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         jTextFieldMotivoDesativacao = new javax.swing.JTextField();
         jPanelComandos = new javax.swing.JPanel();
         jButtonReservar = new javax.swing.JButton();
-        jButtonCancelar = new javax.swing.JButton();
         jButtonEmprestar = new javax.swing.JButton();
         jButtonDevolver = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -509,11 +551,9 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                     .addComponent(jLabelColaboradorDetalhe)
                     .addGroup(jPanelColaboradoresLayout.createSequentialGroup()
                         .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelColaboradoresLayout.createSequentialGroup()
-                                .addComponent(jLabelFiltrarColaborador)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabelFiltrarColaborador)
                             .addComponent(jComboBoxFiltrarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(0, 18, Short.MAX_VALUE)
                         .addGroup(jPanelColaboradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelPesquisarColaborador)
                             .addComponent(jTextFieldPesquisarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -532,7 +572,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                     .addComponent(jTextFieldPesquisarColaborador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPaneColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelColaboradorDetalhe)
                 .addGap(0, 0, 0)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -548,6 +588,12 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         jLabelPesquisarCDD.setText("Pesquisar CDD");
 
         jLabelFliltrarLivro.setText("Filtrar por");
+
+        jComboBoxFiltrarLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxFiltrarLivroActionPerformed(evt);
+            }
+        });
 
         jTableLivro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -566,6 +612,11 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             }
         });
         jTableLivro.getTableHeader().setReorderingAllowed(false);
+        jTableLivro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableLivroMouseClicked(evt);
+            }
+        });
         jScrollPaneLivro.setViewportView(jTableLivro);
         if (jTableLivro.getColumnModel().getColumnCount() > 0) {
             jTableLivro.getColumnModel().getColumn(0).setMinWidth(60);
@@ -649,52 +700,57 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             .addGroup(jPanelLivrosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPaneLivroDescricao)
+                    .addComponent(jScrollPaneLivro)
                     .addGroup(jPanelLivrosLayout.createSequentialGroup()
                         .addComponent(jScrollPaneLivroDetalhe, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPaneExemplares, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPaneExemplares, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
                             .addGroup(jPanelLivrosLayout.createSequentialGroup()
                                 .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelExemplaresLivro)
                                     .addComponent(jLabelMotivoDesativacao))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jTextFieldMotivoDesativacao)))
-                    .addComponent(jScrollPaneLivroDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelLivrosLayout.createSequentialGroup()
                         .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldPesquisarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelPesquisarLivro))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldPesquisarCDD, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelPesquisarCDD))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxFiltrarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelFliltrarLivro)))
-                    .addComponent(jScrollPaneLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelLivroDetalhe))
+                            .addComponent(jLabelLivroDetalhe)
+                            .addGroup(jPanelLivrosLayout.createSequentialGroup()
+                                .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelFliltrarLivro)
+                                    .addComponent(jComboBoxFiltrarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(87, 87, 87)
+                                .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabelPesquisarCDD)
+                                    .addComponent(jTextFieldPesquisarCDD, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+                                .addGap(40, 40, 40)
+                                .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldPesquisarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelPesquisarLivro))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelLivrosLayout.setVerticalGroup(
             jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLivrosLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelPesquisarLivro)
                     .addGroup(jPanelLivrosLayout.createSequentialGroup()
-                        .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelPesquisarCDD)
-                            .addComponent(jLabelFliltrarLivro))
-                        .addGap(0, 0, 0)
-                        .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldPesquisarCDD, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(jLabelFliltrarLivro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxFiltrarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldPesquisarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldPesquisarCDD, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelLivrosLayout.createSequentialGroup()
+                        .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelPesquisarCDD)
+                            .addComponent(jLabelPesquisarLivro, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldPesquisarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPaneLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelLivroDetalhe)
                 .addGap(0, 0, 0)
                 .addComponent(jScrollPaneLivroDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -714,36 +770,48 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
 
         jButtonReservar.setText("Reservar");
 
-        jButtonCancelar.setText("Cancelar");
-
         jButtonEmprestar.setText("Emprestar");
 
         jButtonDevolver.setText("Devolver");
+
+        jButton1.setText("Receber");
+
+        jButton2.setText("Comprovante");
+
+        jButtonCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout jPanelComandosLayout = new javax.swing.GroupLayout(jPanelComandos);
         jPanelComandos.setLayout(jPanelComandosLayout);
         jPanelComandosLayout.setHorizontalGroup(
             jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelComandosLayout.createSequentialGroup()
-                .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButtonDevolver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonEmprestar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonReservar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
-                .addGap(0, 0, 0))
+                .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelComandosLayout.createSequentialGroup()
+                        .addComponent(jButtonReservar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(140, 140, 140)
+                        .addComponent(jButtonEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelComandosLayout.setVerticalGroup(
             jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelComandosLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jButtonReservar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
+                .addGroup(jPanelComandosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonReservar)
+                    .addComponent(jButtonEmprestar)
+                    .addComponent(jButtonDevolver)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButtonCancelar)
-                .addGap(271, 271, 271)
-                .addComponent(jButtonEmprestar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonDevolver)
-                .addGap(103, 103, 103))
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -754,10 +822,10 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 .addGap(20, 20, 20)
                 .addComponent(jPanelColaboradores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelLivros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelComandos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanelComandos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelLivros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -765,9 +833,10 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelLivros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelColaboradores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelComandos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                    .addComponent(jPanelColaboradores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelComandos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -796,6 +865,22 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             mensagem.erro(new Exception("Erro ao filtrar colaboradores!\n" + e));
         }
     }//GEN-LAST:event_jComboBoxFiltrarColaboradorActionPerformed
+
+    private void jTableLivroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableLivroMouseClicked
+        try {
+            preencherJTableLivroDetalhe();
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jTableLivroMouseClicked
+
+    private void jComboBoxFiltrarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFiltrarLivroActionPerformed
+        try {
+            filtrarLivros(jComboBoxFiltrarLivro.getSelectedIndex());
+        } catch (Exception e) {
+            mensagem.erro(new Exception("Erro ao filtrar livros!\n" + e));
+        }
+    }//GEN-LAST:event_jComboBoxFiltrarLivroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -844,6 +929,8 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonDevolver;
     private javax.swing.JButton jButtonEmprestar;
