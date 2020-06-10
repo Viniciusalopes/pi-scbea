@@ -77,9 +77,9 @@ public class ControleEditora implements ICRUDEditora {
             throw new Exception("Nome não pode ficar em branco!");
         }
 
-        if (editora.getNomeEditora().toLowerCase().charAt(0) == editora.getNomeEditora().toLowerCase().charAt(1)) {
-            throw new Exception("Nome com duas letras , e ainda iguais?? ta de brinks...");
-        }
+//        if (editora.getNomeEditora().toLowerCase().charAt(0) == editora.getNomeEditora().toLowerCase().charAt(1)) {
+//            throw new Exception("Nome com duas letras , e ainda iguais?? ta de brinks...");
+//        }
 
         if (!StringUtil.nomeEditoraValido(editora.getNomeEditora())) {
             throw new Exception("Nome da editora possui caracteres inválidos!");
