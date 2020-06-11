@@ -68,7 +68,7 @@ public class ControleLivro implements ICRUDLivro {
         controleReserva = new ControleReserva();
         for (Reserva r : controleReserva.listar()) {
             if (r.getLivro().getIdLivro() == idLivro) {
-                throw new Exception("O livro está reservador e não pode ser excluído!\n"
+                throw new Exception("O livro está reservado e não pode ser excluído!\n"
                         + "Reserva: " + r.getIdReserva() + "-" + r.getColaborador().getNomeColaborador());
             }
         }

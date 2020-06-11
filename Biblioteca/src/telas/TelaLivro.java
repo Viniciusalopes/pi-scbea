@@ -21,9 +21,10 @@ import interfaces.ICRUDLivro;
 import interfaces.ITelaCadastro;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import javax.swing.SpinnerNumberModel;
-import utilidades.GeradorID;
+import static utilidades.ColecaoUtil.*;
 import utilidades.Mensagens;
 import utilidades.ValidadorISBN;
 
@@ -36,6 +37,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
     //--- ATRIBUTOS ----------------------------------------------------------->
     //
     private int id;
+    private int cont = 0;
     private EnumAcao acao = null;
     private ICRUDLivro controleLivro = null;
     private ICRUDEditora controleEditora = null;
@@ -98,30 +100,37 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
     //
     private void popularJComboBoxAutor() throws Exception {
         autores = controleAutor.listar();
+        Collections.sort(autores, getComparatorAutorNomeCresc());
 
         jComboBoxAutor.removeAllItems();
-        for (Autor a : controleAutor.listar()) {
+        for (Autor a : autores) {
             jComboBoxAutor.addItem(a.getNomeAutor());
         }
         jComboBoxAutor.setSelectedIndex(-1);
     }
 
     private void popularJComboBoxEditora() throws Exception {
+        editoras = controleEditora.listar();
+        Collections.sort(editoras, getComparatorEditoraNomeCresc());
+
         jComboBoxEditora.removeAllItems();
-        for (Editora e : controleEditora.listar()) {
-            editoras = controleEditora.listar();
+        for (Editora e : editoras) {
             jComboBoxEditora.addItem(e.getNomeEditora());
         }
         jComboBoxEditora.setSelectedIndex(-1);
     }
 
     private void popularJComboBoxAreaConhecimento() throws Exception {
+
+        areasConhecimento = controleAreaConhecimento.listar();
+        Collections.sort(areasConhecimento, getComparatorAreaConhecimentoDescricaoCresc());
+
         jComboBoxAreaConhecimento.removeAllItems();
-        for (AreaConhecimento ac : controleAreaConhecimento.listar()) {
-            areasConhecimento = controleAreaConhecimento.listar();
-            jComboBoxAreaConhecimento.addItem(ac.getDescricaoAreaConhecimento());
+        for (AreaConhecimento ac : areasConhecimento) {
+            jComboBoxAreaConhecimento.addItem(ac.getDescricaoAreaConhecimento().toString());
         }
         jComboBoxAreaConhecimento.setSelectedIndex(-1);
+
     }
 
     private void popularControles() throws Exception {
@@ -190,7 +199,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
 
         if (campo.length() == 0) {
             jTextFieldTitulo.requestFocus();
-            throw new Exception("Insira o nome do livro");
+            throw new Exception("Informe o nome do livro!");
         }
 
         if (campo.length() < 2) {
@@ -212,7 +221,6 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         if (jComboBoxAreaConhecimento.getSelectedIndex() == -1) {
             throw new Exception("Selecione a área de conhecimento do livro!");
         }
-
     }
 
     private void limparCampos() {
@@ -589,12 +597,12 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
 
     private void jButtonIncluirExemplarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirExemplarActionPerformed
         try {
-            
-            if(jTextFieldID.getText().equals("")){ 
+
+            if (jTextFieldID.getText().equals("")) {
                 // Salva o livro antes de incluir o exemplar, para ter o idLivro
                 salvar();
             }
-            
+
             TelaExemplar telaExemplar = new TelaExemplar(null, true);
             telaExemplar.setId((acao.equals(EnumAcao.Incluir)) ? 0 : Integer.parseInt(jTextFieldID.getText().trim()));
             telaExemplar.setIdLivro(livro.getIdLivro());
