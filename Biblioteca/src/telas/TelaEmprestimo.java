@@ -31,16 +31,21 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private Mensagens mensagem = new Mensagens();
     private EnumAcao acao = null;
     private boolean visible = false;
-    private ControleTelaEmprestimo controleEmprestimos = null;
+    private ControleTelaEmprestimo controleTelaEmprestimo = null;
 
     // Matrizes e vetores
+    private String[][] matrizColaborador = null;
+    private String[][] matrizLivro = null;
+    private String[][] matrizExemplar = null;
+    
     private String[][] matrizFiltroColaborador = null;
-    private String[][] matrizPesquisaColaborador = null;
     private String[][] matrizFiltroLivro = null;
+    private String[][] matrizFiltroExemplar = null;
+    
+    private String[][] matrizPesquisaColaborador = null;
     private String[][] matrizPesquisaLivro = null;
+
     private ArrayList<String[]> resultadoPesquisa = null;
-    private String[][] matrizColaboradores = null;
-    private String[][] matrizLivros = null;
     private String[] vetorDetalhesColaborador = null;
 
     //--- FIM ATRIBUTOS -------------------------------------------------------|
@@ -63,15 +68,17 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     @Override
     public void setVisible(boolean b) {
         try {
-            controleEmprestimos = new ControleTelaEmprestimo();
+            controleTelaEmprestimo = new ControleTelaEmprestimo();
 
-            matrizColaboradores = controleEmprestimos.getMatrizColaboradores();
-            preencherJTableColaboradores(matrizColaboradores);
+            matrizColaborador = controleTelaEmprestimo.getMatrizColaboradores();
+            preencherJTableColaboradores(matrizColaborador);
             preencherJTableColaboradorDetalhe();
 
-            matrizLivros = controleEmprestimos.getMatrizLivros();
-            preencherJTableLivro(matrizLivros);
+            matrizLivro = controleTelaEmprestimo.getMatrizLivros();
+            preencherJTableLivro(matrizLivro);
             preencherJTableLivroDetalhe();
+
+            matrizExemplar = controleTelaEmprestimo.getMatrizExemplares();
 
             popularControles();
             jComboBoxFiltrarColaborador.setSelectedIndex(0);
@@ -115,13 +122,13 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     //--- MÉTODOS PARA GRID --------------------------------------------------->
     //
     private void filtrarColaboradores(int filtro) throws Exception {
-        if (matrizColaboradores != null) {
-            if (matrizColaboradores.length > 0) {
+        if (matrizColaborador != null) {
+            if (matrizColaborador.length > 0) {
                 if (filtro >= 0) {
                     resultadoPesquisa = new ArrayList<>();
                     coluna = 0;
 
-                    for (int i = 0; i < matrizColaboradores.length; i++) {
+                    for (int i = 0; i < matrizColaborador.length; i++) {
                         incluirNoResultado = false;
                         switch (filtro) {
                             case -1: // Não tem filtro selecionado
@@ -132,32 +139,32 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                                 break;
 
                             case 1: // ATIVOS
-                                incluirNoResultado = (EnumTipoStatus.valueOf(matrizColaboradores[i][8]) == EnumTipoStatus.ATIVO);
+                                incluirNoResultado = (EnumTipoStatus.valueOf(matrizColaborador[i][8]) == EnumTipoStatus.ATIVO);
                                 break;
 
                             case 2: // INATIVOS
-                                incluirNoResultado = (EnumTipoStatus.valueOf(matrizColaboradores[i][8]) == EnumTipoStatus.INATIVO);
+                                incluirNoResultado = (EnumTipoStatus.valueOf(matrizColaborador[i][8]) == EnumTipoStatus.INATIVO);
                                 break;
 
                             case 3: // ADIMPLENTE
-                                incluirNoResultado = (Float.parseFloat(matrizColaboradores[i][10].replace(",", ".")) == 0.0);
+                                incluirNoResultado = (Float.parseFloat(matrizColaborador[i][10].replace(",", ".")) == 0.0);
                                 break;
 
                             case 4: // INADIMPLENTE
-                                incluirNoResultado = (Float.parseFloat(matrizColaboradores[i][10].replace(",", ".")) > 0.0);
+                                incluirNoResultado = (Float.parseFloat(matrizColaborador[i][10].replace(",", ".")) > 0.0);
                                 break;
 
                             case 5: // COM_EMPRESTIMOS
                                 coluna = 9;
-                                incluirNoResultado = (Integer.parseInt(matrizColaboradores[i][9]) > 0);
+                                incluirNoResultado = (Integer.parseInt(matrizColaborador[i][9]) > 0);
                                 break;
 
                             case 6: // COM_RESERVAS
-                                incluirNoResultado = (Integer.parseInt(matrizColaboradores[i][11]) > 0);
+                                incluirNoResultado = (Integer.parseInt(matrizColaborador[i][11]) > 0);
                                 break;
 
                             default:
-                                incluirNoResultado = (EnumCargo.valueOf(matrizColaboradores[i][3])
+                                incluirNoResultado = (EnumCargo.valueOf(matrizColaborador[i][3])
                                         == EnumCargo.valueOf(jComboBoxFiltrarColaborador.getSelectedItem().toString()
                                         ));
                                 break;
@@ -165,11 +172,11 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                         }
 
                         if (incluirNoResultado) {
-                            resultadoPesquisa.add(matrizColaboradores[i]);
+                            resultadoPesquisa.add(matrizColaborador[i]);
                         }
                     }
 
-                    matrizFiltroColaborador = new String[resultadoPesquisa.size()][matrizColaboradores[0].length];
+                    matrizFiltroColaborador = new String[resultadoPesquisa.size()][matrizColaborador[0].length];
 
                     for (int i = 0; i < resultadoPesquisa.size(); i++) {
                         matrizFiltroColaborador[i] = resultadoPesquisa.get(i);
@@ -182,7 +189,31 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     }
 
     private void filtrarLivros(int filtro) throws Exception {
-        matrizFiltroLivro = matrizLivros;
+        matrizFiltroLivro = matrizLivro;
+    }
+
+    private void filtrarExemplares(int idLivro) throws Exception {
+        if (matrizExemplar != null) {
+            if (matrizExemplar.length > 0) {
+                if (idLivro >= 0) {
+                    resultadoPesquisa = new ArrayList<>();
+                    coluna = 0;
+
+                    for (int i = 0; i < matrizExemplar.length; i++) {
+                        if (Integer.parseInt(matrizExemplar[i][4]) == idLivro) {
+                            resultadoPesquisa.add(matrizExemplar[i]);
+                        }
+                    }
+
+                    matrizFiltroExemplar = new String[resultadoPesquisa.size()][matrizExemplar[0].length];
+
+                    for (int i = 0; i < resultadoPesquisa.size(); i++) {
+                        matrizFiltroExemplar[i] = resultadoPesquisa.get(i);
+                    }
+                    preencherJTableExemplares(matrizFiltroExemplar);
+                }
+            }
+        }
     }
 
     private void pesquisarColaboradores(String texto) throws Exception {
@@ -247,6 +278,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                     for (int j = 0; j < jTableColaboradorDetalhe.getRowCount(); j++) {
                         jTableColaboradorDetalhe.setValueAt(dados[j], j, 1);
                     }
+                    break;
                 }
             }
         } else {
@@ -286,6 +318,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                     for (int j = 0; j < jTableLivroDetalhe.getRowCount(); j++) {
                         jTableLivroDetalhe.setValueAt(dados[j], j, 1);
                     }
+                    break;
                 }
             }
         } else {
@@ -293,6 +326,20 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 jTableLivroDetalhe.setValueAt("", i, 1);
             }
         }
+    }
+
+    private void preencherJTableExemplares(String[][] matriz) throws Exception {
+        jTableExemplares.setModel(new javax.swing.table.DefaultTableModel(
+                matriz, new String[]{"ID", "Status", "Aquisição", "Preço (R$)"}
+        ) {
+            boolean[] canEdit = new boolean[]{
+                false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
     }
 
     //--- FIM MÉTODOS PARA GRID -----------------------------------------------|
@@ -877,6 +924,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private void jComboBoxFiltrarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFiltrarLivroActionPerformed
         try {
             filtrarLivros(jComboBoxFiltrarLivro.getSelectedIndex());
+            filtrarExemplares(Integer.parseInt(jTableLivro.getValueAt(jTableLivro.getSelectedRow(), 0).toString()));
         } catch (Exception e) {
             mensagem.erro(new Exception("Erro ao filtrar livros!\n" + e));
         }

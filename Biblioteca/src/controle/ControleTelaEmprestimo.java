@@ -8,6 +8,7 @@ package controle;
 import classes.Colaborador;
 import classes.Emprestimo;
 import classes.EmprestimosDoColaborador;
+import classes.Exemplar;
 import classes.Livro;
 import classes.Reserva;
 import classes.ReservasDoColaborador;
@@ -16,6 +17,7 @@ import interfaces.ICRUDEmprestimo;
 import interfaces.ICRUDExemplar;
 import interfaces.ICRUDLivro;
 import interfaces.ICRUDReserva;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -25,16 +27,19 @@ import java.util.ArrayList;
 public class ControleTelaEmprestimo {
 
     //--- ATRIBUTOS ----------------------------------------------------------->
-    private ICRUDEmprestimo controleEmprestimo = null;
     private ICRUDColaborador controleColaborador = null;
-    private ICRUDReserva controleReserva = null;
     private ICRUDLivro controleLivro = null;
     private ICRUDExemplar controleExemplar = null;
 
+    private ICRUDEmprestimo controleEmprestimo = null;
+    private ICRUDReserva controleReserva = null;
+
     private ArrayList<Colaborador> colecaoColaborador = null;
+    private ArrayList<Livro> colecaoLivro = null;
+    private ArrayList<Exemplar> colecaoExemplar = null;
+
     private ArrayList<Emprestimo> colecaoEmprestimo = null;
     private ArrayList<Reserva> colecaoReserva = null;
-    private ArrayList<Livro> colecaoLivro = null;
 
     private EmprestimosDoColaborador emprestimosDoColaborador = null;
     private ReservasDoColaborador reservasDoColaborador = null;
@@ -49,14 +54,21 @@ public class ControleTelaEmprestimo {
     private int qtdColunas = 0;
     private int cont = 0;
 
+    private SimpleDateFormat formatoData = null;
+
     //--- FIM ATRIBUTOS -------------------------------------------------------|
     //
     //--- CONSTRUTOR ---------------------------------------------------------->
     //
     public ControleTelaEmprestimo() throws Exception {
-        controleEmprestimo = new ControleEmprestimo();
         controleColaborador = new ControleColaborador();
+        controleLivro = new ControleLivro();
+        controleExemplar = new ControleExemplar();
+
+        controleEmprestimo = new ControleEmprestimo();
         controleReserva = new ControleReserva();
+
+        formatoData = new SimpleDateFormat("dd/MM/yyy");
     }
 
     //--- FIM CONSTRUTOR ------------------------------------------------------|
@@ -98,9 +110,9 @@ public class ControleTelaEmprestimo {
     }
 
     public String[][] getMatrizLivros() throws Exception {
-        controleLivro = new ControleLivro();
+
         colecaoLivro = controleLivro.listar();
-        
+
         qtdLinhas = colecaoLivro.size();
         qtdColunas = 8;
 
@@ -114,10 +126,39 @@ public class ControleTelaEmprestimo {
                 livro.getAutor().getNomeAutor(),
                 livro.getEdicao() + "",
                 livro.getAnoPublicacao() + "",
-                livro.getAreaConhecimento().getCdd() + " - "+ livro.getAreaConhecimento().getDescricaoAreaConhecimento(),
+                livro.getAreaConhecimento().getCdd() + " - " + livro.getAreaConhecimento().getDescricaoAreaConhecimento(),
                 livro.getIsbn()
             };
 
+            matriz[cont] = vetor;
+            cont++;
+        }
+        return matriz;
+    }
+
+    public String[][] getMatrizExemplares() throws Exception {
+        colecaoExemplar = controleExemplar.listar();
+
+        qtdLinhas = colecaoExemplar.size();
+        qtdLinhas = 14;
+
+        matriz = new String[qtdLinhas][qtdColunas];
+        cont = 0;
+        for (Exemplar exemplar : colecaoExemplar) {
+            vetor = new String[]{
+                exemplar.getIdExemplar() + "",
+                exemplar.getStatusExemplar().toString(),
+                formatoData.format(exemplar.getDataAquisicao()),
+                String.format("%.f2", exemplar.getPrecoCompra()),
+                exemplar.getIdLivro() + "",
+                exemplar.getTitulo(),
+                exemplar.getEditora().getNomeEditora(),
+                exemplar.getAutor().getNomeAutor(),
+                exemplar.getEdicao() + "",
+                formatoData.format(exemplar.getAnoPublicacao()) + "",
+                exemplar.getAreaConhecimento().getCdd() + " - " + exemplar.getAreaConhecimento().getDescricaoAreaConhecimento(),
+                exemplar.getIsbn()
+            };
             matriz[cont] = vetor;
             cont++;
         }
