@@ -12,7 +12,9 @@ import interfaces.ICRUDEmprestimo;
 import interfaces.ICRUDLivro;
 import interfaces.ICRUDReserva;
 import java.util.ArrayList;
+import java.util.Collections;
 import persistencia.PersistenciaLivro;
+import static utilidades.ColecaoUtil.getComparadorLivroTituloCresc;
 import static utilidades.StringUtil.textoSoComNumeros;
 
 /**
@@ -33,7 +35,9 @@ public class ControleLivro implements ICRUDLivro {
 
     @Override
     public ArrayList<Livro> listar() throws Exception {
-        return persistencia.listar();
+        colecao = persistencia.listar();
+        Collections.sort(colecao, getComparadorLivroTituloCresc());
+        return colecao;
     }
 
     @Override

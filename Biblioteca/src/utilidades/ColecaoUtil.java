@@ -7,7 +7,10 @@ package utilidades;
 
 import classes.AreaConhecimento;
 import classes.Autor;
+import classes.Colaborador;
 import classes.Editora;
+import classes.Exemplar;
+import classes.Livro;
 import java.text.Collator;
 import java.util.Comparator;
 import java.util.Locale;
@@ -25,7 +28,7 @@ public class ColecaoUtil {
 
     private static Collator collator = Collator.getInstance(new Locale("pt", "BR"));
 
-    public static Comparator<AreaConhecimento> getComparatorAreaConhecimentoDescricaoCresc() {
+    public static Comparator<AreaConhecimento> getComparadorAreaConhecimentoDescricaoCresc() {
 
         collator.setStrength(Collator.PRIMARY);
         return new Comparator<AreaConhecimento>() {
@@ -37,7 +40,7 @@ public class ColecaoUtil {
         };
     }
 
-    public static Comparator<Autor> getComparatorAutorNomeCresc() {
+    public static Comparator<Autor> getComparadorAutorNomeCresc() {
 
         collator.setStrength(Collator.PRIMARY);
         return new Comparator<Autor>() {
@@ -49,7 +52,19 @@ public class ColecaoUtil {
         };
     }
 
-    public static Comparator<Editora> getComparatorEditoraNomeCresc() {
+    public static Comparator<Colaborador> getComparadorColaboradorNomeCresc() {
+
+        collator.setStrength(Collator.PRIMARY);
+        return new Comparator<Colaborador>() {
+
+            @Override
+            public int compare(Colaborador o1, Colaborador o2) {
+                return collator.compare(o1.getNomeColaborador(), o2.getNomeColaborador());
+            }
+        };
+    }
+
+    public static Comparator<Editora> getComparadorEditoraNomeCresc() {
 
         collator.setStrength(Collator.PRIMARY);
         return new Comparator<Editora>() {
@@ -61,4 +76,27 @@ public class ColecaoUtil {
         };
     }
 
+    public static Comparator<Exemplar> getComparadorExemplarTituloCresc() {
+
+        collator.setStrength(Collator.PRIMARY);
+        return new Comparator<Exemplar>() {
+
+            @Override
+            public int compare(Exemplar o1, Exemplar o2) {
+                return collator.compare(o1.getTitulo(), o2.getTitulo());
+            }
+        };
+    }
+
+    public static Comparator<Livro> getComparadorLivroTituloCresc() {
+
+        collator.setStrength(Collator.PRIMARY);
+        return new Comparator<Livro>() {
+
+            @Override
+            public int compare(Livro o1, Livro o2) {
+                return collator.compare(o1.getTitulo(), o2.getTitulo());
+            }
+        };
+    }
 }

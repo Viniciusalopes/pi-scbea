@@ -10,7 +10,9 @@ import classes.Exemplar;
 import interfaces.ICRUDEmprestimo;
 import interfaces.ICRUDExemplar;
 import java.util.ArrayList;
+import java.util.Collections;
 import persistencia.PersistenciaExemplar;
+import static utilidades.ColecaoUtil.getComparadorExemplarTituloCresc;
 
 /**
  *
@@ -29,7 +31,9 @@ public class ControleExemplar implements ICRUDExemplar {
     @Override
 
     public ArrayList<Exemplar> listar() throws Exception {
-        return persistencia.listar();
+        colecao = persistencia.listar();
+        Collections.sort(colecao, getComparadorExemplarTituloCresc());
+        return colecao;
     }
 
     @Override

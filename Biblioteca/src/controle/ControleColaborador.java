@@ -10,7 +10,9 @@ import enumeradores.EnumAcao;
 import enumeradores.EnumCargo;
 import interfaces.ICRUDColaborador;
 import java.util.ArrayList;
+import java.util.Collections;
 import persistencia.PersistenciaColaborador;
+import static utilidades.ColecaoUtil.getComparadorColaboradorNomeCresc;
 
 /**
  *
@@ -27,7 +29,9 @@ public class ControleColaborador implements ICRUDColaborador {
 
     @Override
     public ArrayList<Colaborador> listar() throws Exception {
-        return persistencia.listar();
+        colecao = persistencia.listar();
+        Collections.sort(colecao, getComparadorColaboradorNomeCresc());
+        return colecao;
     }
 
     @Override

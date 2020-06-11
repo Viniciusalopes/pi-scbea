@@ -100,7 +100,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
     //
     private void popularJComboBoxAutor() throws Exception {
         autores = controleAutor.listar();
-        Collections.sort(autores, getComparatorAutorNomeCresc());
+        Collections.sort(autores, getComparadorAutorNomeCresc());
 
         jComboBoxAutor.removeAllItems();
         for (Autor a : autores) {
@@ -111,7 +111,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
 
     private void popularJComboBoxEditora() throws Exception {
         editoras = controleEditora.listar();
-        Collections.sort(editoras, getComparatorEditoraNomeCresc());
+        
 
         jComboBoxEditora.removeAllItems();
         for (Editora e : editoras) {
@@ -123,7 +123,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
     private void popularJComboBoxAreaConhecimento() throws Exception {
 
         areasConhecimento = controleAreaConhecimento.listar();
-        Collections.sort(areasConhecimento, getComparatorAreaConhecimentoDescricaoCresc());
+        Collections.sort(areasConhecimento, getComparadorAreaConhecimentoDescricaoCresc());
 
         jComboBoxAreaConhecimento.removeAllItems();
         for (AreaConhecimento ac : areasConhecimento) {
@@ -158,6 +158,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
                     break;
                 }
             }
+            
             for (Editora e : editoras) {
                 if (e.getNomeEditora().equals(jComboBoxEditora.getSelectedItem())) {
                     livro.setEditora(e);
@@ -193,7 +194,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         }
     }
 
-    public void validarPreenchimento() throws Exception {
+    private void validarPreenchimento() throws Exception {
         //validarPreenchimento dos campos
         String campo = new String(jTextFieldTitulo.getText().trim());
 

@@ -4,7 +4,9 @@ import classes.AreaConhecimento;
 import classes.Livro;
 import interfaces.ICRUDAreaConhecimento;
 import java.util.ArrayList;
+import java.util.Collections;
 import persistencia.PersistenciaAreaConhecimento;
+import static utilidades.ColecaoUtil.getComparadorAreaConhecimentoDescricaoCresc;
 
 public class ControleAreaConhecimento implements ICRUDAreaConhecimento {
 
@@ -27,7 +29,9 @@ public class ControleAreaConhecimento implements ICRUDAreaConhecimento {
 //------------------------------------------------------------------------------     
     @Override
     public ArrayList<AreaConhecimento> listar() throws Exception {
-        return persistencia.listar();
+        colecao = persistencia.listar();
+        Collections.sort(colecao, getComparadorAreaConhecimentoDescricaoCresc());
+        return colecao;
     }
 
     @Override

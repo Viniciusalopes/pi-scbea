@@ -10,7 +10,9 @@ import classes.Livro;
 import interfaces.ICRUDAutor;
 import interfaces.ICRUDLivro;
 import java.util.ArrayList;
+import java.util.Collections;
 import persistencia.PersistenciaAutor;
+import static utilidades.ColecaoUtil.getComparadorAutorNomeCresc;
 
 /**
  *
@@ -29,14 +31,19 @@ public class ControleAutor implements ICRUDAutor {
 
     @Override
     public ArrayList<Autor> listar() throws Exception {
-        return persistencia.listar();
+        colecao = persistencia.listar();
+        Collections.sort(colecao, getComparadorAutorNomeCresc());
+        return colecao;
     }
 
     @Override
     public Autor buscarPeloId(int idAutor) throws Exception {
-        colecao = listar();
-        for (Autor autor : colecao) {
-            if (autor.getIdAutor() == idAutor) {
+        return persistencia.buscarPeloId(idAutor);
+    }
+
+    public Autor buscarPeloNome(String nomeAutor) throws Exception {
+        for (Autor autor : listar()) {
+            if (autor.getNomeAutor().equalsIgnoreCase(nomeAutor)) {
                 return autor;
             }
         }

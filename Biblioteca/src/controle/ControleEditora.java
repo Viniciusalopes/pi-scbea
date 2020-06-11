@@ -16,8 +16,10 @@ import classes.Livro;
 import interfaces.ICRUDEditora;
 import interfaces.ICRUDLivro;
 import java.util.ArrayList;
+import java.util.Collections;
 import persistencia.PersistenciaEditora;
 import utilidades.StringUtil;
+import static utilidades.ColecaoUtil.getComparadorEditoraNomeCresc;
 
 /**
  *
@@ -36,7 +38,9 @@ public class ControleEditora implements ICRUDEditora {
 
     @Override
     public ArrayList<Editora> listar() throws Exception {//ok
-        return persistencia.listar();
+       colecao = persistencia.listar();
+       Collections.sort(colecao, getComparadorEditoraNomeCresc());
+       return colecao;
 
     }
 
