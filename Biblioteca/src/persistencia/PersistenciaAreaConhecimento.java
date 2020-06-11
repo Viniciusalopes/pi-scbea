@@ -32,7 +32,7 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
                     EnumArquivosBd.AREACONHECIMENTO.getNomeArquivo());
         } catch (Exception e) {
             throw new Exception("Erro ao construir a classe AreaConhecimento\n"
-                    + "Entre em contato com o suporte técnico!\n" + e);
+                    + "Entre em contato com o suporte técnico!\n" + e.getMessage());
         }
     }
     
@@ -61,7 +61,7 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
 
         } catch (Exception e) {
             throw new Exception("Erro ao listar os colaboradores! (Persistência)\n"
-                    + "Entre em contato com o suporte técnico!\n" + e);
+                    + "Entre em contato com o suporte técnico!\n" + e.getMessage());
         }
     }
 
@@ -76,7 +76,7 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
             }
             return null;
         } catch (Exception e) {
-            throw new Exception("Erro ao buscar colaborador pelo ID! (Persistência)\n" + e);
+            throw new Exception("Erro ao buscar colaborador pelo ID! (Persistência)\n" + e.getMessage());
         }
     }
 
@@ -97,7 +97,7 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
                 }
             }
         } catch (Exception e) {
-            throw new Exception("Erro ao alterar a Área de conhecimento! (Persistência)\n" + e);
+            throw new Exception("Erro ao alterar a Área de conhecimento! (Persistência)\n" + e.getMessage());
         }
 
     }

@@ -45,7 +45,7 @@ public class PersistenciaLivro implements ICRUDLivro {
             controleAutor = new ControleAutor();
             controleAreaConhecimento = new ControleAreaConhecimento();
         } catch (Exception e) {
-            throw new Exception("Erro ao construir a classe Livro!\n" + e);
+            throw new Exception("Erro ao construir a classe Livro!\n" + e.getMessage());
         }
     }
 
@@ -75,7 +75,7 @@ public class PersistenciaLivro implements ICRUDLivro {
             return colecao;
 
         } catch (Exception e) {
-            throw new Exception("Erro ao listar os livros!\n" + e);
+            throw new Exception("Erro ao listar os livros!\n" + e.getMessage());
         }
     }
 
@@ -90,9 +90,10 @@ public class PersistenciaLivro implements ICRUDLivro {
     }
 
     @Override
-    public void incluir(Livro livro) throws Exception {
+    public int incluir(Livro livro) throws Exception {
         livro.setIdLivro(GeradorID.getProximoID());       //Obter o próximo ID único
         controleArquivoTXT.incluirLinha(livro.toString().replaceAll("\n", "____"));           //Gravar a linha no arquivoTXT
+        return livro.getIdLivro();
     }
 
     @Override

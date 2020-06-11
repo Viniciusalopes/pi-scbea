@@ -44,7 +44,7 @@ public class ControleArquivoTXT implements IArquivoTXT {
 
             arquivoTXT = new ArquivoTXT(caminho, arquivo);
         } catch (Exception e) {
-            throw new Exception("Erro ao construir a classe ControleArquivoTXT[" + arquivo + "]!\n" + e);
+            throw new Exception("Erro ao construir a classe ControleArquivoTXT[" + arquivo + "]!\n" + e.getMessage());
         }
     }
 
@@ -56,7 +56,7 @@ public class ControleArquivoTXT implements IArquivoTXT {
             arquivoTXT.setLinhas(linhas);
             escreverArquivo();
         } catch (Exception e) {
-            throw new Exception("Erro ao incluir linha no arquivo [" + arquivoTXT.getArquivo() + "]! (ControleArquivoTXT)\n" + e);
+            throw new Exception("Erro ao incluir linha no arquivo [" + arquivoTXT.getArquivo() + "]! (ControleArquivoTXT)\n" + e.getMessage());
         }
     }
 
@@ -75,7 +75,7 @@ public class ControleArquivoTXT implements IArquivoTXT {
             escreverArquivo();
 
         } catch (Exception e) {
-            throw new Exception("Erro ao alterar linha do arquivo [" + arquivoTXT.getArquivo() + "]! (ControleArquivoTXT)\n" + e);
+            throw new Exception("Erro ao alterar linha do arquivo [" + arquivoTXT.getArquivo() + "]! (ControleArquivoTXT)\n" + e.getMessage());
         }
     }
 
@@ -92,7 +92,7 @@ public class ControleArquivoTXT implements IArquivoTXT {
             arquivoTXT.setLinhas(linhas);
             escreverArquivo();
         } catch (Exception e) {
-            throw new Exception("Erro ao excluir linha do arquivo [" + arquivoTXT.getArquivo() + "]! (ControleArquivoTXT)\n" + e);
+            throw new Exception("Erro ao excluir linha do arquivo [" + arquivoTXT.getArquivo() + "]! (ControleArquivoTXT)\n" + e.getMessage());
         }
     }
 
@@ -109,7 +109,7 @@ public class ControleArquivoTXT implements IArquivoTXT {
             br.close();
             return linhas;
         } catch (Exception e) {
-            throw new Exception("Erro ao ler o arquivo [" + arquivoTXT.getArquivo() + "]!\n" + e);
+            throw new Exception("Erro ao ler o arquivo [" + arquivoTXT.getArquivo() + "]!\n" + e.getMessage());
         }
     }
 
@@ -122,7 +122,7 @@ public class ControleArquivoTXT implements IArquivoTXT {
             }
             bw.close();
         } catch (Exception e) {
-            throw new Exception("Erro ao escrever no arquivo [" + arquivoTXT.getArquivo() + "]!\n" + e);
+            throw new Exception("Erro ao escrever no arquivo [" + arquivoTXT.getArquivo() + "]!\n" + e.getMessage());
         }
     }
 }

@@ -48,7 +48,7 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
             controleColaborador = new ControleColaborador();
             formatoData = new SimpleDateFormat("dd/MM/yyyy");
         } catch (Exception e) {
-            throw new Exception("Erro ao construir a classe PersistenciaEmprestimo!\n" + e);
+            throw new Exception("Erro ao construir a classe PersistenciaEmprestimo!\n" + e.getMessage());
         }
     }
 

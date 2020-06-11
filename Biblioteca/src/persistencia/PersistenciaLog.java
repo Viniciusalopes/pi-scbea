@@ -43,7 +43,7 @@ public class PersistenciaLog implements ICRUDLog {
             controleColaborador = new ControleColaborador();
             formatoData = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         } catch (Exception e) {
-            throw new Exception("Erro ao construir a classe PersistenciaLog!\n" + e);
+            throw new Exception("Erro ao construir a classe PersistenciaLog!\n" + e.getMessage());
         }
     }
 
@@ -67,7 +67,7 @@ public class PersistenciaLog implements ICRUDLog {
             }
             return colecao;
         } catch (Exception e) {
-            throw new Exception("Erro ao listar os logs!\n" + e);
+            throw new Exception("Erro ao listar os logs!\n" + e.getMessage());
         }
     }
 
@@ -77,7 +77,7 @@ public class PersistenciaLog implements ICRUDLog {
             log = new Log(new Date(), Vai.USUARIO, acao, cadastro, registro);
             controleArquivoTXT.incluirLinha(log.toString());
         } catch (Exception e) {
-            throw new Exception("Erro ao incluir o registro de log!\n" + e);
+            throw new Exception("Erro ao incluir o registro de log!\n" + e.getMessage());
         }
     }
 }

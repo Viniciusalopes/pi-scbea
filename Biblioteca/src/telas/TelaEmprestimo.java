@@ -246,7 +246,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             }
 
         } catch (Exception e) {
-            mensagem.erro(new Exception("Erro ao pesquisar!" + e));
+            mensagem.erro(new Exception("Erro ao pesquisar!" + e.getMessage()));
         }
 
     }
@@ -909,7 +909,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         try {
             filtrarColaboradores(jComboBoxFiltrarColaborador.getSelectedIndex());
         } catch (Exception e) {
-            mensagem.erro(new Exception("Erro ao filtrar colaboradores!\n" + e));
+            mensagem.erro(new Exception("Erro ao filtrar colaboradores!\n" + e.getMessage()));
         }
     }//GEN-LAST:event_jComboBoxFiltrarColaboradorActionPerformed
 
@@ -926,7 +926,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             filtrarLivros(jComboBoxFiltrarLivro.getSelectedIndex());
             filtrarExemplares(Integer.parseInt(jTableLivro.getValueAt(jTableLivro.getSelectedRow(), 0).toString()));
         } catch (Exception e) {
-            mensagem.erro(new Exception("Erro ao filtrar livros!\n" + e));
+            mensagem.erro(new Exception("Erro ao filtrar livros!\n" + e.getMessage()));
         }
     }//GEN-LAST:event_jComboBoxFiltrarLivroActionPerformed
 

@@ -17,7 +17,6 @@ import interfaces.ITelaCadastro;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.ExecutionException;
 
 /**
  *
@@ -33,6 +32,7 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
     //PERSISTENCIA-------->
     //CONTROLE----------->
     private int id;
+    private int idLivro;
     private EnumAcao acao = null;
     private ICRUDExemplar controleExemplar = null;
     private Mensagens mensagens = null;
@@ -85,6 +85,10 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
     //--------------------end override------------------------------
     //metodos 
 
+    public void setIdLivro(int idLivro) {
+        this.idLivro = idLivro;
+    }
+
     private void popularControles() throws Exception {
         jTextFieldIDExemplar.setText(String.format("%04d", id));
         jComboBoxstatusExemplar.addItem(EnumTipoStatus.ATIVO.toString());
@@ -109,7 +113,7 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
             }
 
         } catch (Exception e) {
-            mensagens.erro(new Exception("Erro ao salvar: \n" + e));
+            mensagens.erro(new Exception("Erro ao salvar: \n" + e.getMessage()));
             visible = false;
             this.dispose();
 

@@ -118,7 +118,7 @@ public class TelaEditora extends javax.swing.JDialog implements ITelaCadastro {
             this.dispose();
 
         } catch (Exception e) {
-            mensagem.erro(new Exception("Erro ao salvar: \n" + e));
+            mensagem.erro(new Exception("Erro ao salvar: \n" + e.getMessage()));
         }
     }
 

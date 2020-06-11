@@ -38,7 +38,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
                     CONFIGURACAO.getCaminhoBdCliente(),
                     EnumArquivosBd.COLABORADOR.getNomeArquivo());
         } catch (Exception e) {
-            throw new Exception("Erro ao construir a classe PersistenciaColaborador!\n" + e);
+            throw new Exception("Erro ao construir a classe PersistenciaColaborador!\n" + e.getMessage());
         }
 
     }
@@ -68,7 +68,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
             }
             return colecao;
         } catch (Exception e) {
-            throw new Exception("Erro ao listar os colaboradores! (Persistência)\n" + e);
+            throw new Exception("Erro ao listar os colaboradores! (Persistência)\n" + e.getMessage());
         }
 
     }
@@ -85,7 +85,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
             }
             return colaborador;
         } catch (Exception e) {
-            throw new Exception("Erro ao buscar colaborador pelo ID! (Persistência)\n" + e);
+            throw new Exception("Erro ao buscar colaborador pelo ID! (Persistência)\n" + e.getMessage());
         }
     }
 
@@ -95,7 +95,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
             colaborador.setIdColaborador(GeradorID.getProximoID());
             controleArquivoTXT.incluirLinha(colaborador.toString());
         } catch (Exception e) {
-            throw new Exception("Erro ao incluir o colaborador! (Persistência)\n" + e);
+            throw new Exception("Erro ao incluir o colaborador! (Persistência)\n" + e.getMessage());
         }
     }
 
@@ -110,7 +110,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
                 }
             }
         } catch (Exception e) {
-            throw new Exception("Erro ao alterar o colaborador! (Persistência)\n" + e);
+            throw new Exception("Erro ao alterar o colaborador! (Persistência)\n" + e.getMessage());
         }
 
     }
@@ -128,7 +128,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
                 }
             }
         } catch (Exception e) {
-            throw new Exception("Erro ao excluir o colaborador! (Persistência)\n" + e);
+            throw new Exception("Erro ao excluir o colaborador! (Persistência)\n" + e.getMessage());
         }
     }
 }

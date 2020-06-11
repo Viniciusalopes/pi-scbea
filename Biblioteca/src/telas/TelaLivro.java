@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.SpinnerNumberModel;
+import utilidades.GeradorID;
 import utilidades.Mensagens;
 import utilidades.ValidadorISBN;
 
@@ -138,11 +139,8 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
 
             livro = new Livro();
             livro.setTitulo(jTextFieldTitulo.getText().trim());
-
             livro.setEdicao(Integer.valueOf(jSpinnerEdicao.getValue().toString()));
-
             livro.setAnoPublicacao(Integer.valueOf(jSpinnerAno.getValue().toString()));
-
             livro.setIsbn(jTextFieldISBN.getText().trim());
 
             for (Autor a : autores) {
@@ -174,11 +172,15 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
                 livro.setIdLivro(Integer.parseInt(jTextFieldID.getText().trim()));
                 controleLivro.alterar(livro);
                 mensagem.sucesso("livro atualizado com sucesso!");
+            } else { // Incluir livro para incluir exemplar
+                livro.setIdLivro(controleLivro.incluir(livro));
+                jTextFieldID.setText(String.format("%04d", livro.getIdLivro()));
             }
+
             visible = false;
             this.dispose();
         } catch (Exception e) {
-            throw new Exception("Erro ao salvar o cadastro do livro!\n" + e);
+            throw new Exception("Erro ao salvar o cadastro do livro!\n" + e.getMessage());
         }
     }
 
@@ -235,6 +237,11 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
 
     }
 
+    private void incluirExemplarDoLivro() throws Exception {
+        validarPreenchimento();
+
+    }
+
     //--- FIM MÉTODOS ---------------------------------------------------------|
     //
     //-- CONSTRUTOR ----------------------------------------------------------->
@@ -242,7 +249,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
     /**
      * Creates new form TelaLivro
      */
-    public TelaLivro(java.awt.Frame parent, boolean modal){
+    public TelaLivro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(rootPane);
@@ -576,20 +583,26 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
             telaAutor.setVisible(true);
             popularJComboBoxAutor();
         } catch (Exception e) {
-            mensagem.erro(new Exception("Erro ao iniciar a tela de autor!\n" + e));
+            mensagem.erro(new Exception("Erro ao iniciar a tela de autor!\n" + e.getMessage()));
         }
     }//GEN-LAST:event_jButtonNovoAutorActionPerformed
 
     private void jButtonIncluirExemplarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirExemplarActionPerformed
         try {
+            
+            if(jTextFieldID.getText().equals("")){ 
+                // Salva o livro antes de incluir o exemplar, para ter o idLivro
+                salvar();
+            }
+            
             TelaExemplar telaExemplar = new TelaExemplar(null, true);
             telaExemplar.setId((acao.equals(EnumAcao.Incluir)) ? 0 : Integer.parseInt(jTextFieldID.getText().trim()));
+            telaExemplar.setIdLivro(livro.getIdLivro());
             telaExemplar.setAcao(EnumAcao.Incluir);
             telaExemplar.jTextFieldTituloLivro.setText(jTextFieldTitulo.getText());
             telaExemplar.setVisible(true);
-
         } catch (Exception e) {
-            mensagem.erro(new Exception("Erro ao iniciar a tela de exemplares!\n" + e));
+            mensagem.erro(new Exception("Erro ao iniciar a tela de exemplares!\n" + e.getMessage()));
         }
     }//GEN-LAST:event_jButtonIncluirExemplarActionPerformed
 
@@ -601,7 +614,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
             popularJComboBoxEditora();
 
         } catch (Exception e) {
-            mensagem.erro(new Exception("Erro ao iniciar a tela de editora!\n" + e));
+            mensagem.erro(new Exception("Erro ao iniciar a tela de editora!\n" + e.getMessage()));
         }
 
 
@@ -615,7 +628,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
             telaAreaConhecimento.setVisible(true);
             popularJComboBoxAreaConhecimento();
         } catch (Exception e) {
-            mensagem.erro(new Exception("Erro ao iniciar a tela de area de conhecimento!\n" + e));
+            mensagem.erro(new Exception("Erro ao iniciar a tela de area de conhecimento!\n" + e.getMessage()));
         }
     }//GEN-LAST:event_jButtonNovaAreaConhecimentoActionPerformed
 

@@ -32,7 +32,7 @@ public class PersistenciaConfiguracao implements ICRUDConfiguracao {
                     EnumArquivosBd.CONFIGURACAO.getNomeArquivo()
             );
         } catch (Exception e) {
-            throw new Exception("Erro ao construir a classe PersistenciaConfiguracao!\n" + e);
+            throw new Exception("Erro ao construir a classe PersistenciaConfiguracao!\n" + e.getMessage());
         }
     }
 
@@ -50,7 +50,7 @@ public class PersistenciaConfiguracao implements ICRUDConfiguracao {
 
             return configuracao;
         } catch (Exception e) {
-            throw new Exception("Erro ao ler a configuração! (Persistência)\n" + e);
+            throw new Exception("Erro ao ler a configuração! (Persistência)\n" + e.getMessage());
         }
     }
 
@@ -71,7 +71,7 @@ public class PersistenciaConfiguracao implements ICRUDConfiguracao {
             // Atualizo a configuração global
             Vai.CONFIGURACAO = new Configuracao(configuracao);
         } catch (Exception e) {
-            throw new Exception("Erro ao atualizar a configuração! (Persistência)\n" + e);
+            throw new Exception("Erro ao atualizar a configuração! (Persistência)\n" + e.getMessage());
         }
     }
 

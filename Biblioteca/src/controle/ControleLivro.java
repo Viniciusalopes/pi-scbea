@@ -43,10 +43,9 @@ public class ControleLivro implements ICRUDLivro {
 
     @Override
 
-    public void incluir(Livro livro) throws Exception {
-
+    public int incluir(Livro livro) throws Exception {
         validarDuplicidade(livro);
-        persistencia.incluir(livro);
+        return persistencia.incluir(livro);
     }
 
     @Override

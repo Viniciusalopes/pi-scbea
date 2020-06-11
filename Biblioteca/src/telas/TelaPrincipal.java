@@ -92,7 +92,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             
             exibirCadastros();
         } catch (Exception e) {
-            throw new Exception("Erro ao incluir o cadastro!\n" + e);
+            throw new Exception("Erro ao incluir o cadastro!\n" + e.getMessage());
         }
     }
 
@@ -116,7 +116,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             
             exibirCadastros();
         } catch (Exception e) {
-            throw new Exception("Erro ao editar o cadastro!\n" + e);
+            throw new Exception("Erro ao editar o cadastro!\n" + e.getMessage());
         }
     }
 
@@ -127,7 +127,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             telaCadastro.setVisible(true);
             exibirCadastros();
         } catch (Exception e) {
-            throw new Exception("Erro ao detalhar o cadastro!\n" + e);
+            throw new Exception("Erro ao detalhar o cadastro!\n" + e.getMessage());
         }
     }
 
@@ -180,7 +180,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
             exibirCadastros();
         } catch (Exception e) {
-            throw new Exception("Erro ao excluir o cadastro!\n" + e);
+            throw new Exception("Erro ao excluir o cadastro!\n" + e.getMessage());
         }
     }
 
@@ -206,7 +206,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jTextFieldPesquisar.setText("");
             jTextFieldPesquisar.requestFocus();
         } catch (Exception e) {
-            throw new Exception("Erro ao exibir cadastros de " + cadastro + "!\n" + e);
+            throw new Exception("Erro ao exibir cadastros de " + cadastro + "!\n" + e.getMessage());
         }
     }
 
@@ -258,7 +258,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jButtonExcluir.setEnabled(false);
             jTextFieldPesquisar.requestFocus();
         } catch (Exception e) {
-            throw new Exception("Erro ao popular o grid de " + cadastro + "!\n" + e);
+            throw new Exception("Erro ao popular o grid de " + cadastro + "!\n" + e.getMessage());
         }
     }
 
@@ -288,7 +288,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
-            throw new Exception("Erro ao pesquisar " + cadastro + "!\n" + e);
+            throw new Exception("Erro ao pesquisar " + cadastro + "!\n" + e.getMessage());
         }
     }
 
@@ -308,7 +308,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             return Integer.parseInt(jTableLista.getValueAt(jTableLista.getSelectedRow(), indiceID).toString());
 
         } catch (Exception e) {
-            throw new Exception("Erro ao obter ID!\n" + e);
+            throw new Exception("Erro ao obter ID!\n" + e.getMessage());
         }
     }
 
@@ -356,7 +356,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             }
         } catch (Exception e) {
-            throw new Exception("Erro ao atualizar a coleção!\n" + e);
+            throw new Exception("Erro ao atualizar a coleção!\n" + e.getMessage());
         }
     }
 
@@ -398,7 +398,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jTextFieldPesquisar.requestFocus();
             jLabelStatusBottom.setText(String.format("USUÁRIO: %04d - %s", Vai.USUARIO.getIdColaborador(), Vai.USUARIO.getNomeColaborador()));
         } catch (Exception e) {
-            mensagem.erro(new Exception("Erro ao construir a tela principal!\n" + e));
+            mensagem.erro(new Exception("Erro ao construir a tela principal!\n" + e.getMessage()));
         }
     }
     //    
