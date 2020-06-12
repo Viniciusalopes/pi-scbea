@@ -8,12 +8,20 @@ package controle;
 import classes.Reserva;
 import interfaces.ICRUDReserva;
 import java.util.ArrayList;
+import persistencia.PersistenciaReserva;
 
 /**
  *
  * @author vovostudio
  */
 public class ControleReserva implements ICRUDReserva {
+
+    private ICRUDReserva persistencia = null;
+
+    public ControleReserva() {
+        persistencia = new PersistenciaReserva();
+
+    }
 
     @Override
     public ArrayList<Reserva> listar() throws Exception {
@@ -27,7 +35,7 @@ public class ControleReserva implements ICRUDReserva {
 
     @Override
     public void incluir(Reserva reserva) throws Exception {
-        throw new UnsupportedOperationException("Método não implementado: ICRUDReserva, incluir()"); //To change body of generated methods, choose Tools | Templates.
+        persistencia.incluir(reserva);
     }
 
     @Override

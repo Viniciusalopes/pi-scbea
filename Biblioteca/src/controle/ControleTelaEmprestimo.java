@@ -20,6 +20,7 @@ import interfaces.ICRUDLivro;
 import interfaces.ICRUDReserva;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -45,8 +46,11 @@ public class ControleTelaEmprestimo {
     private EmprestimosDoColaborador emprestimosDoColaborador = null;
     private ReservasDoColaborador reservasDoColaborador = null;
 
+    private Colaborador colaborador = null;
+    private Livro livro = null;
+    private Reserva reserva = null;
+
     private Emprestimo emprestimo = null;
-    public Colaborador colaborador = null;
 
     private String[][] matriz = null;
     private String[] vetor = null;
@@ -188,5 +192,26 @@ public class ControleTelaEmprestimo {
     private void getReservasDoColaborador(Colaborador colaborador) {
         reservasDoColaborador = new ReservasDoColaborador();
     }
+
     //--- FIM CONSULTAS -------------------------------------------------------|
+    //
+    //--- AÇÕES --------------------------------------------------------------->
+    //
+    public void incluirReserva(int idColaborador, int idLivro) throws Exception {
+
+        colaborador = controleColaborador.buscarPeloId(idColaborador);
+        livro = controleLivro.buscarPeloId(idLivro);
+
+        if (colaborador.getStatus().equals(EnumTipoStatus.INATIVO)) {
+            throw new Exception("Para fazer uma reserva, o colaborador precisa estar ATIVO!");
+        }
+        if (colaborador.getStatus().equals(EnumTipoStatus.INADIMPLENTE)) {
+            throw new Exception("Para fazer uma reserva, o colaborador precisa estar ADIMPLENTE!");
+        }
+        reserva = new Reserva(0, livro, colaborador, new Date());
+        controleReserva.incluir(reserva);
+    }
+    //--- FIM AÇÕES -----------------------------------------------------------|
+    //
+
 }

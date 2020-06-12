@@ -15,6 +15,7 @@ import java.util.ArrayList;
  */
 public class PersistenciaReserva implements ICRUDReserva {
 
+    private IArquivoTXT controleArquivoTxt = null;
     @Override
     public ArrayList<Reserva> listar() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
