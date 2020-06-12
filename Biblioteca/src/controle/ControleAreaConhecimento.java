@@ -61,7 +61,7 @@ public class ControleAreaConhecimento implements ICRUDAreaConhecimento {
         for (Livro l : livros) {
             if (l.getAreaConhecimento().getIdAreaConhecimento() == idAreaConhecimento) {
                 throw new Exception("Está área de conhecimento está vinculada ao livro \n"
-                        + String.format("%04d", l.getIdLivro()) + " - "
+                        + l.getIdLivro() + " - "
                         + l.getTitulo() + "!");
             }
         }

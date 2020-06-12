@@ -103,7 +103,7 @@ public class Exemplar extends Livro {
 
     @Override
     public String toString() {
-        return String.format("%d;%d;%d;%s;%.2f;%s",
+        return String.format("%d;%d;%d;%s;%.2f;%s;",
                 idExemplar,
                 idLivro,
                 statusExemplar.ordinal(),

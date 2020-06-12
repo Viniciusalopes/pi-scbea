@@ -12,6 +12,7 @@ import classes.Exemplar;
 import classes.Livro;
 import classes.Reserva;
 import classes.ReservasDoColaborador;
+import enumeradores.EnumTipoStatus;
 import interfaces.ICRUDColaborador;
 import interfaces.ICRUDEmprestimo;
 import interfaces.ICRUDExemplar;
@@ -68,7 +69,7 @@ public class ControleTelaEmprestimo {
         controleEmprestimo = new ControleEmprestimo();
         controleReserva = new ControleReserva();
 
-        formatoData = new SimpleDateFormat("dd/MM/yyy");
+        formatoData = new SimpleDateFormat("dd/MM/yyyy");
     }
 
     //--- FIM CONSTRUTOR ------------------------------------------------------|
@@ -114,7 +115,7 @@ public class ControleTelaEmprestimo {
         colecaoLivro = controleLivro.listar();
 
         qtdLinhas = colecaoLivro.size();
-        qtdColunas = 8;
+        qtdColunas = 9;
 
         matriz = new String[qtdLinhas][qtdColunas];
         cont = 0;
@@ -127,7 +128,8 @@ public class ControleTelaEmprestimo {
                 livro.getEdicao() + "",
                 livro.getAnoPublicacao() + "",
                 livro.getAreaConhecimento().getCdd() + " - " + livro.getAreaConhecimento().getDescricaoAreaConhecimento(),
-                livro.getIsbn()
+                livro.getIsbn(),
+                livro.getDescricaoLivro()
             };
 
             matriz[cont] = vetor;
@@ -140,16 +142,21 @@ public class ControleTelaEmprestimo {
         colecaoExemplar = controleExemplar.listar();
 
         qtdLinhas = colecaoExemplar.size();
-        qtdLinhas = 14;
+        qtdColunas = 14;
 
         matriz = new String[qtdLinhas][qtdColunas];
         cont = 0;
         for (Exemplar exemplar : colecaoExemplar) {
+
+            String status = ((exemplar.getStatusExemplar().equals(EnumTipoStatus.ATIVO))
+                    ? EnumTipoStatus.DISPONIVEL.toString()
+                    : exemplar.getStatusExemplar()).toString();
+
             vetor = new String[]{
                 exemplar.getIdExemplar() + "",
-                exemplar.getStatusExemplar().toString(),
+                status,
                 formatoData.format(exemplar.getDataAquisicao()),
-                String.format("%.f2", exemplar.getPrecoCompra()),
+                String.format("%.2f", exemplar.getPrecoCompra()),
                 exemplar.getIdLivro() + "",
                 exemplar.getTitulo(),
                 exemplar.getEditora().getNomeEditora(),

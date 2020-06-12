@@ -119,6 +119,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         for (Autor a : autores) {
             jComboBoxAutor.addItem(a.getNomeAutor());
         }
+        jComboBoxAutor.setSelectedIndex(-1);
     }
 
     private void popularJComboBoxEditora() throws Exception {
@@ -128,6 +129,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         for (Editora e : editoras) {
             jComboBoxEditora.addItem(e.getNomeEditora());
         }
+        jComboBoxEditora.setSelectedIndex(-1);
     }
 
     private void popularJComboBoxAreaConhecimento() throws Exception {
@@ -137,6 +139,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         for (AreaConhecimento ac : areasConhecimento) {
             jComboBoxAreaConhecimento.addItem(ac.getDescricaoAreaConhecimento().toString());
         }
+        jComboBoxAreaConhecimento.setSelectedIndex(-1);
     }
 
     private void limparCampos() {
@@ -225,7 +228,10 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
             livro.setDescricaoLivro(jTextAreaLivroDescricao.getText().trim());
 
             if (acao.equals(EnumAcao.Incluir)) {
-                controleLivro.incluir(livro);
+                if (livro.getIdLivro() == 0) {
+                    // Se for maior que 0, então já cadastrou o livro na inclusão do exemplar
+                    controleLivro.incluir(livro);
+                }
             } else if (acao.equals(EnumAcao.Editar)) {
                 livro.setIdLivro(Integer.parseInt(jTextFieldID.getText().trim()));
                 controleLivro.alterar(livro);

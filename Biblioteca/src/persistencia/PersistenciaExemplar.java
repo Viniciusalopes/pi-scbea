@@ -50,8 +50,8 @@ public class PersistenciaExemplar implements ICRUDExemplar {
                     Integer.parseInt(dados[0]),
                     controleLivro.buscarPeloId(Integer.parseInt(dados[1])),
                     EnumTipoStatus.values()[Integer.parseInt(dados[2])],
-                    new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(dados[3]),
-                    Float.parseFloat(dados[4].replace(",", ".")),
+                    new SimpleDateFormat("dd/MM/yyyy").parse(dados[3].replace(",", ".")),
+                    Float.parseFloat(dados[4].toString().replace(",", ".")),
                     dados[5]
             );
             colecao.add(exemplar);

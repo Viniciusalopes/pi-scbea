@@ -5,3 +5,5 @@
 156;Sérgio Ricardo de Souza
 186;Alexandre Rocha Pintal
 190;Wilson Alberto Zappa Hoog
+196;Zung Che Yee
+200;Thiago Simões Pessoa
