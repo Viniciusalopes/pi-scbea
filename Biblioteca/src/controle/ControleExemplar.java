@@ -39,18 +39,15 @@ public class ControleExemplar implements ICRUDExemplar {
     @Override
     public Exemplar buscarPeloId(int idExmplar) throws Exception {
         return persistencia.buscarPeloId(idExmplar);
-
     }
 
     @Override
     public void incluir(Exemplar exemplar) throws Exception {
-        colecao = listar();
         persistencia.incluir(exemplar);
     }
 
     @Override
     public void alterar(Exemplar exemplar) throws Exception {
-        colecao = listar();
         persistencia.alterar(exemplar);
     }
 

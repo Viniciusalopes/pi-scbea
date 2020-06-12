@@ -16,3 +16,4 @@
 182;Editora para excluir 1
 184;Editora@-.123
 185;Editora X
+187;Juruá2

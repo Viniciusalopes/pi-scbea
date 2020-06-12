@@ -85,10 +85,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             telaCadastro.setId(0);
             telaCadastro.setAcao(acao);
-           
-            this.setVisible(false);
             telaCadastro.setVisible(true);
-            this.setVisible(true);
             
             exibirCadastros();
         } catch (Exception e) {

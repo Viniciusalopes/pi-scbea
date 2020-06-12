@@ -3,3 +3,5 @@
 159;Vinicius
 170;Leone Trida Sene
 156;Sérgio Ricardo de Souza
+186;Alexandre Rocha Pintal
+190;Wilson Alberto Zappa Hoog

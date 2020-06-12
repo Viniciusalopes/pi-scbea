@@ -6,6 +6,7 @@
 package telas;
 
 import classes.Exemplar;
+import classes.Livro;
 import enumeradores.EnumAcao;
 import interfaces.ICRUDExemplar;
 import controle.ControleExemplar;
@@ -14,8 +15,8 @@ import enumeradores.EnumTipoStatus;
 import interfaces.ICRUDLivro;
 import utilidades.Mensagens;
 import interfaces.ITelaCadastro;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -31,16 +32,22 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
     //INTERFACE------------>
     //PERSISTENCIA-------->
     //CONTROLE----------->
-    private int id;
-    private int idLivro;
-    private EnumAcao acao = null;
     private ICRUDExemplar controleExemplar = null;
-    private Mensagens mensagens = null;
-    private Exemplar exemplar = null;
-    private boolean visible = false;
-    private Date dataAquisicao = null;
-
     private ICRUDLivro controleLivro = null;
+
+    private Exemplar exemplar = null;
+
+    private Mensagens mensagens = null;
+    private EnumAcao acao = null;
+
+    private boolean visible = false;
+    private int id;
+    private Livro livro;
+
+    private SimpleDateFormat formatoData = null;
+    private Calendar hoje = null;
+    private Calendar menorData = null;
+    private Calendar maiorData = null;
 
 //---------------------end atributos-----------------------
 //override
@@ -65,12 +72,14 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
     @Override
     public void setVisible(boolean b) {
         try {
+            mensagens = new Mensagens();
+
             controleExemplar = new ControleExemplar();
             controleLivro = new ControleLivro();
 
-            mensagens = new Mensagens();
+            popularControles();
+
             if (acao.equals(EnumAcao.Incluir)) {
-                popularControles();
                 limparCampos();
             } else if (acao.equals(EnumAcao.Editar)) {
                 exemplar = controleExemplar.buscarPeloId(id);
@@ -85,72 +94,84 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
     //--------------------end override------------------------------
     //metodos 
 
-    public void setIdLivro(int idLivro) {
-        this.idLivro = idLivro;
+    public void setLivro(Livro livro) {
+        this.livro = livro;
     }
 
     private void popularControles() throws Exception {
-        jTextFieldIDExemplar.setText(String.format("%04d", id));
+
+        jTextFieldTituloLivro.setText(livro.getTitulo());
+
         jComboBoxstatusExemplar.addItem(EnumTipoStatus.ATIVO.toString());
         jComboBoxstatusExemplar.addItem(EnumTipoStatus.INATIVO.toString());
-    }
 
-    private void salvar() throws Exception {
-        try {
-//            validardataAquisicao();
-//            validarprecoCompra();
+        hoje = Calendar.getInstance();
+        hoje.setTime(new Date());//data maior
 
-            exemplar = new Exemplar();
-//            exemplar.setDataAquisicao(jTextFielddataAquisicao.getText());
+        menorData = Calendar.getInstance();
+        menorData.set(2000, 1, 1);
 
-            if (acao.equals(EnumAcao.Incluir)) {
-                controleExemplar.incluir(exemplar);
-                mensagens.sucesso("Exemplar incluído com sucesso!");
-            } else if (acao.equals(EnumAcao.Editar)) {
-                exemplar.setIdExemplar(Integer.parseInt(jTextFieldIDExemplar.getText()));
-                controleExemplar.alterar(exemplar);
-                mensagens.sucesso("Exemplar alterado com sucesso!");
-            }
+        maiorData = Calendar.getInstance();
+        maiorData.setTime(hoje.getTime());
 
-        } catch (Exception e) {
-            mensagens.erro(new Exception("Erro ao salvar: \n" + e.getMessage()));
-            visible = false;
-            this.dispose();
+        formatoData = new SimpleDateFormat("dd/MM/yyyy");
 
-        }
-    }
-
-    //validador de prenchimentos dos campos
-    public void validarpreenchimento() throws Exception {
-        Date data = new Date(jTextFielddataAquisicao.getText().trim());
-        //fonte :https://www.devmedia.com.br/manipulando-datas-em-java/21765
-
-        SimpleDateFormat dataDigitada = new SimpleDateFormat("dd/MM/yyyy");
-        if (dataDigitada.DATE_FIELD == 0) {
-            jTextFielddataAquisicao.requestFocus();
-            throw new Exception("imforme a data de aquisão do exemplar");
-            //vai pegar a data digitaca pelo usuario que vai ser convertida 
-        }
-    }
-
-    public void validarprecoCompra() throws Exception {
-        DecimalFormat df = new DecimalFormat();
-        df.applyPattern("R$ 0.00");
+        jSpinnerDataAquisicao.setModel(new javax.swing.SpinnerDateModel(
+                hoje.getTime(), menorData.getTime(), maiorData.getTime(),
+                java.util.Calendar.DAY_OF_MONTH)
+        );
+        jSpinnerDataAquisicao.setEditor(new javax.swing.JSpinner.DateEditor(jSpinnerDataAquisicao, "dd/MM/yyyy"));
     }
 
     private void limparCampos() throws Exception {
-
         jTextFieldIDExemplar.setText("");
-        jTextFielddataAquisicao.setText("");
-        jTextAreamotivoDesativaçso.setText("");
-        jTextFielddataAquisicao.setText("");
+        jComboBoxstatusExemplar.setSelectedIndex(0);
+        jSpinnerDataAquisicao.setValue(hoje.getTime());
+        jFormattedTextFieldPrecoCompra.setText("");
+        jTextAreaMotivoDesativado.setText("");
 
     }
 
     private void preencherCampos() {
         jTextFieldIDExemplar.setText(String.format("%04d", exemplar.getIdExemplar()));
-        jTextFielddataAquisicao.setText(String.format("dd/MM/yyyy", exemplar.getDataAquisicao()));
-        jTextAreamotivoDesativaçso.setText(String.format("%04d", jTextAreamotivoDesativaçso));
+        jComboBoxstatusExemplar.setSelectedItem(exemplar.getStatusExemplar().ordinal());
+        jSpinnerDataAquisicao.setValue(exemplar.getDataAquisicao().getTime());
+        jFormattedTextFieldPrecoCompra.setText(String.format("%.2f", exemplar.getPrecoCompra()));
+        jTextAreaMotivoDesativado.setText(exemplar.getMotivoDesativado());
+    }
+
+    private void salvar() throws Exception {
+        try {
+            if (acao.equals(EnumAcao.Incluir)) {
+                float precoCompra = 0;
+                if (jFormattedTextFieldPrecoCompra.getValue() != null) {
+                    precoCompra = Float.parseFloat(jFormattedTextFieldPrecoCompra.getValue().toString());
+                }
+
+                exemplar = new Exemplar(
+                        0,
+                        livro,
+                        EnumTipoStatus.valueOf(jComboBoxstatusExemplar.getSelectedItem().toString()),
+                        (Date)jSpinnerDataAquisicao.getValue(),
+                        precoCompra,
+                        jTextAreaMotivoDesativado.getText()
+                );
+                controleExemplar.incluir(exemplar);
+            } else if (acao.equals(EnumAcao.Editar)) {
+                exemplar.setIdExemplar(Integer.parseInt(jTextFieldIDExemplar.getText()));
+                controleExemplar.alterar(exemplar);
+            }
+        } catch (Exception e) {
+            mensagens.erro(new Exception("Erro ao salvar o exemplar! \n" + e.getMessage()));
+            visible = false;
+            this.dispose();
+        }
+    }
+
+    private void validarPreenchimento() throws Exception {
+        if (jComboBoxstatusExemplar.getSelectedIndex() == 1 && jTextAreaMotivoDesativado.getText().trim().length() == 0) {
+            throw new Exception("Informe o motivo da desativação do exemplar!");
+        }
     }
 
     public TelaExemplar(java.awt.Frame parent, boolean modal) {
@@ -168,24 +189,22 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldIDExemplar = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jComboBoxstatusExemplar = new javax.swing.JComboBox<>();
-        jTextFieldprecoCompra = new javax.swing.JTextField();
         jLabelMotivoDesativasao = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextAreamotivoDesativaçso = new javax.swing.JTextArea();
+        jTextAreaMotivoDesativado = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextFielddataAquisicao = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldTituloLivro = new javax.swing.JTextField();
+        jSpinnerDataAquisicao = new javax.swing.JSpinner();
+        jFormattedTextFieldPrecoCompra = new javax.swing.JFormattedTextField();
+        jLabel6 = new javax.swing.JLabel();
         jButtonSalvar = new javax.swing.JButton();
-
-        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -207,14 +226,14 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
             }
         });
 
-        jTextFieldprecoCompra.setText("      ");
-
         jLabelMotivoDesativasao.setText("Motivo da  desativação ");
 
-        jTextAreamotivoDesativaçso.setColumns(20);
-        jTextAreamotivoDesativaçso.setRows(2);
-        jTextAreamotivoDesativaçso.setToolTipText("");
-        jScrollPane1.setViewportView(jTextAreamotivoDesativaçso);
+        jTextAreaMotivoDesativado.setColumns(20);
+        jTextAreaMotivoDesativado.setRows(2);
+        jTextAreaMotivoDesativado.setTabSize(4);
+        jTextAreaMotivoDesativado.setToolTipText("");
+        jTextAreaMotivoDesativado.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(jTextAreaMotivoDesativado);
 
         jLabel2.setText("Livro");
 
@@ -222,16 +241,21 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
 
         jLabel4.setText("Data da aquisição ");
 
-        jTextFielddataAquisicao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFielddataAquisicaoActionPerformed(evt);
-            }
-        });
-
         jLabel5.setText("Preço de compra  ");
 
         jTextFieldTituloLivro.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextFieldTituloLivro.setEnabled(false);
+
+        jSpinnerDataAquisicao.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(-631077780000L), new java.util.Date(), java.util.Calendar.DAY_OF_MONTH));
+        jSpinnerDataAquisicao.setEditor(new javax.swing.JSpinner.DateEditor(jSpinnerDataAquisicao, "dd/MM/yyyy"));
+        jSpinnerDataAquisicao.setMaximumSize(new java.awt.Dimension(100, 26));
+        jSpinnerDataAquisicao.setMinimumSize(new java.awt.Dimension(100, 26));
+        jSpinnerDataAquisicao.setPreferredSize(new java.awt.Dimension(100, 26));
+
+        jFormattedTextFieldPrecoCompra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        jFormattedTextFieldPrecoCompra.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        jLabel6.setText("R$");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -239,30 +263,27 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelMotivoDesativasao)
+                    .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelMotivoDesativasao)
-                            .addComponent(jLabel2))
-                        .addGap(347, 347, 347))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jComboBoxstatusExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jTextFieldTituloLivro)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBoxstatusExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFielddataAquisicao, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
-                                .addGap(43, 43, 43)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jTextFieldprecoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                            .addComponent(jLabel4)
+                            .addComponent(jSpinnerDataAquisicao, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFormattedTextFieldPrecoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jTextFieldTituloLivro, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,14 +298,18 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addGap(0, 0, 0)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldprecoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxstatusExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFielddataAquisicao, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addComponent(jLabelMotivoDesativasao)
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxstatusExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jFormattedTextFieldPrecoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelMotivoDesativasao)
+                        .addGap(0, 0, 0)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinnerDataAquisicao, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -332,13 +357,18 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldIDExemplarActionPerformed
 
-    private void jTextFielddataAquisicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFielddataAquisicaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFielddataAquisicaoActionPerformed
-
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         try {
+            validarPreenchimento();
             salvar();
+            if (acao.equals(EnumAcao.Incluir)) {
+                mensagens.sucesso("Exemplar incluído com sucesso!");
+            } else if (acao.equals(EnumAcao.Editar)) {
+                exemplar.setIdExemplar(Integer.parseInt(jTextFieldIDExemplar.getText()));
+                mensagens.sucesso("Exemplar alterado com sucesso!");
+            }
+            visible = false;
+            this.dispose();
         } catch (Exception e) {
             mensagens.erro(e);
         }
@@ -348,10 +378,10 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
 
         if (jComboBoxstatusExemplar.getSelectedIndex() == 0) {
             jLabelMotivoDesativasao.setEnabled(false);
-            jTextAreamotivoDesativaçso.setEnabled(false);
+            jTextAreaMotivoDesativado.setEnabled(false);
         } else {
             jLabelMotivoDesativasao.setEnabled(true);
-            jTextAreamotivoDesativaçso.setEnabled(true);
+            jTextAreaMotivoDesativado.setEnabled(true);
         }
 
     }//GEN-LAST:event_jComboBoxstatusExemplarActionPerformed
@@ -401,20 +431,20 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox<String> jComboBoxstatusExemplar;
+    private javax.swing.JFormattedTextField jFormattedTextFieldPrecoCompra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelMotivoDesativasao;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextAreamotivoDesativaçso;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JSpinner jSpinnerDataAquisicao;
+    private javax.swing.JTextArea jTextAreaMotivoDesativado;
     private javax.swing.JTextField jTextFieldIDExemplar;
     public javax.swing.JTextField jTextFieldTituloLivro;
-    private javax.swing.JTextField jTextFielddataAquisicao;
-    private javax.swing.JTextField jTextFieldprecoCompra;
     // End of variables declaration//GEN-END:variables
 
 }

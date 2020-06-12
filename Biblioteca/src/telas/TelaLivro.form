@@ -77,23 +77,15 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jComboBoxAreaConhecimento" min="-2" pref="434" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButtonNovaAreaConhecimento" min="-2" max="-2" attributes="0"/>
-                      </Group>
                       <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelTitulo" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelDescricao" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jComboBoxEditora" min="-2" pref="286" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButtonNovaEditora" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jTextFieldTitulo" min="-2" pref="350" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jComboBoxEditora" min="-2" pref="286" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButtonNovaEditora" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabelEditora" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -103,14 +95,18 @@
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jScrollPaneDescricao" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="368" max="-2" attributes="0"/>
+                              <Component id="jTextFieldTitulo" min="-2" pref="356" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jComboBoxAutor" min="-2" pref="235" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonNovoAutor" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="jPanel1" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jComboBoxAreaConhecimento" alignment="1" min="-2" pref="521" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Component id="jComboBoxAutor" min="-2" pref="235" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButtonNovoAutor" min="-2" pref="76" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="368" pref="368" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jSpinnerEdicao" min="-2" max="-2" attributes="0"/>
@@ -123,15 +119,15 @@
                                               <Component id="jLabelAno" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabelISBN" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldISBN" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
-                                      </Group>
                                   </Group>
                               </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabelISBN" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldISBN" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                                  <Component id="jButtonNovaAreaConhecimento" min="-2" pref="76" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="jPanel1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -151,7 +147,7 @@
                       <Component id="jComboBoxAutor" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="jButtonNovoAutor" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelAno" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -168,9 +164,9 @@
                       <Component id="jSpinnerAno" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="jTextFieldISBN" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jComboBoxAreaConhecimento" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="jButtonNovaAreaConhecimento" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -212,7 +208,10 @@
         <Component class="javax.swing.JSpinner" name="jSpinnerAno">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="1455" minimum="1455" numberType="java.lang.Integer" stepSize="1" type="number"/>
+              <SpinnerModel initial="now" maximum="now" stepSize="1" type="date"/>
+            </Property>
+            <Property name="editor" type="javax.swing.JComponent" editor="org.netbeans.modules.form.editors.SpinnerEditorEditor">
+              <SpinnerEditor format="yyyy" type="1"/>
             </Property>
           </Properties>
         </Component>
@@ -257,7 +256,7 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="lineWrap" type="boolean" value="true"/>
-                <Property name="rows" type="int" value="2"/>
+                <Property name="rows" type="int" value="4"/>
               </Properties>
             </Component>
           </SubComponents>
