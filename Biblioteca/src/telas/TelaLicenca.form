@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jCheckBoxAceito" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="755" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="248" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jCheckBoxAceito" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="jTextArea1">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="Copyright 2020  - INTEGRA&#xa;&#xa;A permiss&#xe3;o &#xe9; concedida, gratuitamente, a qualquer pessoa que obtenha uma c&#xf3;pia deste software e dos arquivos &#xa;de documenta&#xe7;&#xe3;o associados (o &quot;Software&quot;), para negociar no Software sem restri&#xe7;&#xf5;es, incluindo, sem limita&#xe7;&#xe3;o, &#xa;os direitos de uso, c&#xf3;pia, modifica&#xe7;&#xe3;o, fus&#xe3;o , publicar, distribuir, sublicenciar e / ou vender c&#xf3;pias do Software e &#xa;permitir que as pessoas a quem o Software &#xe9; fornecido o fa&#xe7;am, sob as seguintes condi&#xe7;&#xf5;es:&#xa;&#xa;O aviso de direitos autorais acima e este aviso de permiss&#xe3;o devem ser inclu&#xed;dos em todas as c&#xf3;pias ou partes &#xa;substanciais do Software.&#xa;&#xa;O SOFTWARE &#xc9; FORNECIDO &quot;TAL COMO EST&#xc1;&quot;, SEM GARANTIA DE QUALQUER TIPO, EXPRESSA OU IMPL&#xcd;CITA, &#xa;INCLUINDO MAS N&#xc3;O SE LIMITANDO A GARANTIAS DE COMERCIALIZA&#xc7;&#xc3;O, ADEQUA&#xc7;&#xc3;O A UMA FINALIDADE ESPEC&#xcd;FICA E &#xa;N&#xc3;O INFRA&#xc7;&#xc3;O. EM NENHUM CASO OS AUTORES OU TITULARES DE DIREITOS AUTORAIS SER&#xc3;O RESPONS&#xc1;VEIS POR &#xa;QUALQUER REIVINDICA&#xc7;&#xc3;O, DANOS OU OUTRA RESPONSABILIDADE, SEJA EM A&#xc7;&#xc3;O DE CONTRATO, TORT OU DE OUTRA &#xa;FORMA, DECORRENTE DE, FORA DE OU EM CONEX&#xc3;O COM O SOFTWARE OU O USO OU OUTROS NEG&#xd3;CIOS NO PROGRAMAS."/>
+            <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="66" red="66" type="rgb"/>
+            </Property>
+            <Property name="doubleBuffered" type="boolean" value="true"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxAceito">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Aceito os termos da licen&#xe7;a de uso do software INTEGRA"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

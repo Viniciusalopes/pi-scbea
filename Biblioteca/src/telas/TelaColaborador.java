@@ -221,12 +221,15 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
 
     private void salvar() throws Exception {
         validarPreenchimento();
-
+        
         String senha = (acao.equals(EnumAcao.Editar)) ? colaborador.getSenha() : "";
 
         colaborador = new Colaborador();
 
         if (acao.equals(EnumAcao.Incluir)) {
+            TelaLicenca telaLicenca = new TelaLicenca(null, true);
+            telaLicenca.setVisible(true);                
+        
             colaborador.setIdColaborador(id);
         } else if (acao.equals(EnumAcao.Editar)) {
             colaborador.setIdColaborador(id);
