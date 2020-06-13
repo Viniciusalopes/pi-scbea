@@ -90,6 +90,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
 
             matrizLivro = controleTelaEmprestimo.getMatrizLivros();
             preencherJTableLivro(matrizLivro);
+            matrizPesquisaLivro = matrizLivro;
             preencherJTableLivroDetalhe();
 
             matrizExemplar = controleTelaEmprestimo.getMatrizExemplares();
@@ -146,8 +147,9 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             jTableColaborador.getColumnModel().getColumn(0).setMinWidth(60);
             jTableColaborador.getColumnModel().getColumn(0).setPreferredWidth(60);
             jTableColaborador.getColumnModel().getColumn(0).setMaxWidth(60);
+            jTableColaborador.getColumnModel().getColumn(1).setMinWidth(100);
             jTableColaborador.getColumnModel().getColumn(1).setPreferredWidth(100);
-            jTableColaborador.getColumnModel().getColumn(2).setPreferredWidth(250);
+            jTableColaborador.getColumnModel().getColumn(1).setMaxWidth(100);
         }
     }
 
@@ -250,6 +252,41 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         } catch (Exception e) {
             mensagem.erro(new Exception("Erro ao pesquisar!" + e.getMessage()));
         }
+    }
+
+    private void pesquisarLivros(String texto) throws Exception {
+        try {
+            if (matrizLivro != null) {
+                if (matrizLivro.length > 0) {
+                    texto = texto.toLowerCase().trim();
+                    if (texto.length() == 0) {
+                        matrizPesquisaLivro = matrizLivro;
+                    } else {
+                        resultadoPesquisa = new ArrayList<>();
+
+                        for (int i = 0; i < matrizLivro.length; i++) {
+                            for (int j = 0; j < matrizLivro[i].length; j++) {
+                                if (matrizLivro[i][j].toLowerCase().contains(texto)) {
+                                    resultadoPesquisa.add(matrizLivro[i]);
+                                    break;
+                                }
+                            }
+                        }
+
+                        matrizPesquisaLivro = new String[resultadoPesquisa.size()][matrizLivro[0].length];
+
+                        for (int i = 0; i < resultadoPesquisa.size(); i++) {
+                            matrizPesquisaLivro[i] = resultadoPesquisa.get(i);
+                        }
+                    }
+                }
+                preencherJTableLivro(matrizPesquisaLivro);
+                preencherJTableLivroDetalhe();
+            }
+
+        } catch (Exception e) {
+            mensagem.erro(new Exception("Erro ao pesquisar!" + e.getMessage()));
+        }
 
     }
 
@@ -262,9 +299,10 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 if (Integer.parseInt(matrizFiltroColaborador[i][0]) == idColaborador) {
                     String[] dados = matrizFiltroColaborador[i];
 
-                    for (int j = 0; j < jTableColaboradorDetalhe.getRowCount(); j++) {
-                        jTableColaboradorDetalhe.setValueAt(dados[j], j, 1);
-                    }
+                    jTableColaboradorDetalhe.setValueAt(matrizFiltroColaborador[i][3], 0, 1);
+                    jTableColaboradorDetalhe.setValueAt(matrizFiltroColaborador[i][4], 1, 1);
+                    jTableColaboradorDetalhe.setValueAt(matrizFiltroColaborador[i][8], 2, 1);
+                    jTableColaboradorDetalhe.setValueAt(matrizFiltroColaborador[i][5], 3, 1);
                     break;
                 }
             }
@@ -308,23 +346,19 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         }
     }
 
-    private void filtrarLivros(int filtro) throws Exception {
-        matrizFiltroLivro = matrizLivro;
-    }
-
     private void preencherJTableLivroDetalhe() throws Exception {
         linha = jTableLivro.getSelectedRow();
         if (linha >= 0) {
             idLivro = Integer.parseInt(jTableLivro.getValueAt(linha, 0).toString());
 
-            for (int i = 0; i < matrizFiltroLivro.length; i++) {
-                if (Integer.parseInt(matrizFiltroLivro[i][0]) == idLivro) {
-                    String[] dados = matrizFiltroLivro[i];
+            for (int i = 0; i < matrizPesquisaLivro.length; i++) {
+                if (Integer.parseInt(matrizPesquisaLivro[i][0]) == idLivro) {
+                    String[] dados = matrizPesquisaLivro[i];
 
-                    for (int j = 0; j < jTableLivroDetalhe.getRowCount(); j++) {
-                        jTableLivroDetalhe.setValueAt(dados[j], j, 1);
-                    }
-
+                    jTableLivroDetalhe.setValueAt(matrizPesquisaLivro[i][5], 0, 1);
+                    jTableLivroDetalhe.setValueAt(matrizPesquisaLivro[i][6], 1, 1);
+                    jTableLivroDetalhe.setValueAt(matrizPesquisaLivro[i][7], 2, 1);
+                    jTableLivroDetalhe.setValueAt(matrizPesquisaLivro[i][8], 3, 1);
                     break;
                 }
             }
@@ -394,7 +428,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         if (jTableColaborador.getRowCount() > 0 && jTableLivro.getRowCount() > 0) { // Existem linhas nos dois grids
             if (jTableColaborador.getSelectedRow() > -1) { // se tem linha selecionada no grid Colaborador
                 if (jTableColaboradorDetalhe.getValueAt(0, 1) != "") { // Se já foi preenchido o detalhe do colaborador
-                    status = EnumTipoStatus.valueOf(jTableColaboradorDetalhe.getValueAt(8, 1).toString());
+                    status = EnumTipoStatus.valueOf(jTableColaboradorDetalhe.getValueAt(2, 1).toString());
                     if (!status.equals(EnumTipoStatus.INATIVO) && !status.equals(EnumTipoStatus.INADIMPLENTE)) {
                         if (jTableLivro.getSelectedRow() > -1) {
                             enable = true;
@@ -516,8 +550,6 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         jPanelLivros = new javax.swing.JPanel();
         jLabelPesquisarLivro = new javax.swing.JLabel();
         jTextFieldPesquisarLivro = new javax.swing.JTextField();
-        jLabelPesquisarCDD = new javax.swing.JLabel();
-        jTextFieldPesquisarAreaConhecimento = new javax.swing.JTextField();
         jScrollPaneLivro = new javax.swing.JScrollPane();
         jTableLivro = new javax.swing.JTable();
         jLabelLivroDetalhe = new javax.swing.JLabel();
@@ -575,11 +607,13 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         jTableColaborador.getTableHeader().setResizingAllowed(false);
         jTableColaborador.getTableHeader().setReorderingAllowed(false);
         jTableColaborador.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jTableColaboradorMouseReleased(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableColaboradorMouseClicked(evt);
+            }
+        });
+        jTableColaborador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableColaboradorKeyReleased(evt);
             }
         });
         jScrollPaneColaborador.setViewportView(jTableColaborador);
@@ -681,20 +715,11 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
 
         jPanelLivros.setBorder(javax.swing.BorderFactory.createTitledBorder("Livros"));
 
-        jLabelPesquisarLivro.setText("Pesquisar Livro");
+        jLabelPesquisarLivro.setText("Pesquisar");
 
         jTextFieldPesquisarLivro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldPesquisarLivroKeyReleased(evt);
-            }
-        });
-
-        jLabelPesquisarCDD.setText("Pesquisar Área de Conhecimento");
-
-        jTextFieldPesquisarAreaConhecimento.setVerifyInputWhenFocusTarget(false);
-        jTextFieldPesquisarAreaConhecimento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldPesquisarAreaConhecimentoKeyReleased(evt);
             }
         });
 
@@ -718,9 +743,6 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         jTableLivro.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableLivro.getTableHeader().setReorderingAllowed(false);
         jTableLivro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jTableLivroMouseReleased(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableLivroMouseClicked(evt);
             }
@@ -839,26 +861,20 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 .addContainerGap()
                 .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelLivroDetalhe)
-                    .addGroup(jPanelLivrosLayout.createSequentialGroup()
-                        .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelLivrosLayout.createSequentialGroup()
-                                .addComponent(jButtonReservarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jScrollPaneExemplares, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
-                                .addComponent(jScrollPaneLivroDetalhe, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelLivrosLayout.createSequentialGroup()
-                                    .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabelPesquisarLivro)
-                                        .addComponent(jTextFieldPesquisarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextFieldPesquisarAreaConhecimento, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabelPesquisarCDD)))
-                                .addComponent(jLabelExemplaresLivro, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPaneLivro, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addContainerGap())))
+                    .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanelLivrosLayout.createSequentialGroup()
+                            .addComponent(jButtonReservarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButtonEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPaneExemplares, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                            .addComponent(jScrollPaneLivroDetalhe, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelPesquisarLivro)
+                                .addComponent(jTextFieldPesquisarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelExemplaresLivro, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPaneLivro, javax.swing.GroupLayout.Alignment.LEADING))))
+                .addContainerGap())
         );
         jPanelLivrosLayout.setVerticalGroup(
             jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -866,11 +882,8 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelPesquisarLivro)
                     .addGroup(jPanelLivrosLayout.createSequentialGroup()
-                        .addComponent(jLabelPesquisarCDD)
-                        .addGap(0, 0, 0)
-                        .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldPesquisarAreaConhecimento, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldPesquisarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(15, 15, 15)
+                        .addComponent(jTextFieldPesquisarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPaneLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -951,10 +964,6 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         }
     }//GEN-LAST:event_jTableLivroMouseClicked
 
-    private void jTableLivroMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableLivroMouseReleased
-
-    }//GEN-LAST:event_jTableLivroMouseReleased
-
     private void jTableExemplaresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableExemplaresMouseClicked
         if (jTableExemplares.getSelectedRow() > -1) {
 
@@ -1021,25 +1030,14 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         }
     }//GEN-LAST:event_jButtonReservarLivroActionPerformed
 
-    private void jTextFieldPesquisarAreaConhecimentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarAreaConhecimentoKeyReleased
-        try {
-            ativarBotoes();
-        } catch (Exception e) {
-            mensagem.erro(e);
-        }
-    }//GEN-LAST:event_jTextFieldPesquisarAreaConhecimentoKeyReleased
-
     private void jTextFieldPesquisarLivroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarLivroKeyReleased
         try {
+            pesquisarLivros(jTextFieldPesquisarLivro.getText().toLowerCase());
             ativarBotoes();
         } catch (Exception e) {
             mensagem.erro(e);
         }
     }//GEN-LAST:event_jTextFieldPesquisarLivroKeyReleased
-
-    private void jTableColaboradorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableColaboradorMouseReleased
-
-    }//GEN-LAST:event_jTableColaboradorMouseReleased
 
     private void jTableLivroPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTableLivroPropertyChange
 
@@ -1048,6 +1046,10 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private void jTableLivroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableLivroKeyReleased
         jTableLivroMouseClicked(null);
     }//GEN-LAST:event_jTableLivroKeyReleased
+
+    private void jTableColaboradorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableColaboradorKeyReleased
+        jTableColaboradorMouseClicked(null);
+    }//GEN-LAST:event_jTableColaboradorKeyReleased
 
     /**
      * @param args the command line arguments
@@ -1104,7 +1106,6 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private javax.swing.JLabel jLabelExemplaresLivro;
     private javax.swing.JLabel jLabelFiltrarColaborador;
     private javax.swing.JLabel jLabelLivroDetalhe;
-    private javax.swing.JLabel jLabelPesquisarCDD;
     private javax.swing.JLabel jLabelPesquisarColaborador;
     private javax.swing.JLabel jLabelPesquisarLivro;
     private javax.swing.JPanel jPanelColaboradores;
@@ -1119,7 +1120,6 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private javax.swing.JTable jTableExemplares;
     private javax.swing.JTable jTableLivro;
     private javax.swing.JTable jTableLivroDetalhe;
-    private javax.swing.JTextField jTextFieldPesquisarAreaConhecimento;
     private javax.swing.JTextField jTextFieldPesquisarColaborador;
     private javax.swing.JTextField jTextFieldPesquisarLivro;
     // End of variables declaration//GEN-END:variables

@@ -122,15 +122,15 @@ public class ControleTelaEmprestimo {
         cont = 0;
         for (Livro livro : colecaoLivro) {
             vetor = new String[]{
-                livro.getIdLivro() + "",
-                livro.getTitulo(),
-                livro.getAutor().getNomeAutor(),
-                livro.getEditora().getNomeEditora(),
-                livro.getEdicao() + "",
-                livro.getAnoPublicacao() + "",
-                livro.getAreaConhecimento().getCdd() + " - " + livro.getAreaConhecimento().getDescricaoAreaConhecimento(),
-                livro.getIsbn(),
-                livro.getDescricaoLivro()
+                livro.getIdLivro() + "",    // 0
+                livro.getTitulo(),  // 1
+                livro.getAutor().getNomeAutor(),  // 2
+                livro.getEditora().getNomeEditora(),  // 3
+                livro.getEdicao() + "",  // 4
+                livro.getAnoPublicacao() + "",  // 5
+                livro.getAreaConhecimento().getCdd() + " - " + livro.getAreaConhecimento().getDescricaoAreaConhecimento(),  // 6
+                livro.getIsbn(),  // 7
+                livro.getDescricaoLivro()  // 8
             };
 
             matriz[cont] = vetor;

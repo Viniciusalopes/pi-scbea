@@ -194,8 +194,8 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableColaboradorMouseReleased"/>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableColaboradorMouseClicked"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTableColaboradorKeyReleased"/>
               </Events>
             </Component>
           </SubComponents>
@@ -280,34 +280,25 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabelLivroDetalhe" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jButtonReservarLivro" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButtonEmprestar" min="-2" pref="150" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jScrollPaneExemplares" alignment="0" pref="708" max="32767" attributes="0"/>
-                                  <Component id="jScrollPaneLivroDetalhe" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabelPesquisarLivro" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldPesquisarLivro" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextFieldPesquisarAreaConhecimento" min="-2" pref="235" max="-2" attributes="0"/>
-                                          <Component id="jLabelPesquisarCDD" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="jLabelExemplaresLivro" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jScrollPaneLivro" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jButtonReservarLivro" min="-2" pref="150" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonEmprestar" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jScrollPaneExemplares" alignment="0" pref="708" max="32767" attributes="0"/>
+                              <Component id="jScrollPaneLivroDetalhe" alignment="0" max="32767" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                  <Component id="jLabelPesquisarLivro" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldPesquisarLivro" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jLabelExemplaresLivro" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPaneLivro" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -317,12 +308,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabelPesquisarLivro" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="jLabelPesquisarCDD" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jTextFieldPesquisarAreaConhecimento" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                              <Component id="jTextFieldPesquisarLivro" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Component id="jTextFieldPesquisarLivro" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -348,25 +335,12 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabelPesquisarLivro">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pesquisar Livro"/>
+            <Property name="text" type="java.lang.String" value="Pesquisar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldPesquisarLivro">
           <Events>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldPesquisarLivroKeyReleased"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabelPesquisarCDD">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Pesquisar &#xc1;rea de Conhecimento"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldPesquisarAreaConhecimento">
-          <Properties>
-            <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
-          </Properties>
-          <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldPesquisarAreaConhecimentoKeyReleased"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPaneLivro">
@@ -425,7 +399,6 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableLivroMouseReleased"/>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableLivroMouseClicked"/>
                 <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jTableLivroPropertyChange"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTableLivroKeyReleased"/>
