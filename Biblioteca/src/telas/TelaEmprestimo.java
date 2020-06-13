@@ -5,13 +5,14 @@
  */
 package telas;
 
-import controle.ControleEmprestimo;
+import classes.Reserva;
 import controle.ControleTelaEmprestimo;
 import enumeradores.EnumAcao;
 import enumeradores.EnumCargo;
 import enumeradores.EnumFiltrosColaborador;
 import enumeradores.EnumTipoStatus;
 import interfaces.ITelaCadastro;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import utilidades.Mensagens;
 
@@ -37,6 +38,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private EnumAcao acao = null;
     private boolean visible = false;
     private ControleTelaEmprestimo controleTelaEmprestimo = null;
+    private SimpleDateFormat formatoData = null;
 
     // Matrizes e vetores
     private String[][] matrizColaborador = null;
@@ -73,6 +75,9 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     @Override
     public void setVisible(boolean b) {
         try {
+            mensagem = new Mensagens();
+            formatoData = new SimpleDateFormat("dd/MM/yyyy");
+
             controleTelaEmprestimo = new ControleTelaEmprestimo();
 
             matrizColaborador = controleTelaEmprestimo.getMatrizColaboradores();
@@ -1029,7 +1034,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             }
 
             idColaborador = Integer.parseInt(jTableColaborador.getValueAt(jTableColaborador.getSelectedRow(), 0).toString());
-            
+
             if (jTableLivro.getRowCount() == 0) {
                 throw new Exception("Selecione um livro!");
             }
@@ -1038,9 +1043,25 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             }
             idLivro = Integer.parseInt(jTableLivro.getValueAt(jTableLivro.getSelectedRow(), 0).toString());
 
-            controleTelaEmprestimo.incluirReserva(idColaborador, idLivro);
-            mensagem.pergunta("Reserva incluída com sucesso!\nDeseja imprimir o recibo agora?");
-            
+            idReserva = controleTelaEmprestimo.incluirReserva(idColaborador, idLivro);
+            if (mensagem.pergunta("Reserva incluída com sucesso!\nDeseja imprimir o recibo agora?") == 0) {
+                Reserva reserva = controleTelaEmprestimo.getReserva(idReserva);
+                String titulo = reserva.getLivro().getTitulo();
+                if (titulo.length() > 40) {
+                    titulo = titulo.substring(0, 40) + "...";
+                }
+                mensagem.informacao(
+                        " RECIBO DE RESERVA nº " + reserva.getIdReserva()
+                        + "\n----------------------------------------"
+                        + "\nData: " + formatoData.format(reserva.getdataReserva()).toString()
+                        + "\nColaborador: " + reserva.getColaborador().getNomeColaborador()
+                        + "\nMatrícula: " + reserva.getColaborador().getMatricula()
+                        + "\nLivro: " + reserva.getLivro().getIdLivro() + " - " + titulo
+                        + "\n" + reserva.getLivro().getEdicao() + " ª Edição"
+                        + "\n"
+                );
+            }
+
         } catch (Exception e) {
             mensagem.alerta(e.getMessage());
         }

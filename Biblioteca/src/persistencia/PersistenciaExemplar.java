@@ -62,9 +62,9 @@ public class PersistenciaExemplar implements ICRUDExemplar {
     @Override
     public Exemplar buscarPeloId(int idExmplar) throws Exception {
         listar();
-        for (Exemplar e : colecao) {
-            if (e.getIdExemplar() == idExmplar) {
-                return e;
+        for (Exemplar exemplar : colecao) {
+            if (exemplar.getIdExemplar() == idExmplar) {
+                return exemplar;
             }
         }
         return null;

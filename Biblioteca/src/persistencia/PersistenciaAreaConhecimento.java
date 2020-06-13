@@ -69,9 +69,9 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
     public AreaConhecimento buscarPeloId(int idAreaConhecimento) throws Exception {
         try {
             listar();
-            for (AreaConhecimento a : colecao) {
-                if (a.getIdAreaConhecimento() == idAreaConhecimento) {
-                    return a;
+            for (AreaConhecimento areaConhecimento : colecao) {
+                if (areaConhecimento.getIdAreaConhecimento() == idAreaConhecimento) {
+                    return areaConhecimento;
                 }
             }
             return null;

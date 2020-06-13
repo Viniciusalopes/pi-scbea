@@ -193,11 +193,14 @@ public class ControleTelaEmprestimo {
         reservasDoColaborador = new ReservasDoColaborador();
     }
 
+    public Reserva getReserva(int idReserva) throws Exception{
+        return controleReserva.buscarPeloId(idReserva);
+    }
     //--- FIM CONSULTAS -------------------------------------------------------|
     //
     //--- AÇÕES --------------------------------------------------------------->
     //
-    public void incluirReserva(int idColaborador, int idLivro) throws Exception {
+    public int incluirReserva(int idColaborador, int idLivro) throws Exception {
 
         colaborador = controleColaborador.buscarPeloId(idColaborador);
         livro = controleLivro.buscarPeloId(idLivro);
@@ -209,7 +212,7 @@ public class ControleTelaEmprestimo {
             throw new Exception("Para fazer uma reserva, o colaborador precisa estar ADIMPLENTE!");
         }
         reserva = new Reserva(0, livro, colaborador, new Date());
-        controleReserva.incluir(reserva);
+        return controleReserva.incluir(reserva);
     }
     //--- FIM AÇÕES -----------------------------------------------------------|
     //

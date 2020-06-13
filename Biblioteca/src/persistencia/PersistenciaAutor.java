@@ -44,9 +44,9 @@ public class PersistenciaAutor implements ICRUDAutor {
     @Override
     public Autor buscarPeloId(int idAutor) throws Exception {
         listar();
-        for (Autor a : colecao) {
-            if (a.getIdAutor() == idAutor) {
-                return a;
+        for (Autor autor : colecao) {
+            if (autor.getIdAutor() == idAutor) {
+                return autor;
             }
         }
         return null;

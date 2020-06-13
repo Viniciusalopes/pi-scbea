@@ -77,13 +77,12 @@ public class PersistenciaColaborador implements ICRUDColaborador {
     public Colaborador buscarPeloId(int idColaborador) throws Exception {
         try {
             listar();
-            colaborador = new Colaborador();
-            for (Colaborador c : colecao) {
-                if (c.getIdColaborador() == idColaborador) {
-                    colaborador = new Colaborador(c);
+            for (Colaborador colaborador : colecao) {
+                if (colaborador.getIdColaborador() == idColaborador) {
+                    return colaborador;
                 }
             }
-            return colaborador;
+            return null;
         } catch (Exception e) {
             throw new Exception("Erro ao buscar colaborador pelo ID! (Persistência)\n" + e.getMessage());
         }

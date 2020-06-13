@@ -53,9 +53,9 @@ public class PersistenciaEditora implements ICRUDEditora {
     @Override
     public Editora buscarPeloId(int idEditora) throws Exception {
         listar();
-        for (Editora e : colecao) {
-            if (e.getIdEditora() == idEditora) {
-                return e;
+        for (Editora editora : colecao) {
+            if (editora.getIdEditora() == idEditora) {
+                return editora;
             }
         }
         return null;

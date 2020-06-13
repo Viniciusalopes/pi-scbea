@@ -17,8 +17,9 @@ import persistencia.PersistenciaReserva;
 public class ControleReserva implements ICRUDReserva {
 
     private ICRUDReserva persistencia = null;
+    private ArrayList<Reserva> colecao = null;
 
-    public ControleReserva() {
+    public ControleReserva() throws Exception {
         persistencia = new PersistenciaReserva();
 
     }
@@ -29,13 +30,13 @@ public class ControleReserva implements ICRUDReserva {
     }
 
     @Override
-    public Reserva buscarPeloId(int id) throws Exception {
-        throw new UnsupportedOperationException("Método não implementado: ICRUDReserva, buscarPeloId()"); //To change body of generated methods, choose Tools | Templates.
+    public Reserva buscarPeloId(int idReserva) throws Exception {
+        return persistencia.buscarPeloId(idReserva);
     }
 
     @Override
-    public void incluir(Reserva reserva) throws Exception {
-        persistencia.incluir(reserva);
+    public int incluir(Reserva reserva) throws Exception {
+        return persistencia.incluir(reserva);
     }
 
     @Override

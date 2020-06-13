@@ -22,9 +22,9 @@ public interface ICRUDReserva {
 
     ArrayList<Reserva> listar() throws Exception;
 
-    Reserva buscarPeloId(int id) throws Exception;
+    Reserva buscarPeloId(int idReserva) throws Exception;
 
-    void incluir(Reserva reserva) throws Exception;
+    int incluir(Reserva reserva) throws Exception;
 
     void alterar(Reserva reserva) throws Exception;
 

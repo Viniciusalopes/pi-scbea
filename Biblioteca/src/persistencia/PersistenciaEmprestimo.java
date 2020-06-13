@@ -82,9 +82,9 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
     public Emprestimo buscarPeloId(int idEmprestimo) throws Exception {
         try {
             listar();
-            for (Emprestimo e : colecao) {
-                if (e.getIdEmprestimo() == idEmprestimo) {
-                    return e;
+            for (Emprestimo emprestimo : colecao) {
+                if (emprestimo.getIdEmprestimo() == idEmprestimo) {
+                    return emprestimo;
                 }
             }
             return null;

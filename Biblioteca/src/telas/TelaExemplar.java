@@ -37,7 +37,7 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
 
     private Exemplar exemplar = null;
 
-    private Mensagens mensagens = null;
+    private Mensagens mensagem = null;
     private EnumAcao acao = null;
 
     private boolean visible = false;
@@ -72,7 +72,7 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
     @Override
     public void setVisible(boolean b) {
         try {
-            mensagens = new Mensagens();
+            mensagem = new Mensagens();
 
             controleExemplar = new ControleExemplar();
             controleLivro = new ControleLivro();
@@ -86,7 +86,7 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
                 preencherCampos();
             }
         } catch (Exception e) {
-            mensagens.erro(e);
+            mensagem.erro(e);
         }
         visible = true;
         super.setVisible(b);
@@ -162,7 +162,7 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
                 controleExemplar.alterar(exemplar);
             }
         } catch (Exception e) {
-            mensagens.erro(new Exception("Erro ao salvar o exemplar! \n" + e.getMessage()));
+            mensagem.erro(new Exception("Erro ao salvar o exemplar! \n" + e.getMessage()));
             visible = false;
             this.dispose();
         }
@@ -362,15 +362,15 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
             validarPreenchimento();
             salvar();
             if (acao.equals(EnumAcao.Incluir)) {
-                mensagens.sucesso("Exemplar incluído com sucesso!");
+                mensagem.sucesso("Exemplar incluído com sucesso!");
             } else if (acao.equals(EnumAcao.Editar)) {
                 exemplar.setIdExemplar(Integer.parseInt(jTextFieldIDExemplar.getText()));
-                mensagens.sucesso("Exemplar alterado com sucesso!");
+                mensagem.sucesso("Exemplar alterado com sucesso!");
             }
             visible = false;
             this.dispose();
         } catch (Exception e) {
-            mensagens.erro(e);
+            mensagem.erro(e);
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 

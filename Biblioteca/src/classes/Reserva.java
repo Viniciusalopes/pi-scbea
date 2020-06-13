@@ -12,6 +12,7 @@ Reserva
  */
 package classes;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -80,9 +81,11 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return idReserva + ";" + livro.getIdLivro() + ";" + colaborador.getIdColaborador() + ";" + dataReserva;
-    
-}
-
-
+        return String.format("%d;%d;%d;%s",
+                idReserva,
+                livro.getIdLivro(),
+                colaborador.getIdColaborador(),
+                new SimpleDateFormat("dd/MM/yyyy").format(dataReserva).toString()
+        );
+    }
 }
