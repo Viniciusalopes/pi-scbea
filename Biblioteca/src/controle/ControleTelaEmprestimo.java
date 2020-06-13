@@ -127,8 +127,8 @@ public class ControleTelaEmprestimo {
             vetor = new String[]{
                 livro.getIdLivro() + "",
                 livro.getTitulo(),
-                livro.getEditora().getNomeEditora(),
                 livro.getAutor().getNomeAutor(),
+                livro.getEditora().getNomeEditora(),
                 livro.getEdicao() + "",
                 livro.getAnoPublicacao() + "",
                 livro.getAreaConhecimento().getCdd() + " - " + livro.getAreaConhecimento().getDescricaoAreaConhecimento(),
@@ -146,7 +146,7 @@ public class ControleTelaEmprestimo {
         colecaoExemplar = controleExemplar.listar();
 
         qtdLinhas = colecaoExemplar.size();
-        qtdColunas = 14;
+        qtdColunas = 3;
 
         matriz = new String[qtdLinhas][qtdColunas];
         cont = 0;
@@ -159,16 +159,8 @@ public class ControleTelaEmprestimo {
             vetor = new String[]{
                 exemplar.getIdExemplar() + "",
                 status,
-                formatoData.format(exemplar.getDataAquisicao()),
-                String.format("%.2f", exemplar.getPrecoCompra()),
-                exemplar.getIdLivro() + "",
-                exemplar.getTitulo(),
-                exemplar.getEditora().getNomeEditora(),
-                exemplar.getAutor().getNomeAutor(),
-                exemplar.getEdicao() + "",
-                formatoData.format(exemplar.getAnoPublicacao()) + "",
-                exemplar.getAreaConhecimento().getCdd() + " - " + exemplar.getAreaConhecimento().getDescricaoAreaConhecimento(),
-                exemplar.getIsbn()
+                exemplar.getMotivoDesativado(),
+                exemplar.getIdLivro() + ""
             };
             matriz[cont] = vetor;
             cont++;
@@ -193,9 +185,10 @@ public class ControleTelaEmprestimo {
         reservasDoColaborador = new ReservasDoColaborador();
     }
 
-    public Reserva getReserva(int idReserva) throws Exception{
+    public Reserva getReserva(int idReserva) throws Exception {
         return controleReserva.buscarPeloId(idReserva);
     }
+
     //--- FIM CONSULTAS -------------------------------------------------------|
     //
     //--- AÇÕES --------------------------------------------------------------->

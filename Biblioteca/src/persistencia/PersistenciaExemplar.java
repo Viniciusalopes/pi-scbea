@@ -52,7 +52,7 @@ public class PersistenciaExemplar implements ICRUDExemplar {
                     EnumTipoStatus.values()[Integer.parseInt(dados[2])],
                     new SimpleDateFormat("dd/MM/yyyy").parse(dados[3].replace(",", ".")),
                     Float.parseFloat(dados[4].toString().replace(",", ".")),
-                    dados[5]
+                    dados[5].replace("_", "")
             );
             colecao.add(exemplar);
         }
