@@ -14,7 +14,9 @@ import enumeradores.EnumTipoStatus;
 import interfaces.ITelaCadastro;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import utilidades.Mensagens;
+import static utilidades.StringUtil.truncar;
 
 /**
  *
@@ -460,6 +462,22 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
 //        jComboBoxStatus.setEnabled(!oProprio);
 //
 //        jButtonAlterarSenha.setEnabled(oProprio);
+    }
+
+    private void validarPreenchimentoReserva() throws Exception {
+        if (jTableColaborador.getRowCount() == 0) {
+            throw new Exception("Selecione um colaborador!");
+        }
+        if (jTableColaborador.getSelectedRow() == -1) {
+            throw new Exception("Selecione um colaborador!");
+        }
+
+        if (jTableLivro.getRowCount() == 0) {
+            throw new Exception("Selecione um livro!");
+        }
+        if (jTableLivro.getSelectedRow() == -1) {
+            throw new Exception("Selecione um livro!");
+        }
     }
 
     //--- FIM MÉTODOS PARA PREENCHIMENTO DA TELA ------------------------------|
@@ -1074,40 +1092,39 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
 
     private void jButtonReservarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReservarLivroActionPerformed
         try {
-            if (jTableColaborador.getRowCount() == 0) {
-                throw new Exception("Selecione um colaborador!");
-            }
-            if (jTableColaborador.getSelectedRow() == -1) {
-                throw new Exception("Selecione um colaborador!");
-            }
-
+            validarPreenchimentoReserva();
             idColaborador = Integer.parseInt(jTableColaborador.getValueAt(jTableColaborador.getSelectedRow(), 0).toString());
-
-            if (jTableLivro.getRowCount() == 0) {
-                throw new Exception("Selecione um livro!");
-            }
-            if (jTableLivro.getSelectedRow() == -1) {
-                throw new Exception("Selecione um livro!");
-            }
             idLivro = Integer.parseInt(jTableLivro.getValueAt(jTableLivro.getSelectedRow(), 0).toString());
+            String titulo = truncar(jTableLivro.getValueAt(jTableLivro.getSelectedRow(), 1).toString(), 40);
 
-            idReserva = controleTelaEmprestimo.incluirReserva(idColaborador, idLivro);
-            if (mensagem.pergunta("Reserva incluída com sucesso!\nDeseja imprimir o recibo agora?") == 0) {
+            if (mensagem.pergunta(
+                    " DADOS DA RESERVA:"
+                    + "\n----------------------------------------"
+                    + "\nData: " + formatoData.format(new Date())
+                    + "\nColaborador: " + jTableColaborador.getValueAt(jTableColaborador.getSelectedRow(), 2).toString()
+                    + "\nMatrícula: " + jTableColaborador.getValueAt(jTableColaborador.getSelectedRow(), 1).toString()
+                    + "\nLivro: " + jTableLivro.getValueAt(jTableLivro.getSelectedRow(), 0).toString() + " - " + titulo
+                    + "\n" + jTableLivroDetalhe.getValueAt(4, 1) + " ª Edição"
+                    + "\n\nConfirma a inclusão da reserva?"
+                    + "\n") == 0) {
+
+                idReserva = controleTelaEmprestimo.incluirReserva(idColaborador, idLivro);
                 Reserva reserva = controleTelaEmprestimo.getReserva(idReserva);
-                String titulo = reserva.getLivro().getTitulo();
-                if (titulo.length() > 40) {
-                    titulo = titulo.substring(0, 40) + "...";
+
+                if (mensagem.pergunta("Reserva incluída com sucesso!\nDeseja imprimir o recibo agora?") == 0) {
+                    mensagem.informacao(
+                            " RECIBO DE RESERVA nº " + reserva.getIdReserva()
+                            + "\n----------------------------------------"
+                            + "\nData: " + formatoData.format(reserva.getdataReserva()).toString()
+                            + "\nColaborador: " + reserva.getColaborador().getNomeColaborador()
+                            + "\nMatrícula: " + reserva.getColaborador().getMatricula()
+                            + "\nLivro: " + reserva.getLivro().getIdLivro() + " - " + titulo
+                            + "\n" + reserva.getLivro().getEdicao() + " ª Edição"
+                            + "\n"
+                    );
                 }
-                mensagem.informacao(
-                        " RECIBO DE RESERVA nº " + reserva.getIdReserva()
-                        + "\n----------------------------------------"
-                        + "\nData: " + formatoData.format(reserva.getdataReserva()).toString()
-                        + "\nColaborador: " + reserva.getColaborador().getNomeColaborador()
-                        + "\nMatrícula: " + reserva.getColaborador().getMatricula()
-                        + "\nLivro: " + reserva.getLivro().getIdLivro() + " - " + titulo
-                        + "\n" + reserva.getLivro().getEdicao() + " ª Edição"
-                        + "\n"
-                );
+                visible = false;
+                this.dispose();
             }
 
         } catch (Exception e) {

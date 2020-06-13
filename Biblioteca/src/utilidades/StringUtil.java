@@ -132,4 +132,10 @@ public class StringUtil {
         return (System.getProperty("os.name").toLowerCase().contains("windows") ? "\\" : "/");
     }
 
+    public static String truncar(String texto, int posicoes) {
+        if (texto.length() > 40) {
+            return texto.substring(0, 40) + "...";
+        }
+        return texto;
+    }
 }
