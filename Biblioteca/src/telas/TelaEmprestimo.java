@@ -170,31 +170,6 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                                 incluirNoResultado = true;
                                 break;
 
-                            case 1: // ATIVOS
-                                incluirNoResultado = (EnumTipoStatus.valueOf(matrizColaborador[i][8]) == EnumTipoStatus.ATIVO);
-                                break;
-
-                            case 2: // INATIVOS
-                                incluirNoResultado = (EnumTipoStatus.valueOf(matrizColaborador[i][8]) == EnumTipoStatus.INATIVO);
-                                break;
-
-                            case 3: // ADIMPLENTE
-                                incluirNoResultado = (Float.parseFloat(matrizColaborador[i][10].replace(",", ".")) == 0.0);
-                                break;
-
-                            case 4: // INADIMPLENTE
-                                incluirNoResultado = (Float.parseFloat(matrizColaborador[i][10].replace(",", ".")) > 0.0);
-                                break;
-
-                            case 5: // COM_EMPRESTIMOS
-                                coluna = 9;
-                                incluirNoResultado = (Integer.parseInt(matrizColaborador[i][9]) > 0);
-                                break;
-
-                            case 6: // COM_RESERVAS
-                                incluirNoResultado = (Integer.parseInt(matrizColaborador[i][11]) > 0);
-                                break;
-
                             default:
                                 incluirNoResultado = (EnumCargo.valueOf(matrizColaborador[i][3])
                                         == EnumCargo.valueOf(jComboBoxFiltrarColaborador.getSelectedItem().toString()
