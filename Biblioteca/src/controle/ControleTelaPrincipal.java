@@ -14,7 +14,9 @@ import classes.Emprestimo;
 import classes.Livro;
 import classes.Log;
 import classes.Renderer;
+import classes.Reserva;
 import enumeradores.EnumCadastro;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -66,6 +68,7 @@ public class ControleTelaPrincipal {
                 break;
 
             case "RESERVA":
+                addColunasReserva();
                 break;
 
             case "LOG":
@@ -125,6 +128,13 @@ public class ControleTelaPrincipal {
         colunas.add(new ColunaGrid("Multa", renderer.getRendererCentro()));
     }
 
+    private void addColunasReserva() {
+        colunas.add(new ColunaGrid("ID", renderer.getRendererDireita()));
+        colunas.add(new ColunaGrid("Livro"));
+        colunas.add(new ColunaGrid("Colaborador"));
+        colunas.add(new ColunaGrid("Data"));
+    }
+
     private void addColunasLog() {
         colunas.add(new ColunaGrid("Data", renderer.getRendererCentro()));
         colunas.add(new ColunaGrid("Usuário"));
@@ -170,6 +180,7 @@ public class ControleTelaPrincipal {
                 break;
 
             case "RESERVA":
+                addLinhasReserva(colecao);
                 break;
 
             case "LOG":
@@ -291,6 +302,24 @@ public class ControleTelaPrincipal {
                 e.getStatusEmprestimo().toString(),
                 String.format("%s", e.getDataDevolucao()),
                 String.format("%.2f", e.getValorMulta())
+            };
+            linhas[cont] = linha;
+            cont++;
+        }
+    }
+
+    private void addLinhasReserva(Object colecao) {
+        ArrayList<Reserva> reservas = (ArrayList<Reserva>) colecao;
+        linhas = new String[reservas.size()][colunas.size()];
+        cont = 0;
+        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+
+        for (Reserva r : reservas) {
+            linha = new String[]{
+                r.getIdReserva() + "",
+                r.getLivro().getTitulo(),
+                r.getColaborador().getNomeColaborador(),
+                formatoData.format(r.getdataReserva()).toString()
             };
             linhas[cont] = linha;
             cont++;

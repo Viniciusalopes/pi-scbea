@@ -11,6 +11,7 @@ import classes.Colaborador;
 import classes.Editora;
 import classes.Exemplar;
 import classes.Livro;
+import classes.Reserva;
 import java.text.Collator;
 import java.util.Comparator;
 import java.util.Locale;
@@ -96,6 +97,17 @@ public class ColecaoUtil {
             @Override
             public int compare(Livro o1, Livro o2) {
                 return collator.compare(o1.getTitulo(), o2.getTitulo());
+            }
+        };
+    }
+
+    public static Comparator<Reserva> getComparadorReservaColaboradorCresc() {
+        collator.setStrength(Collator.PRIMARY);
+        return new Comparator<Reserva>() {
+
+            @Override
+            public int compare(Reserva o1, Reserva o2) {
+                return collator.compare(o1.getColaborador().getNomeColaborador(), o2.getColaborador().getNomeColaborador());
             }
         };
     }

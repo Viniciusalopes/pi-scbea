@@ -8,7 +8,9 @@ package controle;
 import classes.Reserva;
 import interfaces.ICRUDReserva;
 import java.util.ArrayList;
+import java.util.Collections;
 import persistencia.PersistenciaReserva;
+import static utilidades.ColecaoUtil.getComparadorReservaColaboradorCresc;
 
 /**
  *
@@ -26,7 +28,9 @@ public class ControleReserva implements ICRUDReserva {
 
     @Override
     public ArrayList<Reserva> listar() throws Exception {
-        throw new UnsupportedOperationException("Método não implementado: ICRUDReserva, listar()"); //To change body of generated methods, choose Tools | Templates.
+        colecao = persistencia.listar();
+        Collections.sort(colecao, getComparadorReservaColaboradorCresc());
+        return colecao;
     }
 
     @Override

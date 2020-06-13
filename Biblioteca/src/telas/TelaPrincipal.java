@@ -342,6 +342,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     break;
 
                 case "RESERVA":
+                    colecao = controleReserva.listar();
                     break;
 
                 case "LOG":
