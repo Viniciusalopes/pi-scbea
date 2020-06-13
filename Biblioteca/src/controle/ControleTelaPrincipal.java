@@ -30,7 +30,7 @@ public class ControleTelaPrincipal {
     private ArrayList<ColunaGrid> colunas = null;
     private Renderer renderer = new Renderer();
     private int cont = 0;
-    private int[][] larguras = null;
+    private int[] larguras = null;
 
     //--- COLUNAS DO GRID ----------------------------------------------------->
     public ArrayList<ColunaGrid> getColunasParaGrid(EnumCadastro cadastro) {
@@ -79,65 +79,70 @@ public class ControleTelaPrincipal {
         return colunas;
     }
 
-    private void addColunasLivro() {
-        colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("Título", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("Autor", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("Editora", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("Edição", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("Ano", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("Área de Conhecimento", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("ISBN", renderer.getRendererCentro()));
-    }
-
     private void addColunasAreaConhecimento() {
-        colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("CDD", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("ID", renderer.getRendererDireita()));
+        colunas.add(new ColunaGrid("CDD"));
         colunas.add(new ColunaGrid("Descrição da área de conhecimento"));
 
     }
 
-    private void addColunasEditora() {
-        colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("Nome"));
-    }
-
     private void addColunasAutor() {
-        colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("ID", renderer.getRendererDireita()));
         colunas.add(new ColunaGrid("Nome"));
     }
 
     private void addColunasColaborador() {
-        colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("ID", renderer.getRendererDireita()));
         colunas.add(new ColunaGrid("Nome"));
         colunas.add(new ColunaGrid("Perfil", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("Matrícula", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Matrícula", renderer.getRendererDireita()));
         colunas.add(new ColunaGrid("Cargo", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("OAB", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("OAB", renderer.getRendererDireita()));
         colunas.add(new ColunaGrid("E-mail"));
         colunas.add(new ColunaGrid("Telefone", renderer.getRendererDireita()));
         colunas.add(new ColunaGrid("Status", renderer.getRendererCentro()));
     }
 
+    private void addColunasEditora() {
+        colunas.add(new ColunaGrid("ID", renderer.getRendererDireita()));
+        colunas.add(new ColunaGrid("Nome"));
+    }
+
     private void addColunasEmprestimo() {
-        colunas.add(new ColunaGrid("ID", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("ID", renderer.getRendererDireita()));
         colunas.add(new ColunaGrid("Colaborador"));
         colunas.add(new ColunaGrid("Livro"));
         colunas.add(new ColunaGrid("Data Empréstimo ", renderer.getRendererCentro()));
         colunas.add(new ColunaGrid("Status", renderer.getRendererCentro()));
         colunas.add(new ColunaGrid("Data Devolução", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("Multa", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Multa", renderer.getRendererDireita()));
+    }
+
+    private void addColunasLivro() {
+        colunas.add(new ColunaGrid("ID", renderer.getRendererDireita()));
+        colunas.add(new ColunaGrid("Título"));
+        colunas.add(new ColunaGrid("Autor"));
+        colunas.add(new ColunaGrid("Editora"));
+        colunas.add(new ColunaGrid("Edição", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Ano", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Área de Conhecimento"));
+        colunas.add(new ColunaGrid("ISBN", renderer.getRendererCentro()));
     }
 
     private void addColunasReserva() {
         colunas.add(new ColunaGrid("ID", renderer.getRendererDireita()));
-        colunas.add(new ColunaGrid("Livro"));
+        colunas.add(new ColunaGrid("Data", renderer.getRendererCentro()));
         colunas.add(new ColunaGrid("Colaborador"));
-        colunas.add(new ColunaGrid("Data"));
+        colunas.add(new ColunaGrid("Livro"));
+        colunas.add(new ColunaGrid("Autor"));
+        colunas.add(new ColunaGrid("Editora"));
+        colunas.add(new ColunaGrid("Edição", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Ano", renderer.getRendererCentro()));
+
     }
 
     private void addColunasLog() {
-        colunas.add(new ColunaGrid("Data", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Data", renderer.getRendererDireita()));
         colunas.add(new ColunaGrid("Usuário"));
         colunas.add(new ColunaGrid("Ação", renderer.getRendererCentro()));
         colunas.add(new ColunaGrid("Cadastro", renderer.getRendererCentro()));
@@ -148,7 +153,7 @@ public class ControleTelaPrincipal {
     //
     //--- LARGURA DAS COLUNAS DO GRID ----------------------------------------->
     //
-    public int[][] getLarguraDasColunasParaGrid(EnumCadastro cadastro) {
+    public int[] getLarguraDasColunasParaGrid(EnumCadastro cadastro) {
 
         // Colunas do grid
         switch (cadastro.toString()) {
@@ -193,76 +198,81 @@ public class ControleTelaPrincipal {
         return larguras;
     }
 
-    private void addLargurasColunasLivro() {
-        larguras = new int[8][3];
-        larguras[0] = new int[]{60, 60, 60};
-        larguras[1] = new int[]{60, 60, 60};
-        larguras[2] = new int[]{60, 60, 60};
-        larguras[3] = new int[]{60, 60, 60};
-        larguras[4] = new int[]{60, 60, 60};
-        larguras[5] = new int[]{60, 60, 60};
-        larguras[6] = new int[]{60, 60, 60};
-        larguras[7] = new int[]{60, 60, 60};
-    }
-
     private void addLargurasColunasAreaConhecimento() {
-        larguras = new int[3][3];
-        larguras[0] = new int[]{60, 60, 60};
-        larguras[1] = new int[]{60, 60, 60};
-        larguras[2] = new int[]{60, 60, 60};
-    }
-
-    private void addLargurasColunasEditora() {
-        larguras = new int[2][3];
-        larguras[0] = new int[]{60, 60, 60};
-        larguras[1] = new int[]{60, 60, 60};
+        larguras = new int[3];
+        larguras[0] = 60;   // ID
+        larguras[1] = 80;   // CDD
+        //larguras[2] = 300;   // Descrição
     }
 
     private void addLargurasColunasAutor() {
-        larguras = new int[2][3];
-        larguras[0] = new int[]{60, 60, 60};
-        larguras[1] = new int[]{60, 60, 60};
+        larguras = new int[2];
+        larguras[0] = 60;   //ID
+        //larguras[1] = 60;   // Nome
     }
 
     private void addLargurasColunasColaborador() {
-        larguras = new int[9][3];
-        larguras[0] = new int[]{60, 60, 60};
-        larguras[1] = new int[]{60, 60, 60};
-        larguras[2] = new int[]{60, 60, 60};
-        larguras[3] = new int[]{60, 60, 60};
-        larguras[4] = new int[]{60, 60, 60};
-        larguras[5] = new int[]{60, 60, 60};
-        larguras[6] = new int[]{60, 60, 60};
-        larguras[7] = new int[]{60, 60, 60};
-        larguras[8] = new int[]{60, 60, 60};
+        larguras = new int[9];
+        larguras[0] = 60;   // ID
+        larguras[1] = 250;   // Nome
+        larguras[2] = 110;   // Perfil
+        larguras[3] = 80;   // Matrícula
+        larguras[4] = 120;   // Cargo
+        larguras[5] = 100;   // OAB
+        larguras[6] = 220;   // E-mail
+        larguras[7] = 120;   // Telefone
+        //larguras[8] = 60;   // Status
+    }
+
+    private void addLargurasColunasEditora() {
+        larguras = new int[2];
+        larguras[0] = 60;   // ID
+        //larguras[1] = 60;   // Nome
     }
 
     private void addLargurasColunasEmprestimo() {
-        larguras = new int[7][3];
-        larguras[0] = new int[]{60, 60, 60};
-        larguras[1] = new int[]{60, 60, 60};
-        larguras[2] = new int[]{60, 60, 60};
-        larguras[3] = new int[]{60, 60, 60};
-        larguras[4] = new int[]{60, 60, 60};
-        larguras[5] = new int[]{60, 60, 60};
-        larguras[6] = new int[]{60, 60, 60};
+        larguras = new int[7];
+        larguras[0] = 60;   // ID
+        larguras[1] = 60;   // Colaborador
+        larguras[2] = 60;   // Livro
+        larguras[3] = 60;   // Data Empréstimo
+        larguras[4] = 60;   // Status
+        larguras[5] = 60;   // Data Devolução
+        //larguras[6] = 60;   // Multa
+    }
+
+    private void addLargurasColunasLivro() {
+        larguras = new int[8];
+        larguras[0] = 60;   // ID
+        larguras[1] = 300;  // Título
+        larguras[2] = 150;  // Autor
+        larguras[3] = 150;  // Editora
+        larguras[4] = 60;   // Edição
+        larguras[5] = 60;   // Ano
+        larguras[6] = 260;  // Área de Conhecimento
+        //larguras[7] = 60; // ISBN
     }
 
     private void addLargurasColunasReserva() {
-        larguras = new int[4][3];
-        larguras[0] = new int[]{60, 60, 60};
-        larguras[1] = new int[]{60, 60, 60};
-        larguras[2] = new int[]{60, 60, 60};
-        larguras[3] = new int[]{60, 60, 60};
+        larguras = new int[8];
+        larguras[0] = 60;   // ID
+        larguras[1] = 80;   // Data
+        larguras[2] = 300;  // Colaborador
+        larguras[3] = 300;  // Livro
+        larguras[4] = 150;  // Autor
+        larguras[5] = 150;  // Editora
+        larguras[6] = 60;   // Edição
+        larguras[7] = 60;   // Ano
+
     }
 
     private void addLargurasColunasLog() {
-        larguras = new int[5][3];
-        larguras[0] = new int[]{60, 60, 60};
-        larguras[1] = new int[]{60, 60, 60};
-        larguras[2] = new int[]{60, 60, 60};
-        larguras[3] = new int[]{60, 60, 60};
-        larguras[4] = new int[]{60, 60, 60};
+        larguras = new int[5];
+        larguras[0] = 200;   // Data
+        larguras[1] = 200;   // Usuário
+        larguras[2] = 80;   // Ação
+        larguras[3] = 160;   // Cadastro
+        //larguras[4] = 60;   // Registro
     }
 
     //--- FIM LARGURA DAS COLUNAS DO GRID ------------------------------------->
@@ -311,29 +321,6 @@ public class ControleTelaPrincipal {
         }
 
         return linhas;
-    }
-
-    private void addLinhasLivro(Object colecao) {
-        ArrayList<Livro> livros = (ArrayList<Livro>) colecao;
-
-        // Linhas do grid
-        linhas = new String[livros.size()][colunas.size()];
-
-        cont = 0;
-        for (Livro l : livros) {
-            linha = new String[]{
-                l.getIdLivro() + "",
-                l.getTitulo(),
-                l.getAutor().getNomeAutor(),
-                l.getEditora().getNomeEditora(),
-                l.getEdicao() + "",
-                l.getAnoPublicacao() + "",
-                l.getAreaConhecimento().getCdd() + "-" + l.getAreaConhecimento().getDescricaoAreaConhecimento(),
-                l.getIsbn()
-            };
-            linhas[cont] = linha;
-            cont++;
-        }
     }
 
     private void addLinhasAreaConhecimento(Object colecao) {
@@ -398,7 +385,7 @@ public class ControleTelaPrincipal {
                 c.getIdColaborador() + "",
                 c.getNomeColaborador(),
                 c.getPerfil().toString(),
-                String.format("%06d", c.getMatricula()),
+                c.getMatricula() + "",
                 c.getCargo().toString(),
                 c.getOab(),
                 c.getEmail(),
@@ -430,6 +417,29 @@ public class ControleTelaPrincipal {
         }
     }
 
+    private void addLinhasLivro(Object colecao) {
+        ArrayList<Livro> livros = (ArrayList<Livro>) colecao;
+
+        // Linhas do grid
+        linhas = new String[livros.size()][colunas.size()];
+
+        cont = 0;
+        for (Livro l : livros) {
+            linha = new String[]{
+                l.getIdLivro() + "",
+                l.getTitulo(),
+                l.getAutor().getNomeAutor(),
+                l.getEditora().getNomeEditora(),
+                l.getEdicao() + "",
+                l.getAnoPublicacao() + "",
+                l.getAreaConhecimento().getCdd() + "-" + l.getAreaConhecimento().getDescricaoAreaConhecimento(),
+                l.getIsbn()
+            };
+            linhas[cont] = linha;
+            cont++;
+        }
+    }
+
     private void addLinhasReserva(Object colecao) {
         ArrayList<Reserva> reservas = (ArrayList<Reserva>) colecao;
         linhas = new String[reservas.size()][colunas.size()];
@@ -439,9 +449,13 @@ public class ControleTelaPrincipal {
         for (Reserva r : reservas) {
             linha = new String[]{
                 r.getIdReserva() + "",
-                r.getLivro().getTitulo(),
+                formatoData.format(r.getdataReserva()).toString(),
                 r.getColaborador().getNomeColaborador(),
-                formatoData.format(r.getdataReserva()).toString()
+                r.getLivro().getTitulo(),
+                r.getLivro().getAutor().getNomeAutor(),
+                r.getLivro().getEditora().getNomeEditora(),
+                r.getLivro().getEdicao() + "",
+                r.getLivro().getAnoPublicacao() + ""
             };
             linhas[cont] = linha;
             cont++;

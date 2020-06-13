@@ -54,6 +54,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private ITelaCadastro telaCadastro = null;
     private Mensagens mensagem = new Mensagens();
     private EnumAcao acao = null;
+
     // Nome do cadastro atual
     private String cadastro = "";
 
@@ -64,7 +65,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private ArrayList<ColunaGrid> colunas = null;
 
     // Larguras das colunas do grid
-    private int[][] larguras = null;
+    private int[] larguras = null;
 
     // Objeto genérico para armazenar as coleções de objetos
     private Object colecao = null;
@@ -247,12 +248,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             if (jTableLista.getColumnModel().getColumnCount() > 0) {
                 // Formatação das colunas
-                for (int i = 0; i < colunas.size(); i++) {
+                for (int i = 0; i < colunas.size() - 1; i++) {
                     jTableLista.getColumnModel().getColumn(i).setCellRenderer(colunas.get(i).getAlinhamento());
-                    jTableLista.getColumnModel().getColumn(i).setMinWidth(larguras[i][0]);
-                    jTableLista.getColumnModel().getColumn(i).setPreferredWidth(larguras[i][1]);
-                    jTableLista.getColumnModel().getColumn(i).setMaxWidth(larguras[i][2]);
+                    jTableLista.getColumnModel().getColumn(i).setMinWidth(larguras[i]);
+                    jTableLista.getColumnModel().getColumn(i).setPreferredWidth(larguras[i]);
+                    jTableLista.getColumnModel().getColumn(i).setMaxWidth(larguras[i]);
                 }
+                // Alinhamento da última coluna do grid
+                jTableLista.getColumnModel().getColumn(
+                        jTableLista.getColumnModel().getColumnCount() - 1).setCellRenderer(
+                        colunas.get(jTableLista.getColumnModel().getColumnCount() - 1).getAlinhamento());
             }
 
             // Desabilita botões Editar e Excluir
@@ -314,6 +319,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
 
+    // Atualiza a coleção de objetos para exibição
     private void atualizaColecao() throws Exception {
         try {
             this.colecao = null;
@@ -397,7 +403,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             controleReserva = new ControleReserva();
             controleLog = new ControleLog();
 
-            jRadioButtonLivrosActionPerformed(null);
+            // aqui
             jTextFieldPesquisar.requestFocus();
             jLabelStatusBottom.setText(String.format("USUÁRIO: - %d", Vai.USUARIO.getIdColaborador(), Vai.USUARIO.getNomeColaborador()));
         } catch (Exception e) {
@@ -450,7 +456,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1366, 768));
 
         buttonGroupCadastros.add(jRadioButtonLivros);
-        jRadioButtonLivros.setSelected(true);
         jRadioButtonLivros.setText("Livros");
         jRadioButtonLivros.setActionCommand("Livro");
         jRadioButtonLivros.addActionListener(new java.awt.event.ActionListener() {
@@ -737,18 +742,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //--- EVENTOS ------------------------------------------------------------->
-    //
-    private void jRadioButtonLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLivrosActionPerformed
-        try {
-            telaCadastro = null;
-            exibirCadastros();
-            telaCadastro = new TelaLivro(this, true);
-        } catch (Exception e) {
-            mensagem.erro(e);
-        }
-    }//GEN-LAST:event_jRadioButtonLivrosActionPerformed
-
     private void jRadioButtonEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEmprestimosActionPerformed
         try {
             telaCadastro = null;
@@ -890,6 +883,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
             mensagem.erro(e);
         }
     }//GEN-LAST:event_jRadioButtonReservasActionPerformed
+
+    private void jRadioButtonLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLivrosActionPerformed
+        try {
+            telaCadastro = null;
+            exibirCadastros();
+            telaCadastro = new TelaLivro(this, true);
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jRadioButtonLivrosActionPerformed
 
     //--- FIM EVENTOS ---------------------------------------------------------|
     /**
