@@ -104,9 +104,6 @@ public class ControleTelaEmprestimo {
                 c.getTelefone(), //  6
                 c.getPerfil().toString(), //  7
                 c.getStatus().toString(), //  8
-                emprestimosDoColaborador.getQuantidadeEmprestimos() + "", //  9
-                String.format("%.2f", emprestimosDoColaborador.getSaldoDevedor()), //  10
-                reservasDoColaborador.getQuantidadeReservas() + "" //  11
             };
             matriz[cont] = vetor;
             cont++;

@@ -83,7 +83,7 @@ public class ControleLivro implements ICRUDLivro {
     private void validarDuplicidade(Livro livro) throws Exception {
 
         for (Livro l : persistencia.listar()) {
-            String identificacaoLivro = String.format("%04d", l.getIdLivro()) + "-" + l.getTitulo();
+            String identificacaoLivro = l.getIdLivro() + "-" + l.getTitulo();
 
             if (textoSoComNumeros(l.getIsbn()).equals(textoSoComNumeros(livro.getIsbn()))
                     && l.getIdLivro() != livro.getIdLivro()) {

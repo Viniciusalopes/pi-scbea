@@ -57,7 +57,7 @@ public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
         }
         visible = true;
         super.setVisible(b);
-        
+
     }
 
     public void validarPreenchimento() throws Exception {
@@ -86,7 +86,7 @@ public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
     }
 
     private void preencherCampos() {
-        jTextFieldIdAutor.setText(String.format("%04d", autor.getIdAutor()));
+        jTextFieldIdAutor.setText(autor.getIdAutor() + "");
         jTextFieldNomeAutor.setText(autor.getNomeAutor());
     }
 

@@ -72,7 +72,7 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
 
     private void preencherCampos() throws Exception {
         areaConhecimento = controleAreaConhecimento.buscarPeloId(id);
-        jTextFieldID.setText(String.format("%04d", areaConhecimento.getIdAreaConhecimento()));
+        jTextFieldID.setText(areaConhecimento.getIdAreaConhecimento() + "");
         String cdd = String.format("%07d", areaConhecimento.getCdd());
         jTextFieldCdd.setText(cdd.substring(0, 3) + "." + cdd.replace(cdd.substring(0, 3), ""));
         jTextFieldDescricaoAreaConhecimento.setText(areaConhecimento.getDescricaoAreaConhecimento());

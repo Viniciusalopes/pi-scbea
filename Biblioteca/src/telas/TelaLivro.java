@@ -156,7 +156,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
 
     private void preencherCampos() {
 
-        jTextFieldID.setText(String.format("%04d", livro.getIdLivro()));
+        jTextFieldID.setText(livro.getIdLivro() + "");
         jTextFieldTitulo.setText(livro.getTitulo());
         jSpinnerEdicao.setValue(livro.getEdicao());
         jSpinnerAno.setValue(livro.getAnoPublicacao());
@@ -237,7 +237,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
                 controleLivro.alterar(livro);
             } else { // Incluir livro para incluir exemplar
                 livro.setIdLivro(controleLivro.incluir(livro));
-                jTextFieldID.setText(String.format("%04d", livro.getIdLivro()));
+                jTextFieldID.setText(livro.getIdLivro() + "");
             }
         } catch (Exception e) {
             throw new Exception("Erro ao salvar o cadastro do livro!\n" + e.getMessage());

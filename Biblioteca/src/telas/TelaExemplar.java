@@ -133,7 +133,7 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
     }
 
     private void preencherCampos() {
-        jTextFieldIDExemplar.setText(String.format("%04d", exemplar.getIdExemplar()));
+        jTextFieldIDExemplar.setText(exemplar.getIdExemplar() + "");
         jComboBoxstatusExemplar.setSelectedItem(exemplar.getStatusExemplar().ordinal());
         jSpinnerDataAquisicao.setValue(exemplar.getDataAquisicao().getTime());
         jFormattedTextFieldPrecoCompra.setText(String.format("%.2f", exemplar.getPrecoCompra()));
@@ -152,7 +152,7 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
                         0,
                         livro,
                         EnumTipoStatus.valueOf(jComboBoxstatusExemplar.getSelectedItem().toString()),
-                        (Date)jSpinnerDataAquisicao.getValue(),
+                        (Date) jSpinnerDataAquisicao.getValue(),
                         precoCompra,
                         jTextAreaMotivoDesativado.getText()
                 );

@@ -63,6 +63,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Colunas do grid
     private ArrayList<ColunaGrid> colunas = null;
 
+    // Larguras das colunas do grid
+    private int[][] larguras = null;
+
     // Objeto genérico para armazenar as coleções de objetos
     private Object colecao = null;
 
@@ -86,7 +89,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             telaCadastro.setId(0);
             telaCadastro.setAcao(acao);
             telaCadastro.setVisible(true);
-            
+
             exibirCadastros();
         } catch (Exception e) {
             throw new Exception("Erro ao incluir o cadastro!\n" + e.getMessage());
@@ -107,7 +110,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             telaCadastro.setId(getId());
             telaCadastro.setAcao(acao);
             telaCadastro.setVisible(true);
-            
+
             exibirCadastros();
         } catch (Exception e) {
             throw new Exception("Erro ao editar o cadastro!\n" + e.getMessage());
@@ -129,7 +132,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             int id = getId();
             String textoPergunta = "Deseja realmente excluir o cadastro selecionado?\n"
-                    + "(-) " + cadastro + " ID: " + String.format("%04d", id);
+                    + "(-) " + cadastro + " ID: " + id;
 
             if (mensagem.pergunta(textoPergunta) == 0) {
 
@@ -239,11 +242,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
             });
             jTableLista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
             jScrollPane1.setViewportView(jTableLista);
-            if (jTableLista.getColumnModel().getColumnCount() > 0) {
 
+            larguras = controleTela.getLarguraDasColunasParaGrid(EnumCadastro.valueOf(cadastro));
+
+            if (jTableLista.getColumnModel().getColumnCount() > 0) {
                 // Formatação das colunas
                 for (int i = 0; i < colunas.size(); i++) {
                     jTableLista.getColumnModel().getColumn(i).setCellRenderer(colunas.get(i).getAlinhamento());
+                    jTableLista.getColumnModel().getColumn(i).setMinWidth(larguras[i][0]);
+                    jTableLista.getColumnModel().getColumn(i).setPreferredWidth(larguras[i][1]);
+                    jTableLista.getColumnModel().getColumn(i).setMaxWidth(larguras[i][2]);
                 }
             }
 
@@ -391,7 +399,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             jRadioButtonLivrosActionPerformed(null);
             jTextFieldPesquisar.requestFocus();
-            jLabelStatusBottom.setText(String.format("USUÁRIO: %04d - %s", Vai.USUARIO.getIdColaborador(), Vai.USUARIO.getNomeColaborador()));
+            jLabelStatusBottom.setText(String.format("USUÁRIO: - %d", Vai.USUARIO.getIdColaborador(), Vai.USUARIO.getNomeColaborador()));
         } catch (Exception e) {
             mensagem.erro(new Exception("Erro ao construir a tela principal!\n" + e.getMessage()));
         }

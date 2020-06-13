@@ -30,6 +30,7 @@ public class ControleTelaPrincipal {
     private ArrayList<ColunaGrid> colunas = null;
     private Renderer renderer = new Renderer();
     private int cont = 0;
+    private int[][] larguras = null;
 
     //--- COLUNAS DO GRID ----------------------------------------------------->
     public ArrayList<ColunaGrid> getColunasParaGrid(EnumCadastro cadastro) {
@@ -145,6 +146,127 @@ public class ControleTelaPrincipal {
 
     //--- FIM COLUNAS DO GRID -------------------------------------------------|
     //
+    //--- LARGURA DAS COLUNAS DO GRID ----------------------------------------->
+    //
+    public int[][] getLarguraDasColunasParaGrid(EnumCadastro cadastro) {
+
+        // Colunas do grid
+        switch (cadastro.toString()) {
+            case "AREACONHECIMENTO":
+                addLargurasColunasAreaConhecimento();
+                break;
+
+            case "AUTOR":
+                addLargurasColunasAutor();
+                break;
+
+            case "COLABORADOR":
+                addLargurasColunasColaborador();
+                break;
+
+            case "CONFIGURACAO":
+                break;
+
+            case "EDITORA":
+                addLargurasColunasEditora();
+                break;
+
+            case "EMPRESTIMO":
+                addLargurasColunasEmprestimo();
+                break;
+
+            case "EXEMPLAR":
+                break;
+
+            case "LIVRO":
+                addLargurasColunasLivro();
+                break;
+
+            case "RESERVA":
+                addLargurasColunasReserva();
+                break;
+
+            case "LOG":
+                addLargurasColunasLog();
+        }
+
+        return larguras;
+    }
+
+    private void addLargurasColunasLivro() {
+        larguras = new int[8][3];
+        larguras[0] = new int[]{60, 60, 60};
+        larguras[1] = new int[]{60, 60, 60};
+        larguras[2] = new int[]{60, 60, 60};
+        larguras[3] = new int[]{60, 60, 60};
+        larguras[4] = new int[]{60, 60, 60};
+        larguras[5] = new int[]{60, 60, 60};
+        larguras[6] = new int[]{60, 60, 60};
+        larguras[7] = new int[]{60, 60, 60};
+    }
+
+    private void addLargurasColunasAreaConhecimento() {
+        larguras = new int[3][3];
+        larguras[0] = new int[]{60, 60, 60};
+        larguras[1] = new int[]{60, 60, 60};
+        larguras[2] = new int[]{60, 60, 60};
+    }
+
+    private void addLargurasColunasEditora() {
+        larguras = new int[2][3];
+        larguras[0] = new int[]{60, 60, 60};
+        larguras[1] = new int[]{60, 60, 60};
+    }
+
+    private void addLargurasColunasAutor() {
+        larguras = new int[2][3];
+        larguras[0] = new int[]{60, 60, 60};
+        larguras[1] = new int[]{60, 60, 60};
+    }
+
+    private void addLargurasColunasColaborador() {
+        larguras = new int[9][3];
+        larguras[0] = new int[]{60, 60, 60};
+        larguras[1] = new int[]{60, 60, 60};
+        larguras[2] = new int[]{60, 60, 60};
+        larguras[3] = new int[]{60, 60, 60};
+        larguras[4] = new int[]{60, 60, 60};
+        larguras[5] = new int[]{60, 60, 60};
+        larguras[6] = new int[]{60, 60, 60};
+        larguras[7] = new int[]{60, 60, 60};
+        larguras[8] = new int[]{60, 60, 60};
+    }
+
+    private void addLargurasColunasEmprestimo() {
+        larguras = new int[7][3];
+        larguras[0] = new int[]{60, 60, 60};
+        larguras[1] = new int[]{60, 60, 60};
+        larguras[2] = new int[]{60, 60, 60};
+        larguras[3] = new int[]{60, 60, 60};
+        larguras[4] = new int[]{60, 60, 60};
+        larguras[5] = new int[]{60, 60, 60};
+        larguras[6] = new int[]{60, 60, 60};
+    }
+
+    private void addLargurasColunasReserva() {
+        larguras = new int[4][3];
+        larguras[0] = new int[]{60, 60, 60};
+        larguras[1] = new int[]{60, 60, 60};
+        larguras[2] = new int[]{60, 60, 60};
+        larguras[3] = new int[]{60, 60, 60};
+    }
+
+    private void addLargurasColunasLog() {
+        larguras = new int[5][3];
+        larguras[0] = new int[]{60, 60, 60};
+        larguras[1] = new int[]{60, 60, 60};
+        larguras[2] = new int[]{60, 60, 60};
+        larguras[3] = new int[]{60, 60, 60};
+        larguras[4] = new int[]{60, 60, 60};
+    }
+
+    //--- FIM LARGURA DAS COLUNAS DO GRID ------------------------------------->
+    //
     //--- LINHAS DO GRID ------------------------------------------------------>
     public String[][] getLinhasParaGrid(Object colecao, EnumCadastro cadastro) throws Exception {
 
@@ -200,7 +322,7 @@ public class ControleTelaPrincipal {
         cont = 0;
         for (Livro l : livros) {
             linha = new String[]{
-                String.format("%04d", l.getIdLivro()),
+                l.getIdLivro() + "",
                 l.getTitulo(),
                 l.getAutor().getNomeAutor(),
                 l.getEditora().getNomeEditora(),
@@ -224,7 +346,7 @@ public class ControleTelaPrincipal {
         cont = 0;
         for (AreaConhecimento a : areasConhecimento) {
             linha = new String[]{
-                String.format("%04d", a.getIdAreaConhecimento()),
+                a.getIdAreaConhecimento() + "",
                 a.getCdd() + "",
                 a.getDescricaoAreaConhecimento()
             };
@@ -240,7 +362,7 @@ public class ControleTelaPrincipal {
         cont = 0;
         for (Autor a : autores) {
             linha = new String[]{
-                String.format("%04d", a.getIdAutor()),
+                a.getIdAutor() + "",
                 a.getNomeAutor()
             };
             linhas[cont] = linha;
@@ -255,7 +377,7 @@ public class ControleTelaPrincipal {
         cont = 0;
         for (Editora a : editoras) {
             linha = new String[]{
-                String.format("%04d", a.getIdEditora()),
+                a.getIdEditora() + "",
                 a.getNomeEditora()
             };
             linhas[cont] = linha;
@@ -273,7 +395,7 @@ public class ControleTelaPrincipal {
         cont = 0;
         for (Colaborador c : colaboradores) {
             linha = new String[]{
-                String.format("%04d", c.getIdColaborador()),
+                c.getIdColaborador() + "",
                 c.getNomeColaborador(),
                 c.getPerfil().toString(),
                 String.format("%06d", c.getMatricula()),

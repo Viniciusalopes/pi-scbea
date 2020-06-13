@@ -31,7 +31,7 @@
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="jPanelColaboradores" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanelLivros" min="-2" max="-2" attributes="0"/>
+              <Component id="jPanelLivros" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -64,27 +64,28 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jScrollPaneColaborador" pref="0" max="32767" attributes="0"/>
-                          <Component id="jScrollPane2" alignment="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jLabelStatus" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelColaboradorDetalhe" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelFiltrarColaborador" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxFiltrarColaborador" min="-2" pref="160" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelPesquisarColaborador" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldPesquisarColaborador" min="-2" pref="160" max="-2" attributes="0"/>
-                              </Group>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jScrollPaneColaborador" pref="0" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jLabelColaboradorDetalhe" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabelFiltrarColaborador" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxFiltrarColaborador" min="-2" pref="160" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabelPesquisarColaborador" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldPesquisarColaborador" min="-2" pref="160" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="jButtonIncluirColaborador" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jButtonIncluirColaborador" min="-2" pref="150" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -106,12 +107,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelColaboradorDetalhe" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" min="-2" pref="199" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabelStatus" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="63" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="67" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                   <Component id="jButtonIncluirColaborador" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -160,6 +159,7 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="jTableColaborador">
               <Properties>
+                <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="0">
                     <Column editable="false" title="ID" type="java.lang.Object"/>
@@ -210,20 +210,12 @@
             <Component class="javax.swing.JTable" name="jTableColaboradorDetalhe">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="2" rowCount="12">
+                  <Table columnCount="2" rowCount="4">
                     <Column editable="false" title="" type="java.lang.Object">
-                      <Data value="ID"/>
-                      <Data value="Matr&#xed;cula"/>
-                      <Data value="Nome"/>
                       <Data value="Cargo"/>
                       <Data value="OAB"/>
-                      <Data value="Email"/>
-                      <Data value="Telefone"/>
-                      <Data value="Perfil"/>
                       <Data value="Status"/>
-                      <Data value="Empr&#xe9;stimos"/>
-                      <Data value="Saldo Devedor"/>
-                      <Data value="Reservas"/>
+                      <Data value="E-mail"/>
                     </Column>
                     <Column editable="false" title="" type="java.lang.Object"/>
                   </Table>
@@ -232,7 +224,7 @@
                 <Property name="autoscrolls" type="boolean" value="false"/>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
+                    <Column maxWidth="50" minWidth="50" prefWidth="50" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -252,18 +244,13 @@
                 </Property>
                 <Property name="name" type="java.lang.String" value="" noResource="true"/>
                 <Property name="opaque" type="boolean" value="false"/>
-                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                  <TableHeader reorderingAllowed="false" resizingAllowed="false"/>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="null" type="code"/>
                 </Property>
               </Properties>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabelStatus">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jLabelStatus"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="jButtonIncluirColaborador">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -289,57 +276,42 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPaneLivro" max="32767" attributes="0"/>
-                      <Component id="jScrollPaneLivroDescricao" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabelFliltrarLivro" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboBoxFiltrarLivro" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabelPesquisarCDD" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jLabelPesquisarLivro" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jTextFieldPesquisarCDD" min="-2" pref="110" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldPesquisarLivro" min="-2" pref="110" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jButtonReservarLivro" min="-2" pref="140" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="0" pref="146" max="32767" attributes="0"/>
+                          <Component id="jLabelLivroDetalhe" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPaneLivroDetalhe" min="-2" pref="260" max="-2" attributes="0"/>
-                              <Component id="jLabelLivroDetalhe" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPaneExemplares" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jButtonEmprestar" min="-2" pref="125" max="-2" attributes="0"/>
-                                      <Component id="jLabelExemplaresLivro" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonReservarLivro" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButtonEmprestar" min="-2" pref="150" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jScrollPaneExemplares" alignment="0" pref="708" max="32767" attributes="0"/>
+                                  <Component id="jScrollPaneLivroDetalhe" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabelPesquisarLivro" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jTextFieldPesquisarLivro" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jTextFieldPesquisarAreaConhecimento" min="-2" pref="235" max="-2" attributes="0"/>
+                                          <Component id="jLabelPesquisarCDD" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="jLabelExemplaresLivro" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jScrollPaneLivro" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -347,37 +319,33 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabelPesquisarCDD" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelPesquisarLivro" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelPesquisarLivro" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="jLabelFliltrarLivro" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="jLabelPesquisarCDD" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jComboBoxFiltrarLivro" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                              <Component id="jTextFieldPesquisarCDD" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="jTextFieldPesquisarAreaConhecimento" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                               <Component id="jTextFieldPesquisarLivro" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                              <Component id="jButtonReservarLivro" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPaneLivro" min="-2" pref="224" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelLivroDetalhe" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="jScrollPaneLivroDescricao" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPaneLivroDetalhe" min="-2" pref="67" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jLabelExemplaresLivro" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  <Component id="jScrollPaneExemplares" min="-2" pref="135" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabelExemplaresLivro" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelLivroDetalhe" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonReservarLivro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonEmprestar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPaneLivroDetalhe" min="-2" pref="135" max="-2" attributes="0"/>
-                      <Component id="jScrollPaneExemplares" alignment="1" min="-2" pref="135" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                  <Component id="jButtonEmprestar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -395,34 +363,16 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelPesquisarCDD">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pesquisar CDD"/>
+            <Property name="text" type="java.lang.String" value="Pesquisar &#xc1;rea de Conhecimento"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldPesquisarCDD">
+        <Component class="javax.swing.JTextField" name="jTextFieldPesquisarAreaConhecimento">
           <Properties>
             <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldPesquisarCDDKeyReleased"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldPesquisarAreaConhecimentoKeyReleased"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabelFliltrarLivro">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Filtrar por"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBoxFiltrarLivro">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxFiltrarLivroActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPaneLivro">
           <AuxValues>
@@ -433,13 +383,14 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="jTableLivro">
               <Properties>
+                <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="5" rowCount="0">
                     <Column editable="false" title="ID" type="java.lang.Object"/>
                     <Column editable="false" title="T&#xed;tulo" type="java.lang.Object"/>
                     <Column editable="false" title="Autor" type="java.lang.Object"/>
                     <Column editable="false" title="Editora" type="java.lang.Object"/>
-                    <Column editable="true" title="Edicao" type="java.lang.Object"/>
+                    <Column editable="false" title="Edicao" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -449,17 +400,17 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="250" minWidth="250" prefWidth="250" resizable="true">
+                    <Column maxWidth="300" minWidth="300" prefWidth="300" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="150" minWidth="150" prefWidth="150" resizable="true">
+                    <Column maxWidth="140" minWidth="140" prefWidth="140" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="150" minWidth="150" prefWidth="150" resizable="true">
+                    <Column maxWidth="140" minWidth="140" prefWidth="140" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -492,27 +443,6 @@
             <Property name="text" type="java.lang.String" value="Detalhes do livro:"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPaneLivroDescricao">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTextArea" name="jTextAreaLivroDescricao">
-              <Properties>
-                <Property name="columns" type="int" value="20"/>
-                <Property name="lineWrap" type="boolean" value="true"/>
-                <Property name="rows" type="int" value="4"/>
-                <Property name="wrapStyleWord" type="boolean" value="true"/>
-                <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="66" type="rgb"/>
-                </Property>
-                <Property name="enabled" type="boolean" value="false"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
         <Container class="javax.swing.JScrollPane" name="jScrollPaneLivroDetalhe">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -523,16 +453,12 @@
             <Component class="javax.swing.JTable" name="jTableLivroDetalhe">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="2" rowCount="8">
+                  <Table columnCount="2" rowCount="4">
                     <Column editable="false" title="" type="java.lang.Object">
-                      <Data value="ID"/>
-                      <Data value="T&#xed;tulo"/>
-                      <Data value="Autor"/>
-                      <Data value="Editora"/>
-                      <Data value="Edi&#xe7;&#xe3;o"/>
                       <Data value="Ano"/>
-                      <Data value="CDD"/>
+                      <Data value="&#xc1;rea de Conhecimento"/>
                       <Data value="ISBN"/>
+                      <Data value="Descri&#xe7;&#xe3;o do livro"/>
                     </Column>
                     <Column editable="false" title="" type="java.lang.Object"/>
                   </Table>
@@ -540,7 +466,7 @@
                 <Property name="autoscrolls" type="boolean" value="false"/>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="50" minWidth="50" prefWidth="50" resizable="true">
+                    <Column maxWidth="150" minWidth="150" prefWidth="150" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -555,8 +481,8 @@
                 <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
                 </Property>
-                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="null" type="code"/>
                 </Property>
               </Properties>
             </Component>
@@ -576,6 +502,7 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="jTableExemplares">
               <Properties>
+                <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="0">
                     <Column editable="false" title="ID" type="java.lang.Object"/>
@@ -615,11 +542,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o do livro:"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="jButtonReservarLivro">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

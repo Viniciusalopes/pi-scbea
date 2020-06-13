@@ -94,7 +94,7 @@ public class TelaEditora extends javax.swing.JDialog implements ITelaCadastro {
 
     private void preencherCampos() {
 
-        jTextFieldIdEditora.setText(String.format("%04d", editora.getIdEditora()));
+        jTextFieldIdEditora.setText(editora.getIdEditora() + "");
         jTextFieldNomeEditora.setText(editora.getNomeEditora());
     }
 

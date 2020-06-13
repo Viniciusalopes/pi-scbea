@@ -100,7 +100,7 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
     }
 
     private void preencherCampos() {
-        jTextFieldID.setText(String.format("%04d", colaborador.getIdColaborador()));
+        jTextFieldID.setText(colaborador.getIdColaborador() + "");
         jComboBoxCargo.setSelectedIndex(colaborador.getCargo().ordinal());
         jFormattedTextFieldMatricula.setText(String.format("%d", colaborador.getMatricula()));
         jTextFieldNome.setText(colaborador.getNomeColaborador());
