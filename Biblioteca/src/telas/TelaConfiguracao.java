@@ -219,8 +219,8 @@ public class TelaConfiguracao extends javax.swing.JDialog {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         try {
             configuracao = new Configuracao(
-                    Integer.valueOf(jSpinnerDiasEmprestimo.getValue().toString()),
                     Integer.valueOf(jSpinnerLimiteLivros.getValue().toString()),
+                    Integer.valueOf(jSpinnerDiasEmprestimo.getValue().toString()),
                     Float.parseFloat(jFormattedTextFieldValorMultaDiaria.getValue().toString()),
                     jTextFieldCaminhoBdCliente.getText(), jTextFieldCaminhoBdServidor.getText(),
                     (jComboBoxLerID.getSelectedIndex() == 0) ? false : true);
