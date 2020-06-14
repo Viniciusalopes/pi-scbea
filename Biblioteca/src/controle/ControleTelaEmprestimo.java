@@ -164,13 +164,9 @@ public class ControleTelaEmprestimo {
         cont = 0;
         for (Exemplar exemplar : colecaoExemplar) {
 
-            String status = ((exemplar.getStatusExemplar().equals(EnumTipoStatus.ATIVO))
-                    ? EnumTipoStatus.DISPONIVEL.toString()
-                    : exemplar.getStatusExemplar()).toString();
-
             vetor = new String[]{
                 exemplar.getIdExemplar() + "",
-                status,
+                exemplar.getStatusExemplar().toString(),
                 exemplar.getMotivoDesativado(),
                 exemplar.getIdLivro() + ""
             };

@@ -256,9 +256,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         colunas.get(jTableLista.getColumnModel().getColumnCount() - 1).getAlinhamento());
             }
 
+            jButtonIncluir.setEnabled(true);
+            
             // Desabilita botões Editar e Excluir
             jButtonEditar.setEnabled(false);
             jButtonExcluir.setEnabled(false);
+            
+            jTextFieldPesquisar.setEnabled(true);
             jTextFieldPesquisar.requestFocus();
         } catch (Exception e) {
             throw new Exception("Erro ao popular o grid de " + cadastro + "!\n" + e.getMessage());
@@ -400,7 +404,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             controleLog = new ControleLog();
 
             // aqui
-            jTextFieldPesquisar.requestFocus();
+            jLabelStatusTop.setText("");
             jLabelStatusBottom.setText(String.format("USUÁRIO: - %d", Vai.USUARIO.getIdColaborador(), Vai.USUARIO.getNomeColaborador()));
         } catch (Exception e) {
             mensagem.erro(new Exception("Erro ao construir a tela principal!\n" + e.getMessage()));
@@ -586,6 +590,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jSeparatorCadastrosBotoes.setPreferredSize(new java.awt.Dimension(50, 5));
 
         jButtonIncluir.setText("Incluir");
+        jButtonIncluir.setEnabled(false);
         jButtonIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonIncluirActionPerformed(evt);
@@ -612,6 +617,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabelPesquisar.setText("Pesquisar");
 
+        jTextFieldPesquisar.setEnabled(false);
         jTextFieldPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldPesquisarKeyReleased(evt);
