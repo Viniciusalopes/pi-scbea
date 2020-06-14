@@ -201,36 +201,36 @@ public class ControleTelaPrincipal {
     private void addLargurasColunasLivro() {
         larguras = new int[8];
         larguras[0] = 60;   // ID
-        larguras[1] = 300;  // Título
-        larguras[2] = 150;  // Autor
-        larguras[3] = 150;  // Editora
-        larguras[4] = 60;   // Edição
-        larguras[5] = 60;   // Ano
-        larguras[6] = 260;  // Área de Conhecimento
-        //larguras[7] = 60; // ISBN
+        larguras[1] = 200;  // Título
+        larguras[2] = 200;  // Autor
+        larguras[3] = 100;  // Editora
+        larguras[4] = 50;   // Edição
+        larguras[5] = 50;   // Ano
+        larguras[6] = 150;  // Área de Conhecimento
+        //larguras[7] = 60; // ISBN (está pegando o resto do tamanho total do grid)
     }
 
     private void addLargurasColunasEmprestimo() {
         larguras = new int[7];
         larguras[0] = 60;   // ID
-        larguras[1] = 60;   // Colaborador
-        larguras[2] = 60;   // Livro
-        larguras[3] = 60;   // Data Empréstimo
-        larguras[4] = 60;   // Status
-        larguras[5] = 60;   // Data Devolução
-        //larguras[6] = 60;   // Multa
+        larguras[1] = 200;   // Colaborador
+        larguras[2] = 200;   // Livro
+        larguras[3] = 120;   // Data Empréstimo
+        larguras[4] = 120;   // Status
+        larguras[5] = 120;   // Data Devolução
+        //larguras[6] = 60;   // Multa (está pegando o resto do tamanho total do grid)
     }
 
     private void addLargurasColunasReserva() {
         larguras = new int[8];
         larguras[0] = 60;   // ID
         larguras[1] = 80;   // Data
-        larguras[2] = 300;  // Colaborador
-        larguras[3] = 300;  // Livro
+        larguras[2] = 200;  // Colaborador
+        larguras[3] = 200;  // Livro
         larguras[4] = 150;  // Autor
-        larguras[5] = 150;  // Editora
+        larguras[5] = 100;  // Editora
         larguras[6] = 60;   // Edição
-        larguras[7] = 60;   // Ano
+      //  larguras[7] = 50;   // Ano (está pegando o resto do tamanho total do grid)
 
     }
 
@@ -238,41 +238,41 @@ public class ControleTelaPrincipal {
         larguras = new int[3];
         larguras[0] = 60;   // ID
         larguras[1] = 80;   // CDD
-        //larguras[2] = 300;   // Descrição
+        //larguras[2] = 300;   // Descrição (está pegando o resto do tamanho total do grid)
     }
 
     private void addLargurasColunasEditora() {
         larguras = new int[2];
         larguras[0] = 60;   // ID
-        //larguras[1] = 60;   // Nome
+        //larguras[1] = 60;   // Nome (está pegando o resto do tamanho total do grid)
     }
 
     private void addLargurasColunasAutor() {
         larguras = new int[2];
         larguras[0] = 60;   //ID
-        //larguras[1] = 60;   // Nome
+        //larguras[1] = 60;   // Nome (está pegando o resto do tamanho total do grid)
     }
 
     private void addLargurasColunasColaborador() {
         larguras = new int[9];
         larguras[0] = 60;   // ID
-        larguras[1] = 250;   // Nome
-        larguras[2] = 110;   // Perfil
+        larguras[1] = 180;   // Nome
+        larguras[2] = 100;   // Perfil
         larguras[3] = 80;   // Matrícula
-        larguras[4] = 120;   // Cargo
+        larguras[4] = 100;   // Cargo
         larguras[5] = 100;   // OAB
-        larguras[6] = 220;   // E-mail
+        larguras[6] = 120;   // E-mail
         larguras[7] = 120;   // Telefone
-        //larguras[8] = 60;   // Status
+        //larguras[8] = 60;   // Status (está pegando o resto do tamanho total do grid)
     }
 
     private void addLargurasColunasLog() {
         larguras = new int[5];
-        larguras[0] = 200;   // Data
+        larguras[0] = 100;   // Data
         larguras[1] = 200;   // Usuário
-        larguras[2] = 80;   // Ação
-        larguras[3] = 160;   // Cadastro
-        //larguras[4] = 60;   // Registro
+        larguras[2] = 100;   // Ação
+        larguras[3] = 120;   // Cadastro
+        //larguras[4] = 60;   // Registro (está pegando o resto do tamanho total do grid)
     }
 
     //--- FIM LARGURA DAS COLUNAS DO GRID ------------------------------------->
