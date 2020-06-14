@@ -290,10 +290,8 @@
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jScrollPaneExemplares" alignment="0" pref="708" max="32767" attributes="0"/>
                               <Component id="jScrollPaneLivroDetalhe" alignment="0" max="32767" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelPesquisarLivro" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldPesquisarLivro" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jLabelPesquisarLivro" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldPesquisarLivro" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
                               <Component id="jLabelExemplaresLivro" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jScrollPaneLivro" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -401,7 +399,6 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableLivroMouseClicked"/>
-                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jTableLivroPropertyChange"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTableLivroKeyReleased"/>
               </Events>
             </Component>

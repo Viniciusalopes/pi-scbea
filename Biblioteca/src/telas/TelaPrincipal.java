@@ -78,17 +78,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
     //
     private void incluirCadastro() throws Exception {
         try {
-
-            if (cadastro == EnumCadastro.EMPRESTIMO.toString()) {
+            if (cadastro.equals("")) {
+                mensagem.informacao("Selecione um cadastro!");
+                return;
+            }
+            if (cadastro.equals(EnumCadastro.EMPRESTIMO.toString())) {
                 acao = EnumAcao.Incluir_Emprestimo;
-            } else if (cadastro == EnumCadastro.RESERVA.toString()) {
+            } else if (cadastro.equals(EnumCadastro.RESERVA.toString())) {
                 acao = EnumAcao.Incluir_Reserva;
             } else {
                 acao = EnumAcao.Incluir;
             }
 
-            telaCadastro.setId(0);
             telaCadastro.setAcao(acao);
+            telaCadastro.setId(0);
             telaCadastro.setVisible(true);
 
             exibirCadastros();
@@ -100,9 +103,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void editarCadastro() throws Exception {
         try {
 
-            if (cadastro == EnumCadastro.EMPRESTIMO.toString()) {
+            if (cadastro.equals(EnumCadastro.EMPRESTIMO.toString())) {
                 acao = EnumAcao.Editar_Emprestimo;
-            } else if (cadastro == EnumCadastro.RESERVA.toString()) {
+            } else if (cadastro.equals(EnumCadastro.RESERVA.toString())) {
                 acao = EnumAcao.Editar_Reserva;
             } else {
                 acao = EnumAcao.Editar;
@@ -119,14 +122,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     private void detalheCadastro() throws Exception {
-        try {
-            telaCadastro.setId(getId());
-            telaCadastro.setAcao(EnumAcao.Editar);
-            telaCadastro.setVisible(true);
-            exibirCadastros();
-        } catch (Exception e) {
-            throw new Exception("Erro ao detalhar o cadastro!\n" + e.getMessage());
-        }
+        editarCadastro();
     }
 
     private void excluirCadastro() throws Exception {
@@ -304,7 +300,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             // Índice da coluna ID
             int indiceID = 0;
-
+            
             // Atualiza o índice da coluna com o ID
             for (int i = 0; i < jTableLista.getColumnCount(); i++) {
                 if (jTableLista.getColumnName(i).equals("ID")) {

@@ -81,18 +81,18 @@ public class ControleTelaEmprestimo {
     //--- MATRIZES E VETORES -------------------------------------------------->
     //
     public String[][] getMatrizColaboradores() throws Exception {
-        colecaoEmprestimo = controleEmprestimo.listar();
         colecaoColaborador = controleColaborador.listar();
+        preencherMatrizColaborador();
+        return matriz;
+    }
 
+    private void preencherMatrizColaborador() throws Exception {
         qtdLinhas = colecaoColaborador.size();
         qtdColunas = 12;
 
         matriz = new String[qtdLinhas][qtdColunas];
         cont = 0;
         for (Colaborador c : colecaoColaborador) {
-
-            getEmprestimosDoColaborador(c);
-            getReservasDoColaborador(c);
 
             vetor = new String[]{ // indice
                 c.getIdColaborador() + "", //  0
@@ -108,13 +108,15 @@ public class ControleTelaEmprestimo {
             matriz[cont] = vetor;
             cont++;
         }
-        return matriz;
     }
 
     public String[][] getMatrizLivros() throws Exception {
-
         colecaoLivro = controleLivro.listar();
+        preencherMatrizLivro();
+        return matriz;
+    }
 
+    private void preencherMatrizLivro() throws Exception {
         qtdLinhas = colecaoLivro.size();
         qtdColunas = 9;
 
@@ -122,25 +124,38 @@ public class ControleTelaEmprestimo {
         cont = 0;
         for (Livro livro : colecaoLivro) {
             vetor = new String[]{
-                livro.getIdLivro() + "",    // 0
-                livro.getTitulo(),  // 1
-                livro.getAutor().getNomeAutor(),  // 2
-                livro.getEditora().getNomeEditora(),  // 3
-                livro.getEdicao() + "",  // 4
-                livro.getAnoPublicacao() + "",  // 5
-                livro.getAreaConhecimento().getCdd() + " - " + livro.getAreaConhecimento().getDescricaoAreaConhecimento(),  // 6
-                livro.getIsbn(),  // 7
-                livro.getDescricaoLivro()  // 8
+                livro.getIdLivro() + "", // 0
+                livro.getTitulo(), // 1
+                livro.getAutor().getNomeAutor(), // 2
+                livro.getEditora().getNomeEditora(), // 3
+                livro.getEdicao() + "", // 4
+                livro.getAnoPublicacao() + "", // 5
+                livro.getAreaConhecimento().getCdd() + " - " + livro.getAreaConhecimento().getDescricaoAreaConhecimento(), // 6
+                livro.getIsbn(), // 7
+                livro.getDescricaoLivro() // 8
             };
 
             matriz[cont] = vetor;
             cont++;
         }
+    }
+
+    private void getExemplaresDoLivro(int idLivro) throws Exception {
+        colecaoExemplar = new ArrayList<>();
+        for (Exemplar exemplar : controleExemplar.listar()) {
+            if (exemplar.getIdLivro() == idLivro) {
+                colecaoExemplar.add(exemplar);
+            }
+        }
+    }
+
+    public String[][] getMatrizExemplares(int idLivro) throws Exception {
+        getExemplaresDoLivro(idLivro);
+        preencherMatrizExemplar();
         return matriz;
     }
 
-    public String[][] getMatrizExemplares() throws Exception {
-        colecaoExemplar = controleExemplar.listar();
+    private void preencherMatrizExemplar() throws Exception {
 
         qtdLinhas = colecaoExemplar.size();
         qtdColunas = 3;
@@ -162,28 +177,18 @@ public class ControleTelaEmprestimo {
             matriz[cont] = vetor;
             cont++;
         }
-        return matriz;
     }
 
     //--- FIM MATRIZES E VETORES ----------------------------------------------|
     //
     //-- CONSULTAS ------------------------------------------------------------>
     //
-    private void getEmprestimosDoColaborador(Colaborador colaborador) {
-        emprestimosDoColaborador = new EmprestimosDoColaborador(colaborador);
-        for (Emprestimo e : colecaoEmprestimo) {
-            if (e.getColaborador().getIdColaborador() == colaborador.getIdColaborador()) {
-                emprestimosDoColaborador.incluirEmprestimo(e);
-            }
-        }
-    }
-
-    private void getReservasDoColaborador(Colaborador colaborador) {
-        reservasDoColaborador = new ReservasDoColaborador();
-    }
-
-    public Reserva getReserva(int idReserva) throws Exception {
+    public Reserva buscarReserva(int idReserva) throws Exception {
         return controleReserva.buscarPeloId(idReserva);
+    }
+
+    public Emprestimo buscarEmprestimo(int idEmprestimo) throws Exception {
+        return controleEmprestimo.buscarPeloId(idEmprestimo);
     }
 
     //--- FIM CONSULTAS -------------------------------------------------------|
