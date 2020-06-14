@@ -117,7 +117,6 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     //
     //--- MÉTODOS PARA CRUD --------------------------------------------------->
     //
-    
     private void salvarReserva() throws Exception {
 
         idColaborador = Integer.parseInt(jTableColaborador.getValueAt(jTableColaborador.getSelectedRow(), 0).toString());
@@ -460,6 +459,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             }
         }
         jButtonReservarLivro.setEnabled(reservar);
+        jButtonIncluirExemplar.setEnabled(reservar);
         jButtonEmprestar.setEnabled(emprestar);
 
         // Botão emprestar
@@ -471,7 +471,22 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         telaColaborador.setAcao(EnumAcao.Incluir);
         telaColaborador.setVisible(true);
         matrizColaborador = controleTelaEmprestimo.getMatrizColaboradores();
-        jComboBoxFiltrarColaborador.setSelectedIndex(0);
+    }
+
+    private void exibirTelaLivro() throws Exception {
+        TelaLivro telalivro = new TelaLivro(null, true);
+        telalivro.setId(0);
+        telalivro.setAcao(EnumAcao.Incluir);
+        telalivro.setVisible(true);
+        matrizLivro = controleTelaEmprestimo.getMatrizLivros();
+    }
+
+    private void exibirTelaExemplar() throws Exception {
+        TelaLivro telalivro = new TelaLivro(null, true);
+        telalivro.setId(Integer.parseInt(jTableLivro.getValueAt(jTableLivro.getSelectedRow(), 0).toString()));
+        telalivro.setAcao(EnumAcao.Editar);
+        telalivro.setVisible(true);
+        matrizLivro = controleTelaEmprestimo.getMatrizLivros();
     }
 
     //--- FIM MÉTODOS PARA BOTÕES ---------------------------------------------|
@@ -572,6 +587,8 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         jTableExemplares = new javax.swing.JTable();
         jButtonReservarLivro = new javax.swing.JButton();
         jButtonEmprestar = new javax.swing.JButton();
+        jButtonIncluirExemplar = new javax.swing.JButton();
+        jButtonIncluirLivro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -720,7 +737,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 .addComponent(jLabelColaboradorDetalhe)
                 .addGap(0, 0, 0)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(154, 154, 154)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonIncluirColaborador)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -860,6 +877,23 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         jButtonEmprestar.setText("Emprestar");
         jButtonEmprestar.setEnabled(false);
 
+        jButtonIncluirExemplar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jButtonIncluirExemplar.setText("Incluir Exemplar");
+        jButtonIncluirExemplar.setEnabled(false);
+        jButtonIncluirExemplar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIncluirExemplarActionPerformed(evt);
+            }
+        });
+
+        jButtonIncluirLivro.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jButtonIncluirLivro.setText("Incluir Livro");
+        jButtonIncluirLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIncluirLivroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelLivrosLayout = new javax.swing.GroupLayout(jPanelLivros);
         jPanelLivros.setLayout(jPanelLivrosLayout);
         jPanelLivrosLayout.setHorizontalGroup(
@@ -867,29 +901,36 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             .addGroup(jPanelLivrosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelLivroDetalhe)
-                    .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanelLivrosLayout.createSequentialGroup()
-                            .addComponent(jButtonReservarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButtonEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPaneExemplares, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
-                            .addComponent(jScrollPaneLivroDetalhe, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelPesquisarLivro, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldPesquisarLivro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelExemplaresLivro, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPaneLivro, javax.swing.GroupLayout.Alignment.LEADING))))
-                .addContainerGap())
+                    .addComponent(jScrollPaneLivro, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelLivrosLayout.createSequentialGroup()
+                        .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelLivrosLayout.createSequentialGroup()
+                                .addComponent(jTextFieldPesquisarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonIncluirLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelLivroDetalhe)
+                            .addComponent(jLabelPesquisarLivro)
+                            .addComponent(jScrollPaneLivroDetalhe, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelLivrosLayout.createSequentialGroup()
+                                .addComponent(jLabelExemplaresLivro)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonIncluirExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPaneExemplares, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelLivrosLayout.createSequentialGroup()
+                                .addComponent(jButtonReservarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelLivrosLayout.setVerticalGroup(
             jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLivrosLayout.createSequentialGroup()
-                .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelPesquisarLivro)
-                    .addGroup(jPanelLivrosLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jTextFieldPesquisarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jLabelPesquisarLivro)
+                .addGap(0, 0, 0)
+                .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldPesquisarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonIncluirLivro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPaneLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -897,14 +938,16 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 .addGap(0, 0, 0)
                 .addComponent(jScrollPaneLivroDetalhe, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabelExemplaresLivro)
-                .addGap(1, 1, 1)
+                .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelExemplaresLivro)
+                    .addComponent(jButtonIncluirExemplar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPaneExemplares, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonReservarLivro)
                     .addComponent(jButtonEmprestar))
-                .addGap(0, 0, 0))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -915,7 +958,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 .addGap(20, 20, 20)
                 .addComponent(jPanelColaboradores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelLivros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelLivros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -997,6 +1040,22 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         }
     }//GEN-LAST:event_jButtonIncluirColaboradorActionPerformed
 
+    private void jButtonIncluirExemplarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirExemplarActionPerformed
+        try {
+            exibirTelaExemplar();
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jButtonIncluirExemplarActionPerformed
+
+    private void jButtonIncluirLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirLivroActionPerformed
+        try {
+            exibirTelaLivro();
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jButtonIncluirLivroActionPerformed
+
     private void jButtonReservarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReservarLivroActionPerformed
         try {
             salvarReserva();
@@ -1035,6 +1094,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             mensagem.erro(e);
         }
     }//GEN-LAST:event_jTextFieldPesquisarLivroKeyReleased
+
     //
     //--- FIM EVENTOS - FILTRO E PESQUISA -------------------------------------|
     //
@@ -1089,6 +1149,8 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEmprestar;
     private javax.swing.JButton jButtonIncluirColaborador;
+    private javax.swing.JButton jButtonIncluirExemplar;
+    private javax.swing.JButton jButtonIncluirLivro;
     private javax.swing.JButton jButtonReservarLivro;
     private javax.swing.JComboBox<String> jComboBoxFiltrarColaborador;
     private javax.swing.JLabel jLabelColaboradorDetalhe;

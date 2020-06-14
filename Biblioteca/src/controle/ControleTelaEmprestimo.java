@@ -137,17 +137,8 @@ public class ControleTelaEmprestimo {
         }
     }
 
-    private void getExemplaresDoLivro(int idLivro) throws Exception {
-        colecaoExemplar = new ArrayList<>();
-        for (Exemplar exemplar : controleExemplar.listar()) {
-            if (exemplar.getIdLivro() == idLivro) {
-                colecaoExemplar.add(exemplar);
-            }
-        }
-    }
-
     public String[][] getMatrizExemplares(int idLivro) throws Exception {
-        getExemplaresDoLivro(idLivro);
+        colecaoExemplar = new ControleExemplar().exemplaresDoLivro(idLivro);
         preencherMatrizExemplar();
         return matriz;
     }

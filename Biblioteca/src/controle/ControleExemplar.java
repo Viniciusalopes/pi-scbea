@@ -69,4 +69,14 @@ public class ControleExemplar implements ICRUDExemplar {
         }
         persistencia.excluir(idExemplar);
     }
+
+    public ArrayList<Exemplar> exemplaresDoLivro(int idLivro) throws Exception {
+        colecao = new ArrayList<>();
+        for (Exemplar exemplar : persistencia.listar()) {
+            if (exemplar.getIdLivro() == idLivro) {
+                colecao.add(exemplar);
+            }
+        }
+        return colecao;
+    }
 }

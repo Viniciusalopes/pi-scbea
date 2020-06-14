@@ -444,8 +444,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jTextFieldPesquisar = new javax.swing.JTextField();
         jButtonComprovante = new javax.swing.JButton();
         jButtonDevolver = new javax.swing.JButton();
-        jButtonCancelarReserva = new javax.swing.JButton();
-        jButtonReceberMulta = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLista = new javax.swing.JTable();
         jLabelStatusBottom = new javax.swing.JLabel();
@@ -632,14 +630,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonDevolver.setText("Devolver");
         jButtonDevolver.setEnabled(false);
 
-        jButtonCancelarReserva.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButtonCancelarReserva.setText("Cancelar Reserva");
-        jButtonCancelarReserva.setEnabled(false);
-
-        jButtonReceberMulta.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButtonReceberMulta.setText("Receber Multa");
-        jButtonReceberMulta.setEnabled(false);
-
         javax.swing.GroupLayout jPanelBotoesLayout = new javax.swing.GroupLayout(jPanelBotoes);
         jPanelBotoes.setLayout(jPanelBotoesLayout);
         jPanelBotoesLayout.setHorizontalGroup(
@@ -652,13 +642,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonExcluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonComprovante, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonCancelarReserva)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonReceberMulta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonComprovante)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonDevolver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelStatusTop)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -679,9 +665,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addComponent(jButtonExcluir)
                         .addComponent(jLabelStatusTop)
                         .addComponent(jButtonComprovante)
-                        .addComponent(jButtonDevolver)
-                        .addComponent(jButtonCancelarReserva)
-                        .addComponent(jButtonReceberMulta))))
+                        .addComponent(jButtonDevolver))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotoesLayout.createSequentialGroup()
                 .addComponent(jLabelPesquisar)
                 .addGap(0, 4, Short.MAX_VALUE)
@@ -932,14 +916,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupCadastros;
-    private javax.swing.JButton jButtonCancelarReserva;
     private javax.swing.JButton jButtonComprovante;
     private javax.swing.JButton jButtonConfiguracoes;
     private javax.swing.JButton jButtonDevolver;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonIncluir;
-    private javax.swing.JButton jButtonReceberMulta;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabelPesquisar;
     private javax.swing.JLabel jLabelStatusBottom;

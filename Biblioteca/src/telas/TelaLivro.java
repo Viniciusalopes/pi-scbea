@@ -184,12 +184,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
     }
 
     private void preencherJTableExemplares(int idLivro) throws Exception {
-        exemplares = new ArrayList<>();
-        for (Exemplar exemplar : controleExemplar.listar()) {
-            if (exemplar.getIdLivro() == idLivro) {
-                exemplares.add(exemplar);
-            }
-        }
+        exemplares = new ControleExemplar().exemplaresDoLivro(idLivro);
         matriz = new String[exemplares.size()][5];
         cont = 0;
         for (Exemplar exemplar : exemplares) {

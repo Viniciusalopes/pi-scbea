@@ -60,10 +60,10 @@ public class PersistenciaExemplar implements ICRUDExemplar {
     }
 
     @Override
-    public Exemplar buscarPeloId(int idExmplar) throws Exception {
+    public Exemplar buscarPeloId(int idExemplar) throws Exception {
         listar();
         for (Exemplar exemplar : colecao) {
-            if (exemplar.getIdExemplar() == idExmplar) {
+            if (exemplar.getIdExemplar() == idExemplar) {
                 return exemplar;
             }
         }
@@ -98,6 +98,5 @@ public class PersistenciaExemplar implements ICRUDExemplar {
                 break;
             }
         }
-
     }
 }
