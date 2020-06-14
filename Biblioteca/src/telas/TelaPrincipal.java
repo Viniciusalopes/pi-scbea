@@ -209,7 +209,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             String nomeCadastro = EnumCadastro.valueOf(cadastro).getNomeCadastro();
 
-            this.setTitle("Biblioteca do G0dô - Cadastro de " + nomeCadastro);
+            this.setTitle("Sistema Integra - Cadastro de " + nomeCadastro);
 
             if (linhas.length == 0 || linhas[0].length == 0) {
                 jLabelStatusTop.setText("Nenhum cadastro de " + nomeCadastro + ".");
@@ -449,7 +449,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelStatusBottom = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Biblioteca Godofredo");
+        setTitle("Sistema Integra");
         setResizable(false);
         setSize(new java.awt.Dimension(1366, 768));
 

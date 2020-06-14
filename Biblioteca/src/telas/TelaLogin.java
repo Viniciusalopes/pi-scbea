@@ -44,7 +44,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jButtonOK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Biblioteca Godofredo - LOGIN");
+        setTitle("Sistema Integra - Login");
 
         jLabelLogin.setText("Login");
 
