@@ -20,6 +20,7 @@ import java.util.Collections;
 import persistencia.PersistenciaEditora;
 import utilidades.StringUtil;
 import static utilidades.ColecaoUtil.getComparadorEditoraNomeCresc;
+import static utilidades.StringUtil.truncar;
 
 /**
  *
@@ -38,9 +39,9 @@ public class ControleEditora implements ICRUDEditora {
 
     @Override
     public ArrayList<Editora> listar() throws Exception {//ok
-       colecao = persistencia.listar();
-       Collections.sort(colecao, getComparadorEditoraNomeCresc());
-       return colecao;
+        colecao = persistencia.listar();
+        Collections.sort(colecao, getComparadorEditoraNomeCresc());
+        return colecao;
 
     }
 
@@ -70,7 +71,7 @@ public class ControleEditora implements ICRUDEditora {
         for (Livro livro : controleLivro.listar()) {
             if (livro.getEditora().getIdEditora() == idEditora) {
                 throw new Exception("A editora não pode ser excluída porque está "
-                        + "vinculada ao cadastro do livro " + livro.getIdLivro() + "-" + livro.getTitulo());
+                        + "vinculada ao cadastro do livro " + livro.getIdLivro() + "-" + truncar(livro.getTitulo(), 40));
             }
         }
         persistencia.excluir(idEditora);
@@ -84,7 +85,6 @@ public class ControleEditora implements ICRUDEditora {
 //        if (editora.getNomeEditora().toLowerCase().charAt(0) == editora.getNomeEditora().toLowerCase().charAt(1)) {
 //            throw new Exception("Nome com duas letras , e ainda iguais?? ta de brinks...");
 //        }
-
         if (!StringUtil.nomeEditoraValido(editora.getNomeEditora())) {
             throw new Exception("Nome da editora possui caracteres inválidos!");
         }

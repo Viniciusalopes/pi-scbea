@@ -6,7 +6,9 @@
 package controle;
 
 import classes.Reserva;
+import enumeradores.EnumTipoStatus;
 import interfaces.ICRUDReserva;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import persistencia.PersistenciaReserva;
@@ -40,17 +42,37 @@ public class ControleReserva implements ICRUDReserva {
 
     @Override
     public int incluir(Reserva reserva) throws Exception {
+        validarReserva(reserva);
         return persistencia.incluir(reserva);
     }
 
     @Override
     public void alterar(Reserva reserva) throws Exception {
-        throw new UnsupportedOperationException("Método não implementado: ICRUDReserva, alterar()."); //To change body of generated methods, choose Tools | Templates.
+        validarReserva(reserva);
+        persistencia.alterar(reserva);
     }
 
     @Override
     public void excluir(int idReserva) throws Exception {
-        throw new UnsupportedOperationException("Método não implementado: ICRUDReserva, excluir()"); //To change body of generated methods, choose Tools | Templates.
+        persistencia.excluir(idReserva);
+    }
+
+    private void validarReserva(Reserva reserva) throws Exception {
+        if (reserva.getColaborador().getStatus().equals(EnumTipoStatus.INATIVO)) {
+            throw new Exception("Para fazer uma reserva, o colaborador precisa estar ATIVO!");
+        }
+        if (reserva.getColaborador().getStatus().equals(EnumTipoStatus.INADIMPLENTE)) {
+            throw new Exception("Para fazer uma reserva, o colaborador precisa estar ADIMPLENTE!");
+        }
+        colecao = persistencia.listar();
+        for (Reserva r : colecao) {
+            if (reserva.getColaborador().getIdColaborador() == r.getColaborador().getIdColaborador()
+                    && reserva.getLivro().getIdLivro() == r.getLivro().getIdLivro()) {
+                throw new Exception("Já existe uma reserva em nome desse colaborador para este livro!\n"
+                        + "Reserva nº " + r.getIdReserva()
+                        + " - Data: " + new SimpleDateFormat("dd/MM/yyyy").format(reserva.getdataReserva()));
+            }
+        }
     }
 
 }

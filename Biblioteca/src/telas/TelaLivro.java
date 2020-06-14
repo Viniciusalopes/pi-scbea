@@ -8,15 +8,19 @@ package telas;
 import classes.AreaConhecimento;
 import classes.Autor;
 import classes.Editora;
+import classes.Exemplar;
 import classes.Livro;
+import classes.Renderer;
 import controle.ControleAreaConhecimento;
 import controle.ControleAutor;
 import controle.ControleEditora;
+import controle.ControleExemplar;
 import controle.ControleLivro;
 import enumeradores.EnumAcao;
 import interfaces.ICRUDAreaConhecimento;
 import interfaces.ICRUDAutor;
 import interfaces.ICRUDEditora;
+import interfaces.ICRUDExemplar;
 import interfaces.ICRUDLivro;
 import interfaces.ITelaCadastro;
 import java.text.SimpleDateFormat;
@@ -38,15 +42,22 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
     private ICRUDAutor controleAutor = null;
     private ICRUDEditora controleEditora = null;
     private ICRUDAreaConhecimento controleAreaConhecimento = null;
+    private ICRUDExemplar controleExemplar = null;
 
     private ArrayList<Autor> autores = null;
     private ArrayList<Editora> editoras = null;
     private ArrayList<AreaConhecimento> areasConhecimento = null;
+    private ArrayList<Exemplar> exemplares = null;
+
+    private String[][] matriz = null;
+    private String[] vetor = null;
 
     private Livro livro = null;
 
     private Mensagens mensagem = null;
     private EnumAcao acao = null;
+    private SimpleDateFormat formatoData = null;
+    private Renderer renderer = null;
 
     private boolean visible = false;
     private int id;
@@ -73,11 +84,14 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
     public void setVisible(boolean b) {
         try {
             mensagem = new Mensagens();
+            formatoData = new SimpleDateFormat("dd/MM/yyyy");
+            renderer = new Renderer();
 
             controleLivro = new ControleLivro();
             controleEditora = new ControleEditora();
             controleAutor = new ControleAutor();
             controleAreaConhecimento = new ControleAreaConhecimento();
+            controleExemplar = new ControleExemplar();
 
             popularControles();
 
@@ -154,7 +168,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         jTextAreaLivroDescricao.setText("");
     }
 
-    private void preencherCampos() {
+    private void preencherCampos() throws Exception {
 
         jTextFieldID.setText(livro.getIdLivro() + "");
         jTextFieldTitulo.setText(livro.getTitulo());
@@ -165,6 +179,66 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         jComboBoxEditora.setSelectedItem(livro.getEditora().getNomeEditora());
         jComboBoxAreaConhecimento.setSelectedItem(livro.getAreaConhecimento().getDescricaoAreaConhecimento());
         jTextAreaLivroDescricao.setText(livro.getDescricaoLivro());
+
+        preencherJTableExemplares(livro.getIdLivro());
+    }
+
+    private void preencherJTableExemplares(int idLivro) throws Exception {
+        exemplares = new ArrayList<>();
+        for (Exemplar exemplar : controleExemplar.listar()) {
+            if (exemplar.getIdLivro() == idLivro) {
+                exemplares.add(exemplar);
+            }
+        }
+        matriz = new String[exemplares.size()][5];
+        cont = 0;
+        for (Exemplar exemplar : exemplares) {
+            vetor = new String[]{
+                exemplar.getIdExemplar() + "",
+                exemplar.getStatusExemplar().toString(),
+                formatoData.format(exemplar.getDataAquisicao()).toString(),
+                String.format("%.2f", exemplar.getPrecoCompra()),
+                exemplar.getMotivoDesativado()
+            };
+            matriz[cont] = vetor;
+            cont++;
+        }
+
+        jTableExemplares.setModel(new javax.swing.table.DefaultTableModel(
+                matriz,
+                new String[]{
+                    "ID", "Status", "Aquisição", "Preço (R$)", "Motivo da Desativação"
+                }
+        ) {
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        jTableExemplares.getTableHeader().setReorderingAllowed(false);
+        jScrollPaneExemplares.setViewportView(jTableExemplares);
+        if (jTableExemplares.getColumnModel().getColumnCount() > 0) {
+            jTableExemplares.getColumnModel().getColumn(0).setMinWidth(60);
+            jTableExemplares.getColumnModel().getColumn(0).setPreferredWidth(60);
+            jTableExemplares.getColumnModel().getColumn(0).setMaxWidth(60);
+            jTableExemplares.getColumnModel().getColumn(1).setMinWidth(80);
+            jTableExemplares.getColumnModel().getColumn(1).setPreferredWidth(80);
+            jTableExemplares.getColumnModel().getColumn(1).setMaxWidth(80);
+            jTableExemplares.getColumnModel().getColumn(2).setMinWidth(100);
+            jTableExemplares.getColumnModel().getColumn(2).setPreferredWidth(100);
+            jTableExemplares.getColumnModel().getColumn(2).setMaxWidth(100);
+            jTableExemplares.getColumnModel().getColumn(3).setMinWidth(100);
+            jTableExemplares.getColumnModel().getColumn(3).setPreferredWidth(100);
+            jTableExemplares.getColumnModel().getColumn(3).setMaxWidth(100);
+
+            jTableExemplares.getColumnModel().getColumn(0).setCellRenderer(renderer.getRendererDireita());
+            jTableExemplares.getColumnModel().getColumn(1).setCellRenderer(renderer.getRendererCentro());
+            jTableExemplares.getColumnModel().getColumn(2).setCellRenderer(renderer.getRendererCentro());
+            jTableExemplares.getColumnModel().getColumn(2).setCellRenderer(renderer.getRendererDireita());
+        }
     }
 
     private void validarPreenchimento() throws Exception {
@@ -406,7 +480,6 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
             jTableExemplares.getColumnModel().getColumn(3).setMinWidth(100);
             jTableExemplares.getColumnModel().getColumn(3).setPreferredWidth(100);
             jTableExemplares.getColumnModel().getColumn(3).setMaxWidth(100);
-            jTableExemplares.getColumnModel().getColumn(4).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

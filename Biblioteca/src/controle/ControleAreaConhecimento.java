@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import persistencia.PersistenciaAreaConhecimento;
 import static utilidades.ColecaoUtil.getComparadorAreaConhecimentoDescricaoCresc;
+import static utilidades.StringUtil.truncar;
 
 public class ControleAreaConhecimento implements ICRUDAreaConhecimento {
 
@@ -62,7 +63,7 @@ public class ControleAreaConhecimento implements ICRUDAreaConhecimento {
             if (l.getAreaConhecimento().getIdAreaConhecimento() == idAreaConhecimento) {
                 throw new Exception("Está área de conhecimento está vinculada ao livro \n"
                         + l.getIdLivro() + " - "
-                        + l.getTitulo() + "!");
+                        + truncar(l.getTitulo(), 40) + "!");
             }
         }
         persistencia.excluir(idAreaConhecimento);

@@ -7,12 +7,9 @@ package controle;
 
 import classes.Colaborador;
 import classes.Emprestimo;
-import classes.EmprestimosDoColaborador;
 import classes.Exemplar;
 import classes.Livro;
 import classes.Reserva;
-import classes.ReservasDoColaborador;
-import enumeradores.EnumTipoStatus;
 import interfaces.ICRUDColaborador;
 import interfaces.ICRUDEmprestimo;
 import interfaces.ICRUDExemplar;
@@ -29,36 +26,36 @@ import java.util.Date;
 public class ControleTelaEmprestimo {
 
     //--- ATRIBUTOS ----------------------------------------------------------->
+    // Controles
     private ICRUDColaborador controleColaborador = null;
     private ICRUDLivro controleLivro = null;
     private ICRUDExemplar controleExemplar = null;
-
     private ICRUDEmprestimo controleEmprestimo = null;
     private ICRUDReserva controleReserva = null;
 
+    // Listas
     private ArrayList<Colaborador> colecaoColaborador = null;
     private ArrayList<Livro> colecaoLivro = null;
     private ArrayList<Exemplar> colecaoExemplar = null;
-
     private ArrayList<Emprestimo> colecaoEmprestimo = null;
     private ArrayList<Reserva> colecaoReserva = null;
 
-    private EmprestimosDoColaborador emprestimosDoColaborador = null;
-    private ReservasDoColaborador reservasDoColaborador = null;
-
+    // Objetos
     private Colaborador colaborador = null;
     private Livro livro = null;
+    private Emprestimo emprestimo = null;
     private Reserva reserva = null;
 
-    private Emprestimo emprestimo = null;
-
+    // Matrizes e vetores
     private String[][] matriz = null;
     private String[] vetor = null;
 
+    // Variáveis
     private int qtdLinhas = 0;
     private int qtdColunas = 0;
     private int cont = 0;
 
+    // Utilidades
     private SimpleDateFormat formatoData = null;
 
     //--- FIM ATRIBUTOS -------------------------------------------------------|
@@ -196,16 +193,9 @@ public class ControleTelaEmprestimo {
         colaborador = controleColaborador.buscarPeloId(idColaborador);
         livro = controleLivro.buscarPeloId(idLivro);
 
-        if (colaborador.getStatus().equals(EnumTipoStatus.INATIVO)) {
-            throw new Exception("Para fazer uma reserva, o colaborador precisa estar ATIVO!");
-        }
-        if (colaborador.getStatus().equals(EnumTipoStatus.INADIMPLENTE)) {
-            throw new Exception("Para fazer uma reserva, o colaborador precisa estar ADIMPLENTE!");
-        }
         reserva = new Reserva(0, livro, colaborador, new Date());
         return controleReserva.incluir(reserva);
     }
     //--- FIM AÇÕES -----------------------------------------------------------|
     //
-
 }

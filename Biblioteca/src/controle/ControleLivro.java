@@ -16,6 +16,7 @@ import java.util.Collections;
 import persistencia.PersistenciaLivro;
 import static utilidades.ColecaoUtil.getComparadorLivroTituloCresc;
 import static utilidades.StringUtil.textoSoComNumeros;
+import static utilidades.StringUtil.truncar;
 
 /**
  *
@@ -83,7 +84,7 @@ public class ControleLivro implements ICRUDLivro {
     private void validarDuplicidade(Livro livro) throws Exception {
 
         for (Livro l : persistencia.listar()) {
-            String identificacaoLivro = l.getIdLivro() + "-" + l.getTitulo();
+            String identificacaoLivro = l.getIdLivro() + "-" + truncar(l.getTitulo(), 40);
 
             if (textoSoComNumeros(l.getIsbn()).equals(textoSoComNumeros(livro.getIsbn()))
                     && l.getIdLivro() != livro.getIdLivro()) {

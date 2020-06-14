@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import persistencia.PersistenciaAutor;
 import static utilidades.ColecaoUtil.getComparadorAutorNomeCresc;
+import static utilidades.StringUtil.truncar;
 
 /**
  *
@@ -68,7 +69,7 @@ public class ControleAutor implements ICRUDAutor {
         controleLivro = new ControleLivro();
         for (Livro livro : controleLivro.listar()) {
             if (livro.getAutor().getIdAutor() == idAutor) {
-                throw new Exception("O livro " + livro.getTitulo() + " está cadastrado para esse autor e não poderá ser excluído!");
+                throw new Exception("O livro " + truncar(livro.getTitulo(), 40) + " está cadastrado para esse autor e não poderá ser excluído!");
             }
         }
         persistencia.excluir(idAutor);

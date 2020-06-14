@@ -9,7 +9,10 @@ import classes.Reserva;
 import controle.ControleArquivoTXT;
 import controle.ControleColaborador;
 import controle.ControleLivro;
+import controle.ControleLog;
+import enumeradores.EnumAcao;
 import enumeradores.EnumArquivosBd;
+import enumeradores.EnumCadastro;
 import interfaces.IArquivoTXT;
 import interfaces.ICRUDColaborador;
 import interfaces.ICRUDLivro;
@@ -83,12 +86,24 @@ public class PersistenciaReserva implements ICRUDReserva {
 
     @Override
     public void alterar(Reserva reserva) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        linhas = controleArquivoTXT.lerArquivo();
+        for (String linha : linhas) {
+            if (Integer.parseInt(linha.split(";")[0]) == reserva.getIdReserva()) {
+                controleArquivoTXT.alterarLinha(linha, reserva.toString());
+                break;
+            }
+        }
     }
 
     @Override
     public void excluir(int idReserva) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        linhas = controleArquivoTXT.lerArquivo();
+        for (String linha : linhas) {
+            if (Integer.parseInt(linha.split(";")[0]) == idReserva) {
+                controleArquivoTXT.excluirLinha(linha);
+                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.RESERVA, linha);
+                break;
+            }
+        }
     }
-
 }

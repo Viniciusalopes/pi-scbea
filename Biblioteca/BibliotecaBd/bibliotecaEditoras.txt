@@ -1,7 +1,6 @@
 163;Editora Saraiva
 164;Grupo Editorial Nacional
 165;Editora Revista dos Tribunais
-166;Editora Fórum
 167;Editora Lumen Juris
 168;Livraria e Editora Del Rey
 169;Malheiros Editores
@@ -14,6 +13,5 @@
 180;Lettore
 181;MP Editora
 182;Editora para excluir 1
-184;Editora@-.123
 185;Editora X
 187;Juruá2

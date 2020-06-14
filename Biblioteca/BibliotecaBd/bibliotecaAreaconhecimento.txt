@@ -82,7 +82,7 @@
 84;3430929;Energia elétrica
 85;343093;Transporte ( incluindo oleodutos) Frete/ carga / passageiros / transporte de ambulância
 86;343094;Transporte rodoviário ( estradas, veículos, transporte comercial, ônibus, caminhões )
-87;343095;Transporte ferroviário ( linhas, estações ferroviárias, trens, vagões,                  serviços de passageiros e carga )
+87;343095;Transporte ferroviário ( linhas, estações ferroviárias, trens, vagões, serviços de passageiros e carga )
 88;343096;Transporte marítimo / Em oceanos, rios, passageiros, carga , portos
 89;343097;Transporte aéreo / aeroportos, cargas e passageiros, vôos espaciais
 90;343098;Transporte local / ruas, pedestres, ônibus, metrôs, carros
