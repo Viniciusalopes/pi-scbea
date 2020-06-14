@@ -1,0 +1,2877 @@
+300;;;;;;;;;;Ciências Sociais
+310;;;;;;;;;;Estatística
+320;;;;;;;;;;Ciência Política
+330;;;;;;;;;;Economia
+340;;;;;;;;;;Direito
+350;;;;;;;;;;Administração Pública
+360;;;;;;;;;;Assistência Social e Instituições
+370;;;;;;;;;;Educação
+380;;;;;;;;;;Comércio e Comunicações
+390;;;;;;;;;;Usos e Costumes 
+341;;;;;;;;;;DIREITO PÚBLICO
+341;1;;;;;;;;;DIREITO INTERNACIONAL PÚBLICO
+341;1;3;;;;;;;;Direito de Guerra. Leis de Guerra
+341;1;4;;;;;;;;Direito Penal Internacional
+341;1;7;;;;;;;;Direito diplomático
+341;1;8;;;;;;;;Direito consular
+341;2;;;;;;;;;DIREITO CONSTITUCIONAL
+341;2;5;3;;;;;;;Direito parlamentar. Parlamentos e assembléias
+341;2;7;;;;;;;;Direitos Fundamentais. Direitos primordiais
+341;2;8;;;;;;;;Direito eleitoral. Sistemas eleitorais
+341;3;;;;;;;;;DIREITO ADMINISTRATIVO
+341;3;4;7;;;;;;;Direito Ambiental
+341;3;4;7;9;;;;;;Direito ambiental internacional
+341;3;7;8;;;;;;;Direito Econômico
+341;3;8;;;;;;;;Direito Financeiro
+341;3;9;;;;;;;;Direito tributário
+341;4;;;;;;;;;DIREITO PROCESSUAL
+341;4;3;;;;;;;;Direito Processual Penal
+341;4;6;;;;;;;;Direito Processual Civil
+341;5;;;;;;;;;DIREITO PENAL
+341;5;8;;;;;;;;Direito Penitenciário. Direito de Execuções Penais
+341;6;;;;;;;;;DIREITO PREVIDENCIÁRIO. SEGURIDADE SOCIAL
+341;7;;;;;;;;;DIREITO MILITAR
+341;7;5;;;;;;;;Direito penal militar
+341;8;;;;;;;;;DIREITO AÉREO. CÓDIGO DO AR
+341;8;7;;;;;;;;Direito aéreo militar
+341;8;8;;;;;;;;Direito aplicado à telecomunicação
+341;8;9;;;;;;;;Direito Espacial
+342;;;;;;;;;;DIREITO PRIVADO
+342;1;;;;;;;;;DIREITO CIVIL
+342;1;2;;;;;;;;Direitos reais. Coisas e bens
+342;1;2;4;7;;;;;;Direito Agrário. Direito Rural
+342;1;6;;;;;;;;Direito de família
+342;1;6;5;;;;;;;Direito hereditário ou das Sucessões
+342;1;7;;;;;;;;Direito do Menor. Estatuto da Criança e do Adolescente (ECA)
+342;2;;;;;;;;;DIREITO COMERCIAL
+342;2;3;4;;;;;;;Direito bancário
+342;2;7;;;;;;;;Direitos Intelectuais. Propriedade industrial, comercial, científica e de programas de computador
+342;2;8;;;;;;;;Direito autoral. Direito artístico e literário
+342;2;9;;;;;;;;Direito marítimo
+342;2;9;9;;;;;;;Direito aeronáutico
+342;3;;;;;;;;;DIREITO INTERNACIONAL PRIVADO
+342;5;;;;;;;;;DIREITO DO CONSUMIDOR
+342;5;1;;;;;;;;Direitos básicos do consumidor
+342;6;;;;;;;;;DIREITO DO TRABALHO
+342;6;8;;;;;;;;Direito Processual do Trabalho
+343;;;;;;;;;;DIREITO CANÔNICO E ECLESIÁSTICO
+343;3;;;;;;;;;Direito das coisas. Direitos reais
+343;3;3;;;;;;;;Direito de patronato
+343;3;5;;;;;;;;Direito funerário
+343;4;;;;;;;;;Direito Sacramental
+343;5;;;;;;;;;Direito penal canônico
+343;6;;;;;;;;;Direito processual canônico
+343;8;;;;;;;;;Direito Eclesiástico das Igrejas Cristãs não católicas
+343;9;;;;;;;;;Direito Eclesiástico de Igrejas não-cristãs
+344;;;;;;;;;;DIREITO ROMANO
+344;2;;;;;;;;;Direito das coisas. Direitos reais
+344;4;;;;;;;;;Direito das obrigações
+344;6;;;;;;;;;Direito de família
+344;7;;;;;;;;;Direito das sucessões
+340;;;;;;;;;;DIREITO
+340;1;;;;;;;;;Filosofia do Direito. Direito Natural. Direito ideal. Direito racional
+340;1;1;;;;;;;;Gnoseologia jurídica (teoria do conhecimento do direito)
+340;1;2;;;;;;;;Epistemologia jurídica (crítica da ciência do direito, de suas limitações e erros e de seus métodos)
+340;1;3;;;;;;;;Lógica jurídica (raciocínio jurídico)
+340;1;4;;;;;;;;Axiologia jurídica (teoria dos valores jurídicos: justiça, ordem, paz etc.)
+340;1;5;;;;;;;;Deontologia jurídica (estudo dos fins do direito: justiça, segurança, bem comum etc.)
+340;1;6;;;;;;;;Ontologia jurídica (estudo da essência do direito)
+340;1;7;;;;;;;;Metafísica jurídica (estudo do direito supra-legal, limite do poder)
+340;1;9;;;;;;;;Filosofia da história do direito 
+340;2;;;;;;;;;Sociologia jurídica
+340;3;;;;;;;;;Fontes do Direito
+340;3;2;;;;;;;;Leis. Direito positivo
+340;3;2;1;;;;;;;Hierarquia das leis
+340;3;2;1;1;;;;;;Lei constitucional
+340;3;2;1;2;;;;;;Emenda à Constituição
+340;3;2;1;3;;;;;;Lei complementar
+340;3;2;1;4;;;;;;Lei ordinária
+340;3;2;1;5;;;;;;Lei delegada
+340;3;2;1;6;;;;;;Medida Provisória
+340;3;2;1;7;;;;;;Decreto-lei
+340;3;2;1;8;;;;;;Lei auto-aplicável e lei regulamentável
+340;3;2;1;9;;;;;;Regulamento. Decreto Regulamentar. Decreto autônomo
+340;3;2;2;;;;;;;Obrigatoriedade das leis. Eficácia
+340;3;2;3;;;;;;;Eficácia da lei no tempo. Direito intertemporal. Conflitos de leis no tempo
+340;3;2;3;1;;;;;;Vigência
+340;3;2;3;2;;;;;;Revogação
+340;3;2;3;3;;;;;;Desuso
+340;3;2;3;4;;;;;;Retroatividade e irretroatividade das leis
+340;3;2;4;;;;;;;Eficácia da lei no espaço
+340;3;2;6;;;;;;;Interpretação da lei. Hermenêutica
+340;3;2;8;;;;;;;Elaboração, redação, alteração e consolidação das leis. Técnica legislativa
+340;3;4;;;;;;;;Outras fontes de Direito além das leis. Direito usual. Direito consuetudinário
+340;4;;;;;;;;;Introdução à ciência jurídica
+340;4;4;;;;;;;;Terminologia jurídica
+340;5;;;;;;;;;Legislação comparada. Direito comparado
+340;6;;;;;;;;;Jurisprudência
+340;6;1;;;;;;;;Jurisprudência civil
+340;6;2;;;;;;;;Jurisprudência comercial
+340;6;3;;;;;;;;Jurisprudência penal
+340;6;4;;;;;;;;Jurisprudência processual
+340;6;5;;;;;;;;Jurisprudência processual civil e comercial
+340;6;6;;;;;;;;Jurisprudência processual penal
+340;6;8;;;;;;;;Jurisprudência trabalhista
+340;6;9;;;;;;;;Jurisprudência administrativa
+340;6;9;1;;;;;;;Jurisprudência da Consultoria-Geral da República
+340;6;9;2;;;;;;;Jurisprudência fiscal
+340;6;9;3;;;;;;;Jurisprudência do DASP
+340;6;9;4;;;;;;;Jurisprudência da Procuradoria da Fazenda Nacional
+340;7;;;;;;;;;Medicina legal
+340;7;1;;;;;;;;Sexologia forense
+340;7;2;;;;;;;;Atentados contra a saúde, a vida e a integridade das pessoas
+340;7;3;;;;;;;;Psicopatologia forense
+340;7;4;;;;;;;;Questões relativas à pessoa viva: idade, sexo, identidade etc
+340;7;5;;;;;;;;Doenças simuladas, provocadas, dissimuladas e imputadas
+340;7;6;;;;;;;;Perícias médico-legais
+340;7;7;;;;;;;;Química legal. Toxicologia químico-legal
+340;7;8;;;;;;;;Questões científicas e técnicas de caráter legal
+340;7;9;;;;;;;;Peritos. Função do médico-legista
+340;9;;;;;;;;;História do Direito
+340;9;8;1;;;;;;;História do Direito Brasileiro
+340;9;2;;;;;;;;Processos célebres
+341;;;;;;;;;;DIREITO PÚBLICO
+341;1;;;;;;;;;DIREITO INTERNACIONAL PÚBLICO
+341;1;1;;;;;;;;Organização internacional
+341;1;1;1;;;;;;;Soberania mundial. Caráter constitucional ou Convencional da Organização internacional
+341;1;1;2;;;;;;;Sociedade das Nações. Pacto constitutivo (1919)
+341;1;1;3;;;;;;;Nações Unidas (ONU) (1945)
+341;1;1;3;0;1;;;;;Assembléia Geral
+341;1;1;3;0;2;;;;;Conselho de Segurança
+341;1;1;3;0;3;;;;;Conselho Econômico e Social
+341;1;1;3;0;4;;;;;Conselho de Tutela
+341;1;1;3;0;5;;;;;Corte Internacional de Justiça. Corte de Haia
+341;1;1;3;0;6;;;;;Secretariado
+341;1;1;3;1;;;;;;Organizações internacionais gerais especializadas
+341;1;1;3;1;1;;;;;Organização Internacional do Trabalho (OIT)
+341;1;1;3;1;2;;;;;Organização das Nações Unidas para a Educação, Ciência e Cultura (UNESCO)
+341;1;1;3;1;3;;;;;Organização Mundial da Saúde (OMS)
+341;1;1;3;1;4;;;;;Organização para a Alimentação e a Agricultura (FAO)
+341;1;1;3;1;5;;;;;Fundo Monetário Internacional (FMI)
+341;1;1;3;1;6;;;;;Banco Internacional de Reconstrução e Desenvolvimento (BIRD)
+341;1;1;3;1;7;;;;;Associação Internacional de Desenvolvimento (AID)
+341;1;1;3;1;8;;;;;Corporação Financeira Internacional (CFI)
+341;1;1;3;1;9;;;;;Organização das Nações Unidas para o Desenvolvimento Industrial (UNIDO)
+341;1;1;3;2;1;;;;;Agência Internacional de Energia Atômica (AIEA)
+341;1;1;3;2;2;;;;;Organização da Aviação Internacional (OACI)
+341;1;1;3;2;3;;;;;União Postal Universal (UPU)
+341;1;1;3;2;4;;;;;União Internacional de Telecomunicações (UIT)
+341;1;1;3;2;5;;;;;Organização Meteorológica Mundial (OMM)
+341;1;1;3;2;6;;;;;Organização Consultiva Marítima Internacional (OCMI)
+341;1;1;3;2;7;;;;;Acordo Geral sobre Tarifas e Comércio (GATT). Organização Mundial do Comércio (OMC)
+341;1;1;3;2;8;;;;;Alto Comissariado das Nações Unidas para Refugiados (ACNUR)
+341;1;1;3;3;;;;;;Programas e Fundos das Nações Unidas
+341;1;1;3;3;1;;;;;Fundos das Nações Unidas para a Infância (UNICEF)
+341;1;1;3;3;2;;;;;Conferência das Nações Unidas sobre o Comércio e Desenvolvimento (UNCTAD)
+341;1;1;3;3;3;;;;;Programa das Nações Unidas para o Desenvolvimento (PNUD)
+341;1;1;3;3;4;;;;;Outros Programas e Fundos das Nações Unidas
+341;1;1;4;;;;;;;Organizações Internacionais Regionais-América
+341;1;1;4;1;;;;;;Organização dos Estados Americanos (OEA)
+341;1;1;4;1;0;1;;;;Assembléia Geral
+341;1;1;4;1;0;2;;;;Reunião de consulta dos Ministros das Relações Exteriores
+341;1;1;4;1;0;3;;;;Conselhos
+341;1;1;4;1;0;4;;;;Comissão Jurídica Interamericana
+341;1;1;4;1;0;5;;;;Comissão Interamericana de Direitos Humanos
+341;1;1;4;1;0;6;;;;Secretaria Geral
+341;1;1;4;1;0;7;;;;Conferências Especializadas
+341;1;1;4;1;0;8;;;;Organismos Especializados
+341;1;1;4;2;;;;;;Comissão Econômica para a América Latina (CEPAL)
+341;1;1;4;3;;;;;;Associação Latino-Americana de Livre Comércio (ALALC). Associação Latino-Americana de Integração (ALADI)
+341;1;1;4;4;;;;;;Banco Interamericano de Desenvolvimento (BID)
+341;1;1;4;5;;;;;;Sociedade Interamericana de Imprensa (SIP)
+341;1;1;4;6;;;;;;Acordo de Livre Comércio da América do Norte (NAFTA)
+341;1;1;4;7;;;;;;Área de Livre Comércio das Américas (ALCA)
+341;1;1;4;8;;;;;;Mercado Comum do Sul (MERCOSUL)
+341;1;1;4;8;1;;;;;Conselho do Mercado Comum
+341;1;1;4;8;2;;;;;Comissão de Comércio
+341;1;1;4;8;3;;;;;Comissão Parlamentar Conjunta
+341;1;1;4;8;4;;;;;Fórum Consultivo Econômico e Social
+341;1;1;4;8;5;;;;;Secretaria Administrativa do Mercosul
+341;1;1;4;8;6;;;;;Protocolo de Ouro Preto
+341;1;1;4;8;7;;;;;Tratado de Assunção
+341;1;1;4;8;8;;;;;Tratado de Integração Cultural do MERCOSUL
+341;1;1;4;9;;;;;;Outras Organizações Regionais - América
+341;1;1;4;9;1;;;;;Tratado de Cooperação Amazônica (TCA)
+341;1;1;4;9;2;;;;;Sistema Econômico Latino-Americano (SELA)
+341;1;1;4;9;3;;;;;Organização Panamericana de Saúde (OPAS)
+341;1;1;4;9;4;;;;;Grupo do Rio
+341;1;1;5;;;;;;;Organismos Internacionais Regionais - Europa Ocidental e Atlântico Norte
+341;1;1;5;1;;;;;;Comunidade Econômica Européia (CEE). Mercado Comum Europeu (MCE)
+341;1;1;5;1;1;;;;;Comissão Européia
+341;1;1;5;1;2;;;;;Conselho da União Européia
+341;1;1;5;1;3;;;;;Parlamento Europeu
+341;1;1;5;1;4;;;;;Banco Central Europeu
+341;1;1;5;1;5;;;;;Banco Europeu de Investimentos
+341;1;1;5;2;;;;;;Comunidade Européia do Carvão e do Aço (CECA)
+341;1;1;5;3;;;;;;Comunidade Européia de Energia Atômica (EURATOM)
+341;1;1;5;4;;;;;;Organização do Tratado do Atlântico Norte (OTAN)
+341;1;1;5;5;;;;;;Organização Para a Cooperação e Desenvolvimento Econômico (OCDE)
+341;1;1;6;;;;;;;Organizações Internacionais Regionais - Leste Europeu
+341;1;1;6;1;;;;;;Tratado de Amizade, Cooperação e Assistência Mútua (Pacto de Varsóvia)
+341;1;1;6;2;;;;;;Conselho de Assistência Mútua (COMECON)
+341;1;1;7;;;;;;;Outras Organizações Internacionais Regionais
+341;1;1;7;1;;;;;;Liga dos Estados Árabes (LEA)
+341;1;1;7;2;;;;;;Organização da Unidade Africana (OUA)
+341;1;1;7;3;;;;;;Organização dos Países Exportadores Petróleo (OPEP)
+341;1;1;7;4;;;;;;Organização para a Libertação da Palestina (OLP). Autoridade Palestina
+341;1;1;7;5;;;;;;Zona de Paz e Cooperação do Atlântico Sul (ZPCAS)
+341;1;1;7;6;;;;;;Cúpula Ibero-Americana
+341;1;1;7;7;;;;;;Comunidade dos Países de Língua Portuguesa (CPLP)
+341;1;1;8;;;;;;;Conferências e congressos internacionais. Conferência dos embaixadores
+341;1;2;;;;;;;;Pessoas e coisas do Direito Internacional. Relações internacionais
+341;1;2;1;;;;;;;Pessoas do Direito internacional. Estados. Classificação dos Estados
+341;1;2;1;1;;;;;;Estados soberanos
+341;1;2;1;2;;;;;;Estados semi-soberanos, protegidos, tributários. Estados sob mandato.
+341;1;2;1;3;;;;;;Estados unitários e uniões de Estados em geral
+341;1;2;1;3;1;;;;;Estado unitário
+341;1;2;1;3;2;;;;;União pessoal
+341;1;2;1;3;3;;;;;Estado coletivo. União real
+341;1;2;1;3;4;;;;;Estado federal. Federação de Estados
+341;1;2;1;3;5;;;;;Estados confederados. Confederação de Estados. Domínios. Colônias autônomas
+341;1;2;1;4;;;;;;Estados neutros. Neutralidade permanente
+341;1;2;1;5;;;;;;Outras pessoas do Direito internacional
+341;1;2;1;5;1;;;;;Igrejas. Santa Sé
+341;1;2;1;5;2;;;;;Associações internacionais. Personificação civil
+341;1;2;1;5;3;;;;;Organismos diversos permanentes, temporários ou periódicos (exposições internacionais, jogos olímpicos)
+341;1;2;1;5;4;;;;;Cidadania Mundial
+341;1;2;1;5;5;;;;;Empresas Multinacionais
+341;1;2;1;6;;;;;;Grandes e pequenas potências. Dominação universal, imperialismo, hegemonia, supremacia
+341;1;2;1;7;;;;;;Associações de Estados, uniões, alianças
+341;1;2;1;8;;;;;;Origem, transformação e fim dos Estados
+341;1;2;1;8;1;;;;;Formação dos Estados
+341;1;2;1;8;2;;;;;Reconhecimento dos Estados novos. Reconhecimento dos governos
+341;1;2;1;8;3;;;;;Sucessão de um Estado a um Estado
+341;1;2;1;8;4;;;;;Transformação dos Estados. Mudança de território e de governo dos Estados
+341;1;2;1;8;5;;;;;Desmembramento
+341;1;2;1;8;6;;;;;Fim dos Estados
+341;1;2;1;9;;;;;;O homem como pessoa de Direito internacional
+341;1;2;1;9;1;;;;;Direitos primordiais do homem. Declaração Universal dos direitos dohomem
+341;1;2;1;9;2;;;;;Proteção à pessoa humana. Proteção às minorias
+341;1;2;1;9;3;;;;;Nacionalidade
+341;1;2;1;9;3;1;;;;Nacionalidade originária
+341;1;2;1;9;3;2;;;;Nacionalidade adquirida
+341;1;2;1;9;3;3;;;;Estrangeiros. Condição jurídica
+341;1;2;1;9;3;4;;;;Apátridas
+341;1;2;1;9;3;5;;;;Polipátridas
+341;1;2;1;9;3;6;;;;Perda e reaquisição da nacionalidade
+341;1;2;1;9;4;;;;;Deslocamento da pessoa humana
+341;1;2;1;9;4;1;;;;Imigração. Sistema de quotas
+341;1;2;1;9;4;2;;;;Regime de passaporte
+341;1;2;2;;;;;;;Coisas e bens do Direito internacional
+341;1;2;2;1;;;;;;Território em geral
+341;1;2;2;1;1;;;;;Território fluvial
+341;1;2;2;1;2;;;;;Território lacustre e marítimo
+341;1;2;2;1;3;;;;;Território das colônias
+341;1;2;2;1;4;;;;;Internacionalização, extraterritorialidade, neutralização. Zona neutra. Território colocado temporariamente ou definitivamente sob administração internacional
+341;1;2;2;2;;;;;;Fronteiras. Delimitações dos Estados. Fronteiras naturais: montanhas, rios etc. Fronteiras artificiais, históricas, estratégicas
+341;1;2;2;3;;;;;;Aquisição, alienação e perda de território
+341;1;2;2;3;1;;;;;Ocupação. Posse, descobrimento
+341;1;2;2;3;2;;;;;Anexação
+341;1;2;2;3;3;;;;;Alienação voluntária: venda, cessão, troca, doação, locação, concessão
+341;1;2;2;3;4;;;;;Plebiscito. Opção
+341;1;2;2;3;5;;;;;Hipoteca
+341;1;2;2;3;7;;;;;Penetração pacífica
+341;1;2;2;4;;;;;;Cursos d'água, canais internacionais, canais marítimos
+341;1;2;2;4;5;;;;;Lagos
+341;1;2;2;5;;;;;;Alto mar. Mar livre
+341;1;2;2;5;1;;;;;Regulamento de jurisdição do alto mar. Tutela e vigilância do comércio marítimo. Direito marítimo. Direito marítimo público
+341;1;2;2;5;2;;;;;Mares parcialmente fechados. Estreitos e canais
+341;1;2;2;6;;;;;;Espaço aéreo. Direito aéreo internacional
+341;1;2;2;7;;;;;;Interior da terra. Túneis submarinos
+341;1;2;2;8;;;;;;Regiões polares
+341;1;2;3;;;;;;;Direitos e deveres essenciais e recíprocos dos Estados
+341;1;2;3;1;;;;;;Autonomia e independência. Autodeterminação
+341;1;2;3;1;1;;;;;Declaração dos direitos e deveres dos Estados
+341;1;2;3;1;2;;;;;Restrições de fato ou de direito. Servidões internacionais
+341;1;2;3;3;;;;;;Direito de intervenção
+341;1;2;3;4;;;;;;Direito das minorias
+341;1;2;3;6;;;;;;Responsabilidade dos Estados pelos atos de seus funcionários ou cidadãos
+341;1;2;3;7;;;;;;Apoio dos Estados dado às reclamações individuais de sua competência, contra Estados estrangeiros ou seus cidadãos
+341;1;2;4;;;;;;;Tratados internacionais (Convenções, acordos)
+341;1;2;4;1;;;;;;Divisões e classificações dos tratados. Diversas espécies de tratados: de aliança, de assistência mútua e de garantia
+341;1;2;4;2;;;;;;Conclusão dos tratados. Assinatura. Ratificação, registro. Publicidade
+341;1;2;4;3;;;;;;Garantia dos tratados
+341;1;2;4;4;;;;;;Efeitos e execução dos tratados
+341;1;2;4;5;;;;;;Extinção, fim dos tratados
+341;1;3;;;;;;;;Direito de Guerra. Leis de Guerra
+341;1;3;1;;;;;;;Estado de guerra ou beligerância. Declaração de guerra. Ultimatum
+341;1;3;2;;;;;;;Condução e direção da guerra
+341;1;3;2;1;;;;;;Beligerantes e pessoas implicadas na guerra. Forças armadas. Nãocombatentes. Correspondentes de guerra
+341;1;3;2;2;;;;;;Meios lícitos e ilícitos de prejudicar os inimigos. Formas diversas de hostilidade
+341;1;3;2;3;;;;;;Cerco, bombardeio, bloqueio terrestre e marítimo
+341;1;3;2;4;;;;;;Ocupação, administração dos territórios ocupados, exploração de seus recursos e relações de toda a natureza com os seus habitantes
+341;1;3;2;5;;;;;;Parlamentares
+341;1;3;2;6;;;;;;Guias, espiões, desertores
+341;1;3;3;;;;;;;Feridos e doentes militares. Convenção de Genebra (Cruz Vermelha). Navioshospitais
+341;1;3;4;;;;;;;Prisioneiros de guerra. Reféns
+341;1;3;4;5;;;;;;Internamento dos militares pelos neutros
+341;1;3;5;;;;;;;Neutros durante a guerra
+341;1;3;5;1;;;;;;Deveres dos Estados neutros
+341;1;3;5;2;;;;;;Direitos dos Estados neutros
+341;1;3;5;5;;;;;;Comércio dos Estados neutros. Contrabando de guerra. Direito de visita
+341;1;3;5;6;;;;;;Empréstimo de guerra
+341;1;3;6;;;;;;;Diversas espécies de guerra
+341;1;3;6;1;;;;;;Guerra terrestre ou continental
+341;1;3;6;2;;;;;;Guerra marítima
+341;1;3;6;2;1;;;;;Corsários. Pirataria
+341;1;3;6;2;2;;;;;Guerra submarina. Minas submarinas
+341;1;3;6;3;;;;;;Guerra aérea
+341;1;3;6;3;1;;;;;Pirataria aérea. Seqüestro de aviões
+341;1;3;6;4;;;;;;Guerra nuclear
+341;1;3;6;5;;;;;;Guerra química. Guerra bacteriológica
+341;1;3;6;6;;;;;;Terrorismo
+341;1;3;7;;;;;;;Convenção durante a guerra. Entrevista. Capitulação. Trégua. Armistício
+341;1;3;8;;;;;;;Fim da guerra. Volta ao estado de paz
+341;1;3;8;4;;;;;;Reparação dos danos de guerra. Restituição. Indenizações
+341;1;3;8;5;;;;;;Bens inimigos. Seqüestro
+341;1;3;8;6;;;;;;Dívidas inimigas. Liquidação
+341;1;3;8;8;;;;;;Jurisdições especiais
+341;1;3;9;;;;;;;Guerra civil
+341;1;4;;;;;;;;Direito Penal Internacional
+341;1;4;1;;;;;;;Infrações de direito comum. Infrações diversas cometidas no estrangeiro ou por estrangeiros. Aplicações da lei penal quanto ao espaço
+341;1;4;2;;;;;;;Decisões judiciárias estrangeiras em matéria criminal
+341;1;4;3;;;;;;;Expulsão, deportação de estrangeiros. Refugiados. Direito de asilo
+341;1;4;4;;;;;;;Extradição de acusados e condenados
+341;1;4;5;;;;;;;Relações entre tribunais de países diferentes (Processo criminal, cartas rogatórias, execução dos julgados no estrangeiro. Polícia internacional)
+341;1;4;6;;;;;;;Infrações internacionais. Pessoas puníveis. Agentes das infrações
+341;1;4;6;1;;;;;;Pessoas morais, públicas, coletivas, Estados
+341;1;4;6;2;;;;;;Pessoas físicas
+341;1;4;6;2;1;;;;;Diplomatas, mandatários públicos, funcionários, militares etc
+341;1;4;6;2;2;;;;;Pessoas privadas (jornalistas, professores etc)
+341;1;4;7;;;;;;;Infrações puníveis
+341;1;4;7;1;;;;;;Condições gerais de existência
+341;1;4;7;2;;;;;;Infrações em particular
+341;1;4;9;;;;;;;Repressão das infrações
+341;1;4;9;1;;;;;;Penalidades
+341;1;4;9;2;;;;;;Jurisdições repressivas
+341;1;4;9;2;1;;;;;Nacionais
+341;1;4;9;2;2;;;;;Internacionais
+341;1;5;;;;;;;;Crimes contra o Direito internacional
+341;1;5;1;;;;;;;Crimes contra a humanidade
+341;1;5;1;1;;;;;;Genocídio
+341;1;5;1;2;;;;;;Escravidão e tráfico de escravos
+341;1;5;1;3;;;;;;Tráfico de mulheres
+341;1;5;1;4;;;;;;Tortura. Tratamento ou castigo cruel e degradante
+341;1;5;1;5;;;;;;Perseguições sociais, religiosas e raciais
+341;1;5;1;6;;;;;;Tráfico de entorpecentes
+341;1;5;2;;;;;;;Crimes contra a paz
+341;1;5;3;;;;;;;Crimes de guerra
+341;1;6;;;;;;;;Arbitragem e jurisdição internacional
+341;1;6;1;;;;;;;Conflitos, litígios em geral
+341;1;6;2;;;;;;;Meios amigáveis de terminar os conflitos
+341;1;6;3;;;;;;;Arbitragem internacional. Justiça arbitral
+341;1;6;3;1;;;;;;Arbitragem ocasional
+341;1;6;3;2;;;;;;Arbitragem preventiva
+341;1;6;3;2;1;;;;;Cláusula compromissória especial
+341;1;6;3;2;2;;;;;Cláusula compromissória geral
+341;1;6;3;2;3;;;;;Tratado permanente de arbitragem
+341;1;6;3;2;8;;;;;União arbitral
+341;1;6;3;6;;;;;;Corte permanente de arbitragem
+341;1;6;3;7;;;;;;Processo de arbitragem
+341;1;6;3;8;;;;;;Execução das sentenças. Sanção
+341;1;6;4;;;;;;;Justiça internacional. Tribunais internacionais
+341;1;6;4;9;;;;;;Processo internacional. Tribunal Penal Internacional (TPI)
+341;1;6;5;;;;;;;Meios de coação além da guerra
+341;1;6;5;1;;;;;;Retorsão. Represálias
+341;1;6;5;2;;;;;;Bloqueio pacífico
+341;1;6;5;3;;;;;;Boicotagem
+341;1;6;5;4;;;;;;Rompimento de relações diplomáticas
+341;1;6;6;;;;;;;Medidas de execução das sentenças: indenizações
+341;1;6;7;;;;;;;Desarmamento. Paz permanente, durável
+341;1;7;;;;;;;;Direito diplomático
+341;1;7;1;;;;;;;Chefes e representantes dos Estados para as relações exteriores. Agentes diplomáticos em geral
+341;1;7;2;;;;;;;Deveres e atribuições dos agentes diplomáticos
+341;1;7;3;;;;;;;Direitos, imunidades, franquias dos agentes diplomáticos
+341;1;7;4;;;;;;;Início, suspensão e fim da missão diplomática
+341;1;7;5;;;;;;;Cerimonial diplomático
+341;1;7;6;;;;;;;Comércio diplomático. Negociações, atos, protocolo etc. Língua comercial
+341;1;7;8;;;;;;;Agentes equiparados aos agentes diplomáticos
+341;1;7;8;1;;;;;;Missões diplomáticas extraordinárias. Adidos militares, navais, comerciais, científicos, culturais
+341;1;7;8;2;;;;;;Funcionários (correios, telégrafos, comércio) em missão
+341;1;7;8;3;;;;;;Pessoas adidas a órgãos internacionais
+341;1;7;8;5;;;;;;Forças armadas no estrangeiro em tempo de paz
+341;1;8;;;;;;;;Direito consular
+341;1;8;1;;;;;;;Cônsules em geral
+341;1;8;2;;;;;;;Funções e atribuições dos cônsules
+341;1;8;3;;;;;;;Posição, direitos e imunidades dos cônsules em relação ao país junto ao qual estão acreditados
+341;1;8;5;;;;;;;Convenções consulares
+341;2;;;;;;;;;DIREITO CONSTITUCIONAL
+341;2;0;1;;;;;;;Teoria do Estado
+341;2;0;1;1;;;;;;Origem do Estado
+341;2;0;2;;;;;;;Controle de Constitucionalidade
+341;2;0;3;;;;;;;Intervenção nos estados. Representação interventiva
+341;2;0;4;;;;;;;Controle Difuso. Reserva de Plenário. Suspensão da Lei pelo Senado. Sistema Americano. Stare Decisis
+341;2;0;5;;;;;;;Controle concentrado. Sistema Europeu. Efeito vinculante. Súmula vinculante. Ação Direta de Inconstitucionalidade (ADIn). Ação Declaratória de Constitucionalidade (ADC)
+341;2;0;6;;;;;;;Ação de Descumprimento de Preceito Fundamental
+341;2;1;;;;;;;;Nação, povo, território
+341;2;2;;;;;;;;Estado e suas diversas formas
+341;2;2;2;;;;;;;Personalidade do Estado
+341;2;2;2;8;;;;;;Expressões diversas da personalidade do Estado (Nome, armas, bandeiras, brasões, hinos etc)
+341;2;2;3;;;;;;;Dualismo político
+341;2;2;4;;;;;;;Federalismo. Confederalismo
+341;2;2;5;;;;;;;Centralização ou descentralização governamental e administrativa. Autonomia local (Home rule)
+341;2;2;7;;;;;;;Governo provisório. Governo revolucionário
+341;2;2;8;;;;;;;Estado Liberal Clássico. Welfare State
+341;2;3;;;;;;;;Soberania. Estado e Governo
+341;2;3;1;;;;;;;Soberania na própria Nação
+341;2;3;2;;;;;;;Delegação de poderes em geral. Delegação a organismos privados
+341;2;3;3;;;;;;;Separação dos poderes. Equilíbrio dos poderes. Sistema de Governo. Parlamentarismo. Presidencialismo
+341;2;3;4;;;;;;;Democracia. Governo popular. Estado de Direito
+341;2;3;5;;;;;;;Aristocracia. Oligarquia
+341;2;3;6;;;;;;;Monarquia absoluta. Realeza. Império
+341;2;3;7;;;;;;;Forma de Governo. Monarquia constitucional. Governo parlamentar
+341;2;3;8;;;;;;;República. Forma republicana
+341;2;3;9;;;;;;;Autoritarismo. Totalitarismo
+341;2;4;;;;;;;;Constituições (Estabelecimento e revisão das constituições. Poderes, Constituintes, Assembléias nacionais. Lei (fundamental)
+341;2;5;;;;;;;;Poderes do Estado
+341;2;5;1;;;;;;;Poder executivo
+341;2;5;1;1;;;;;;Chefe de Estado. Monarca. Presidente
+341;2;5;1;1;1;;;;;Vice-Presidente
+341;2;5;1;1;2;;;;;Modo de designação do Chefe de Estado. Eleição. Plebiscito. Acesso de sucessão ao trono (Lei sálica). Designação pelo soberano. Posse, coroação, juramento
+341;2;5;1;1;3;;;;;Abdicação, deposição
+341;2;5;1;1;4;;;;;Interregno. Governo do Conselho de Ministros
+341;2;5;1;1;5;;;;;Responsabilidade dos chefes de Estado
+341;2;5;1;1;6;;;;;Privilégios e imunidades dos chefes de Estado
+341;2;5;1;1;7;;;;;Mensagens às câmaras. Falas do trono
+341;2;5;1;1;8;;;;;Famílias dos chefes de Estado. Príncipes imperiais e reais. Privilégios
+341;2;5;1;2;;;;;;Regência. Conselho de regência
+341;2;5;1;3;;;;;;Regime dos bens do chefe de Estado. Patrimônio privado
+341;2;5;1;4;;;;;;Atribuições e funções dos chefes de Estado em matéria de relações internacionais, Negociações dos tratados. Declaração de guerra. Proteção dos territórios
+341;2;5;1;5;;;;;;Atribuições e funções dos chefes de Estado relativas ao poder legislativo. Convocação, dissolução e prorrogação das Câmaras. Apresentação de leis. Veto, Referendum real
+341;2;5;1;6;;;;;;Atribuições e funções dos chefes de Estado relativas ao poder executivo
+341;2;5;1;7;;;;;;Atribuições e funções dos chefes de Estado relativas ao poder judiciário
+341;2;5;1;8;;;;;;Ministérios e secretariados de Estado. Gabinete. Conselho de ministros. Primeiro ministro
+341;2;5;1;9;;;;;;Questões diversas (Organização do Palácio ou da Presidência. Casa, gabinete do chefe de Estado)
+341;2;5;2;;;;;;;Poder legislativo
+341;2;5;2;5;;;;;;Conselho de Estado legislativo
+341;2;5;2;9;;;;;;Delegação do poder legislativo. Plenos poderes pedidos pelo Governo ao Parlamento
+341;2;5;3;;;;;;;Direito parlamentar. Parlamentos e assembléias
+341;2;5;3;1;;;;;;Câmara alta (Senado, Câmara dos Lords, Câmara dos pares, Bundesrath)
+341;2;5;3;2;;;;;;Câmara baixa (Câmara dos deputados, Câmara dos comuns, Estados gerais etc)
+341;2;5;3;3;;;;;;O Parlamento em seu conjunto
+341;2;5;3;4;;;;;;Membros das Câmaras em geral
+341;2;5;3;5;;;;;;Posse. Juramento
+341;2;5;3;6;;;;;;Constituição interna e disciplina
+341;2;5;3;7;;;;;;Processo dos trabalhos parlamentares
+341;2;5;3;7;3;;;;;Processo em matéria de leis de finanças. Votação do orçamento
+341;2;5;3;7;5;;;;;Votação por chamada nominal. Obrigação de voto pessoal. Quorum
+341;2;5;3;7;6;;;;;Conflitos parlamentares
+341;2;5;3;7;7;;;;;Inquéritos parlamentares
+341;2;5;3;8;;;;;;Sessões parlamentares
+341;2;5;3;8;1;;;;;Convocação
+341;2;5;3;8;2;;;;;Data de abertura fixa ou variável
+341;2;5;3;8;3;;;;;Freqüência: anual, bienal etc
+341;2;5;3;8;4;;;;;Duração das sessões
+341;2;5;3;8;5;;;;;Férias
+341;2;5;3;8;6;;;;;Adiamento, prorrogação, dissolução
+341;2;5;3;8;8;;;;;Sessão extraordinária
+341;2;5;4;;;;;;;Corpos no Estado (Classes, ordens, casta. Nobreza, clero, burguesia, camponeses, príncipes, grandes dignatários. Seus direitos corporativos)
+341;2;5;5;;;;;;;Poderes federais e regionais
+341;2;5;5;1;;;;;;União
+341;2;5;5;2;;;;;;Estados
+341;2;5;5;3;;;;;;Municípios
+341;2;5;6;;;;;;;Poder judiciário
+341;2;5;6;1;;;;;;Interdição dos tribunais extraordinários
+341;2;5;7;;;;;;;O povo. Direitos populares
+341;2;5;7;1;;;;;;Intervenção do povo no governo geral
+341;2;5;7;2;;;;;;Legislação direta pelo povo. Direito popular de iniciativa parlamentar
+341;2;5;7;3;;;;;;Referendum
+341;2;5;7;3;1;;;;;Referendum ante legem
+341;2;5;7;3;2;;;;;Referendum post legem
+341;2;5;7;3;3;;;;;Plebiscito
+341;2;5;8;;;;;;;Poder consultivo
+341;2;5;9;;;;;;;Questões gerais diversas
+341;2;5;9;1;;;;;;Conflitos de poderes
+341;2;5;9;7;;;;;;Honrarias e prioridades
+341;2;6;;;;;;;;Segurança nacional
+341;2;6;1;;;;;;;Conselho de segurança nacional
+341;2;7;;;;;;;;Direitos Fundamentais. Direitos primordiais. Garantias asseguradas aos cidadãos e associações. Direitos do homem. Liberdades fundamentais. Direitos políticos
+341;2;7;1;;;;;;;Qualidade de cidadão
+341;2;7;1;1;;;;;;Naturalização
+341;2;7;1;2;;;;;;Nacionalidade originária. Estrangeiros
+341;2;7;1;3;;;;;;Perda e reaquisição da qualidade de cidadão
+341;2;7;1;4;;;;;;Abdicação de nacionalidade. Direitos supranacionais
+341;2;7;1;5;;;;;;Cassação e suspensão de direitos políticos
+341;2;7;2;;;;;;;Direitos da Pessoa Humana. O Estado e os indivíduos. Liberdades Públicas
+341;2;7;2;1;;;;;;Liberdade individual. Escravidão. Servidão. Inviolabilidade da pessoa humana. Prisões arbitrárias
+341;2;7;2;2;;;;;;Igualdade civil e política. Direitos, imunidades e privilégios de ordem civil e política em geral
+341;2;7;2;3;;;;;;Direitos, imunidades e privilégios pessoais derivados da organização social
+341;2;7;2;4;;;;;;Igualdade de raças e religiões
+341;2;7;2;5;;;;;;Emprego dos idiomas. Idioma nacional oficial
+341;2;7;2;6;;;;;;Direitos políticos da mulher
+341;2;7;2;7;;;;;;Liberdade de pensamento e da palavra
+341;2;7;2;8;;;;;;Liberdade ou direito de associação
+341;2;7;2;9;;;;;;Liberdade de reunião. Manifestações públicas
+341;2;7;3;1;;;;;;Liberdade de consciência e de culto
+341;2;7;3;2;;;;;;Liberdade de imprensa. Lei de Imprensa. Liberdade de Expressão. Direito à Privacidade. Direito à Honra
+341;2;7;3;3;;;;;;Liberdade de ensino e de estudo
+341;2;7;3;4;;;;;;Liberdade do comércio, da indústria e do trabalho. Liberdade das profissões
+341;2;7;3;4;1;;;;;Intervenção no domínio econômico
+341;2;7;3;5;;;;;;Liberdade de representação. Teatros etc
+341;2;7;3;5;1;;;;;Censura teatral, cinematográfica e assemelhadas
+341;2;7;3;6;;;;;;Direito de recorrer à justiça. Inafastabilidade do Poder Judiciário
+341;2;7;3;7;;;;;;Inviolabilidade do domicílio
+341;2;7;3;8;;;;;;Sigilo da correspondência e das comunicações telegráficas, telefônicas e de dados
+341;2;7;3;9;;;;;;Inviolabilidade da propriedade. Direito de propriedade
+341;2;7;4;;;;;;;Garantias constitucionais dos direitos individuais
+341;2;7;4;1;;;;;;Habeas corpus
+341;2;7;4;2;;;;;;Mandado de segurança. Mandado de segurança coletivo
+341;2;7;4;3;;;;;;Habeas Data
+341;2;7;4;4;;;;;;Mandado de Injunção
+341;2;7;6;;;;;;;Limitação e suspensão das garantias e liberdades constitucionais. Leis de exceção
+341;2;7;7;;;;;;;Estado de sítio. Estado de emergência. Governo militar. Lei marcial
+341;2;7;8;;;;;;;Estado de guerra
+341;2;8;;;;;;;;Direito eleitoral. Sistemas eleitorais
+341;2;8;1;;;;;;;Condições e bases diversas do direito de voto. Elegibilidade e Inelegibilidade
+341;2;8;1;1;;;;;;Idade
+341;2;8;1;2;;;;;;Propriedade
+341;2;8;1;3;;;;;;Instrução. Capacidade. Competência
+341;2;8;1;4;;;;;;Nacionalidade. Raça. Religião
+341;2;8;1;5;;;;;;Exclusão e suspensão do direito de voto
+341;2;8;1;6;;;;;;Domicílio. Residência
+341;2;8;1;9;;;;;;Outras condições
+341;2;8;2;;;;;;;Formas e sistemas diversos do direito de sufrágio
+341;2;8;2;1;;;;;;Sufrágio universal, igual e direto
+341;2;8;2;2;;;;;;Sistema capacitário
+341;2;8;2;3;;;;;;Sistema baseado na fortuna: propriedade, ocupação etc
+341;2;8;2;4;;;;;;Voto plural. Sufrágio familiar
+341;2;8;2;5;;;;;;Voto por classes
+341;2;8;2;6;;;;;;Representação dos interesses. Voto por agrupamentos econômicos e funcionais
+341;2;8;2;7;;;;;;Representação das minorias. Representação proporcional. Voto proporcional. Voto distrital. Maioria absoluta ou relativa. Quorum. Reversibilidade dos sufrágios
+341;2;8;2;8;;;;;;Circunscrições eleitorais
+341;2;8;2;9;;;;;;Outros sistemas eleitorais
+341;2;8;3;;;;;;;Voto das mulheres
+341;2;8;4;;;;;;;Questões especiais relativas às operações eleitorais
+341;2;8;4;1;;;;;;Crimes Eleitorais e respectivos processos
+341;2;8;4;2;;;;;;Justiça eleitoral. Recursos
+341;2;8;4;3;;;;;;O escrutínio
+341;2;8;4;3;1;;;;;Escolha dos candidatos. Declaração e apresentação das candidaturas
+341;2;8;4;3;3;;;;;Voto secreto. Escrutínio aberto
+341;2;8;4;3;4;;;;;Controle das operações
+341;2;8;4;3;5;;;;;Processos de votação. Máquinas de votar
+341;2;8;4;3;6;;;;;Votação de desempate
+341;2;8;4;4;;;;;;Obrigação ou faculdade de votar
+341;2;8;4;5;;;;;;Alistamento eleitoral. Título de eleitor
+341;2;8;4;6;;;;;;Reunião dos colégios eleitorais. Convocação. Formação das bancas eleitorais
+341;2;8;4;7;;;;;;Contagem de votos. Proclamação do escrutínio
+341;2;8;4;9;;;;;;Outras questões
+341;2;8;4;9;1;;;;;Lugar da votação. Voto duplo
+341;2;8;4;9;2;;;;;Campanhas eleitorais: privilégios, franquias etc
+341;2;8;4;9;3;;;;;Limitação e publicidade das despesas eleitorais
+341;2;9;;;;;;;;Partidos políticos
+341;3;;;;;;;;;DIREITO ADMINISTRATIVO
+341;3;0;1;;;;;;;Conceito. Teoria
+341;3;0;1;1;;;;;;Fontes
+341;3;0;1;2;;;;;;Responsabilidade civil da administração
+341;3;0;1;2;1;;;;;Teorias
+341;3;0;1;2;2;;;;;Responsabilidade subjetiva. Culpa
+341;3;0;1;2;3;;;;;Responsabilidade objetiva
+341;3;0;1;2;4;;;;;Direito de regresso
+341;3;1;;;;;;;;Organização Administrativa
+341;3;1;1;;;;;;;Centralização, descentralização
+341;3;1;2;;;;;;;Administração Federal
+341;3;1;2;1;;;;;;Chefes de Estado
+341;3;1;2;2;;;;;;Ministérios. Secretarias de Estado
+341;3;1;3;;;;;;;Administração Estadual
+341;3;1;3;1;;;;;;Governadores
+341;3;1;3;2;;;;;;Secretarias Estaduais
+341;3;1;6;;;;;;;Administração Municipal. Direito Municipal
+341;3;1;7;;;;;;;Administração de Territórios. Administração Colonial
+341;3;1;8;;;;;;;Administração do Distrito Federal
+341;3;2;;;;;;;;Serviços Públicos (Formas e meios de execução dos serviços públicos)
+341;3;2;1;;;;;;;Execução Direta. Órgãos da Administração direta
+341;3;2;1;5;;;;;;Órgãos de deliberação coletiva. Órgãos colegiados. Conselhos. Comissões. Comitês
+341;3;2;2;;;;;;;Execução Indireta. Órgãos da Administração indireta
+341;3;2;2;1;;;;;;Agências Reguladoras
+341;3;2;2;2;;;;;;Fundações. Fundações de Direito Público. Fundações de Direito Privado
+341;3;2;2;5;;;;;;Autarquias
+341;3;2;2;5;1;;;;;Econômicas
+341;3;2;2;5;2;;;;;Industriais
+341;3;2;2;5;3;;;;;Creditícias
+341;3;2;2;5;4;;;;;Previdenciárias e de Assistência Social
+341;3;2;2;5;5;;;;;Fiscalizadoras de Atividades Profissionais. Conselhos Profissionais
+341;3;2;2;5;6;;;;;Educacionais
+341;3;2;2;6;;;;;;Entidades Paraestatais
+341;3;2;2;6;1;;;;;Sociedades de economia mista
+341;3;2;2;6;2;;;;;Empresas públicas
+341;3;2;2;6;4;;;;;Outras entidades paraestatais
+341;3;2;2;7;;;;;;Entidades privadas patrocinadas pelo Poder Público
+341;3;2;2;7;1;;;;;Organizações Sociais
+341;3;2;2;7;2;;;;;Serviço Social Autônomo
+341;3;3;;;;;;;;Agentes da Administração. Servidores Públicos em Geral. Funcionários Públicos
+341;3;3;1;;;;;;;Natureza jurídica da relação de emprego público
+341;3;3;1;1;;;;;;Funcionários estatutários
+341;3;3;1;2;;;;;;Extranumerários
+341;3;3;1;3;;;;;;Servidores regidos pela legislação trabalhista
+341;3;3;1;4;;;;;;Pessoal eventual. Pessoal temporário
+341;3;3;2;;;;;;;Legislação de pessoal. Estatuto dos funcionários
+341;3;3;3;;;;;;;Investidura nas funções públicas. Forma de escolha dos candidatos. Provimento. Condições para o acesso às funções públicas. Nacionalidade, idade, sexo, nível de escolaridade, condições de saúde etc
+341;3;3;3;1;1;;;;;Livre escolha
+341;3;3;3;1;2;;;;;Concursos. Provas de seleção. Provas de títulos. Estágios. Estágio probatório
+341;3;3;3;2;;;;;;Nomeação. Designação. Contrato
+341;3;3;3;3;;;;;;Posse. Formalidades. Entrada em exercício
+341;3;3;3;4;;;;;;Acumulação de cargos ou funções. Proibições. Casos permitidos
+341;3;3;4;;;;;;;Promoções. Critérios
+341;3;3;4;1;;;;;;Merecimento
+341;3;3;4;2;;;;;;Antigüidade. Tempo de serviço
+341;3;3;4;3;;;;;;Interstício. Tempo de intervalo legal entre cada promoção do mesmo servidor
+341;3;3;4;4;;;;;;Acesso. Provas de acesso. Provas para promoção
+341;3;3;4;5;;;;;;Promoção horizontal
+341;3;3;5;;;;;;;Vencimentos. Remuneração. Subsídios. Vantagens pessoais. Outras vantagens pecuniárias
+341;3;3;5;1;;;;;;Paridade de vencimentos. Princípio da isonomia
+341;3;3;5;2;;;;;;Diárias
+341;3;3;5;3;;;;;;Ajuda de custo
+341;3;3;5;4;;;;;;Gratificações. Gratificação de Produtividade
+341;3;3;5;5;;;;;;Descontos em Folha. Descontos Previdenciários
+341;3;3;6;;;;;;;Deveres e obrigações dos servidores
+341;3;3;6;1;;;;;;Ética. Segredo profissional
+341;3;3;6;2;;;;;;Código de Conduta da Alta Administração Federal
+341;3;3;7;;;;;;;Penalidades
+341;3;3;7;1;;;;;;Repreensão
+341;3;3;7;2;;;;;;Multa
+341;3;3;7;3;;;;;;Suspensão
+341;3;3;7;4;;;;;;Destituição de função
+341;3;3;7;5;;;;;;Demissão
+341;3;3;7;6;;;;;;Cassação de aposentadoria ou disponibilidade
+341;3;3;8;;;;;;;Direitos e vantagens
+341;3;3;8;1;;;;;;Estabilidade
+341;3;3;8;2;;;;;;Férias
+341;3;3;8;4;;;;;;Licenças
+341;3;3;8;5;;;;;;Aposentadoria
+341;3;3;8;6;;;;;;Outros Direitos
+341;3;3;9;;;;;;;Movimentação de servidores
+341;3;3;9;1;;;;;;Transferência
+341;3;3;9;2;;;;;;Requisições. Cessões. Exercício temporário
+341;3;3;9;3;;;;;;Remoções
+341;3;3;9;4;;;;;;Serviços fora da sede. Viagens a serviço no País
+341;3;3;9;5;;;;;;Serviços no exterior
+341;3;3;9;6;;;;;;Afastamentos temporários do País
+341;3;4;;;;;;;;Domínio Público. Conceito. Domínio Eminente. Domínio Patrimonial
+341;3;4;1;;;;;;;Bens Públicos
+341;3;4;1;1;;;;;;Bens de uso comum (uti universi)
+341;3;4;1;2;;;;;;Bens de uso especial (bens administrativos)
+341;3;4;1;3;;;;;;Bens dominiais. Bens Patrimoniais da União, dos Estados e dos Municípios
+341;3;4;2;;;;;;;Terras Públicas. Lei das Terras
+341;3;4;2;5;;;;;;Terrenos de marinha
+341;3;4;2;6;;;;;;Ilhas
+341;3;4;2;7;;;;;;Faixa de fronteira
+341;3;4;3;;;;;;;Direito das águas. Águas públicas
+341;3;4;3;1;;;;;;Águas internas
+341;3;4;3;2;;;;;;Águas externas
+341;3;4;3;2;1;;;;;Mar territorial. Plataforma continental
+341;3;4;4;;;;;;;Jazidas. Código de Minas
+341;3;4;4;2;;;;;;Petróleo. Monopólio
+341;3;4;4;2;2;;;;;Contratos de risco
+341;3;4;4;3;;;;;;Minérios nucleares. Energia atômica. Monopólio
+341;3;4;4;4;;;;;;Potenciais de energia hidráulica. Energia elétrica
+341;3;4;5;;;;;;;Indígenas. Estatuto do índio. Colonos nas colônias
+341;3;4;5;1;;;;;;Terra indígena. Demarcação
+341;3;4;7;;;;;;;Direito Ambiental
+341;3;4;7;1;;;;;;Normas constitucionais sobre meio ambiente
+341;3;4;7;2;;;;;;Sistema e política do meio ambiente
+341;3;4;7;3;;;;;;Responsabilidade civil por dano ambiental
+341;3;4;7;4;;;;;;Crimes ambientais e respectivo processo
+341;3;4;7;5;;;;;;Flora. Florestas. Códigos florestais
+341;3;4;7;6;;;;;;Fauna. Códigos de Caça e Pesca
+341;3;4;7;7;;;;;;Preservação do meio ambiente. Normas antipoluição
+341;3;4;7;8;;;;;;Engenharia genética e meio ambiente
+341;3;4;7;8;1;;;;;Patrimônio Genético
+341;3;4;7;8;2;;;;;Diversidade Biológica
+341;3;4;7;9;;;;;;Direito ambiental internacional
+341;3;4;8;;;;;;;Espaço aéreo
+341;3;4;9;;;;;;;Patrimônio Histórico e Artístico Nacional
+341;3;4;9;1;;;;;;Conceito
+341;3;4;9;2;;;;;;Tombamento. Livros de Tombo
+341;3;4;9;3;;;;;;Bens imóveis
+341;3;4;9;4;;;;;;Bens móveis de valor histórico e artístico. Controle das vendas e saídas do País
+341;3;5;;;;;;;;Atos administrativos
+341;3;5;0;1;;;;;;Conceito. Elementos e Características
+341;3;5;0;1;4;;;;;Competência da autoridade
+341;3;5;0;1;4;1;;;;Delegação de competência
+341;3;5;0;1;4;2;;;;Convênios. Programas
+341;3;5;1;;;;;;;Atos administrativos unilaterais
+341;3;5;1;1;;;;;;Atos normativos e ordinativos (Decretos, regulamentos, regimentos, portarias, ordens de serviço, instruções, circulares, decisões, despachos etc.)
+341;3;5;1;2;;;;;;Atos de comunicação (Avisos, ofícios, memorandos etc)
+341;3;5;1;3;;;;;;Atos declaratórios (Certidões, atestados, declarações, apostilas etc)
+341;3;5;1;3;1;;;;;Concessão de condecorações e distinções honoríficas
+341;3;5;1;4;;;;;;Atos punitivos (Multas, interdição de atividade etc)
+341;3;5;1;5;;;;;;Revogação dos atos administrativos
+341;3;5;1;6;;;;;;Anulação dos atos administrativos
+341;3;5;1;6;1;;;;;Anulação pela própria administração
+341;3;5;1;7;;;;;;Controle judicial dos atos administrativos
+341;3;5;2;;;;;;;Contratos administrativos
+341;3;5;2;0;1;;;;;Teoria. Conceito
+341;3;5;2;1;;;;;;Formalidades. Condições de validade
+341;3;5;2;1;1;;;;;Competência da autoridade
+341;3;5;2;2;;;;;;Execução e inexecução dos contratos administrativos
+341;3;5;2;3;;;;;;Rescisão dos contratos administrativos
+341;3;5;2;4;;;;;;Alteração dos contratos administrativos
+341;3;5;2;5;;;;;;Prorrogação dos contratos administrativos
+341;3;5;2;6;;;;;;Contratos de obras públicas
+341;3;5;2;7;;;;;;Licitações em geral
+341;3;5;2;7;1;;;;;Concorrência pública
+341;3;5;2;7;2;;;;;Concorrência administrativa
+341;3;5;2;7;3;;;;;Tomada de preços
+341;3;5;2;7;4;;;;;Cartas-convite
+341;3;5;2;7;5;;;;;Adjudicação
+341;3;5;2;7;6;;;;;Pregão
+341;3;5;3;;;;;;;Concessão, permissão, autorização de serviço público
+341;3;5;4;;;;;;;Contratos de fornecimento
+341;3;5;5;;;;;;;Contratos de serviços especializados
+341;3;5;6;;;;;;;Contrato de gestão
+341;3;6;;;;;;;;Justiça administrativa (Contencioso administrativo)
+341;3;6;1;;;;;;;Responsabilidade
+341;3;6;2;;;;;;;Processo administrativo
+341;3;6;2;2;;;;;;Recursos administrativos
+341;3;6;3;;;;;;;Prisão administrativa
+341;3;6;4;;;;;;;Tribunais administrativos
+341;3;7;;;;;;;;Poder de Polícia (Faculdade da Administração Pública de condicionar o uso de bens e direitos individuais em benefício da coletividade)
+341;3;7;1;;;;;;;Licenças de funcionamento. Alvarás. Permissão de serviços
+341;3;7;2;;;;;;;Polícia de costumes
+341;3;7;2;1;;;;;;Controle de jogos, rifas, quermesses, sorteios etc
+341;3;7;2;2;;;;;;Fiscalização de espetáculos teatrais e cinematográficos, rádio e televisão
+341;3;7;2;3;;;;;;Censura
+341;3;7;3;;;;;;;Polícia sanitária
+341;3;7;3;1;;;;;;Inspeção de alimentos
+341;3;7;3;2;;;;;;Medidas contra poluição
+341;3;7;3;3;;;;;;Controle de plantas e animais nocivos
+341;3;7;3;4;;;;;;Regulamentação de cemitérios
+341;3;7;4;;;;;;;Regulamentação de Construções. Gabaritos. Direito urbano
+341;3;7;5;;;;;;;Regulamentação e fiscalização de pesos e medidas
+341;3;7;6;;;;;;;Regulamentação do Tráfego e Trânsito. Código de Trânsito
+341;3;7;7;;;;;;;Limitações à propriedade
+341;3;7;7;1;;;;;;Requisições militares
+341;3;7;7;2;;;;;;Desapropriações por utilidade pública
+341;3;7;8;;;;;;;Direito Econômico
+341;3;7;8;1;;;;;;Normas constitucionais sobre Direito Econômico
+341;3;7;8;2;;;;;;Intervenção no domínio econômico
+341;3;7;8;3;;;;;;Monopólio
+341;3;7;8;4;;;;;;Empresas estatais exploradoras de atividade econômica
+341;3;7;8;5;;;;;;Estatização. Privatização
+341;3;7;8;6;;;;;;Abuso do poder econômico. Instrumentos estatais de prevenção e repressão
+341;3;7;8;7;;;;;;Concorrência. Açambarcamento. Trust. Monopólio
+341;3;7;8;8;;;;;;Conselho Administrativo de Defesa Econômica (CADE)
+341;3;8;;;;;;;;Direito Financeiro
+341;3;8;1;;;;;;;Receita Pública
+341;3;8;1;1;;;;;;Avaliação da Receita
+341;3;8;1;2;;;;;;Receita Ordinária
+341;3;8;1;3;;;;;;Receita Extraordinária
+341;3;8;1;4;;;;;;Receitas correntes
+341;3;8;1;5;;;;;;Receitas de capital
+341;3;8;2;;;;;;;Despesa Pública
+341;3;8;2;1;;;;;;Despesas correntes
+341;3;8;2;2;;;;;;Despesas de capital
+341;3;8;3;;;;;;;Orçamento
+341;3;8;3;1;;;;;;Orçamento da União
+341;3;8;3;2;;;;;;Orçamento dos Estados
+341;3;8;3;3;;;;;;Orçamento dos Municípios
+341;3;8;3;4;;;;;;Elaboração Orçamentária. Proposta orçamentária
+341;3;8;3;6;;;;;;Fiscalização financeira e orçamentária
+341;3;8;5;;;;;;;Tribunais de Contas
+341;3;8;5;1;;;;;;Tribunais de Contas da União
+341;3;8;5;2;;;;;;Tribunais de Contas dos Estados
+341;3;8;5;3;;;;;;Tribunais de Contas dos Municípios
+341;3;8;6;;;;;;;Crédito Público
+341;3;8;6;1;;;;;;Dívida interna
+341;3;8;6;1;1;;;;;Empréstimo compulsório
+341;3;8;6;2;;;;;;Dívida externa
+341;3;8;7;;;;;;;Responsabilidade Fiscal. Lei de Responsabilidade Fiscal
+341;3;8;7;1;;;;;;Despesas com pessoal
+341;3;8;7;2;;;;;;Despesas com previdências
+341;3;9;;;;;;;;Direito Tributário
+341;3;9;1;;;;;;;Teoria. Fundamentos
+341;3;9;1;0;1;;;;;Fontes
+341;3;9;1;0;2;;;;;Vigência da legislação tributária
+341;3;9;1;0;3;;;;;Bitributação
+341;3;9;1;0;4;;;;;Incentivos fiscais
+341;3;9;2;;;;;;;Obrigação Tributária
+341;3;9;2;1;;;;;;Obrigação principal e obrigações acessórias
+341;3;9;2;2;;;;;;Fato gerador
+341;3;9;3;;;;;;;Competência tributária
+341;3;9;3;1;;;;;;Limitações constitucionais
+341;3;9;3;2;;;;;;Indelegabilidade da competência tributária
+341;3;9;3;3;;;;;;Sujeito ativo
+341;3;9;3;3;1;;;;;Competência tributária da União
+341;3;9;3;3;2;;;;;Competência tributária dos Estados
+341;3;9;3;3;3;;;;;Competência tributária dos Municípios
+341;3;9;3;4;;;;;;Sujeito passivo
+341;3;9;3;4;1;;;;;Responsabilidade tributária
+341;3;9;3;4;2;;;;;Solidariedade
+341;3;9;3;4;3;;;;;Domicílio tributário
+341;3;9;4;;;;;;;Crédito tributário
+341;3;9;4;1;;;;;;Conceito
+341;3;9;4;2;;;;;;Lançamento
+341;3;9;4;3;;;;;;Suspensão
+341;3;9;4;4;;;;;;Extinção do crédito tributário
+341;3;9;4;4;1;;;;;Pagamento
+341;3;9;4;4;2;;;;;Transação
+341;3;9;4;4;3;;;;;Remissão
+341;3;9;4;4;4;;;;;Decadência
+341;3;9;4;4;5;;;;;Prescrição
+341;3;9;4;5;;;;;;Exclusão do crédito tributário
+341;3;9;4;5;1;;;;;Não incidência
+341;3;9;4;5;2;;;;;Imunidade
+341;3;9;4;5;3;;;;;Isenção
+341;3;9;4;5;4;;;;;Moratória
+341;3;9;4;5;5;;;;;Anistia fiscal
+341;3;9;4;5;6;;;;;Parcelamento
+341;3;9;4;6;;;;;;Restituição de tributos
+341;3;9;5;;;;;;;Ilícito tributário
+341;3;9;5;1;;;;;;Sonegação
+341;3;9;5;2;;;;;;Conluio
+341;3;9;5;3;;;;;;Evasão
+341;3;9;5;4;;;;;;Descaminho
+341;3;9;5;5;;;;;;Contrabando
+341;3;9;5;6;;;;;;Penalidades em matéria tributária (multas, perda de mercadorias etc.)
+341;3;9;5;7;;;;;;Correção monetária e juros dos débitos fiscais. Taxa SELIC
+341;3;9;5;8;;;;;;Processo fiscal administrativo
+341;3;9;5;9;;;;;;Consulta e seus efeitos
+341;3;9;6;;;;;;;Impostos
+341;3;9;6;1;;;;;;Impostos sobre comércio exterior
+341;3;9;6;1;1;;;;;Imposto de Importação
+341;3;9;6;1;1;6;;;;Tarifas aduaneiras
+341;3;9;6;1;1;7;;;;Regimes aduaneiros especiais
+341;3;9;6;1;1;7;1;;;Armazéns alfandegários
+341;3;9;6;1;1;7;2;;;Entrepostos aduaneiros. Free-shops
+341;3;9;6;1;1;7;3;;;Admissão temporária
+341;3;9;6;1;1;7;4;;;Bagagem
+341;3;9;6;1;1;7;5;;;Draw-back
+341;3;9;6;1;1;7;6;;;Zonas francas
+341;3;9;6;1;2;;;;;Imposto de Exportação
+341;3;9;6;2;;;;;;Impostos sobre o patrimônio e a renda
+341;3;9;6;2;1;;;;;Imposto de renda
+341;3;9;6;2;1;6;;;;Pessoa Física
+341;3;9;6;2;1;7;;;;Pessoa Jurídica
+341;3;9;6;2;1;7;4;2;;Lançamento do Imposto de renda de pessoa jurídica
+341;3;9;6;2;1;8;;;;Recolhimento na Fonte
+341;3;9;6;2;2;;;;;Imposto sobre a Propriedade Predial e Territorial Urbana (IPTU)
+341;3;9;6;2;3;;;;;Imposto sobre a Propriedade Territorial Rural (ITR)
+341;3;9;6;2;4;;;;;Imposto(de transmissão)
+341;3;9;6;2;4;6;;;;Transmissão inter vivos
+341;3;9;6;2;4;7;;;;Transmissão causa mortis
+341;3;9;6;2;5;;;;;Imposto sobre a Propriedade de Veículos Automotores (IPVA)
+341;3;9;6;3;;;;;;Impostos sobre a produção e a circulação
+341;3;9;6;3;1;;;;;Imposto sobre Produtos Industrializados (IPI). Imposto de consumo
+341;3;9;6;3;2;;;;;Imposto sobre a Circulação de Mercadorias (ICM). Imposto sobre a Circulação de Mercadorias e Serviços (ICMS). Imposto sobre vendas e consignações
+341;3;9;6;3;3;;;;;Imposto sobre Operações Financeiras (IOF). Imposto do selo. Imposto sobre Movimentações Financeiras
+341;3;9;6;3;4;;;;;Imposto sobre serviços de transporte e comunicações
+341;3;9;6;3;5;;;;;Imposto sobre serviços
+341;3;9;6;4;;;;;;Impostos especiais. Impostos únicos
+341;3;9;6;4;1;;;;;Imposto único sobre combustíveis e lubrificantes
+341;3;9;6;4;2;;;;;Imposto único sobre energia elétrica
+341;3;9;6;4;3;;;;;Imposto único sobre minerais
+341;3;9;6;5;;;;;;Impostos extraordinários. Impostos de guerra. Empréstimo compulsório
+341;3;9;7;;;;;;;Outras espécies de tributos
+341;3;9;7;1;;;;;;Taxas
+341;3;9;7;2;;;;;;Contribuição de melhoria
+341;3;9;7;3;;;;;;Contribuições de Intervenção no Domínio Econômico
+341;3;9;7;4;;;;;;Contribuições Sociais
+341;3;9;7;4;1;;;;;Contribuição sobre o Faturamento. FINSOCIAL. COFINS. PIS
+341;3;9;7;4;2;;;;;Contribuição social Sobre o Lucro (CSSL)
+341;3;9;7;4;3;;;;;Contribuição Provisória sobre Movimentações Financeiras (CPMF)
+341;3;9;7;4;4;;;;;Salário-Educação
+341;3;9;8;;;;;;;Parafiscalidade
+341;3;9;9;;;;;;;Administração tributária
+341;3;9;9;0;1;;;;;Conselhos e Comissões
+341;3;9;9;0;1;1;;;;Conselho de Política Aduaneira (CPA). Conselho Superior de Tarifa
+341;3;9;9;0;1;2;;;;Conselhos de Contribuintes
+341;3;9;9;0;1;3;;;;Outros Conselhos e Comissões
+341;3;9;9;1;;;;;;Arrecadação de Tributos
+341;3;9;9;2;;;;;;Fiscalização tributária
+341;3;9;9;2;1;;;;;Sigilo Tributário
+341;3;9;9;2;2;;;;;Sigilo bancário
+341;3;9;9;2;3;;;;;Apreensão de documentos. Apreensão de mercadorias
+341;3;9;9;3;;;;;;Gradação das multas. Circunstâncias agravantes. Circunstâncias atenuantes
+341;3;9;9;4;;;;;;Certidão negativa de débito. Certidão positiva de débito
+341;3;9;9;5;;;;;;Cadastro Nacional de Pessoas Jurídicas (CNPJ). Inscrição da empresa. Cadastro de Pessoas Físicas (CPF)
+341;3;9;9;6;;;;;;Compensação de tributos
+341;4;;;;;;;;;DIREITO PROCESSUAL
+341;4;1;;;;;;;;Organização Judiciária. Pessoal judiciário
+341;4;1;1;;;;;;;Notário. Tabeliães. Direito notarial
+341;4;1;2;;;;;;;Magistrados. Magistratura judiciária
+341;4;1;3;;;;;;;Ministério público. Procuradorias. Advocacia pública. Advocacia-Geral da União. Defensoria pública
+341;4;1;4;;;;;;;Diversos auxiliares da Justiça. Oficiais de Justiça
+341;4;1;5;;;;;;;Advogados. Foro
+341;4;1;6;;;;;;;Organização e administração da Justiça em geral
+341;4;1;7;;;;;;;Polícia judiciária
+341;4;1;8;;;;;;;Competência. Jurisdição. Atribuições
+341;4;1;8;1;;;;;;Inquérito Civil
+341;4;1;8;2;;;;;;Ação Civil Pública
+341;4;1;8;3;;;;;;Ação Penal Pública
+341;4;1;9;;;;;;;Cortes e tribunais
+341;4;1;9;1;;;;;;Tribunais superiores. Supremo Tribunal Federal (STF). Superior Tribunal de Justiça (STJ). Tribunal Superior do Trabalho (TST). Tribunal Superior Eleitoral (TSE). Superior Tribunal Militar (STM)
+341;4;1;9;2;;;;;;Tribunais de apelação. Tribunais de recurso
+341;4;1;9;2;1;;;;;Tribunal Federal de Recursos (TFR). Tribunais regionais federais. Juízes federais. Juizados especiais federais
+341;4;1;9;2;2;;;;;Tribunais militares. Juízes militares. Auditores da justiça militar
+341;4;1;9;2;3;;;;;Tribunais Regionais Eleitorais. Juntas eleitorais. Juízes eleitorais
+341;4;1;9;2;4;;;;;Tribunais do trabalho. Juízes do trabalho. Juízes classistas (Ver também 342.68 Direito Processual do Trabalho)
+341;4;1;9;2;5;;;;;Tribunais de justiça. Tribunais de alçada. Juízes de direito
+341;4;1;9;2;6;;;;;Juizados especiais cíveis e criminais
+341;4;3;;;;;;;;Direito Processual Penal
+341;4;3;1;;;;;;;Processo nos diferentes tribunais e jurisdições
+341;4;3;2;;;;;;;Partes. Ações
+341;4;3;2;1;;;;;;Parte incriminada ou parte culpada. Direitos da defesa
+341;4;3;2;2;;;;;;Parte lesada ou parte civil
+341;4;3;2;3;;;;;;Ação penal, ação pública em geral
+341;4;3;2;5;;;;;;Maneira pela qual o citado é conduzido perante à Justiça. Prisão, ordem do comparecimento e de captura
+341;4;3;2;6;;;;;;Detenção preventiva. Liberdade sob caução. Fiança. Liberdade provisória
+341;4;3;2;7;;;;;;Habeas corpus
+341;4;3;3;;;;;;;Instrução penal
+341;4;3;3;1;;;;;;Instrução penal propriamente dita. Informação ou pesquisa das provas da imputabilidade
+341;4;3;3;2;;;;;;Atos diversos da instrução
+341;4;3;3;3;;;;;;Acusação
+341;4;3;3;5;;;;;;Declaração de improcedência
+341;4;3;3;6;;;;;;Conflitos de competência
+341;4;3;3;8;;;;;;Questões prejudiciais
+341;4;3;3;9;;;;;;Debates na audiência. Debate oral
+341;4;3;4;;;;;;;Provas em matéria penal
+341;4;3;4;1;;;;;;Provas escritas. Documentos
+341;4;3;4;2;;;;;;Provas por indícios e presunções
+341;4;3;4;3;;;;;;Provas testemunhais
+341;4;3;4;4;;;;;;Interrogatório do acusado. Confissão
+341;4;3;4;5;;;;;;Juramento
+341;4;3;4;7;;;;;;Investigação feita no local do crime, pelos juizes
+341;4;3;4;8;;;;;;Perícia nas escritas
+341;4;3;5;;;;;;;Julgamento e vias de recursos
+341;4;3;5;1;;;;;;Julgamento com ausência de uma das partes. Oposição. Contumácia. Adiamento de causa
+341;4;3;5;2;;;;;;Execução do julgamento e das penas
+341;4;3;5;3;;;;;;Coisa julgada
+341;4;3;5;4;;;;;;Absolvição
+341;4;3;5;5;;;;;;Vias de recurso em geral
+341;4;3;5;6;;;;;;Recurso
+341;4;3;5;7;;;;;;Cassação
+341;4;3;5;8;;;;;;Revisão. Pedido de revisão
+341;4;3;5;9;;;;;;Erros judiciários
+341;4;3;6;;;;;;;Pessoal e auxiliares da Justiça repressiva
+341;4;3;6;1;;;;;;Júri
+341;4;3;6;2;;;;;;Magistrados
+341;4;3;6;3;;;;;;Ministério público. Procuradores. Oficiais da polícia judiciária
+341;4;3;6;4;;;;;;Outras pessoas ligadas à justiça repressiva em geral
+341;4;3;7;;;;;;;Organização da justiça repressiva em geral
+341;4;3;8;;;;;;;Competência e jurisdição em matéria penal
+341;4;3;9;;;;;;;Cortes e tribunais penais em particular
+341;4;3;9;1;;;;;;Tribunal do júri
+341;4;6;;;;;;;;Direito Processual Civil
+341;4;6;1;;;;;;;Processos particulares
+341;4;6;1;8;;;;;;Processo diante de árbitros. Arbitragem
+341;4;6;2;;;;;;;Fases do processo
+341;4;6;2;1;;;;;;Partes no processo
+341;4;6;2;1;1;;;;;Capacidade de demandar. Habilitação. Autorização
+341;4;6;2;1;2;;;;;Consórcio de processos. Pluralidade de partes. Ações conjuntas. Litisconsórcio
+341;4;6;2;1;3;;;;;Participação de terceiros no processo
+341;4;6;2;1;4;;;;;Mandatários judiciários. Dominus litis
+341;4;6;2;1;5;;;;;Intervenção do Ministério público
+341;4;6;2;1;6;;;;;Custas e despesas
+341;4;6;2;1;8;;;;;Assistência judiciária. Processo gratuito. Justiça gratuita
+341;4;6;2;1;9;;;;;Mandado de segurança
+341;4;6;2;2;;;;;;Ações civis em geral
+341;4;6;2;2;1;;;;;Prescrição das ações
+341;4;6;2;2;3;;;;;Condições de existência das ações
+341;4;6;2;2;6;;;;;Diversas espécies de ações
+341;4;6;2;2;7;;;;;Acumulação e concurso de ações. Concurso de ação civil e ação penal
+341;4;6;2;3;;;;;;Designação de defensor. Demanda. Determinação do dia. Citação em justiça. Comparecimento em Justiça
+341;4;6;2;4;;;;;;Litiscontestação
+341;4;6;2;5;;;;;;Conciliação
+341;4;6;2;6;;;;;;Direito de defesa em geral
+341;4;6;2;7;;;;;;Exceções
+341;4;6;2;7;1;;;;;Exceção de coisa julgada
+341;4;6;2;7;3;;;;;Condições das exceções
+341;4;6;2;7;4;;;;;Litispendência. Conexidade de causa. Exceções declinatórias
+341;4;6;2;7;6;;;;;Outras espécies de exceções
+341;4;6;2;8;;;;;;Reconvenção
+341;4;6;3;;;;;;;Formalidades judiciárias. Instrução. Debates e discussão
+341;4;6;3;1;;;;;;Atos do processo em geral
+341;4;6;3;1;1;;;;;Significação. Notificações
+341;4;6;3;1;2;;;;;Exibição e comunicação dos documentos
+341;4;6;3;1;3;;;;;Conclusões
+341;4;6;3;2;;;;;;Tempos e prazos. Computação do tempo. Abreviação do prazo
+341;4;6;3;3;;;;;;Nulidades. Prescrição. Exclusão. Faltas e erros
+341;4;6;3;4;;;;;;Instrução
+341;4;6;3;7;;;;;;Incidentes diversos do processo
+341;4;6;3;7;1;;;;;Interrupção. Perempção
+341;4;6;3;7;2;;;;;Desistência ou renúncia. Acordo
+341;4;6;3;8;;;;;;Comissões rogatórias
+341;4;6;3;9;;;;;;Audiência
+341;4;6;3;9;1;;;;;Organização dos trabalhos
+341;4;6;3;9;3;;;;;Discussão oral
+341;4;6;3;9;5;;;;;Processo verbal
+341;4;6;3;9;7;;;;;Policiamento da audiência. Audiência secreta
+341;4;6;4;;;;;;;Provas
+341;4;6;4;1;;;;;;Provas em geral
+341;4;6;4;2;;;;;;Provas por escrito ou por marcas
+341;4;6;4;2;2;;;;;Documentos públicos. Títulos autênticos. Documentos falsos
+341;4;6;4;2;3;;;;;Documentos particulares. Correspondência
+341;4;6;4;2;4;;;;;Talhos, marcas e outras formas mnemônicas
+341;4;6;4;2;5;;;;;Cópias de cartas
+341;4;6;4;2;8;;;;;Verificação. Perícia de caligrafia
+341;4;6;4;3;;;;;;Provas por testemunhas. Testemunhas. Interrogatórios
+341;4;6;4;3;1;;;;;Affidavit (Declaração sob as penas da lei)
+341;4;6;4;3;3;;;;;Idoneidade
+341;4;6;4;3;5;;;;;Segredo profissional
+341;4;6;4;4;;;;;;Declaração ou confissão da parte
+341;4;6;4;5;;;;;;Juramento judicial
+341;4;6;4;6;;;;;;Presunções. Notoriedade
+341;4;6;4;6;1;;;;;Presunções legais, absolutas e relativas
+341;4;6;4;6;2;;;;;Presunções simples
+341;4;6;4;6;5;;;;;Notoriedade. Atos de notoriedade
+341;4;6;4;7;;;;;;Inspeção pessoal
+341;4;6;4;8;;;;;;Perícia
+341;4;6;5;;;;;;;Decisões judiciárias. Vias de execução. Vias de recurso
+341;4;6;5;1;;;;;;Julgamentos. Decisões judiciárias: espécies e formas
+341;4;6;5;2;;;;;;Execução dos julgamentos. Expropriação forçada
+341;4;6;5;2;1;;;;;Execução Fiscal
+341;4;6;5;2;2;;;;;Execução Hipotecária
+341;4;6;5;2;3;;;;;Execução voluntária
+341;4;6;5;2;4;;;;;Embargos diversos, arresto
+341;4;6;5;2;5;;;;;Embargos de Terceiros
+341;4;6;5;2;6;;;;;Execução provisória
+341;4;6;5;2;7;;;;;Seqüestro
+341;4;6;5;2;8;;;;;Distribuição do preço e ordem entre os credores
+341;4;6;5;2;9;;;;;Ordem de prisão
+341;4;6;5;3;;;;;;Coisa julgada
+341;4;6;5;5;;;;;;Vias de recurso em geral
+341;4;6;5;6;;;;;;Apelação. Segunda instância
+341;4;6;5;7;;;;;;Cassação
+341;4;6;5;8;;;;;;Outras vias de recurso contra as decisões judiciárias. Ação rescisória
+341;4;6;5;9;;;;;;Nulidade no processo
+341;5;;;;;;;;;DIREITO PENAL
+341;5;0;1;;;;;;;Teoria, conceito e fundamento do direito penal ou direito de punir
+341;5;0;9;;;;;;;Código penal
+341;5;1;;;;;;;;Lei penal em geral, sua aplicação e sua eficácia no tempo e no espaço
+341;5;1;3;;;;;;;Retroatividade das leis penais. Irretroatividade das leis penais
+341;5;2;;;;;;;;Pessoas imputáveis. Agentes das infrações
+341;5;2;1;;;;;;;Agentes do delito em geral
+341;5;2;1;5;;;;;;Diversas categorias de agentes
+341;5;2;2;;;;;;;Imputabilidade e responsabilidade em geral
+341;5;2;2;2;;;;;;Dolo e suas diversas espécies
+341;5;2;2;3;;;;;;Ausência de intenção criminosa fraudulenta
+341;5;2;2;4;;;;;;Culpa punível e suas diversas espécies
+341;5;2;2;5;;;;;;Caso fortuito. Força maior
+341;5;2;2;7;;;;;;Responsabilidade penal coletiva
+341;5;2;3;;;;;;;Circunstâncias e causas que modificam, atenuam, agravam ou excluem a imputabilidade
+341;5;2;4;;;;;;;Imputabilidade em relação à idade
+341;5;2;4;1;;;;;;Infância. Menores de idade
+341;5;2;4;2;;;;;;Velhice. Decrepitude 
+341;5;2;5;;;;;;;Outras causas que modificam, excluem ou diminuem a responsabilidade. Irresponsabilidade
+341;5;2;5;1;;;;;;Loucura. Doenças mentais
+341;5;2;5;2;;;;;;Surdo-mudez
+341;5;2;5;3;;;;;;Embriaguez. Alcoolismo. Responsabilidade dos alcoolizados
+341;5;2;5;4;;;;;;Sonambulismo. Hipnotismo. Sua influência sobre a responsabilidade
+341;5;2;5;5;;;;;;Paixões. Movimentos de cólera ou de dor
+341;5;2;6;;;;;;;Coação ou violência física e moral da vontade. Necessidade
+341;5;2;7;;;;;;;Ordem da lei. Comando da autoridade
+341;5;2;8;;;;;;;Legítima defesa. Provocação
+341;5;2;9;;;;;;;Ignorância. Erro
+341;5;3;;;;;;;;Infrações ou atos puníveis em geral
+341;5;3;1;;;;;;;Teoria geral das infrações
+341;5;3;2;;;;;;;Divisão e classificação das infrações: crimes, delitos e contravenções. Seus caracteres respectivos
+341;5;3;3;;;;;;;Circunstâncias em geral que agravam, atenuam ou anulam as infrações
+341;5;3;3;1;;;;;;Circunstâncias atenuantes
+341;5;3;3;1;1;;;;;Motivos nobres
+341;5;3;3;1;2;;;;;Infrações contra pessoas notoriamente perigosas e turbulentas
+341;5;3;3;1;3;;;;;Bons antecedentes
+341;5;3;3;1;4;;;;;Modicidade ou ausência de dano. Necessidade urgente
+341;5;3;3;1;5;;;;;Arrependimento eficaz, reparação espontânea do dano. Confissão voluntária
+341;5;3;3;1;9;;;;;Outras circunstâncias atenuantes. Delito involuntário
+341;5;3;3;2;;;;;;Circunstâncias agravantes
+341;5;3;3;2;1;;;;;Reincidência. Má vida anterior
+341;5;3;3;2;2;;;;;Emprego de coação física ou moral. Armas. Atos de sevicia e de violência. Ameaça. Abuso de autoridade
+341;5;3;3;2;3;;;;;Violação de deveres graves e especiais (menores, interditos incapazes). Laços de parentesco. Ingratidão
+341;5;3;3;2;4;;;;;Infrações agravadas pela ocasião ou o local onde foram cometidas (Calamidades públicas, noite etc)
+341;5;3;3;2;5;;;;;Paixões vergonhosas e desonrantes. Frivolidades e ausência de motivo ao cometer a infração
+341;5;3;3;2;6;;;;;Gravidade do dano causado e das conseqüências da infração. Perigo para a coletividade
+341;5;3;3;2;7;;;;;Caráter público ou oficial dos delinqüentes ou das vítimas
+341;5;3;3;2;8;;;;;Crime hediondo. Conceito de crime hediondo
+341;5;3;3;3;;;;;;Delito premeditado, tentado, falhado, consumado
+341;5;3;3;4;;;;;;Participação. Cooperação. Cumplicidade. Co-autoria
+341;5;3;3;5;;;;;;Concurso de infrações. Delitos conexos. Acúmulo de penas. Delitos sucessivos e contínuos
+341;5;4;;;;;;;;Penas. Penalidades em geral
+341;5;4;1;;;;;;;Pena de morte e penas corporais
+341;5;4;1;1;;;;;;Diversas formas de execução da pena de morte
+341;5;4;1;2;;;;;;Penas corporais
+341;5;4;3;;;;;;;Penas privativas da liberdade
+341;5;4;3;1;;;;;;Penas de aprisionamento
+341;5;4;3;2;;;;;;Trabalhos forçados
+341;5;4;3;3;;;;;;Confinamento. Domicílio ou residência forçada. Interdição de estada. Afastamento do domicílio. Colocação à disposição do governo
+341;5;4;3;4;;;;;;Deportação
+341;5;4;3;5;;;;;;Liberdade condicional
+341;5;4;3;6;;;;;;Vigilância especial da polícia e das autoridades encarregadas de zelar pela segurança pública
+341;5;4;4;;;;;;;Penas relativas aos bens e ao exercício de certos direitos. Penas pecuniárias
+341;5;4;4;1;;;;;;Multas
+341;5;4;4;2;;;;;;Confiscação das coisas em relação direta à infração. Confiscação dos bens
+341;5;4;4;3;;;;;;Taxas fiscais
+341;5;4;4;4;;;;;;Penas infamantes e privativas de certos direitos
+341;5;4;4;5;;;;;;Destituição e interdição de direitos civis e políticos e das funções públicas. Incapacidades resultantes de certas penas
+341;5;4;4;6;;;;;;Interdição legal. Morte civil
+341;5;4;4;7;;;;;;Interdição do exercício de uma profissão, arte ou ofício
+341;5;4;5;;;;;;;Questões diversas relativas às penas
+341;5;4;5;1;;;;;;Condenação condicional
+341;5;4;5;2;;;;;;Sentenças indeterminadas. Indeterminação das penas
+341;5;4;5;3;;;;;;Execução sumária sem julgamento. Lei de Lynch. Pena de Talião. Vendetta
+341;5;4;5;4;;;;;;Administração judiciária. Censura
+341;5;4;5;5;;;;;;Caução de boa conduta
+341;5;4;5;6;;;;;;Banimento. Proscrição. Exílio. Expatriação forçada
+341;5;4;5;7;;;;;;Penas disciplinares diversas
+341;5;4;5;8;;;;;;Regras técnicas relativas à duração das penas. Redação das penas
+341;5;4;5;9;;;;;;Registro judiciário
+341;5;4;6;1;;;;;;Prescrição da pena
+341;5;4;6;2;;;;;;Graça. Indulto. Comutação da pena. Anistia
+341;5;4;6;3;;;;;;Suspensão condicional da pena. Sursis
+341;5;4;6;4;;;;;;Reabilitação
+341;5;4;6;5;;;;;;Morte do condenado
+341;5;4;6;6;;;;;;Conseqüências civis dos delitos. Reparação do dano. Ação civil. Ação de restituição
+341;5;4;6;7;;;;;;Penalidades coletivas
+341;5;5;;;;;;;;Diversas espécies de infrações
+341;5;5;1;;;;;;;Infrações contra o Estado e contra a administração
+341;5;5;1;1;;;;;;Infrações contra os poderes constituídos
+341;5;5;1;2;;;;;;Infrações contra a pátria
+341;5;5;1;2;1;;;;;Espionagem
+341;5;5;1;2;2;;;;;Traição. Negociação com o inimigo
+341;5;5;1;2;3;;;;;Ofensas à bandeira e aos emblemas nacionais
+341;5;5;1;3;;;;;;Infrações contra os Estados estrangeiros, seus soberanos e representantes
+341;5;5;1;3;1;;;;;Ofensas aos chefes de Estados estrangeiros
+341;5;5;1;3;2;;;;;Ofensas aos representantes de Estados estrangeiros
+341;5;5;1;3;3;;;;;Ofensas às bandeiras e a outros emblemas de Estados estrangeiros
+341;5;5;1;3;4;;;;;Alistamento de nacionais sob uma bandeira estrangeira contra outra potência estrangeira
+341;5;5;1;4;;;;;;Infrações contra a ordem e a segurança pública
+341;5;5;1;4;1;;;;;Associações e seitas perigosas
+341;5;5;1;4;2;;;;;Instigação e provocação ao crime. Apologia do delito
+341;5;5;1;4;2;1;;;;Incitação à guerra civil
+341;5;5;1;4;3;;;;;Rebelião, ultrajes, recusa de obediência à autoridade. Violências, resistência e outros delitos contra pessoas investidas de autoridade pública
+341;5;5;1;4;3;1;;;;Recusa de serviço militar
+341;5;5;1;4;4;;;;;Armas proibidas
+341;5;5;1;4;5;;;;;Mendicidade, vagabundagem. Nômades. Vadiagem de menores
+341;5;5;1;4;6;;;;;Infrações contra a segurança dos meios de transporte e comunicação
+341;5;5;1;6;;;;;;Infrações contra a saúde e alimentação pública em geral. Falsificações
+341;5;5;1;6;1;;;;;Substâncias alimentícias deterioradas
+341;5;5;1;6;2;;;;;Propagação de doenças contagiosas. Contaminação intra-sexual
+341;5;5;1;6;3;;;;;Envenenamento de água potável. Venda de medicamentos nos quais a substância, a quantidade e a qualidade não correspondem a prescrição médica
+341;5;5;1;6;4;;;;;Exercício ilegal da medicina. Charlatanismo
+341;5;5;1;6;5;;;;;Infrações contra as leis e regulamentos relativos às inumações e aos cemitérios. Violação de sepulturas. Injúrias aos cadáveres
+341;5;5;1;6;6;;;;;Infrações contra as leis e regulamentos relativos à impressão, distribuição e afixação de impressos
+341;5;5;1;7;;;;;;Infrações contra a administração pública
+341;5;5;1;7;1;;;;;Peculato. Concussão
+341;5;5;1;7;2;;;;;Corrupção dos funcionários
+341;5;5;1;7;3;;;;;Abuso de autoridade e violação dos deveres inerentes a uma função pública. Desvio do poder
+341;5;5;1;7;4;;;;;Abuso dos ministros do culto no exercício de suas funções
+341;5;5;1;7;5;;;;;Usurpação de funções públicas, de títulos ou de honras. Uso sem direito de condecorações, de uniformes etc
+341;5;5;1;7;6;;;;;Não cumprimento de obrigações e fraude nos fornecimentos públicos
+341;5;5;1;7;7;;;;;Violação de selos. Subtração de depósitos públicos
+341;5;5;1;7;8;;;;;Infrações contra as prescrições fiscais. Contrabando. Sonegação fiscal
+341;5;5;1;8;;;;;;Infrações contra a administração da Justiça
+341;5;5;1;8;1;;;;;Recusa de exercer funções legais (jurados, testemunhas etc)
+341;5;5;1;8;2;;;;;Simulação de crimes
+341;5;5;1;8;3;;;;;Falso em Justiça
+341;5;5;1;8;3;1;;;;Falso testemunho e falsa perícia
+341;5;5;1;8;3;2;;;;Juramento em falso. Perjúrio
+341;5;5;1;8;3;3;;;;Suborno de testemunhas
+341;5;5;1;8;3;4;;;;Usurpação de nome perante as jurisdições de instrução e repressão
+341;5;5;1;8;4;;;;;Favores concedidos a criminoso. Receptação de criminosos
+341;5;5;1;8;5;;;;;Exercício arbitrário de seu direito, Justiça feita por si mesmo
+341;5;5;1;8;6;;;;;Prevaricação
+341;5;5;1;8;7;;;;;Evasão e não execução da pena
+341;5;5;1;8;7;1;;;;Rebelião contra a Justiça. Delitos de audiência
+341;5;5;1;8;7;2;;;;Corrupção dos juizes
+341;5;5;2;;;;;;;Infrações relativas às liberdades fundamentais
+341;5;5;2;1;;;;;;Liberdades políticas
+341;5;5;2;1;1;;;;;Delitos eleitorais
+341;5;5;2;2;;;;;;Liberdade de culto (Ultraje à religião. Sacrilégio. Blasfêmia. Feitiçaria)
+341;5;5;2;3;;;;;;Liberdade individual
+341;5;5;2;3;1;;;;;Servidão. Escravidão
+341;5;5;2;3;2;;;;;Seqüestro de pessoas
+341;5;5;2;3;3;;;;;Prisão, detenção arbitrária por funcionários públicos. Recusa ilegítima de encarceramento
+341;5;5;2;3;4;;;;;Perseguições pessoais arbitrárias
+341;5;5;2;3;5;;;;;Rapto de menores
+341;5;5;2;3;6;;;;;Ameaças
+341;5;5;2;3;7;;;;;Violência privada. Coerção
+341;5;5;2;4;;;;;;Inviolabilidade do domicílio
+341;5;5;2;4;1;;;;;Violação de domicílio cometido por funcionários públicos
+341;5;5;2;5;;;;;;Inviolabilidade de segredos
+341;5;5;2;5;1;;;;;Segredos de correspondência: cartas, telegramas
+341;5;5;2;5;1;1;;;;Abertura e subtração de correspondência
+341;5;5;2;5;1;2;;;;Divulgação e revelação de segredos de correspondências
+341;5;5;2;5;1;3;;;;Violação de segredos de correspondências por parte de agentes da administração dos correios e telégrafos
+341;5;5;2;5;2;;;;;Segredo profissional. Revelação
+341;5;5;2;6;;;;;;Liberdade econômica (Liberdade de comércio, de indústria, de trabalho e de livre concorrência)
+341;5;5;2;6;1;;;;;Greves
+341;5;5;3;;;;;;;Infrações contra a fé pública
+341;5;5;3;1;;;;;;Moeda falsa. Fraude em papéis de crédito público
+341;5;5;3;2;;;;;;Outras falsificações
+341;5;5;3;2;1;;;;;Falsificações de selos e de estampilhas
+341;5;5;3;2;2;;;;;Falsificação de passagens de estradas de ferro e de outras empresas de transporte
+341;5;5;3;2;3;;;;;Supressão e destruição de marcas e sinais distintivos sobre selos e estampilhas
+341;5;5;3;4;;;;;;Falsificação de documentos. Falsificação de assinaturas
+341;5;5;3;5;;;;;;Falsificação de passaportes, licenças, certificados, atestados e declarações
+341;5;5;3;6;;;;;;Uso de nome falso
+341;5;5;4;;;;;;;Fraudes no comércio e indústria. Crimes contra a economia popular
+341;5;5;4;1;;;;;;Alta e baixa fraudulenta dos preços nos mercados públicos e nas bolsas de comércio
+341;5;5;4;2;;;;;;Açambarcamento, monopólio, trust, agiotagem. Fraude no peso e nas medidas. Falsa indicação das proveniências
+341;5;5;4;3;;;;;;Falsificação de nomes, marcas, selos, distintivos, desenhos e modelos industriais. Delitos contra a propriedade industrial e artística
+341;5;5;4;4;;;;;;Revelação de segredos científicos e industriais
+341;5;5;4;5;;;;;;Falência
+341;5;5;4;5;1;;;;;Falência simples
+341;5;5;4;5;2;;;;;Falência fraudulenta
+341;5;5;4;6;;;;;;Usura
+341;5;5;4;7;;;;;;Engano e fraude na venda e nos contratos em geral. Balanços falsos
+341;5;5;4;8;;;;;;Infrações contra a liberdade e segurança das hastas públicas. Venda pública de mercadorias novas
+341;5;5;5;;;;;;;Infrações contra os bons costumes, a ordem das, famílias e a moralidade
+341;5;5;5;1;;;;;;Atentado, violação, sedução etc
+341;5;5;5;1;1;;;;;Atentado ao pudor
+341;5;5;5;1;2;;;;;Violação. Estupro
+341;5;5;5;1;3;;;;;Sedução por meios fraudulentos. Promessa de casamento
+341;5;5;5;1;4;;;;;Pessoas incapazes de consentimento: menores, dementes, hipnotizados
+341;5;5;5;1;5;;;;;Abuso de confiança, de autoridade, de relação doméstica
+341;5;5;5;2;;;;;;Ultraje público aos bons costumes
+341;5;5;5;2;1;;;;;Pornografia. Escritos, imagens, canções obscenas
+341;5;5;5;2;2;;;;;Atos atentatórios ao pudor
+341;5;5;5;2;3;;;;;Atos contra a natureza. Inversão sexual. Bestialidade. Sadismo
+341;5;5;5;2;4;;;;;Prostituição. Incitação à libertinagem
+341;5;5;5;2;5;;;;;Tráfico branco
+341;5;5;5;2;6;;;;;Corrupção de menores. Rapto de maiores
+341;5;5;5;2;7;;;;;Crimes contra a ordem das famílias
+341;5;5;5;2;8;;;;;Assédio sexual
+341;5;5;5;3;;;;;;Infrações contra a ordem das famílias
+341;5;5;5;3;1;;;;;Adultério
+341;5;5;5;3;2;;;;;Bigamia
+341;5;5;5;3;3;;;;;Incesto
+341;5;5;5;4;;;;;;Jogo. Casas de jogo. Loterias proibidas. Casas de penhor. Corridas
+341;5;5;5;5;;;;;;Uso e tráfico de drogas
+341;5;5;5;5;1;;;;;Importação, exportação, venda, fornecimento ilegal de substância entorpecente ou que determine dependência física ou psíquica
+341;5;5;5;5;2;;;;;Fabricação ou cultivo de substâncias entorpecentes
+341;5;5;5;5;3;;;;;Uso, transporte ou guarda de substâncias entorpecentes
+341;5;5;5;5;4;;;;;Induzimento ao uso de entorpecentes
+341;5;5;5;5;5;;;;;Incentivo ou difusão do uso de entorpecentes
+341;5;5;5;6;;;;;;Crueldade e mal trato para com os animais
+341;5;5;6;;;;;;;Infrações contra as pessoas
+341;5;5;6;1;;;;;;Homicídio. Lesões corporais
+341;5;5;6;1;1;;;;;Homicídio voluntário: assassinato
+341;5;5;6;1;1;1;;;;Homicídio premeditado, por traição e de emboscada
+341;5;5;6;1;1;2;;;;Homicídio não premeditado, impulsivo e com sevícias graves
+341;5;5;6;1;1;3;;;;Homicídio para preparar, facilitar, executar ou ocultar um outro crime, tendo em vista assegurar o lucro ou procurar a impunidade. Homicídio cometido a mandado. Homicídio tendo por móvel o roubo
+341;5;5;6;1;1;4;;;;Homicídio cometido por meio de incêndio, de inundação, de submersão ou de outros crimes que façam correr perigo a coletividade
+341;5;5;6;1;1;5;;;;Homicídio de pessoas consangüíneas e parentes. Parricídio
+341;5;5;6;1;1;6;;;;Homicídio da pessoa do chefe de Estado, dos membros de parlamento, de funcionários públicos em razão de suas funções. Regicídio
+341;5;5;6;1;1;7;;;;Genocídio
+341;5;5;6;1;1;8;;;;Tortura
+341;5;5;6;1;2;;;;;Envenenamento
+341;5;5;6;1;3;;;;;Duelo
+341;5;5;6;1;4;;;;;Suicídio
+341;5;5;6;1;5;;;;;Lesões corporais: Atos de violência
+341;5;5;6;1;5;1;;;;Lesões premeditadas
+341;5;5;6;1;5;2;;;;Lesões com sevícias graves
+341;5;5;6;1;5;3;;;;Lesões para preparar, facilitar, executar ou ocultar um outro crime
+341;5;5;6;1;5;4;;;;Lesões corporais praticadas por conta de outrem
+341;5;5;6;1;5;5;;;;Lesões cometidas por meio de fatos perigosos para a coletividade
+341;5;5;6;1;5;6;;;;Lesões na pessoa de consangüíneos e de parentes
+341;5;5;6;1;5;7;;;;Lesões na pessoa do chefe do Estado, membros do parlamento, funcionários públicos em razão de suas funções
+341;5;5;6;1;5;8;;;;Efeitos e conseqüências das lesões corporais
+341;5;5;6;1;6;;;;;Vitriolagem. Lesões por meios de substâncias corrosivas
+341;5;5;6;1;7;;;;;Moléstias infecciosas transmitidas por manobras dolosas
+341;5;5;6;1;8;;;;;Homicídio e lesões corporais involuntárias por culpa ou caso fortuito
+341;5;5;6;1;9;;;;;Outros casos de homicídio e de lesões
+341;5;5;6;1;9;1;;;;Rixas
+341;5;5;6;1;9;2;;;;Canibalismo
+341;5;5;6;2;;;;;;Infrações contra crianças ou pessoas incapazes de zelar sobre si mesmas
+341;5;5;6;2;1;;;;;Aborto criminoso. Feticídio
+341;5;5;6;2;2;;;;;Infanticídio
+341;5;5;6;2;3;;;;;Abandono, exposição de crianças
+341;5;5;6;2;4;;;;;Abandono de outras pessoas incapazes de zelar sobre si mesmas
+341;5;5;6;2;5;;;;;Abuso de meios de correção e disciplina. Mal trato no seio da família. Violência e atos de crueldade
+341;5;5;6;2;6;;;;;Rapto. Rapto de menores de sete anos
+341;5;5;6;2;7;;;;;Emprego abusivo de crianças. Trabalhos excessivos, insalubres, perigosos. Exibição de crianças nos teatros, feiras e circos
+341;5;5;6;3;;;;;;Infrações contra a honra
+341;5;5;6;3;1;;;;;Difamação. Calúnia
+341;5;5;6;3;2;;;;;Injúrias, ofensas, ultrajes
+341;5;5;6;3;3;;;;;Escritos injuriosos. Libelos infamantes. Cartas anônimas
+341;5;5;6;3;4;;;;;Ofensas e injúrias cometidas pelas partes e por seus defensores perante às autoridades judiciárias em curso do processo
+341;5;5;6;3;8;;;;;Ofensas aos funcionários públicos. Lesa-majestade
+341;5;5;6;3;9;;;;;Injúrias à memória dos mortos
+341;5;5;6;4;;;;;;Hipnotismo (Atentados à dignidade ou à saúde humana pela prática do hipnotismo)
+341;5;5;7;;;;;;;Infrações contra a propriedade
+341;5;5;7;1;;;;;;Roubo e suas diversas formas
+341;5;5;7;1;1;;;;;Roubo. Subtração fraudulenta
+341;5;5;7;1;1;1;;;;Roubo no campo
+341;5;5;7;1;1;2;;;;Roubo de animais
+341;5;5;7;1;1;3;;;;Roubo doméstico (entre parentes)
+341;5;5;7;1;1;4;;;;Furto de objetos de viajantes nos veículos, estações e portos
+341;5;5;7;1;1;5;;;;Furto com arrombamento, escaladas, chaves falsas. Furtos cometidos à noite
+341;5;5;7;1;1;6;;;;Roubo em tempo de calamidade pública ou roubo de objeto destinado à defesa pública ou ao serviço público
+341;5;5;7;1;1;7;;;;Roubos em cemitério e em lugares destinados ao culto
+341;5;5;7;1;1;8;;;;Roubo cometido por pessoas mascaradas ou disfarçadas
+341;5;5;7;1;2;;;;;Banditismo, pirataria, pilhagem
+341;5;5;7;1;3;;;;;Extorsão. Chantagem
+341;5;5;7;2;;;;;;Fraude. Estelionato
+341;5;5;7;2;1;;;;;Abuso de confiança
+341;5;5;7;2;2;;;;;Apropriação indébita
+341;5;5;7;2;3;;;;;Fraude para com menores, interditos e incapazes
+341;5;5;7;2;4;;;;;Abuso de assinatura em branco
+341;5;5;7;2;5;;;;;Apropriação de coisa perdida e de tesouro
+341;5;5;7;2;6;;;;;Dissipação fraudulenta
+341;5;5;7;2;9;;;;;Exploração da credulidade pública. Prognosticadores, adivinhos
+341;5;5;7;3;;;;;;Receptação
+341;5;5;7;4;;;;;;Usurpação de propriedade. Turbação de posse cometida por violência
+341;5;5;7;5;;;;;;Inundação, submersão, naufrágio
+341;5;5;7;6;;;;;;Incêndio. Explosão
+341;5;5;7;7;;;;;;Danos dolosos contra a propriedade. Devastação. Destruição. Deterioração
+341;5;5;7;7;1;;;;;Delitos de caça. Caça proibida
+341;5;5;7;7;2;;;;;Delitos de pesca
+341;5;5;7;7;3;;;;;Delitos florestais
+341;5;5;7;7;4;;;;;Delitos rurais em geral
+341;5;5;9;;;;;;;Outros ilícitos penais
+341;5;6;;;;;;;;Contravenções
+341;5;8;;;;;;;;Direito Penitenciário. Direito de Execuções Penais (Ciência penitenciária. Penologia. Ciência repressiva. Política criminal em geral. Execução das penas. Tratamento dos criminosos. Regimes, sistemas penitenciários)
+341;5;8;1;;;;;;;Estabelecimentos penitenciários
+341;5;8;1;1;;;;;;Prisões em geral
+341;5;8;1;2;;;;;;Prisões celulares. Regime celular
+341;5;8;1;3;;;;;;Prisões de trabalhos forçados
+341;5;8;1;4;;;;;;Penitenciárias. Colônias penitenciárias
+341;5;8;1;5;;;;;;Reformatórios. Prisões-escolas. Estabelecimentos destinados a menores. Educação preventiva
+341;5;8;1;6;;;;;;Prisões-asilos. Manicômios judiciários
+341;5;8;1;7;;;;;;Prisões-asilos para mendigos
+341;5;8;1;8;;;;;;Prisões militares
+341;5;8;1;9;;;;;;Outros estabelecimentos penitenciários
+341;5;8;1;9;2;;;;;Instituições penitenciárias para mulheres e para meninas
+341;5;8;1;9;3;;;;;Prisões de passagem, provisórias
+341;5;8;2;;;;;;;Sistemas penitenciários. Regime dos estabelecimentos penitenciários
+341;5;8;2;1;;;;;;Medidas administrativas. Encarceramento. Registro. Transporte dos presos
+341;5;8;2;2;;;;;;Vida material dos presos. Alimentação. Dormida. Vestimenta. Regime dos presos políticos
+341;5;8;2;3;;;;;;Trabalho dos condenados. Pecúlio
+341;5;8;2;4;;;;;;Instrução, estudo, leitura. Aprendizado profissional
+341;5;8;2;5;;;;;;Educação religiosa, moral, social. Reeducação
+341;5;8;2;6;;;;;;Relações com o mundo exterior. Visitas. Correspondência. Saídas
+341;5;8;2;7;;;;;;Regulamento e disciplina internos. Obrigação do silêncio. Vigilância dos presos. Punições
+341;5;8;2;8;;;;;;Higiene dos presos. Educação e exercícios físicos
+341;5;8;3;;;;;;;Pessoal dos estabelecimentos penitenciários
+341;5;8;3;1;;;;;;Diretor
+341;5;8;3;2;;;;;;Guardas. Auxiliares
+341;5;8;3;3;;;;;;Capelão
+341;5;8;3;4;;;;;;Instrutores e professores
+341;5;8;3;5;;;;;;Médicos
+341;5;8;3;6;;;;;;Carrascos
+341;5;8;4;;;;;;;Ciência penal punitiva. Sistemas penitenciários
+341;5;8;4;1;;;;;;Sistemas de isolamento completo ou mitigado
+341;5;8;4;2;;;;;;Sistema progressivo ou misto
+341;5;8;4;3;;;;;;Sistema da readaptação, da liberdade ou semiliberdade. Prisões abertas
+341;5;8;4;4;;;;;;Prestação de serviços à comunidade
+341;5;8;5;;;;;;;Ciência penal preventiva (Profilaxia criminal, meios de prevenir a criminalidade em geral. Preservação social contra o crime)
+341;5;9;;;;;;;;Criminologia e antropologia, sociologia e tecnologia criminais
+341;5;9;0;1;;;;;;Teorias gerais sobre o crime e a criminalidade
+341;5;9;0;1;8;;;;;Métodos da criminologia
+341;5;9;1;;;;;;;Delinqüentes ou criminosos e suas espécies
+341;5;9;1;1;;;;;;Delinqüentes habituais. Reincidentes. Incorrigíveis. Profissionais do crime
+341;5;9;1;2;;;;;;Delinqüentes passionais instintivos. Delinqüentes ocasionais
+341;5;9;1;3;;;;;;Delinqüentes alienados. Irresponsáveis perigosos
+341;5;9;1;4;;;;;;Mulheres delinqüentes (Alcoólatras, alienadas, prostitutas etc.)
+341;5;9;1;5;;;;;;Menores delinqüentes. Infância criminosa. Criminalidade juvenil
+341;5;9;1;6;;;;;;Delinqüentes militares
+341;5;9;1;7;;;;;;Delinqüentes políticos. Anarquistas. Terroristas
+341;5;9;1;8;;;;;;Outras classes de delinqüentes e categorias de criminosos
+341;5;9;1;8;1;;;;;Delinqüentes considerados sob o ponto de vista da profissão que exercem. Influência da profissão sobre o crime
+341;5;9;1;8;2;;;;;Delinqüentes considerados sobre o ponto de vista de sua especialidade criminal
+341;5;9;1;9;;;;;;Monografias de delinqüentes. Causas e processos criminais célebres
+341;5;9;2;;;;;;;Física criminal (Influência do meio físico sobre a criminalidade)
+341;5;9;3;;;;;;;Anatomia dos delinqüentes
+341;5;9;3;1;;;;;;Tipo criminoso. Criminoso nato
+341;5;9;3;2;;;;;;Antropometria criminal
+341;5;9;3;3;;;;;;Aspecto físico. Fisionomia
+341;5;9;3;9;;;;;;Tatuagem
+341;5;9;4;;;;;;;Fisiologia e biologia dos delinqüentes
+341;5;9;4;1;;;;;;Hereditariedade. Atavismo e criminalidade
+341;5;9;4;2;;;;;;Degenerescência e criminalidade
+341;5;9;5;;;;;;;Psicologia dos delinqüentes (órgãos dos sentidos, sensibilidade, memória, inteligência, vontade, paixões, temperamento e caráter)
+341;5;9;6;;;;;;;Patologia dos delinqüentes
+341;5;9;6;9;;;;;;Loucura e criminalidade
+341;5;9;6;9;5;;;;;Responsabilidade, livre arbítrio e imputabilidade sob o ponto de vista teórico e da antropologia criminal
+341;5;9;7;;;;;;;Sociologia criminal (Estudo da criminalidade como fenômeno social. Criminalidade comparada. Causas, influências, fatores sociais do crime. Meio social)
+341;5;9;7;1;;;;;;Causas morais e psicológicas do crime
+341;5;9;7;2;;;;;;Causas religiosas
+341;5;9;7;3;;;;;;Causas econômicas. Miséria e criminalidade
+341;5;9;7;4;;;;;;Crimes das multidões
+341;5;9;7;5;;;;;;Etnografia criminal
+341;5;9;8;;;;;;;Criminalística. Datiloscopia
+341;5;9;9;;;;;;;Arqueologia criminal
+341;6;;;;;;;;;DIREITO PREVIDENCIÁRIO. SEGURIDADE SOCIAL
+341;6;0;1;;;;;;;Conceito. Teoria
+341;6;0;1;1;;;;;;Fontes
+341;6;0;1;2;;;;;;Interpretação
+341;6;0;9;;;;;;;(Divisão geográfica, como 930-999)
+341;6;1;;;;;;;;Seguridade Social
+341;6;1;1;;;;;;;Organização da Seguridade Social
+341;6;1;1;1;;;;;;Sistema Nacional de Seguridade Social
+341;6;1;1;2;;;;;;Órgãos Colegiados
+341;6;1;1;2;1;;;;;Conselho Nacional de Previdência Social
+341;6;1;1;2;2;;;;;Conselho de Recursos da Previdência Social
+341;6;1;1;2;2;1;;;;Composição
+341;6;1;1;2;2;2;;;;Recursos
+341;6;1;1;2;2;3;;;;Divulgação dos Atos e Decisões da Previdência Social
+341;6;1;1;2;2;4;;;;Convênios. Contratos. Acordos
+341;6;1;1;2;3;;;;;Juntas de Recurso da Previdência Social
+341;6;1;2;;;;;;;Custeio da Seguridade Social
+341;6;1;2;1;;;;;;Financiamento da Seguridade Social
+341;6;1;2;1;1;;;;;Contribuição Facultativa
+341;6;1;2;1;2;;;;;Contribuição do Produtor Rural
+341;6;1;2;1;3;;;;;Contribuição da União
+341;6;1;2;1;4;;;;;Contribuição do Segurado Especial
+341;6;1;2;1;5;;;;;Contribuição do Segurado
+341;6;1;2;1;5;1;;;;Empregado
+341;6;1;2;1;5;2;;;;Empregado Doméstico
+341;6;1;2;1;5;3;;;;Trabalhador avulso
+341;6;1;2;1;5;4;;;;Contribuição Individual
+341;6;1;2;1;5;5;;;;Contribuição sobre a Receita de Concursos, Prognósticos e Sweepstake
+341;6;1;2;1;5;6;;;;Salário de Contribuição
+341;6;1;2;1;5;7;;;;Contribuição do Empregador
+341;6;1;2;1;5;8;;;;Contribuição do Empregado Doméstico
+341;6;1;2;1;5;9;;;;Isenção de Contribuição
+341;6;2;;;;;;;;Previdência Social
+341;6;2;1;;;;;;;Beneficiários
+341;6;2;1;4;;;;;;Benefício assistencial de um salário mínimo. Renda mínima
+341;6;2;2;;;;;;;Segurados
+341;6;2;2;1;;;;;;Dependentes
+341;6;2;2;2;;;;;;Manutenção e Perda da Qualidade de Segurado
+341;6;2;3;;;;;;;Regime Geral da Previdência
+341;6;2;3;1;;;;;;Plano de Benefícios da Previdência Social
+341;6;2;3;2;;;;;;Prestações em Espécie
+341;6;2;3;3;;;;;;Prestações em Geral
+341;6;2;3;4;;;;;;Inscrições do segurado e dependente
+341;6;2;3;5;;;;;;Benefícios
+341;6;2;3;5;1;;;;;Carência
+341;6;2;3;5;2;;;;;Aposentadorias e Pensões
+341;6;2;3;5;2;1;;;;Aposentadoria Especial
+341;6;2;3;5;2;2;;;;Aposentadoria por Idade
+341;6;2;3;5;2;3;;;;Aposentadoria por velhice
+341;6;2;3;5;2;4;;;;Aposentadoria por tempo de serviço
+341;6;2;3;5;2;5;;;;Aposentadoria por tempo de Contribuição
+341;6;2;3;5;2;6;;;;Aposentadoria por Invalidez
+341;6;2;3;5;2;7;;;;Pensão por morte
+341;6;2;3;5;3;;;;;Auxílios
+341;6;2;3;5;3;1;;;;Auxílio Acidente. Auxílio Acidente de trabalho
+341;6;2;3;5;3;2;;;;Auxílio Doença
+341;6;2;3;5;3;3;;;;Auxílio Maternidade
+341;6;2;3;5;3;4;;;;Auxílio Reclusão
+341;6;2;3;5;3;5;;;;Auxílio funeral
+341;6;2;3;5;3;6;;;;Salário-família
+341;6;2;3;5;3;7;;;;Abono Anual - equivalente ao 13º salário
+341;6;2;3;5;3;8;;;;Habilitação e Reabilitação Profissional
+341;6;2;3;5;3;9;;;;Pecúlio
+341;6;2;3;6;;;;;;Reconhecimento da Filiação
+341;6;2;3;6;1;;;;;Reconhecimento do Tempo de Filiação
+341;6;2;3;6;2;;;;;Indenização
+341;6;2;3;6;3;;;;;Retroação da data do início da contribuição
+341;6;2;3;6;4;;;;;Contagem recíproca de tempo de contribuição
+341;6;2;3;6;5;;;;;Justificação administrativa
+341;6;2;4;;;;;;;Instituições de Previdência
+341;6;2;4;1;;;;;;Instituto Nacional de Previdência Social (INPS)
+341;6;2;4;2;;;;;;Instituto Nacional do Seguro Social (INSS)
+341;6;2;4;3;;;;;;Outras instituições de previdência social
+341;6;2;5;;;;;;;Previdência Privada. Previdência Fechada
+341;6;2;5;1;;;;;;Fundos de pensão
+341;6;2;5;2;;;;;;Previdência Aberta. Seguros e mercados de capitais. Superintendência de Seguros Privados (SUSEP)
+341;6;3;;;;;;;;Assistência Social
+341;6;3;1;;;;;;;Formas de Assistência
+341;6;3;1;1;;;;;;Assistência Alimentar
+341;6;3;1;2;;;;;;Assistência Financeira. Empréstimos
+341;6;3;1;3;;;;;;Assistência Habitacional
+341;6;3;1;3;1;;;;;Banco Nacional da Habitação (BNH)
+341;6;4;;;;;;;;Saúde
+341;6;4;1;;;;;;;Assistência Médica
+341;6;4;1;1;;;;;;Sistema Único de Saúde (SUS)
+341;6;4;1;2;;;;;;Fornecimento de medicamentos
+341;7;;;;;;;;;DIREITO MILITAR
+341;7;1;;;;;;;;Estatuto Militar
+341;7;1;1;;;;;;;Hierarquia militar. Postos militares, graduação
+341;7;1;2;;;;;;;Comando militar e subordinação
+341;7;1;3;;;;;;;Deveres militares
+341;7;2;;;;;;;;Direitos e prerrogativas militares
+341;7;2;1;;;;;;;Remuneração
+341;7;2;2;;;;;;;Promoções
+341;7;2;3;;;;;;;Férias
+341;7;2;4;;;;;;;Licenças
+341;7;2;5;;;;;;;Pensões militares
+341;7;2;6;;;;;;;Uso de uniformes das Forças Armadas
+341;7;2;7;;;;;;;Reforma
+341;7;2;8;;;;;;;Transferência para reserva remunerada
+341;7;2;9;;;;;;;Falecimento de militar
+341;7;3;;;;;;;;Contravenções e transgressões militares
+341;7;3;1;;;;;;;Deserção
+341;7;3;2;;;;;;;Penas disciplinares
+341;7;4;1;;;;;;;Casamento de militar
+341;7;4;5;;;;;;;Tempo de serviço
+341;7;4;6;;;;;;;Recompensas
+341;7;4;6;1;;;;;;Condecorações
+341;7;4;7;;;;;;;Dispensas de serviço
+341;7;4;8;;;;;;;Assistência religiosa. Capelães militares
+341;7;5;;;;;;;;Direito penal militar
+341;7;5;1;;;;;;;Pessoas sujeitas ao Direito penal militar
+341;7;5;2;;;;;;;Imputabilidade
+341;7;5;3;;;;;;;Penas
+341;7;5;3;1;;;;;;Penas principais
+341;7;5;3;1;1;;;;;Pena de morte
+341;7;5;3;1;2;;;;;Reclusão
+341;7;5;3;1;3;;;;;Detenção
+341;7;5;3;1;4;;;;;Prisão
+341;7;5;3;1;5;;;;;Impedimento
+341;7;5;3;1;6;;;;;Suspensão
+341;7;5;3;1;7;;;;;Reforma
+341;7;5;3;2;;;;;;Penas acessórias
+341;7;5;3;3;;;;;;Aplicação da pena
+341;7;5;3;4;;;;;;Suspensão condicional da pena
+341;7;5;3;5;;;;;;Livramento condicional
+341;7;5;3;6;;;;;;Extinção da punibilidade
+341;7;5;4;;;;;;;Medidas de segurança
+341;7;5;5;;;;;;;Crimes militares
+341;7;5;5;1;;;;;;Crimes contra a segurança externa
+341;7;5;5;2;;;;;;Crimes contra a disciplina militar
+341;7;5;5;2;1;;;;;Motim. Revolta. Aliciação
+341;7;5;5;2;2;;;;;Violência contra superior ou militar de serviço
+341;7;5;5;2;3;;;;;Insubordinação
+341;7;5;5;2;4;;;;;Resistência. Fuga
+341;7;5;5;3;;;;;;Crimes contra o serviço militar
+341;7;5;5;3;1;;;;;Insubmissão
+341;7;5;5;3;2;;;;;Deserção
+341;7;5;5;3;3;;;;;Abandono de posto
+341;7;5;5;3;4;;;;;Exercício de comércio
+341;7;5;5;4;;;;;;Crimes contra a pessoa
+341;7;5;5;4;1;;;;;Homicídio
+341;7;5;5;4;2;;;;;Genocídio
+341;7;5;5;4;3;;;;;Rixa. Lesão corporal. Periclitação da vida ou saúde
+341;7;5;5;4;4;;;;;Crimes contra a honra
+341;7;5;5;4;5;;;;;Crimes contra a liberdade
+341;7;5;5;4;6;;;;;Crimes sexuais. Crimes de ultraje ou pudor público
+341;7;5;5;5;;;;;;Crimes contra o patrimônio
+341;7;5;5;6;;;;;;Crimes contra a incolumidade pública
+341;7;5;5;7;;;;;;Crimes contra a administração militar. Crimes contra a administração da Justiça militar
+341;7;5;5;8;;;;;;Crimes militares em tempo de guerra
+341;7;5;5;8;1;;;;;Traição
+341;7;5;5;8;2;;;;;Covardia
+341;7;5;5;8;3;;;;;Espionagem
+341;7;5;5;8;4;;;;;Outros crimes em tempo de guerra
+341;7;5;6;;;;;;;Regime penitenciário militar
+341;7;6;;;;;;;;Processo penal militar
+341;7;6;1;;;;;;;Organização da Justiça militar
+341;7;6;1;1;;;;;;Cortes e Tribunais militares
+341;7;6;1;2;;;;;;Juizes militares
+341;7;6;1;2;1;;;;;Pessoal auxiliar dos juizes
+341;7;6;1;3;;;;;;Polícia judiciária militar
+341;7;6;1;4;;;;;;Inquérito policial militar
+341;7;6;2;;;;;;;Foro militar
+341;7;6;2;1;;;;;;Competência
+341;7;6;2;2;;;;;;Conflitos de competência
+341;7;6;3;;;;;;;Processo ordinário
+341;7;6;4;;;;;;;Processos especiais
+341;7;6;5;;;;;;;Nulidades
+341;7;6;6;;;;;;;Recursos
+341;7;6;7;;;;;;;Execução da sentença
+341;7;6;7;1;;;;;;Penas principais
+341;7;6;7;2;;;;;;Penas acessórias
+341;7;6;7;3;;;;;;Suspensão condicional da pena. Livramento condicional
+341;7;6;7;4;;;;;;Indulto
+341;7;6;7;5;;;;;;Comutação da pena
+341;7;6;7;6;;;;;;Anistia
+341;7;6;7;7;;;;;;Reabilitação
+341;7;6;8;;;;;;;Medidas de segurança
+341;7;6;9;;;;;;;Justiça militar em tempo de guerra
+341;8;;;;;;;;;DIREITO AÉREO. CÓDIGO DO AR (Ver também 342.2991 - Questões de direito privado relativas às aeronaves)
+341;8;1;;;;;;;;Espaço aéreo. Direito de sobrevoar
+341;8;2;;;;;;;;Normas internacionais de direito aéreo. Convenções internacionais
+341;8;3;;;;;;;;Aeroportos. Aeroportos internacionais. Normas de operação
+341;8;3;1;;;;;;;Pessoal de aeroportos
+341;8;3;2;;;;;;;Polícia aérea
+341;8;3;3;;;;;;;Polícia sanitária aérea
+341;8;3;3;1;;;;;;Desinsetização de aeronaves
+341;8;4;;;;;;;;Administração da navegação aérea
+341;8;4;1;;;;;;;Regulamentação do trânsito aéreo. Tráfego aéreo
+341;8;4;2;;;;;;;Entrada e saída de pessoas
+341;8;4;3;;;;;;;Custódia e guarda de passageiros e tripulantes
+341;8;4;4;;;;;;;Disposições de segurança
+341;8;4;5;;;;;;;Aeronaves. Espécies de aeronaves
+341;8;4;5;1;;;;;;Aeronaves públicas
+341;8;4;5;1;1;;;;;Aeronaves militares
+341;8;4;5;1;2;;;;;Aeronaves do serviço público
+341;8;4;5;2;;;;;;Aeronaves privadas
+341;8;4;6;;;;;;;Tripulação aérea
+341;8;4;6;1;;;;;;Licenças e certificados de aptidão
+341;8;4;6;2;;;;;;Comandante de aeronave
+341;8;5;;;;;;;;Transporte aéreo
+341;8;5;1;;;;;;;Documentos de transporte. Bilhete de passagem
+341;8;5;2;;;;;;;Nota de bagagem
+341;8;5;3;;;;;;;Conhecimento aéreo
+341;8;6;;;;;;;;Responsabilidade do transporte aéreo
+341;8;6;1;;;;;;;Seguro aéreo
+341;8;6;2;;;;;;;Abalroamento aéreo
+341;8;6;3;;;;;;;Assistência e salvamento
+341;8;6;4;;;;;;;Infrações
+341;8;6;5;;;;;;;Penalidades
+341;8;6;5;1;;;;;;Multas
+341;8;6;5;2;;;;;;Interdição de aeronaves
+341;8;6;5;3;;;;;;Outras penalidades
+341;8;7;;;;;;;;Direito aéreo militar
+341;8;7;1;;;;;;;Defesa antiaérea. Proteção antiaérea
+341;8;8;;;;;;;;Direito aplicado à telecomunicação
+341;8;8;1;;;;;;;Telecomunicação por satélites artificiais
+341;8;9;;;;;;;;Direito Espacial
+341;8;9;1;;;;;;;Princípios reguladores das atividades dos Estados na exploração do espaço cósmico, lua e demais corpos celestes
+342;;;;;;;;;;DIREITO PRIVADO
+342;1;;;;;;;;;DIREITO CIVIL
+342;1;0;1;;;;;;;Lei de introdução ao Código Civil
+342;1;1;;;;;;;;Parte geral
+342;1;1;2;;;;;;;Direitos em geral
+342;1;1;2;1;;;;;;Diversas espécies de direitos
+342;1;1;2;2;;;;;;Elementos constitutivos dos direitos: sujeito, objeto, relação jurídica, sanção
+342;1;1;2;3;;;;;;Origem, fontes dos direitos
+342;1;1;2;4;;;;;;Movimentação dos direitos: exercício, aquisição, conservação, cessão, transferência, transmissão, perda, abuso
+342;1;1;2;5;;;;;;Extinção dos direitos
+342;1;1;2;6;;;;;;Efeitos gerais dos direitos
+342;1;1;2;7;;;;;;Direitos adquiridos
+342;1;1;2;9;;;;;;Regras de direito. Máximas, axiomas, brocardos, adágios, aforismos jurídicos
+342;1;1;3;;;;;;;Atos e fatos jurídicos em geral
+342;1;1;3;1;;;;;;Atos jurídicos e não jurídicos. Condições de existência dos atos jurídicos. Atos nulos e inexistentes. Nulidade, confirmação e rescisão dos atos em geral
+342;1;1;3;3;;;;;;Diversas espécies de atos jurídicos
+342;1;1;3;5;;;;;;Formas de atos jurídicos
+342;1;1;3;6;;;;;;Publicidade dos atos em geral. Publicações. Registro Transcrição legal
+342;1;1;3;8;;;;;;Condição. Condição suspensiva. Condição resolutória. Condição potestativa. Retroatividade das condições
+342;1;1;3;9;;;;;;Tempos dos atos jurídicos. Termo. Data certa
+342;1;1;4;1;;;;;;Falta, erro, negligência, caso fortuito, dolo, fraude, simulação, ignorância, violência
+342;1;1;4;2;;;;;;Prazo. Computação dos prazos
+342;1;1;4;3;;;;;;Prescrição em geral
+342;1;1;4;3;3;;;;;Prescrição Extintiva: Decadência
+342;1;1;5;;;;;;;Pessoas naturais. Circunstâncias que influem sobre o estado e a capacidade jurídica
+342;1;1;5;1;;;;;;Condições físicas da pessoa natural sob o ponto de vista jurídico
+342;1;1;5;2;;;;;;Gozo e privação dos direitos civis em geral. Liberdade pessoal e civil
+342;1;1;5;5;;;;;;Estado e capacidade jurídica em geral
+342;1;1;5;6;;;;;;Sexo. Condição da mulher
+342;1;1;5;7;;;;;;Idade. Condição de menor
+342;1;1;5;8;;;;;;Puer conceptus. Nascituro
+342;1;1;6;1;;;;;;Doenças do corpo e do espírito em geral
+342;1;1;6;2;;;;;;Alienação mental. Regime dos alienados
+342;1;1;6;3;;;;;;Interdição judiciária em geral. Interditos
+342;1;1;6;4;;;;;;Prodigalidade. Pródigos
+342;1;1;6;5;;;;;;Cegos. Cegueira. Surdos-mudos. Surdo mudez
+342;1;1;6;6;;;;;;Parentesco e aliança. Consangüinidade
+342;1;1;6;7;;;;;;Religião e raça
+342;1;1;6;8;;;;;;Profissões. Militares, marinheiro, padres etc
+342;1;1;6;9;;;;;;Condenações judiciárias penais. Morte civil
+342;1;1;7;1;;;;;;Domicílio. Residência
+342;1;1;7;2;;;;;;Ausência. Desaparecidos. Expatriados
+342;1;1;7;4;;;;;;Privilégios, imunidades e prerrogativas
+342;1;1;8;;;;;;;Estado civil. Constatação do estado das pessoas
+342;1;1;8;1;;;;;;Organização e estabelecimento do estado civil
+342;1;1;8;2;;;;;;Oficiais do estado civil e pessoas encarregadas das constatações e da redação dos atos
+342;1;1;8;3;;;;;;Livros e registros do estado civil
+342;1;1;8;4;;;;;;Redação dos atos do estado civil em geral. Formalidades a observar
+342;1;1;8;8;;;;;;Questões particulares
+342;1;1;8;9;;;;;;Nomes, prenomes, sobrenomes e pseudônimos, nomes e títulos nobiliários
+342;1;1;9;;;;;;;Pessoas jurídicas, morais, civis. Personificação civil
+342;1;1;9;1;;;;;;Pessoas jurídicas em geral (Corporações, associações, fundações)
+342;1;1;9;2;;;;;;Constituição. Formalidades
+342;1;1;9;3;;;;;;Poderes públicos considerados como pessoas jurídicas. União, Estados, Municípios. Estabelecimento de utilidade pública
+342;1;1;9;5;;;;;;Fundações
+342;1;1;9;5;1;;;;;Caracteres e condições
+342;1;1;9;5;2;;;;;Espécies
+342;1;1;9;5;3;;;;;Fundação, organização. Reconhecimento de utilidade pública
+342;1;1;9;5;4;;;;;Patrimônio
+342;1;1;9;5;5;;;;;Extinção
+342;1;2;;;;;;;;Direitos reais. Coisas ou bens
+342;1;2;1;;;;;;;Coisas ou bens. Suas divisões
+342;1;2;1;1;;;;;;Coisas ou bens físicos, materiais e coisas ou bens intelectuais ou incorpóreos
+342;1;2;1;3;;;;;;Coisas ou bens divisíveis e indivisíveis, partes constitutivas das coisas
+342;1;2;1;4;;;;;;Coisas ou bens móveis e imóveis
+342;1;2;1;4;1;;;;;Móveis
+342;1;2;1;4;2;;;;;Imóveis
+342;1;2;1;5;;;;;;Coisas ou bens no comércio e fora do comércio
+342;1;2;1;5;1;;;;;Doação de órgãos
+342;1;2;1;6;;;;;;Coisas fungíveis e infungíveis
+342;1;2;1;7;;;;;;Coisas ou bens acessórias e principais, dependentes e independentes
+342;1;2;1;8;;;;;;Divisões dos bens segundo os proprietários
+342;1;2;1;8;1;;;;;Coisas comuns
+342;1;2;1;8;2;;;;;Bens públicos
+342;1;2;1;8;3;;;;;Bens privados
+342;1;2;1;9;;;;;;Outras divisões das coisas
+342;1;2;2;;;;;;;Direitos reais em geral
+342;1;2;2;1;;;;;;Natureza, definição, caracteres
+342;1;2;2;2;;;;;;Condições de existência: Transcrição e publicidade
+342;1;2;3;;;;;;;Propriedade
+342;1;2;3;2;;;;;;Aquisição, transmissão e perda da propriedade
+342;1;2;3;2;1;;;;;Ocupação. Apropriação. Reversão
+342;1;2;3;2;2;;;;;Acessão mobiliária. Especificação. Confusão. Adjunção
+342;1;2;3;2;3;;;;;Tradição
+342;1;2;3;2;4;;;;;Usucapião. Prescrição aquisitiva
+342;1;2;3;2;5;;;;;Acessão
+342;1;2;3;2;8;;;;;Alienação entre vivos
+342;1;2;3;3;;;;;;Direitos do proprietário. Garantia de seus direitos
+342;1;2;3;3;1;;;;;Direitos de gozar da coisa
+342;1;2;3;3;2;;;;;Direitos de excluir todas as pessoas de uso da coisa própria
+342;1;2;3;4;;;;;;Limitações do direito de propriedade
+342;1;2;3;4;1;;;;;Desapropriação por utilidade pública
+342;1;2;3;4;3;;;;;Limitações derivadas dos direitos privados e dos monopólios. Conflitos entre direitos privados
+342;1;2;3;4;4;;;;;Propriedade limitada
+342;1;2;3;4;5;;;;;Propriedade do espaço aéreo e subsolo
+342;1;2;3;4;7;;;;;Inalienabilidade
+342;1;2;3;5;;;;;;Propriedade imobiliária. Regime das terras
+342;1;2;3;6;;;;;;Direitos diversos derivados da propriedade feudal
+342;1;2;3;7;;;;;;Bens de família. Homestead
+342;1;2;3;8;;;;;;Condomínio e indivisão
+342;1;2;3;9;;;;;;Direito de preempção
+342;1;2;4;;;;;;;Direitos reais segundo o objeto ao qual dizem respeito
+342;1;2;4;1;;;;;;Direitos privados que nascem da vizinhança
+342;1;2;4;2;;;;;;Direitos privados relativos aos edifícios e construções
+342;1;2;4;3;;;;;;Direitos privados relativos à caça e à pesca
+342;1;2;4;4;;;;;;Direitos privados relativos às águas
+342;1;2;4;5;;;;;;Direitos privados relativos às minas. Propriedade mineira. Direito de mineração
+342;1;2;4;7;;;;;;Direito Agrário. Direito Rural
+342;1;2;4;7;1;;;;;Estatuto da Terra
+342;1;2;4;7;2;;;;;Imóvel rural
+342;1;2;4;7;3;;;;;Função social da propriedade
+342;1;2;4;7;4;;;;;Cadastro rural
+342;1;2;4;7;5;;;;;Aquisição e arrendamento de imóveis rurais por estrangeiros
+342;1;2;4;7;6;;;;;Crédito rural
+342;1;2;4;7;7;;;;;Usucapião especial rural
+342;1;2;4;7;8;;;;;Contratos agrários
+342;1;2;4;7;9;;;;;Reforma agrária
+342;1;2;4;9;4;4;;;;Reforma Agrária na França
+342;1;2;4;7;9;1;;;;Desapropriação para fins de Reforma Agrária
+342;1;2;5;;;;;;;Outros direitos reais além da propriedade
+342;1;2;5;1;;;;;;Posse
+342;1;2;5;1;2;;;;;Posse natural ou detenção, posse precária, atos de simples tolerância
+342;1;2;5;1;3;;;;;Posse de boa e de má-fé
+342;1;2;5;1;4;;;;;Posse legítima
+342;1;2;5;1;5;;;;;Posse de bens móveis em particular. Posse valendo por título. Prescrição instantânea
+342;1;2;5;1;6;;;;;Posse dos frutos
+342;1;2;5;2;;;;;;Usufruto
+342;1;2;5;3;;;;;;Uso
+342;1;2;5;4;;;;;;Habitação
+342;1;2;5;5;;;;;;Enfiteuse
+342;1;2;5;6;;;;;;Superfície
+342;1;2;5;8;;;;;;Concessão sobre domínio público
+342;1;2;6;;;;;;;Servidões
+342;1;2;6;1;;;;;;Questões particulares
+342;1;2;6;2;;;;;;Servidões legais de utilidade pública
+342;1;2;6;5;;;;;;Servidões legais de interesses privados
+342;1;2;6;6;;;;;;Servidões por convenção
+342;1;2;6;7;;;;;;Servidões pessoais (Direito antigo)
+342;1;2;7;;;;;;;Hipotecas. Garantias reais. Dívidas sobre imóveis
+342;1;2;7;1;;;;;;Natureza. Caracteres. Noções. Definições
+342;1;2;7;2;;;;;;Bens suscetíveis de hipoteca
+342;1;2;7;3;;;;;;Estabelecimento e conservação das hipotecas. Inscrição e transcrição, renovação. Certificado hipotecário. Título novo
+342;1;2;7;4;;;;;;Efeitos e extensão das hipotecas
+342;1;2;7;5;;;;;;Cessão e sub-rogação da dívida hipotecária
+342;1;2;7;6;;;;;;Extinção das hipotecas: pela extinção obrigação principal, renúncia do credor, prescrição, perda ou destruição da coisa
+342;1;2;7;7;;;;;;Diversas espécies de hipotecas. Divisão das hipotecas. Classificação
+342;1;2;7;8;;;;;;Crédito imobiliário e agrícola
+342;1;2;8;;;;;;;Privilégios. Dívidas privilegiadas
+342;1;2;8;1;;;;;;Privilégios sobre os móveis
+342;1;2;8;2;;;;;;Privilégios sobre os imóveis. Privilégios sobre o preço dos imóveis
+342;1;2;8;3;;;;;;Privilégios de acordo com as diversas espécies de dívidas privilegiadas
+342;1;2;8;5;;;;;;Direito de retenção
+342;1;2;8;6;;;;;;Bens impenhoráveis
+342;1;2;8;7;;;;;;Concurso e preferências entre credores
+342;1;3;;;;;;;;Móveis
+342;1;4;;;;;;;;Obrigações. Contratos. Convenções
+342;1;4;1;;;;;;;Obrigações em geral
+342;1;4;1;1;;;;;;Teoria geral
+342;1;4;1;2;;;;;;Diversas espécies. Modalidades das obrigações
+342;1;4;1;3;;;;;;Pessoas que intervêm nas obrigações em geral
+342;1;4;1;4;;;;;;Solidariedade. Pluralidade de devedores e de credores
+342;1;4;1;5;;;;;;Cessão ou transferência de crédito. Venda de direitos. Mudanças na pessoa do credor
+342;1;4;1;6;;;;;;Cessão de dívidas. Mudanças na pessoa do devedor
+342;1;4;2;;;;;;;Efeitos das obrigações
+342;1;4;2;2;;;;;;Inexecução das obrigações
+342;1;4;2;3;;;;;;Culpa e negligência nas obrigações
+342;1;4;2;4;;;;;;Caso fortuito. Calamidades
+342;1;4;2;5;;;;;;Execução tardia das obrigações
+342;1;4;2;7;;;;;;Insolvência. Prazo dado pelo juiz
+342;1;4;2;8;;;;;;Exercício dos direitos e das ações dos devedores. Ação sub-rogatória
+342;1;4;3;;;;;;;Extinção das obrigações
+342;1;4;3;1;;;;;;Pagamento
+342;1;4;3;2;;;;;;Oferta de pagamento. Ofertas reais
+342;1;4;3;3;;;;;;Perdão de dívidas. Aceptilação
+342;1;4;3;4;;;;;;Compensação
+342;1;4;3;5;;;;;;Novação. Delegação. Expromissão
+342;1;4;3;6;;;;;;Confusão de direitos
+342;1;4;3;7;;;;;;Pagamento com sub-rogação
+342;1;4;3;8;;;;;;Verificação de contas
+342;1;4;3;9;;;;;;Outras causas de extinção
+342;1;4;3;9;1;;;;;Perda de coisas devidas
+342;1;4;3;9;2;;;;;Condição resolutória
+342;1;4;3;9;3;;;;;Revogação
+342;1;4;3;9;4;;;;;Prescrição e decadência
+342;1;4;4;;;;;;;Contratos e convenções em geral
+342;1;4;4;1;;;;;;Classificação dos contratos
+342;1;4;4;1;1;;;;;Unilaterais, bilaterais, sinalagmático
+342;1;4;4;1;2;;;;;Onerosos e gratuitos
+342;1;4;4;1;3;;;;;Reais e consensuais
+342;1;4;4;1;4;;;;;Comutativos e aleatórios
+342;1;4;4;1;5;;;;;Solenes e não solenes
+342;1;4;4;1;6;;;;;Nominais e inominais
+342;1;4;4;1;7;;;;;Principais e acessórios
+342;1;4;4;1;8;;;;;Liberdade dos contratos em geral
+342;1;4;4;2;;;;;;Condições para a validade dos contratos em geral. Consentimento
+342;1;4;4;2;1;;;;;Declaração, manifestação da vontade
+342;1;4;4;2;2;;;;;Vícios do consentimento
+342;1;4;4;2;5;;;;;Juramento em geral
+342;1;4;4;2;7;;;;;Oferta e aceitação
+342;1;4;4;2;8;;;;;Ratificação
+342;1;4;4;2;9;;;;;Contratos entre ausentes, por correspondência, por telegramas, por telefone, por meio eletrônico etc. Documento Eletrônico. Certificação Digital
+342;1;4;4;3;;;;;;Capacidade nos contratos. Incapacidade
+342;1;4;4;4;;;;;;Objeto dos contratos. Objeto impossível, ilícito, imoral
+342;1;4;4;5;;;;;;Causa. Realidade da causa. Causa ilícita
+342;1;4;4;6;;;;;;Interpretação dos contratos
+342;1;4;4;7;;;;;;Efeitos dos contratos em relação a terceiros
+342;1;4;4;8;;;;;;Outras questões diversas relativas aos contratos
+342;1;4;4;9;;;;;;Nulidade, rescisão, revogação, resolução dos contratos. Lesões. Condições ilícitas
+342;1;4;5;;;;;;;Contratos particulares
+342;1;4;5;1;;;;;;Venda. Cessão. Compra
+342;1;4;5;1;1;;;;;Venda de bens móveis
+342;1;4;5;1;2;;;;;Venda por atacado
+342;1;4;5;1;3;;;;;Venda por peso e medida. Vendas a varejo
+342;1;4;5;1;4;;;;;Venda de imóveis. Incorporação de imóveis
+342;1;4;5;1;5;;;;;Venda de animais
+342;1;4;5;1;6;;;;;Venda pública. Venda em leilão
+342;1;4;5;1;7;;;;;Promessa de venda. Opção de venda. Policitação
+342;1;4;5;1;8;;;;;Venda por modalidades diversas. Retrovenda
+342;1;4;5;1;9;;;;;Outras vendas ou cessões. Alienação fiduciária
+342;1;4;5;2;;;;;;Troca ou permuta
+342;1;4;5;3;;;;;;Aluguel de coisas. Locação. Arrendamento. Regras comuns a todos os arrendamentos
+342;1;4;5;3;1;;;;;Locação de bens rurais. Arrendamento de bens rurais. Formas diversas de contratos agrícolas. Parceria. Meieiros, colonos etc
+342;1;4;5;3;2;;;;;Locação de animais. Arrendamentos de gado
+342;1;4;5;3;3;;;;;Locação de imóveis
+342;1;4;5;3;3;1;;;;Locação de casas, de apartamentos, de quartos de pensão ou hotel
+342;1;4;5;3;4;;;;;Locação de outros imóveis que não casas e bens rurais: usinas, fundos de comércio etc
+342;1;4;5;3;6;;;;;Locação de bens móveis
+342;1;4;5;3;8;;;;;Locação de bens da União, dos Estados, Municípios e dos estabelecimentos públicos
+342;1;4;5;4;;;;;;Aluguel de serviços
+342;1;4;5;4;1;;;;;Pessoas que prometem seu próprio trabalho a outro em serviço diário
+342;1;4;5;4;2;;;;;Contrato de hospedagem. Contrato de pensão
+342;1;4;5;4;3;;;;;Empreitada
+342;1;4;5;5;;;;;;Empréstimos
+342;1;4;5;5;1;;;;;Mútuo ou empréstimo de consumo
+342;1;4;5;5;2;;;;;Comodato ou empréstimo de uso
+342;1;4;5;5;3;;;;;Penhor
+342;1;4;5;6;;;;;;Empréstimo a juros. Anatocismo: juros dos juros
+342;1;4;5;6;3;;;;;Usura
+342;1;4;5;7;;;;;;Títulos de crédito civis
+342;1;4;5;7;1;;;;;Títulos nominais
+342;1;4;5;7;2;;;;;Títulos ao portador
+342;1;4;5;9;;;;;;Depósitos
+342;1;4;5;9;3;;;;;Depósito voluntário. Depósito em banco
+342;1;4;5;9;5;;;;;Depósitos necessários
+342;1;4;5;9;7;;;;;Depósitos em mãos de depositário legal. Consignação
+342;1;4;5;9;8;;;;;Depósito irregular
+342;1;4;6;1;;;;;;Seqüestro convencional
+342;1;4;6;2;;;;;;Mandato. Procurações
+342;1;4;6;2;2;;;;;Mandato geral
+342;1;4;6;2;4;;;;;Mandato particular
+342;1;4;6;2;6;;;;;Gerente e agente de negócios. Gerente de imóveis. Administrador
+342;1;4;6;3;;;;;;Transporte
+342;1;4;6;4;;;;;;Rendas
+342;1;4;6;4;3;;;;;Constituição de renda perpétua
+342;1;4;6;4;4;;;;;Renda feudal
+342;1;4;6;4;5;;;;;Renda sobre o Estado
+342;1;4;6;5;;;;;;Jogo, aposta
+342;1;4;6;6;;;;;;Penhor
+342;1;4;6;6;3;;;;;Penhor sobre coisas mobiliárias pessoais
+342;1;4;6;6;4;;;;;Penhor sobre coisas mobiliárias incorpóreas e sobre os direitos
+342;1;4;6;7;;;;;;Anticrese
+342;1;4;6;8;;;;;;Caução. Garantia. Prestação de segurança
+342;1;4;6;8;5;;;;;Caução legal e judiciária
+342;1;4;6;9;;;;;;Transação e compromisso
+342;1;4;6;9;1;;;;;Transação
+342;1;4;6;9;2;;;;;Compromisso. Cláusula compromissória
+342;1;4;7;1;;;;;;Sociedades civis. Associações
+342;1;4;7;1;1;;;;;Sociedade universal
+342;1;4;7;1;2;;;;;Sociedades particulares
+342;1;4;7;1;4;;;;;Sociedades imobiliárias
+342;1;4;7;1;5;;;;;Sociedades agrícolas
+342;1;4;7;1;6;;;;;Sociedades recreativas e culturais. Associações de fato
+342;1;4;7;1;7;;;;;Associações religiosas e filosóficas. Conventos
+342;1;4;7;1;8;;;;;Associações sem finalidade de lucro
+342;1;4;7;2;;;;;;Doação entre vivos. Liberalidades. Atos a título gratuito
+342;1;4;7;3;;;;;;Doações entre cônjuges
+342;1;4;7;4;;;;;;Doação por contrato de casamento
+342;1;4;7;6;;;;;;Promessa de dívida. Reconhecimento de dívida contestada e não provada
+342;1;4;8;;;;;;;Outras formas contratuais
+342;1;4;8;1;;;;;;Contrato de arrendamento mercantil (leasing). Alienação fiduciária
+342;1;4;8;2;;;;;;Cartão de crédito
+342;1;4;8;3;;;;;;Contrato de adesão
+342;1;4;8;4;;;;;;Contrato misto
+342;1;4;8;5;;;;;;Contrato bancário
+342;1;5;;;;;;;;Outras fontes de obrigações além dos contratos. Obrigações legais. Quasecontratos. Quase-delitos. Atos ilícitos. Delitos considerados do ponto de vista civil
+342;1;5;1;;;;;;;Responsabilidade civil em geral. Ação aquiliana. Teoria do risco
+342;1;5;1;1;;;;;;Condições de existência da responsabilidade
+342;1;5;1;2;;;;;;Pessoas responsáveis. Imputabilidade da responsabilidade
+342;1;5;1;3;;;;;;Reparação do dano. Pena privada. Indenizações
+342;1;5;1;5;;;;;;Responsabilidade perante terceiros por fato de outrem ou por dano ocasionado por outras pessoas
+342;1;5;1;5;1;;;;;Responsabilidade dos pais
+342;1;5;1;5;2;;;;;Responsabilidade dos empregadores, chefes, patrões
+342;1;5;1;5;3;;;;;Responsabilidade dos preceptores ou outras pessoas que tenham crianças sob sua guarda
+342;1;5;1;5;4;;;;;Responsabilidade de pessoas tendo a guarda de incapazes, exceto crianças
+342;1;5;1;6;;;;;;Responsabilidade do dano causado por animais
+342;1;5;1;7;;;;;;Responsabilidade do dano causado a terceiros por coisas inanimadas em geral
+342;1;5;3;;;;;;;Atos ilícitos e danosos em particular. Delitos
+342;1;5;5;;;;;;;Quase-contratos em geral
+342;1;5;5;1;;;;;;Enriquecimento sem causa. Recebimento de coisa indevida. Enriquecimento ilícito
+342;1;5;5;1;1;;;;;Restituição de coisa indevida. Ação de restituição. Condictio indebitti
+342;1;5;5;1;2;;;;;Actio de in rem verso
+342;1;5;5;2;;;;;;Gestão de negócios de outro sem mandato. Negotiorum gestio
+342;1;5;5;3;;;;;;Indivisão. Comunidade acidental. Actio comunni dividundo
+342;1;5;5;4;;;;;;Exibição de coisas e de títulos. Actio ad exhibendum
+342;1;5;6;;;;;;;Responsabilidade profissional ou devido ao exercício de profissões
+342;1;6;;;;;;;;Direito de família
+342;1;6;1;;;;;;;Família
+342;1;6;1;1;;;;;;Constituição. Parentesco e aliança. Linhas e graus
+342;1;6;1;5;;;;;;Obrigação de alimento ou manutenção. Alimentos. Dívida alimentar
+342;1;6;2;;;;;;;Casamento
+342;1;6;2;1;;;;;;Esponsais. Promessa de casamento
+342;1;6;2;1;5;;;;;Ruptura de promessa de casamento. Indenizações
+342;1;6;2;1;7;;;;;Intermediários. Profissão matrimonial. Agência matrimonial. Corretagem matrimonial
+342;1;6;2;2;;;;;;Condições necessárias para contratar casamento
+342;1;6;2;2;1;;;;;Idade exigida. Casamento de impúberes
+342;1;6;2;2;2;;;;;Consentimento
+342;1;6;2;2;3;;;;;Impedimentos (parentesco, aliança, religião, raça etc). Publicações. Oposições. Dispensa
+342;1;6;2;2;4;;;;;Condições eugênicas. Certificado pré-nupcial
+342;1;6;2;2;7;;;;;Necessidade de ter preenchido certos deveres cívicos
+342;1;6;2;2;8;;;;;Dote regulamentar (oficiais etc)
+342;1;6;2;3;;;;;;Formalidades. Celebração. Casamento civil e casamento religioso
+342;1;6;2;4;;;;;;Nulidade e anulação do casamento
+342;1;6;2;4;1;;;;;Nulidade absoluta. Impedimentos dirimentes absolutos
+342;1;6;2;4;2;;;;;Nulidade relativa. Impedimentos dirimentes relativos
+342;1;6;2;4;3;;;;;Casamento putativo (o que é contraído indevidamente, mas de boa-fé)
+342;1;6;2;5;;;;;;Efeitos do casamento sobre a pessoa dos cônjuges. Deveres e direitos dos cônjuges
+342;1;6;2;5;1;;;;;Deveres recíprocos
+342;1;6;2;5;1;1;;;;Fidelidade. Adultério. Manutenção
+342;1;6;2;5;1;2;;;;Assistência mútua
+342;1;6;2;5;1;3;;;;Vida em comum no domicílio conjugal
+342;1;6;2;5;2;;;;;Mulher casada. Autoridade marital. Autorização marital
+342;1;6;2;5;2;1;;;;Direitos do marido em geral
+342;1;6;2;5;2;2;;;;Direitos da mulher em geral
+342;1;6;2;5;2;4;;;;Direitos do marido sobre os bens da mulher
+342;1;6;2;5;3;;;;;Autorização judiciária dada à mulher casada
+342;1;6;2;6;;;;;;Efeitos do casamento sobre os bens dos cônjuges. Regime dos bens no casamento
+342;1;6;2;6;1;;;;;Regime legal na ausência de contratos
+342;1;6;2;6;2;;;;;Regime convencional. Contrato de casamento
+342;1;6;2;6;4;;;;;Regime de comunhão universal
+342;1;6;2;6;5;;;;;Regime de comunhão parcial
+342;1;6;2;6;6;;;;;Regime de separação de bens
+342;1;6;2;6;7;;;;;Dote. Regime dotal
+342;1;6;2;6;8;;;;;Outros regimes de bens
+342;1;6;2;6;9;;;;;Questões diversas relativas aos bens
+342;1;6;2;6;9;1;;;;Seguro entre os cônjuges
+342;1;6;2;7;;;;;;Dissolução, fim do casamento
+342;1;6;2;7;1;;;;;Morte de um dos cônjuges
+342;1;6;2;7;2;;;;;Divórcio
+342;1;6;2;7;3;;;;;Separação de corpos. Desquite
+342;1;6;2;7;3;1;;;;Separação judicial
+342;1;6;2;7;3;2;;;;Separação convencional
+342;1;6;2;7;3;3;;;;Repúdio
+342;1;6;2;7;4;;;;;Segundo casamento (prazo, condição). Casamento subseqüente. Segundas núpcias
+342;1;6;2;8;;;;;;Diversas espécies de casamento
+342;1;6;2;8;1;;;;;Casamentos secretos, clandestinos
+342;1;6;2;8;2;;;;;Casamentos in extremis
+342;1;6;2;8;3;;;;;Casamentos morganáticos
+342;1;6;2;8;4;1;;;;Concubinato legal. União estável
+342;1;6;2;8;4;2;;;;Uniões ilegítimas. Concubinato. União livre. Contrato de União
+342;1;6;2;8;5;;;;;Casamento por procuração
+342;1;6;2;8;6;;;;;Casamento por compra
+342;1;6;3;;;;;;;Filiação. Pais e filhos
+342;1;6;3;1;;;;;;Filiação legítima
+342;1;6;3;1;1;;;;;Conceito, causa, natureza
+342;1;6;3;1;2;;;;;Prova de legitimidade
+342;1;6;3;1;2;1;;;;Maternidade legítima
+342;1;6;3;1;2;2;;;;Paternidade legítima
+342;1;6;3;1;2;5;;;;Prova contrária. Denegação
+342;1;6;3;2;;;;;;Filiação natural ou descendência ilegítima
+342;1;6;3;2;1;;;;;Investigação da filiação ilegítima
+342;1;6;3;2;1;1;;;;Investigação da maternidade natural
+342;1;6;3;2;1;2;;;;Investigação da paternidade natural
+342;1;6;3;2;1;3;;;;Filiação adulterina ou incestuosa
+342;1;6;3;2;2;;;;;Posse de estado
+342;1;6;3;2;3;;;;;Reconhecimento. Formas. Condições. Efeitos
+342;1;6;3;2;4;;;;;Condição de filho natural
+342;1;6;3;2;5;;;;;Legitimidade ou declaração de legitimidade
+342;1;6;3;2;8;;;;;Condição jurídica dos filhos nascidos dos casamentos nulos
+342;1;6;3;3;;;;;;Adoção
+342;1;6;3;3;1;;;;;Adoção entre vivos. Condições, formas, efeitos
+342;1;6;3;3;2;;;;;Adoção testamentária
+342;1;6;3;4;;;;;;Relações jurídicas entre os pais e os filhos em geral. Poder ou autoridade paterna
+342;1;6;3;5;;;;;;Efeitos do poder paterno quanto à pessoa do filho
+342;1;6;3;6;;;;;;Efeitos quanto aos bens dos filhos
+342;1;6;3;7;;;;;;Controle do exercício do poder pátrio. Proteção da infância
+342;1;6;3;8;;;;;;Condição privilegiada de certos filhos em relação aos outros. Sexo. Idade.
+342;1;6;4;;;;;;;Tutela e curatela
+342;1;6;4;1;;;;;;Idade e condição de minoridade e de maioridade
+342;1;6;4;2;;;;;;Tutela de menores
+342;1;6;4;3;;;;;;Diversas espécies de tutela
+342;1;6;4;3;1;;;;;Tutela legal
+342;1;6;4;3;2;;;;;Tutela testamentária
+342;1;6;4;3;3;;;;;Tutela dativa
+342;1;6;4;3;6;;;;;Tutela frutuária
+342;1;6;4;3;7;;;;;Tutela dos filhos naturais
+342;1;6;4;4;;;;;;Autoridades tutelares
+342;1;6;4;4;2;;;;;Conselho de família
+342;1;6;4;4;3;;;;;Conselho de tutela
+342;1;6;4;4;5;;;;;Curador
+342;1;6;4;4;6;;;;;Atribuições do ministério público, do juiz de paz e do tribunal em matéria tutelar
+342;1;6;4;4;8;;;;;Causas de incapacidade, de exclusão, de dispensa das funções tutelares
+342;1;6;4;5;;;;;;Missão e encargo da tutela
+342;1;6;4;6;;;;;;Emancipação. Curatela do menor emancipado
+342;1;6;4;7;;;;;;Curatela de alienados
+342;1;6;4;8;;;;;;Curatela de pródigos. Conselho Judiciário
+342;1;6;4;9;;;;;;Curatela de enfermos, surdos-mudos, cegos etc
+342;1;6;5;;;;;;;Direito hereditário ou das Sucessões
+342;1;6;5;1;;;;;;Sucessão legítima em geral
+342;1;6;5;2;;;;;;Ordem de sucessão em geral
+342;1;6;5;3;;;;;;Sucessão deferida aos ascendentes legítimos
+342;1;6;5;4;;;;;;Sucessão deferida aos descendentes legítimos
+342;1;6;5;5;;;;;;Sucessão deferida aos colaterais
+342;1;6;5;6;;;;;;Sucessão deferida aos filhos, descendentes e ascendentes naturais
+342;1;6;5;7;;;;;;Sucessão deferida ao cônjuge. Usufruto do cônjuge
+342;1;6;5;8;;;;;;Estado, fisco, comunidade. Hospitais. Estabelecimentos de mão morta
+342;1;6;5;9;;;;;;Herança jacente. Herança vacante
+342;1;6;6;;;;;;;Transmissão da hereditariedade. Direitos obrigações dos herdeiros
+342;1;6;6;1;;;;;;Quota disponível. Legítima ou reserva hereditária
+342;1;6;6;2;;;;;;Transmissão da herança
+342;1;6;6;2;1;;;;;Abertura da sucessão. Declaração. Posse
+342;1;6;6;2;2;;;;;Aceitação pura e simples. Ação de herdar
+342;1;6;6;2;3;;;;;Benefício de inventário
+342;1;6;6;2;4;;;;;Renúncia
+342;1;6;6;3;;;;;;Direitos e obrigações dos herdeiros
+342;1;6;6;4;;;;;;Partilha. Liquidação
+342;1;6;6;5;;;;;;Restituição ao monte da herança
+342;1;6;7;;;;;;;Testamento e legados. Doações por causa mortis. Liberdade de testar
+342;1;6;7;2;;;;;;Testamentos
+342;1;6;7;2;2;;;;;Testamentos ordinários
+342;1;6;7;2;3;;;;;Testamentos especiais e extraordinários (Testamentos militares, marítimos, etc)
+342;1;6;7;2;5;;;;;Testamentos comuns, conjuntos ou recíprocos
+342;1;6;7;2;8;;;;;Revogação expressa ou tácita dos testamentos. Caducidade
+342;1;6;7;3;;;;;;Capacidade de testar e adquirir por testamento
+342;1;6;7;4;;;;;;Disposições testamentárias
+342;1;6;7;5;;;;;;Substituição. Fideicomisso
+342;1;6;7;6;;;;;;Execução dos testamentos
+342;1;6;7;7;;;;;;Direito de acrescer entre herdeiros e legatários
+342;1;6;7;9;;;;;;Legados e estabelecimentos públicos
+342;1;6;8;;;;;;;Outras espécies de sucessões por modos particulares
+342;1;7;;;;;;;;Direito do Menor. Estatuto da Criança e do Adolescente (ECA)
+342;2;;;;;;;;;DIREITO COMERCIAL
+342;2;1;;;;;;;;Atos de comércio. Pessoas que exercem o comércio
+342;2;1;1;;;;;;;Atos de comércio
+342;2;1;2;;;;;;;Comerciantes. Condições para ser comerciante
+342;2;1;3;;;;;;;Mulheres e menores comerciantes
+342;2;1;4;;;;;;;Registros de comércio. Juntas comerciais
+342;2;1;5;;;;;;;Estabelecimentos comerciais. Fundos de comércio. Sucursais
+342;2;1;5;3;;;;;;Venda e hipoteca de fundos comerciais
+342;2;1;6;;;;;;;Prepostos comerciais. Procuração comercial
+342;2;1;7;;;;;;;Agentes, empregados comerciais
+342;2;1;8;;;;;;;Objeto do comércio em geral
+342;2;1;9;;;;;;;Contabilidade comercial. Livros de comércio. Contas, inventários, balanços
+342;2;2;;;;;;;;Sociedades comerciais
+342;2;2;1;;;;;;;Associações comerciais
+342;2;2;1;1;;;;;;Associações de participação
+342;2;2;1;2;;;;;;Associações provisórias. Sindicatos financeiros
+342;2;2;1;3;;;;;;Associações de seguro e socorro mútuo
+342;2;2;2;;;;;;;Sociedades em nome coletivo
+342;2;2;3;;;;;;;Sociedades em comandita
+342;2;2;4;;;;;;;Sociedades de responsabilidade limitada. Sociedades por quotas. Sociedades por ações
+342;2;2;5;;;;;;;Sociedades anônimas
+342;2;2;6;;;;;;;Sociedades cooperativas
+342;2;2;7;;;;;;;Sociedades de capital e indústria
+342;2;2;8;;;;;;;Outras sociedades comerciais. Trading Company
+342;2;2;9;;;;;;;Questões especiais relativas às diversas sociedades
+342;2;2;9;1;;;;;;Contas, balanços, inventários
+342;2;2;9;2;;;;;;Ações de sociedades. Underwriting
+342;2;2;9;3;;;;;;Obrigações de sociedades, criação e emissão. Obrigações hipotecárias. Amortizações das obrigações
+342;2;2;9;4;;;;;;Emissões públicas. Colocação dos títulos
+342;2;2;9;5;;;;;;Liquidação e partilha das sociedades
+342;2;2;9;6;;;;;;Regime das sociedades estrangeiras. Sociedades de capital estrangeiro. Empresas multinacionais
+342;2;2;9;7;;;;;;Disposições penais
+342;2;2;9;8;;;;;;Direito fiscal das sociedades. Patentes. Selo. Registro
+342;2;2;9;9;;;;;;Coleção dos atos das sociedades comerciais
+342;2;3;;;;;;;;Instituições comerciais. Mercado de capitais
+342;2;3;1;;;;;;;Instituições tendo por objetivo pôr em contato produtores e compradores e proteger seus interesses
+342;2;3;1;1;;;;;;Bolsa: organização, operações
+342;2;3;1;1;2;;;;;Bolsa de valores e fundos públicos
+342;2;3;1;1;3;;;;;Bolsa de mercadorias
+342;2;3;1;1;4;;;;;Open market
+342;2;3;1;1;5;;;;;Operações de bolsa em geral
+342;2;3;1;2;;;;;;Mercados, feiras, armazéns e outros lugares do comércio
+342;2;3;1;3;;;;;;Exposições
+342;2;3;1;4;;;;;;Câmaras de comércio
+342;2;3;2;;;;;;;Intermediários do comércio. Agentes de câmbio. Corretores
+342;2;3;3;;;;;;;Açambarcamento, trusts, monopólio
+342;2;3;4;;;;;;;Direito bancário
+342;2;3;4;1;;;;;;Bancos. Operações bancárias
+342;2;3;4;1;1;;;;;Limitações à atividade bancária
+342;2;3;4;1;5;;;;;Sigilo bancário
+342;2;3;4;2;;;;;;Bancos centrais
+342;2;3;4;3;;;;;;Bancos comerciais
+342;2;3;4;4;;;;;;Bancos estatais
+342;2;3;4;5;;;;;;Bancos de investimento
+342;2;3;4;6;;;;;;Bancos de desenvolvimento
+342;2;3;5;;;;;;;Instituições financeiras. Fundos de investimento
+342;2;3;6;;;;;;;Falência
+342;2;3;6;3;;;;;;Condições da falência. Declaração da falência
+342;2;3;6;4;;;;;;Efeitos da falência. Prescrição do prazo. Incapacidades que atingem ofalido. Nulidades dos atos
+342;2;3;6;5;;;;;;Administração da falência
+342;2;3;6;6;;;;;;Pessoal da falência. Tribunal. Juiz. Síndicos ou curadores. Assembléia decredores
+342;2;3;6;7;;;;;;Decisões judiciárias em matéria de falência. Recursos contra essas decisões
+342;2;3;6;8;;;;;;Particularidades próprias a certas espécies de falências
+342;2;3;8;;;;;;;Cessação e suspensão da falência. Reabilitação
+342;2;3;8;3;;;;;;Falta de ativo
+342;2;3;8;5;;;;;;Moratória. Prorrogação do pagamento
+342;2;3;8;6;;;;;;Concordata
+342;2;3;8;8;;;;;;Reabilitação do falido. Cancelamento da lista dos falidos
+342;2;3;9;;;;;;;Liquidação judiciária. Administração judiciária para o restabelecimento dos negócios do falido
+342;2;4;;;;;;;;Contratos comerciais
+342;2;4;1;;;;;;;Contratos comerciais em geral
+342;2;4;1;1;;;;;;Condições para a validade dos contratos
+342;2;4;1;2;;;;;;Consentimento e seus vícios
+342;2;4;1;2;9;;;;;Contratos entre ausentes ou por correspondência
+342;2;4;1;4;;;;;;Objeto de contrato
+342;2;4;1;5;;;;;;Causa
+342;2;4;1;6;;;;;;Interpretação dos contratos
+342;2;4;1;7;;;;;;Efeitos dos contratos em relação a terceiros
+342;2;4;1;8;;;;;;Efeitos gerais dos contratos
+342;2;4;1;9;;;;;;Nulidade e rescisão
+342;2;4;5;;;;;;;Títulos de crédito
+342;2;4;5;1;;;;;;Títulos nominais
+342;2;4;5;2;;;;;;Títulos a ordem
+342;2;4;5;3;;;;;;Títulos ao portador
+342;2;4;5;4;;;;;;Nota promissória
+342;2;4;5;5;;;;;;Duplicatas
+342;2;4;5;6;;;;;;Debêntures
+342;2;4;5;7;;;;;;Títulos de mercado habitacional. Letras imobiliárias. Cédulas hipotecárias
+342;2;4;5;8;;;;;;Títulos de crédito rural
+342;2;4;5;9;;;;;;Títulos de crédito industrial
+342;2;4;6;;;;;;;Letras de câmbio
+342;2;4;6;1;;;;;;Condições e forma
+342;2;4;6;2;;;;;;Transmissão, endosso, cessão
+342;2;4;6;3;;;;;;Garantia
+342;2;4;6;3;1;;;;;Aceitação
+342;2;4;6;3;2;;;;;Aval
+342;2;4;6;6;;;;;;Vencimento. Provisão. Pagamento, Recursos, ações diversas derivadas da falta de pagamento, protestos, devolução, compensação, ação direta
+342;2;4;6;7;;;;;;Intervenção
+342;2;4;8;;;;;;;Cheque
+342;2;4;8;1;;;;;;Requisitos essenciais
+342;2;4;8;2;;;;;;Espécies de cheques
+342;2;4;8;2;1;;;;;Cheque marcado
+342;2;4;8;2;2;;;;;Cheque visado
+342;2;4;8;2;3;;;;;Cheque cruzado
+342;2;4;8;2;4;;;;;Cheque de viagem
+342;2;4;8;2;5;;;;;Cheque fiscal. Cheque de restituição de Imposto. Cheque de poupança
+342;2;4;8;2;9;;;;;Outras espécies de cheque
+342;2;4;8;3;;;;;;Endosso
+342;2;4;8;4;;;;;;Aval
+342;2;4;8;5;;;;;;Câmara de compensação. Clearing house
+342;2;4;8;6;;;;;;Apresentação e pagamento
+342;2;4;8;7;;;;;;Cheque sem fundos
+342;2;4;8;8;;;;;;Prescrição dos cheques. Prazo de prescrição
+342;2;5;;;;;;;;Contratos de direito geral tendo um caráter comercial
+342;2;5;1;;;;;;;Compra. Venda
+342;2;5;1;3;;;;;;Promessa de venda. Promessa de compra. Opção
+342;2;5;1;4;;;;;;Venda por liquidação
+342;2;5;1;5;;;;;;Venda a crédito ou a prestação
+342;2;5;1;7;;;;;;Contrato de fornecimento
+342;2;5;1;8;;;;;;Transferência de dívidas não endossáveis
+342;2;5;1;9;;;;;;Questões diversas relacionadas com a venda. Cláusulas CIF e FOB
+342;2;5;2;;;;;;;Troca
+342;2;5;4;;;;;;;Aluguel de trabalho
+342;2;5;5;;;;;;;Empréstimo comercial. Juro. Usura
+342;2;5;7;;;;;;;Abertura de crédito
+342;2;5;8;;;;;;;Conta corrente
+342;2;5;9;;;;;;;Depósito. Consignação
+342;2;5;9;3;;;;;;Depósito em bancos
+342;2;5;9;3;1;;;;;Caderneta de conta corrente
+342;2;5;9;3;2;;;;;Caderneta de economia. Caderneta de poupança
+342;2;6;1;;;;;;;Seqüestro
+342;2;6;2;;;;;;;Mandato. Comissão
+342;2;6;2;1;;;;;;Contrato de comissão
+342;2;6;2;2;;;;;;Representantes e contratos de representação
+342;2;6;2;5;;;;;;Agência
+342;2;6;3;;;;;;;Transporte. Comunicação
+342;2;6;3;1;;;;;;Transporte em geral
+342;2;6;3;1;3;;;;;Expedição e título de transporte
+342;2;6;3;1;4;;;;;Viagem. Responsabilidade do transportador
+342;2;6;3;1;5;;;;;Chegada ao destino. Consignação
+342;2;6;3;2;;;;;;Viajantes
+342;2;6;3;3;;;;;;Mercadorias
+342;2;6;3;4;;;;;;Estradas de ferro
+342;2;6;3;5;;;;;;Bondes
+342;2;6;3;6;;;;;;Correio
+342;2;6;3;7;;;;;;Telégrafo
+342;2;6;3;8;;;;;;Telefone
+342;2;6;3;9;;;;;;Transportes diversos ou mistos (Estradas de ferro, barcas, bondes)
+342;2;6;4;;;;;;;Seguros
+342;2;6;5;;;;;;;Jogo, aposta
+342;2;6;6;;;;;;;Penhor
+342;2;6;6;1;;;;;;Penhor sobre títulos de créditos e bens incorpóreos
+342;2;6;7;;;;;;;Armazéns gerais. Entrepostos de mercadorias. Warrants. Conhecimento de depósito
+342;2;6;8;;;;;;;Caução, garantia de segurança
+342;2;6;9;;;;;;;Transação. Compromisso. Arbitragem obrigatória
+342;2;7;;;;;;;;Direitos Intelectuais. Propriedade industrial, comercial, científica e de programas de computador
+342;2;7;1;;;;;;;Patentes de invenção
+342;2;7;2;;;;;;;Marcas de fábrica e de comércio
+342;2;7;3;;;;;;;Modelos e desenhos de fabricação
+342;2;7;4;;;;;;;Nome comercial. Firma
+342;2;7;4;5;;;;;;Nomes de localidades. Indicação de proveniência
+342;2;7;5;;;;;;;Segredos de fabricação
+342;2;7;6;;;;;;;Concorrência ilícita e desleal
+342;2;7;7;;;;;;;Publicidade comercial. Reclames, anúncios
+342;2;7;8;;;;;;;Propriedade científica. Descobertas
+342;2;7;9;;;;;;;Organização administrativa. Registro de patentes
+342;2;8;;;;;;;;Direito autoral. Direito artístico e literário
+342;2;8;1;;;;;;;Obras escritas e faladas
+342;2;8;2;;;;;;;Pintura, quadros, aquarelas
+342;2;8;2;5;;;;;;Decorações de teatro. Cenografias
+342;2;8;3;;;;;;;Artes gráficas em geral. Desenhos, gravuras, ilustrações, litografias
+342;2;8;4;;;;;;;Artes plásticas. Esculturas
+342;2;8;5;;;;;;;Música
+342;2;8;5;6;;;;;;Obras dramático-musicais
+342;2;8;5;7;;;;;;Coreografia. Danças, bailados, pantomimas
+342;2;8;6;;;;;;;Teatro. Obras dramáticas
+342;2;8;6;3;;;;;;Contrato de representação
+342;2;8;6;3;1;;;;;Com os autores e editores
+342;2;8;6;3;2;;;;;Com os artistas
+342;2;8;6;3;3;;;;;Com os proprietários de teatro
+342;2;8;6;3;4;;;;;Com o público
+342;2;8;7;;;;;;;Arquitetura. Monumentos públicos. Projetos
+342;2;8;7;5;;;;;;Arte aplicada à indústria (arte industrial, decorativa, artes menores, desenho industrial)
+342;2;8;8;;;;;;;Questões especiais
+342;2;8;8;1;;;;;;Contrato de edição
+342;2;8;8;2;;;;;;Depósito legal obrigatório
+342;2;8;8;3;;;;;;Outras categorias de obras
+342;2;8;8;3;1;;;;;Obras inéditas
+342;2;8;8;3;2;;;;;Obras póstumas
+342;2;8;8;3;3;;;;;Obras anônimas e pseudônimas
+342;2;8;8;3;6;;;;;Obras pertencentes ao Estado e às administrações públicas
+342;2;8;8;4;;;;;;Falsificação de obras de arte em geral. Obras falsificadas
+342;2;8;8;5;;;;;;Respeito da personalidade de outrem pelos autores. Direito de reproduzir artisticamente, ou literariamente uma pessoa. Retratos etc
+342;2;8;8;6;;;;;;Direito de crítica e de resposta
+342;2;8;9;;;;;;;Organização administrativa do direito artístico e literário
+342;2;8;9;0;9;;;;;Bureau International de Ia Propriété Artistique et Littéraire
+342;2;8;9;0;9;8;1;;;Conselho Nacional de Direito Autoral (CNDA)
+342;2;9;;;;;;;;Direito Marítimo
+342;2;9;0;1;;;;;;Questões diversas
+342;2;9;0;1;1;;;;;Navegação em geral
+342;2;9;0;1;1;1;;;;Navegação de longo curso
+342;2;9;0;1;1;2;;;;Navegação de grande cabotagem
+342;2;9;0;1;1;3;;;;Navegação de pequena cabotagem
+342;2;9;0;1;3;;;;;Navegação interior nos rios e canais
+342;2;9;0;1;5;;;;;Navegação nos portos
+342;2;9;0;2;;;;;;Naufrágio. Sinistro. Socorro. Assistência marítima e salvamento. Rebocagem. Retribuição. Propriedade das bagagens naufragadas
+342;2;9;0;4;;;;;;Proteção dos navios de comércio. Comboio com a marinha de guerra
+342;2;9;1;;;;;;;Navios de comércio
+342;2;9;1;1;;;;;;Compra e venda voluntária dos navios
+342;2;9;1;2;;;;;;Construção, aparelhagem, lançamento de navios
+342;2;9;1;3;;;;;;Regime administrativo da propriedade dos navios. Registro dos navios. Nacionalidade, ato de nacionalidade
+342;2;9;1;6;;;;;;Apreensão de navios. Seqüestro, execução e venda forçada
+342;2;9;2;;;;;;;Proprietários de navios. Armadores
+342;2;9;2;5;;;;;;Responsabilidade do proprietário. Direito de abandono
+342;2;9;3;;;;;;;Equipagem. Pessoal marítimo. Contrato de engajamento
+342;2;9;3;1;;;;;;Capitão e patrão de navio. Comandante
+342;2;9;3;1;3;;;;;Diário de bordo e documentos do navio
+342;2;9;3;1;4;;;;;Funções civis do comandante
+342;2;9;3;1;5;;;;;Responsabilidade. Barataria simples
+342;2;9;3;1;6;;;;;Polícia e disciplina de bordo
+342;2;9;3;5;;;;;;Oficiais e marinheiros. Pessoal de serviço a bordo dos navios. Contrato de embarque
+342;2;9;4;;;;;;;Aluguel do navio. Fretamento. Frete. Carta partida
+342;2;9;5;;;;;;;Transporte marítimo e fluvial. Conhecimento
+342;2;9;5;3;;;;;;Transporte de mercadorias
+342;2;9;5;4;;;;;;Transporte de pessoas
+342;2;9;5;5;;;;;;Carregamento e descarregamento. Estadia e sobre-estadia
+342;2;9;6;;;;;;;Avarias
+342;2;9;6;1;;;;;;Avarias simples ou particulares
+342;2;9;6;2;;;;;;Avarias grossas e comuns
+342;2;9;6;3;;;;;;Avarias ocasionadas por abalroamento de navios. Abordagem. Colisão
+342;2;9;7;;;;;;;Crédito marítimo. Empréstimos a risco marítimo
+342;2;9;8;;;;;;;Hipoteca naval
+342;2;9;9;;;;;;;Direito Aeronáutico (Ver também 341.8)
+342;2;9;9;1;;;;;;Aeronaves
+342;2;9;9;1;1;;;;;Compra e venda de aeronaves
+342;2;9;9;1;2;;;;;Construção. Medidas de segurança. Exame técnico do material. Certificados de navegabilidade
+342;2;9;9;1;3;;;;;Registro das aeronaves. Marcas de nacionalidade
+342;2;9;9;2;;;;;;Proprietários de aeronaves. Nacionalidade das pessoas ou sociedades proprietárias de aeronaves
+342;2;9;9;2;1;;;;;Responsabilidade dos proprietários
+342;2;9;9;3;;;;;;Pessoal aéreo. Equipagem aérea. Contrato de engajamento. Certificados de identidade
+342;2;9;9;3;1;;;;;Pilotos. Aptidões físicas, fisiológicas e psicológicas. Brevet de capacidade e aptidão
+342;2;9;9;3;2;;;;;Mecânica
+342;2;9;9;3;3;;;;;Pessoal auxiliar
+342;2;9;9;4;;;;;;Contratos de transportes. Tarifas
+342;2;9;9;4;1;;;;;Passageiros
+342;2;9;9;4;2;;;;;Mercadorias
+342;2;9;9;4;3;;;;;Serviço postal
+342;2;9;9;5;;;;;;Estabelecimento de linhas regulares
+342;2;9;9;5;1;;;;;Traçado das rotas, balizagem, sinalização de dia e de noite. Aeroportos
+342;2;9;9;5;2;;;;;Ligações radioelétricas
+342;2;9;9;5;3;;;;;Lançamento de lastro. Lançamento proibido de outros objetos
+342;2;9;9;8;;;;;;Hipotecas e privilégios
+342;2;9;9;9;;;;;;Questões diversas
+342;2;9;9;9;2;;;;;Aterrissagens forçadas. Indenizações eventuais
+342;3;;;;;;;;;DIREITO INTERNACIONAL PRIVADO
+342;3;1;;;;;;;;Questões teóricas
+342;3;2;;;;;;;;Situação dos estrangeiros
+342;3;3;;;;;;;;Conflito de leis
+342;3;4;;;;;;;;Reconhecimento dos direitos adquiridos
+342;3;5;;;;;;;;Código de Bustamante
+342;3;6;;;;;;;;Homologação de sentença estrangeira
+342;3;8;;;;;;;;Parte especial
+342;3;8;1;4;6;;;;;Direito processual civil internacional
+342;3;8;2;1;1;9;;;;Pessoas jurídicas no Direito internacional privado
+342;3;8;2;1;6;5;;;;Direito das sucessões no Direito internacional privado
+342;3;8;2;2;3;6;;;;Falência no Direito internacional privado
+342;3;8;2;2;9;;;;;Direito marítimo no Direito internacional privado
+342;5;;;;;;;;;DIREITO DO CONSUMIDOR
+342;5;1;;;;;;;;Direitos básicos do consumidor
+342;5;2;;;;;;;;Responsabilidade do fornecedor de produtos e serviços
+342;5;3;;;;;;;;Órgãos de Defesa do Consumidor. Promotorias de Justiça de Defesa do consumidor
+342;5;4;;;;;;;;Publicidade de produtos e serviços
+342;5;9;;;;;;;;Legislação de Defesa do Consumidor. Código de defesa do consumidor (Subdividir por países 930-999)
+342;5;9;8;1;;;;;;Código de Defesa do Consumidor do Brasil
+342;6;;;;;;;;;DIREITO DO TRABALHO
+342;6;0;1;;;;;;;Conceito. Teoria
+342;6;0;1;1;;;;;;Fontes
+342;6;0;1;3;;;;;;Interpretação
+342;6;0;9;;;;;;;(Divisão geográfica, como 930-999)
+342;6;1;;;;;;;;Acidentes do Trabalho
+342;6;1;1;;;;;;;Conceito de acidente de trabalho. Elementos para sua caracterização
+342;6;1;2;;;;;;;Responsabilidade
+342;6;1;3;;;;;;;Conseqüências do acidente de trabalho
+342;6;1;3;1;;;;;;Morte
+342;6;1;3;2;;;;;;Incapacidade total e permanente
+342;6;1;3;3;;;;;;Incapacidade parcial e permanente
+342;6;1;3;4;;;;;;Incapacidade temporária
+342;6;1;4;;;;;;;Beneficiários
+342;6;1;5;;;;;;;Indenização. Garantia da indenização
+342;6;1;6;;;;;;;Seguro contra acidentes de trabalho
+342;6;1;7;;;;;;;Medidas preventivas dos acidentes de trabalho. Higiene e segurança do trabalho
+342;6;2;;;;;;;;Duração do Trabalho
+342;6;2;1;;;;;;;Regulamentação da duração do trabalho. Justificativas
+342;6;2;2;;;;;;;Jornada de trabalho. Duração da jornada de trabalho. Interrupção obrigatória
+342;6;2;3;;;;;;;Trabalho extraordinário. Hora extra
+342;6;2;4;;;;;;;Trabalho noturno
+342;6;2;5;;;;;;;Férias. Conceito
+342;6;2;5;1;;;;;;Periodicidade. Anualidade
+342;6;2;5;2;;;;;;Condições para aquisição do direito a férias. Período aquisitivo
+342;6;2;5;3;;;;;;Indenização de férias não gozadas. Pagamento em dobro
+342;6;2;5;4;;;;;;Férias coletivas
+342;6;2;6;;;;;;;Repouso semanal remunerado. Duração da semana de trabalho
+342;6;2;6;1;;;;;;Feriados e dias festivos
+342;6;2;7;;;;;;;Lazer. Organização do lazer
+342;6;2;7;1;;;;;;Colônias de férias
+342;6;2;7;2;;;;;;Centros de recreação
+342;6;2;7;3;;;;;;Centros culturais para utilização do lazer. Teatros. Bibliotecas
+342;6;3;;;;;;;;Acordo e Convenção coletiva de trabalho
+342;6;3;0;1;;;;;;Conceito. Natureza jurídica. Teoria
+342;6;3;1;;;;;;;Elementos da convenção coletiva. Eficácia, formação e conteúdo
+342;6;3;2;;;;;;;Forma da convenção coletiva. Celebração e partes
+342;6;3;3;;;;;;;Publicidade da convenção
+342;6;3;4;;;;;;;Duração e vigência
+342;6;3;5;;;;;;;Extensão da convenção coletiva
+342;6;3;6;;;;;;;Comissões de conciliação prévia
+342;6;4;;;;;;;;Associações profissionais (Sindicatos, uniões, federações, confederações, coligações patronais e operários)
+342;6;4;0;1;;;;;;Conceito. Natureza jurídica do sindicato.
+342;6;4;0;9;8;1;;;;Sindicalismo no Brasil
+342;6;4;1;;;;;;;Liberdade sindical. Unidade e pluralidade sindical
+342;6;4;1;1;;;;;;Sindicato livre
+342;6;4;1;2;;;;;;Sindicato obrigatório
+342;6;4;1;3;;;;;;Sindicato por profissões
+342;6;4;1;4;;;;;;Sindicato por indústrias
+342;6;4;1;5;;;;;;Sindicatos mistos
+342;6;4;1;6;;;;;;Organização sindical
+342;6;4;1;6;1;;;;;Estatutos. Poderes do sindicato
+342;6;4;1;6;2;;;;;Direito de filiação
+342;6;4;1;6;3;;;;;Eleições sindicais
+342;6;4;1;6;4;;;;;Contribuições sindicais. Mensalidades
+342;6;4;2;;;;;;;Associações profissionais. Órgão de fiscalização profissional
+342;6;5;;;;;;;;Contrato individual de Trabalho
+342;6;5;0;1;;;;;;Teoria. Conceito. Natureza jurídica de relação de emprego
+342;6;5;1;;;;;;;Modalidades de contrato de trabalho
+342;6;5;1;1;;;;;;Contrato por tempo determinado
+342;6;5;1;2;;;;;;Contrato por tempo indeterminado
+342;6;5;1;3;;;;;;Contrato de trabalho manual
+342;6;5;1;4;;;;;;Contrato de trabalho intelectual
+342;6;5;1;5;;;;;;Contrato individual
+342;6;5;1;6;;;;;;Contrato coletivo ou de equipe
+342;6;5;1;8;;;;;;Contratos especiais de trabalho
+342;6;5;1;8;1;;;;;Aprendizagem
+342;6;5;1;8;2;;;;;Trabalho rural
+342;6;5;1;8;3;;;;;Trabalho doméstico
+342;6;5;1;8;4;;;;;Contrato de trabalho com entidades públicas
+342;6;5;1;8;5;;;;;Trabalho marítimo
+342;6;5;1;8;6;;;;;Trabalho aeronáutico
+342;6;5;1;8;7;;;;;Trabalho eventual. Trabalho avulso
+342;6;5;1;8;8;;;;;Trabalho autônomo
+342;6;5;2;;;;;;;Início e fim do contrato de trabalho
+342;6;5;2;1;;;;;;Admissão. Carteira de Trabalho. Anotações
+342;6;5;2;2;;;;;;Alteração do contrato de trabalho
+342;6;5;2;3;;;;;;Interrupção do contrato de trabalho
+342;6;5;2;4;;;;;;Suspensão do contrato de trabalho
+342;6;5;2;5;;;;;;Tempo de serviço
+342;6;5;2;6;;;;;;Dissolução do contrato de trabalho. Proteção contra a despedida
+342;6;5;2;7;;;;;;Estabilidade do empregado. Indenização
+342;6;5;2;8;;;;;;Fundo de Garantia por Tempo de Serviço (FGTS)
+342;6;5;2;9;;;;;;Aviso prévio
+342;6;5;3;;;;;;;Obrigações do empregado
+342;6;5;3;1;;;;;;Obrigação da prestação do trabalho
+342;6;5;3;2;;;;;;Diligência, fidelidade, obediência
+342;6;5;4;;;;;;;Obrigações do empregador. Cumprimento das condições do contrato. Salário. Remuneração do trabalho
+342;6;5;4;1;;;;;;Conceito de salário. Composição. Caracteres
+342;6;5;4;1;1;;;;;Princípios do salário igual. Isonomia salarial
+342;6;5;4;2;;;;;;Salário-base. Formas de pagamento de salário
+342;6;5;4;2;1;;;;;Horistas
+342;6;5;4;2;2;;;;;Diaristas
+342;6;5;4;2;3;;;;;Mensalistas
+342;6;5;4;2;4;;;;;Tarefeiros
+342;6;5;4;2;5;;;;;Empreiteiros
+342;6;5;4;3;;;;;;Elementos suplementares do salário
+342;6;5;4;3;1;;;;;Indenizações por insalubridade ou periculosidade
+342;6;5;4;3;2;;;;;Abonos
+342;6;5;4;3;3;;;;;Participação nos lucros
+342;6;5;4;3;4;;;;;Gratificações. Gorjetas
+342;6;5;4;3;5;;;;;Comissões
+342;6;5;4;3;6;;;;;Prêmios de produtividade
+342;6;5;4;3;7;;;;;Salário-família
+342;6;5;4;3;8;;;;;13º Salário
+342;6;5;4;3;9;;;;;Salário-Educação. Auxílio -alimentação
+342;6;5;4;4;;;;;;Salário-mínimo. Processo de determinação
+342;6;5;4;4;1;;;;;Salário-mínimo profissional
+342;6;5;4;4;2;;;;;Piso salarial
+342;6;5;4;5;;;;;;Programa de Integração Social (PIS)
+342;6;5;4;6;;;;;;Proteção geral do salário
+342;6;5;4;6;1;;;;;Irredutibilidade
+342;6;5;4;6;2;;;;;Proibição de cessão
+342;6;5;4;6;3;;;;;Impenhorabilidade
+342;6;5;4;6;4;;;;;Salário como crédito preferencial
+342;6;5;5;;;;;;;Trabalho da mulher. Proteção à maternidade
+342;6;5;6;;;;;;;Trabalho do menor
+342;6;6;;;;;;;;Conflitos coletivos do Trabalho
+342;6;6;1;;;;;;;Greve. Direito de greve
+342;6;6;1;1;;;;;;Greve legal
+342;6;6;1;2;;;;;;Greve ilegal
+342;6;6;2;;;;;;;Lock-out
+342;6;6;3;;;;;;;Outras formas de conflitos
+342;6;6;3;1;;;;;;Sabotagem
+342;6;6;3;2;;;;;;Boicotagem
+342;6;6;3;3;;;;;;Piquetagem
+342;6;6;4;;;;;;;Solução dos conflitos coletivos
+342;6;6;4;1;;;;;;Conciliação
+342;6;6;4;2;;;;;;Arbitragem
+342;6;6;4;3;;;;;;Mediação
+342;6;6;4;4;;;;;;Processo coletivo de trabalho
+342;6;6;4;5;;;;;;Sentença coletiva
+342;6;8;;;;;;;;Direito Processual do Trabalho
+342;6;8;1;;;;;;;Organização Judiciária do Trabalho
+342;6;8;1;1;;;;;;Juntas de conciliação e julgamento. Varas do trabalho
+342;6;8;1;2;;;;;;Tribunais regionais
+342;6;8;1;3;;;;;;Tribunais superiores
+342;6;8;1;4;;;;;;Tribunal Superior do Trabalho (TST)
+342;6;8;1;5;;;;;;Juizes do Trabalho
+342;6;8;1;6;;;;;;Jurisdição e competência
+342;6;8;1;7;;;;;;Penalidades
+342;6;8;2;;;;;;;Ministério Público do Trabalho
+342;6;8;2;1;;;;;;Procuradoria-Geral do Trabalho
+342;6;8;2;2;;;;;;Procuradorias Regionais do Trabalho
+342;6;9;;;;;;;;Legislação do Trabalho
+343;;;;;;;;;;DIREITO CANÔNICO E ECLESIÁSTICO
+343;0;1;;;;;;;;Conceito. Teoria. Introdução ao estudo do Direito Canônico
+343;0;3;;;;;;;;Lei canônica. Cânones
+343;0;3;1;;;;;;;A lei canônica no tempo. Cômputo e divisão do tempo
+343;0;3;1;1;;;;;;Irretroatividade das leis
+343;0;3;1;2;;;;;;Promulgação da lei
+343;0;3;1;3;;;;;;Vacância da lei
+343;0;3;1;4;;;;;;Cessação da lei
+343;0;3;2;;;;;;;A lei canônica no espaço
+343;0;3;2;1;;;;;;Territorialidade da lei
+343;0;3;2;2;;;;;;Aplicação da lei civil territorial
+343;0;4;;;;;;;;Fontes do Direito Canônico
+343;0;4;1;;;;;;;Bíblia. Livros sagrados
+343;0;4;2;;;;;;;Concordatas
+343;0;4;3;;;;;;;Bulas papais. Breves papais. Atas pontificais
+343;0;4;4;;;;;;;Constituições papais
+343;0;4;5;;;;;;;Encíclicas
+343;0;4;6;;;;;;;Rescritos
+343;0;4;7;;;;;;;Costume
+343;0;4;8;;;;;;;Outras fontes
+343;0;4;9;;;;;;;Interpretação das fontes
+343;0;4;9;1;;;;;;Interpretação autêntica
+343;0;4;9;2;;;;;;Interpretação usual
+343;0;4;9;3;;;;;;Interpretação doutrinal
+343;0;5;;;;;;;;Complicações e codificações do Direito Canônico
+343;0;5;1;;;;;;;Coleções espúrias
+343;0;5;2;;;;;;;Constituições Apostólicas
+343;0;5;3;;;;;;;Compilação de Dionísio
+343;0;5;4;;;;;;;Compilação de Graciano
+343;0;5;5;;;;;;;Corpus Iuris Canonici
+343;0;5;6;;;;;;;Código de Direito Canônico (1918)
+343;0;9;;;;;;;;Fases do desenvolvimento
+343;0;9;1;;;;;;;Época primitiva até às coleções do monge Dionísio, o Exíguo (500)
+343;0;9;2;;;;;;;De Dionísio, o Exíguo até o Decreto de Graciano (1150)
+343;0;9;3;;;;;;;De Graciano até o Concílio de Trento (1545)
+343;0;9;4;;;;;;;Do Concílio de Trento até o Código Canônico (1918)
+343;0;9;5;;;;;;;Época atual
+343;1;;;;;;;;;Organização da Igreja
+343;1;0;1;;;;;;;Relações entre Igreja e Estado
+343;1;1;;;;;;;;Papa. Funções do Papa. Infalibilidade. Poder temporal
+343;1;1;1;;;;;;;Eleição do Papa
+343;1;1;2;;;;;;;Cessação do papado. Morte do Papa
+343;1;2;;;;;;;;Sacro Colégio
+343;1;2;1;;;;;;;Cardeais
+343;1;3;;;;;;;;Cúria Romana
+343;1;3;1;;;;;;;Congregações da Cúria Romana
+343;1;3;1;1;;;;;;Congregação para a Doutrina da Fé. Congregação para as Igrejas Orientais
+343;1;3;1;3;;;;;;Congregação para o Culto Divino e a Disciplina dos Sacramentos
+343;1;3;1;4;;;;;;Congregação das Causas dos Santos
+343;1;3;1;5;;;;;;Congregação para os Bispos
+343;1;3;1;6;;;;;;Congregação para a Evangelização dos Povos
+343;1;3;1;7;;;;;;Congregação para o Clero
+343;1;3;1;8;;;;;;Congregação para os Institutos de Vida Consagrada e as Sociedades de Vida Apostólica
+343;1;3;1;9;;;;;;Congregação para a Educação Católica
+343;1;3;2;;;;;;;Conselhos Pontifícios
+343;1;3;2;1;;;;;;Pontifício Conselho para os Leigos
+343;1;3;2;2;;;;;;Pontifício Conselho para a Unidade dos Cristãos
+343;1;3;2;3;;;;;;Pontifício Conselho para a Família
+343;1;3;2;4;;;;;;Pontifício Conselho da Justiça e da Paz
+343;1;3;2;5;;;;;;Pontifício Conselho Cor Uno
+343;1;3;2;6;;;;;;Pontifício Conselho para a Pastoral para os Migrantes e os Etinerantes
+343;1;3;2;7;;;;;;Pontifício Conselho para os Agentes de Saúde
+343;1;3;2;8;;;;;;Pontifício Conselho para os Textos Legislativos
+343;1;3;2;9;;;;;;Pontifício Conselho para o Diálogo Inter-Religioso
+343;1;3;2;9;1;;;;;Pontifício Conselho para a Cultura
+343;1;3;2;9;2;;;;;Pontifício Conselho para as Comunicações Sociais
+343;1;3;2;9;3;;;;;Pontifícia Comissão para os Bens Culturais da Igreja
+343;1;3;2;9;4;;;;;Pontifícia Comissão da Arqueologia Sacra
+343;1;3;2;9;5;;;;;Pontifícia Comissão Bíblica
+343;1;3;2;9;6;;;;;Pontifícia Comissão Teológica Internacional
+343;1;3;2;9;7;;;;;Pontifício Conselho de Ciência Histórica
+343;1;3;3;;;;;;;Tribunais da Cúria Romana (Ver também 343.6 Processo eclesiástico)
+343;1;3;3;1;;;;;;Penitenciária Apostólica
+343;1;3;3;2;;;;;;Supremo Tribunal da Signatura Apostólica
+343;1;3;3;3;;;;;;Tribunal da Rota Romana
+343;1;3;4;;;;;;;Órgãos executivos
+343;1;3;4;1;;;;;;Chancelaria
+343;1;3;4;2;;;;;;Dataria
+343;1;3;4;3;;;;;;Câmara Apostólica
+343;1;3;4;4;;;;;;Secretaria de Estado
+343;1;3;5;;;;;;;Legados pontifícios
+343;1;3;5;1;;;;;;Delegados apostólicos
+343;1;3;5;2;;;;;;Núncios apostólicos
+343;1;3;5;3;;;;;;Internúncios apostólicos
+343;1;3;5;4;;;;;;Visitadores apostólicos
+343;1;4;;;;;;;;Autoridades eclesiásticas. Hierarquia eclesiástica
+343;1;5;;;;;;;;Congregações Sagradas
+343;1;5;1;;;;;;;Concílios. Concílios Ecumênicos. Concílios Provinciais e Plenários
+343;1;5;2;;;;;;;Sínodos
+343;1;5;3;;;;;;;Cabidos
+343;1;6;;;;;;;;Divisão territorial
+343;1;6;1;;;;;;;Províncias eclesiásticas
+343;1;6;2;;;;;;;Arquidioceses. Dioceses
+343;1;6;3;;;;;;;Paróquias
+343;1;6;4;;;;;;;Prefeituras Apostólicas
+343;1;6;5;;;;;;;Vicariatos Apostólicos
+343;1;6;6;;;;;;;Missões. Quase-Paróquias
+343;1;7;;;;;;;;Ordens e Congregações Religiosas. Religiones
+343;1;7;1;;;;;;;Ordens
+343;1;7;2;;;;;;;Congregações monásticas
+343;1;7;3;;;;;;;Congregações religiosas
+343;2;;;;;;;;;Questões gerais de Direito Canônico
+343;2;1;;;;;;;;Pessoas do direito canônico
+343;2;1;1;;;;;;;Pessoas físicas
+343;2;1;1;1;;;;;;Membros da Igreja (pessoas batizadas)
+343;2;1;1;2;;;;;;Capacidade. Idade. Suficiência mental
+343;2;1;1;3;;;;;;Sede jurídica. Domicílio
+343;2;1;1;4;;;;;;Legitimidade. Legitimação
+343;2;1;1;5;;;;;;Adoção
+343;2;1;1;6;;;;;;Consangüinidade. Afinidade
+343;2;1;2;;;;;;;Estado clerical
+343;2;1;3;;;;;;;Privilégios e obrigações do estado clerical
+343;2;1;4;;;;;;;Ofício eclesiástico
+343;2;1;4;1;;;;;;Ordinários. Metropolitanos. Bispos
+343;2;1;4;2;;;;;;Párocos
+343;2;1;4;3;;;;;;Vigários paroquiais
+343;2;1;4;4;;;;;;Reitores de Igrejas
+343;2;1;4;5;;;;;;Capelães
+343;2;1;5;;;;;;;Estado religioso
+343;2;1;5;1;;;;;;Postulantes
+343;2;1;5;2;;;;;;Noviciado
+343;2;1;5;3;;;;;;Votos religiosos. Votos solenes
+343;2;1;5;4;;;;;;Hábito. Vida em comunidade
+343;2;1;5;5;;;;;;Patrimônio pessoal. Dote das religiosas
+343;2;1;5;6;;;;;;Clausura
+343;2;1;5;7;;;;;;Perda do estado religioso
+343;2;2;;;;;;;;Pessoas morais (jurídicas)
+343;2;2;1;;;;;;;Constituição das pessoas morais
+343;2;2;2;;;;;;;Diversas categorias de pessoas morais
+343;2;2;4;;;;;;;Associações leigas
+343;2;2;4;1;;;;;;Ordens terceiras seculares
+343;2;2;4;2;;;;;;Confrarias
+343;2;2;4;3;;;;;;Pias uniões
+343;2;2;4;4;;;;;;Inscrição das associações
+343;2;2;4;5;;;;;;Insígnias das associações
+343;2;2;4;6;;;;;;Prelazias pessoais
+343;2;3;;;;;;;;Atos e fatos jurídicos
+343;2;3;1;;;;;;;Requisitos do ato jurídico
+343;2;3;1;1;;;;;;Manifestação da vontade
+343;2;3;1;2;;;;;;Forma
+343;2;3;1;3;;;;;;Causa e objeto
+343;2;3;1;4;;;;;;Diversas espécies de atos jurídicos
+343;2;3;1;5;;;;;;Nulidade e anulabilidade
+343;2;4;;;;;;;;Institutos especiais do Direito canônico
+343;2;4;1;;;;;;;Privilégios
+343;2;4;2;;;;;;;Dispensa
+343;3;;;;;;;;;Direito das coisas. Direitos reais
+343;3;1;;;;;;;;Coisas eclesiásticas
+343;3;2;;;;;;;;Coisas sacras
+343;3;2;1;;;;;;;Liturgia
+343;3;2;2;;;;;;;Edifícios sagrados
+343;3;2;3;;;;;;;Altares e utensílios sagrados
+343;3;2;4;;;;;;;Consagração e bênção de coisas sacras
+343;3;2;5;;;;;;;Imunidade local
+343;3;2;5;1;;;;;;Direito de asilo
+343;3;2;6;;;;;;;Violação das coisas sacras
+343;3;2;6;1;;;;;;Reconciliação
+343;3;2;7;;;;;;;Execração
+343;3;2;8;;;;;;;Benefícios eclesiásticos
+343;3;3;;;;;;;;Direito de patronato
+343;3;4;;;;;;;;Rendas eclesiásticas
+343;3;4;1;;;;;;;Direitos de estola
+343;3;4;2;;;;;;;Dízimos
+343;3;4;3;;;;;;;Coletas
+343;3;4;4;;;;;;;Direitos de chancelaria por atos administrativos e judiciais
+343;3;4;5;;;;;;;Impostos
+343;3;4;6;;;;;;;Doações
+343;3;4;7;;;;;;;Fundações pias
+343;3;4;8;;;;;;;Fidúcias
+343;3;5;;;;;;;;Direito funerário
+343;3;5;1;;;;;;;Cemitérios
+343;3;5;2;;;;;;;Sepulturas eclesiásticas. Direito a sepultura eclesiástica
+343;3;5;3;;;;;;;Funerais de religiosos e de religiosas
+343;3;5;4;;;;;;;Vigilância dos cemitérios
+343;3;6;;;;;;;;Magistério eclesiástico
+343;3;6;1;;;;;;;Seminários
+343;3;6;2;;;;;;;Faculdades e graus acadêmicos
+343;3;6;3;;;;;;;Pregação
+343;4;;;;;;;;;Direito Sacramental
+343;4;1;;;;;;;;Conceitos gerais. Direito aos sacramentos
+343;4;2;;;;;;;;Sacramentos que imprimem caráter
+343;4;2;1;;;;;;;Batismo
+343;4;2;1;1;;;;;;Nome cristão. Batistério. Registro do Batismo
+343;4;2;1;2;;;;;;Pia batismal
+343;4;2;1;3;;;;;;Padrinhos. Parentesco espiritual
+343;4;2;2;;;;;;;Confirmação. Crisma
+343;4;2;3;;;;;;;Ordens
+343;4;3;;;;;;;;Eucaristia
+343;4;3;1;;;;;;;Obrigação de comungar
+343;4;3;2;;;;;;;Jejum eucarístico
+343;4;4;;;;;;;;Penitência
+343;4;4;1;;;;;;;Sigilo sacramental
+343;4;5;;;;;;;;Unção dos enfermos (Extrema unção)
+343;4;6;;;;;;;;Matrimônio
+343;4;6;1;;;;;;;Finalidades do matrimônio
+343;4;6;2;;;;;;;Consentimento
+343;4;6;2;1;;;;;;Vícios do consentimento
+343;4;6;3;;;;;;;Impedimentos canônicos
+343;4;6;4;;;;;;;Dispensas e convalidações
+343;4;6;5;;;;;;;Transcrição civil do matrimônio religioso
+343;4;6;6;;;;;;;Dissolução do matrimônio
+343;4;6;7;;;;;;;Segundas núpcias
+343;5;;;;;;;;;Direito penal canônico
+343;5;1;;;;;;;;Crimes e delitos eclesiásticos
+343;5;2;;;;;;;;Penas canônicas
+343;5;2;1;;;;;;;Excomunhão
+343;6;;;;;;;;;Direito processual canônico
+343;6;1;;;;;;;;Tribunais eclesiásticos
+343;6;2;;;;;;;;Fases do processo canônico
+343;6;3;;;;;;;;Competência
+343;6;4;;;;;;;;Ações e exceções
+343;6;5;;;;;;;;Sentenças. Execução
+343;6;6;;;;;;;;Recursos. Apelação
+343;6;7;;;;;;;;Processos especiais
+343;6;7;1;;;;;;;Processo penal
+343;6;7;2;;;;;;;Causas matrimoniais
+343;6;7;3;;;;;;;Beatificação e canonização
+343;8;;;;;;;;;Direito Eclesiástico das Igrejas Cristãs não católicas
+343;8;1;;;;;;;;Igreja ortodoxa oriental
+343;8;2;;;;;;;;Igreja russa
+343;8;3;;;;;;;;Igreja grega
+343;8;4;;;;;;;;Igreja sérvia
+343;8;5;;;;;;;;Igreja búlgara
+343;8;6;;;;;;;;Igreja anglicana
+343;8;7;;;;;;;;Igrejas evangélicas
+343;8;8;;;;;;;;Igreja presbiteriana e Igreja reformada
+343;8;9;;;;;;;;Igreja metodista
+343;9;;;;;;;;;Direito eclesiástico de Igrejas não-cristãs
+343;9;1;;;;;;;;Igreja budista
+343;9;2;;;;;;;;Igreja bramanista. Igreja hinduísta
+343;9;3;;;;;;;;Igreja judaica
+343;9;4;;;;;;;;Igreja islâmica
+343;9;5;;;;;;;;Igreja xintoísta
+344;;;;;;;;;;DIREITO ROMANO
+344;0;;;;;;;;;Conceito. Teoria. Introdução ao Estudo do Direito Romano
+344;0;1;4;;;;;;;Fontes (costume, lex, plebiscito, senatusconsulto, éditos dos Magistrados, respostas dos jurisconsultos, constituições Imperiais etc.)
+344;0;1;4;1;;;;;;Lei das XII Tábuas
+344;0;1;5;;;;;;;Compilações
+344;0;1;5;1;;;;;;Codex Gregorianus
+344;0;1;5;2;;;;;;Codex Hermogenianus
+344;0;1;5;3;;;;;;Codex Theodosianus
+344;0;1;5;4;;;;;;Lex Romana Visigothorum
+344;0;1;5;5;;;;;;Lex Romana Burgundiorum
+344;0;1;5;6;;;;;;Compilações de Justiniano. Institutas
+344;0;1;5;7;;;;;;Corpus luris Civilis
+344;0;1;5;9;;;;;;Outras compilações
+344;0;9;3;7;;;;;;Fases do desenvolvimento
+344;0;9;3;7;1;;;;;Realeza (até 510 a C)
+344;0;9;3;7;2;;;;;República (510 a 27 a C)
+344;0;9;3;7;3;;;;;Império (27 a C até 284 AD)
+344;0;9;3;7;4;;;;;Período de absolutismo (284 até 565)
+344;1;;;;;;;;;Parte geral
+344;1;1;;;;;;;;Sujeito de direito. Capacidade jurídica
+344;1;1;1;;;;;;;Requisitos da personalidade
+344;1;1;1;1;;;;;;Liberdade (status libertatis)
+344;1;1;1;2;;;;;;Cidadania (status civitatis)
+344;1;1;1;3;;;;;;Família (status familiae)
+344;1;1;1;4;;;;;;Diminuições da capacidade de direito (Capiti diminutio)
+344;1;1;1;4;1;;;;;Capiti diminutio maxima
+344;1;1;1;4;2;;;;;Capiti diminutio media
+344;1;1;1;4;3;;;;;Capiti diminutio minima
+344;1;1;1;5;;;;;;Capacidade jurídica da mulher
+344;1;1;2;;;;;;;Pessoas jurídicas
+344;1;1;2;1;;;;;;Associações (universitates personarum)
+344;1;1;2;2;;;;;;Fundações (universitates rerum)
+344;1;1;3;;;;;;;Aquisição e perda de direitos
+344;1;1;4;;;;;;;Atos e Fatos jurídicos em geral
+344;1;1;4;1;;;;;;Requisitos do ato jurídico
+344;1;1;4;1;1;;;;;Manifestação da vontade
+344;1;1;4;1;2;;;;;Forma
+344;1;1;4;1;3;;;;;Causa e objeto
+344;1;1;4;1;4;;;;;Diversas espécies de atos jurídicos
+344;1;1;4;1;5;;;;;Nulidade e anulabilidade
+344;1;1;5;;;;;;;Atos ilícitos
+344;1;1;6;;;;;;;Defesa dos direitos
+344;1;1;6;1;;;;;;Ações
+344;1;1;6;1;1;;;;;Actiones in rem
+344;1;1;6;1;2;;;;;Actiones in personam
+344;1;1;6;1;3;;;;;Actiones in rem scriptae
+344;1;1;6;1;4;;;;;Ações mistas
+344;1;1;6;1;5;;;;;Outras espécies de ações
+344;1;1;6;2;;;;;;Partes do processo (actor e reus)
+344;1;1;6;3;;;;;;Representação judicial (procuratores e cognitores)
+344;1;1;6;4;;;;;;Espécies de processos
+344;1;1;6;4;1;;;;;Processo da Legis actiones
+344;1;1;6;4;2;;;;;Processo per formulas
+344;1;1;6;4;3;;;;;Processo extraordinário
+344;2;;;;;;;;;Direito das coisas. Direitos reais
+344;2;1;;;;;;;;Coisas ou bens
+344;2;1;1;;;;;;;Res mancipi
+344;2;1;2;;;;;;;Res nec mancipi
+344;2;1;3;;;;;;;Res immobile (imóveis)
+344;2;1;4;;;;;;;Res mobiles (móveis)
+344;2;1;5;;;;;;;Res se moventes (semoventes)
+344;2;1;6;;;;;;;Coisas fungíveis
+344;2;1;7;;;;;;;Coisas infungíveis
+344;2;1;8;;;;;;;Outras divisões das coisas
+344;2;3;;;;;;;;Propriedade
+344;2;3;1;;;;;;;Conceito
+344;2;3;2;;;;;;;Modos de aquisição da propriedade
+344;2;3;2;1;;;;;;Ocupação
+344;2;3;2;2;;;;;;Acessão
+344;2;3;2;3;;;;;;Especificação
+344;2;3;2;4;;;;;;Confusão e comistão
+344;2;3;2;5;;;;;;Aquisição originária dos frutos
+344;2;3;2;6;;;;;;Mancipatio e in iure cessio
+344;2;3;2;7;;;;;;Tradição
+344;2;3;2;8;;;;;;Usucapião
+344;2;3;2;9;;;;;;Adjudicação
+344;2;3;3;;;;;;;Defesa da propriedade
+344;2;5;;;;;;;;Outros direitos reais além da propriedade
+344;2;5;1;;;;;;;Posse
+344;2;5;5;;;;;;;Enfiteuse
+344;2;5;6;;;;;;;Superfície
+344;2;6;;;;;;;;Servidões
+344;2;6;1;;;;;;;Constituição e extinção das servidões
+344;2;6;2;;;;;;;Servidões prediais
+344;2;6;3;;;;;;;Servidões pessoais
+344;2;7;;;;;;;;Direitos reais de garantia
+344;4;;;;;;;;;Direito das obrigações
+344;4;0;1;;;;;;;Conceito de obrigação
+344;4;0;1;4;;;;;;Fonte das obrigações
+344;4;1;;;;;;;;Transmissão das obrigações
+344;4;2;;;;;;;;Extinção das obrigações
+344;4;2;1;;;;;;;Pagamento
+344;4;2;2;;;;;;;Renúncia
+344;4;2;3;;;;;;;Novação
+344;4;2;4;;;;;;;Delegação
+344;4;2;5;;;;;;;Compensação
+344;4;2;6;;;;;;;Outras formas de extinção das obrigações
+344;4;3;;;;;;;;Inadimplemento das obrigações
+344;4;4;;;;;;;;Garantias das obrigações
+344;4;5;;;;;;;;Contratos
+344;4;5;1;;;;;;;Contratos reais
+344;4;5;1;1;;;;;;Fidúcia
+344;4;5;1;2;;;;;;Mútuo
+344;4;5;1;3;;;;;;Comodato
+344;4;5;1;4;;;;;;Depósito
+344;4;5;1;5;;;;;;Penhor
+344;4;5;2;;;;;;;Contratos verbais
+344;4;5;3;;;;;;;Contratos literais
+344;4;5;4;;;;;;;Contratos consensuais
+344;4;5;4;1;;;;;;Compra e venda
+344;4;5;4;2;;;;;;Locação
+344;4;5;4;3;;;;;;Sociedade
+344;4;5;4;4;;;;;;Mandato
+344;4;5;5;;;;;;;Contratos inominados
+344;4;5;5;1;;;;;;Troca
+344;4;5;5;2;;;;;;Aestimatum
+344;4;5;5;3;;;;;;Transação
+344;4;5;5;4;;;;;;Precário
+344;4;5;6;;;;;;;Pacto
+344;5;;;;;;;;;Outras fontes de obrigações
+344;5;1;;;;;;;;Quase-contratos
+344;5;2;;;;;;;;Delitos
+344;5;3;;;;;;;;Quase-delitos
+344;6;;;;;;;;;Direito de família
+344;6;1;;;;;;;;Família
+344;6;1;1;;;;;;;Constituição
+344;6;1;2;;;;;;;Parentesco. Agnação. Cognação
+344;6;1;3;;;;;;;Paterfamilias. Poder do Paterfamilias
+344;6;2;;;;;;;;Matrimônio
+344;6;2;1;;;;;;;Esponsais
+344;6;2;2;;;;;;;Matrimônio legítimo
+344;6;2;2;1;;;;;;Requisitos
+344;6;2;2;2;;;;;;Impedimentos
+344;6;2;2;3;;;;;;Dissolução do matrimônio
+344;6;2;2;3;1;;;;;Morte de um dos cônjuges
+344;6;2;2;3;2;;;;;Desaparecimento do connubium
+344;6;2;2;3;3;;;;;Superveniência de impedimento
+344;6;2;2;3;4;;;;;Divórcio
+344;6;2;3;;;;;;;Concubinato
+344;6;3;;;;;;;;Filiação. Entrada na família
+344;6;3;1;;;;;;;Filiação legítima
+344;6;3;2;;;;;;;Filiação natural
+344;6;3;3;;;;;;;Adoção
+344;6;3;4;;;;;;;Ad-rogação
+344;6;3;5;;;;;;;Conventio in manum
+344;6;3;5;1;;;;;;Confarreatio
+344;6;3;5;2;;;;;;Coemptio
+344;6;3;5;3;;;;;;Usus. Usurpatio trinoctii
+344;6;4;;;;;;;;Tutela
+344;6;5;;;;;;;;Curatela
+344;6;6;;;;;;;;Regime patrimonial da família
+344;6;6;1;;;;;;;Unidade da propriedade sob o paterfamilias
+344;6;6;2;;;;;;;Pecúlios
+344;6;6;3;;;;;;;Dote
+344;6;6;4;;;;;;;Doação ante nuptias
+344;7;;;;;;;;;Direito das sucessões
+344;7;1;;;;;;;;Sucessão testamentária
+344;7;1;1;;;;;;;Testamento. Diversas formas de testamento
+344;7;1;2;;;;;;;Codicilo
+344;7;1;3;;;;;;;Abertura do testamento
+344;7;1;4;;;;;;;Instituição do herdeiro
+344;7;1;4;1;;;;;;Substituição
+344;7;1;4;2;;;;;;Nulidade do testamento
+344;7;1;4;3;;;;;;Revogação do testamento
+344;7;2;;;;;;;;Sucessão ab intestato
+344;7;3;;;;;;;;Deserdação
+344;7;4;;;;;;;;Aquisição da herança
+344;7;4;1;;;;;;;Direitos e obrigações dos herdeiros
+344;7;5;;;;;;;;Repúdio da herança
+344;7;6;;;;;;;;Herança jacente
+344;7;7;;;;;;;;Herança vacante
+344;7;8;;;;;;;;Legados
+344;7;9;;;;;;;;Fideicomissos
