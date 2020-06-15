@@ -180,7 +180,7 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
             }
         } else { // Se o campo não está vazio
 
-            if (Integer.parseInt(jTextFieldOAB.getText()) == 0) {
+            if (Integer.parseInt(jTextFieldOAB.getText().trim()) == 0) {
                 jTextFieldOAB.requestFocus();
                 jTextFieldOAB.selectAll();
                 throw new Exception("O campo nº OAB precisa ser diferente de 0 (zero)");
@@ -235,15 +235,15 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
             colaborador.setIdColaborador(id);
         }
 
-        colaborador.setNomeColaborador(jTextFieldNome.getText());
+        colaborador.setNomeColaborador(jTextFieldNome.getText().trim());
         colaborador.setPerfil(EnumPerfil.valueOf(jComboBoxPerfil.getSelectedItem().toString()));
-        colaborador.setMatricula(Integer.parseInt(jFormattedTextFieldMatricula.getText()));
+        colaborador.setMatricula(Integer.parseInt(jFormattedTextFieldMatricula.getText().trim()));
         colaborador.setCargo(EnumCargo.valueOf(jComboBoxCargo.getSelectedItem().toString()));
         colaborador.setOab((jTextFieldOAB.getText().trim().length() == 0) ? ""
-                : String.format("%s-%s", jTextFieldOAB.getText(), jComboBoxUF.getSelectedItem().toString()));
+                : String.format("%s-%s", jTextFieldOAB.getText().trim(), jComboBoxUF.getSelectedItem().toString()));
         colaborador.setSenha(senha);
-        colaborador.setEmail(jTextFieldEmail.getText());
-        colaborador.setTelefone(jFormattedTextFieldTelefone.getText());
+        colaborador.setEmail(jTextFieldEmail.getText().trim());
+        colaborador.setTelefone(jFormattedTextFieldTelefone.getText().trim());
         colaborador.setStatus(EnumTipoStatus.valueOf(jComboBoxStatus.getSelectedItem().toString()));
 
         if (acao.equals(EnumAcao.Incluir)) {
@@ -574,9 +574,9 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
 
     private void jTextFieldNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyTyped
         try {
-            if (jTextFieldNome.getText().length() >= 50) {
+            if (jTextFieldNome.getText().trim().length() >= 50) {
                 evt.consume();
-                jTextFieldNome.setText(jTextFieldNome.getText().substring(0, 50));
+                jTextFieldNome.setText(jTextFieldNome.getText().trim().substring(0, 50));
             }
         } catch (Exception e) {
             mensagem.erro(e);
@@ -585,9 +585,9 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
 
     private void jFormattedTextFieldMatriculaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFieldMatriculaKeyTyped
         try {
-            if (jFormattedTextFieldMatricula.getText().length() >= 6) {
+            if (jFormattedTextFieldMatricula.getText().trim().length() >= 6) {
                 evt.consume();
-                jFormattedTextFieldMatricula.setText(jFormattedTextFieldMatricula.getText().substring(0, 6));
+                jFormattedTextFieldMatricula.setText(jFormattedTextFieldMatricula.getText().trim().substring(0, 6));
             }
         } catch (Exception e) {
             mensagem.erro(e);
@@ -596,9 +596,9 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
 
     private void jTextFieldOABKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldOABKeyTyped
         try {
-            if (jTextFieldOAB.getText().length() >= 9) {
+            if (jTextFieldOAB.getText().trim().length() >= 9) {
                 evt.consume();
-                jTextFieldOAB.setText(jTextFieldOAB.getText().substring(0, 6));
+                jTextFieldOAB.setText(jTextFieldOAB.getText().trim().substring(0, 6));
             } else {
                 if (!EnumCaracteres.Numeros.getCaracteres().contains(evt.getKeyChar() + "")) {
                     evt.consume();
@@ -625,9 +625,9 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
 
     private void jFormattedTextFieldTelefoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFieldTelefoneKeyTyped
         try {
-            if (textoSoComNumeros(jFormattedTextFieldTelefone.getText()).length() >= 11) {
+            if (textoSoComNumeros(jFormattedTextFieldTelefone.getText().trim()).length() >= 11) {
                 evt.consume();
-                jFormattedTextFieldTelefone.setText(jFormattedTextFieldTelefone.getText().substring(0, 11));
+                jFormattedTextFieldTelefone.setText(jFormattedTextFieldTelefone.getText().trim().substring(0, 11));
             } else {
                 if (!EnumCaracteres.Numeros.getCaracteres().contains(evt.getKeyChar() + "")) {
                     evt.consume();
@@ -644,7 +644,7 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
 
     private void jTextFieldEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEmailKeyReleased
         try {
-            jTextFieldEmail.setText(jTextFieldEmail.getText().toLowerCase());
+            jTextFieldEmail.setText(jTextFieldEmail.getText().trim().toLowerCase());
         } catch (Exception e) {
             mensagem.erro(e);
         }

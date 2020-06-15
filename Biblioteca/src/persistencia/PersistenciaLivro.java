@@ -92,7 +92,8 @@ public class PersistenciaLivro implements ICRUDLivro {
     @Override
     public int incluir(Livro livro) throws Exception {
         livro.setIdLivro(GeradorID.getProximoID());       //Obter o próximo ID único
-        livro.setDescricaoLivro(livro.getDescricaoLivro().replace(";", ","));
+
+        livro.setDescricaoLivro((livro.getDescricaoLivro().trim().length() == 0) ? "-" : livro.getDescricaoLivro().replace(";", ","));
         controleArquivoTXT.incluirLinha(livro.toString().replaceAll("\n", "____"));           //Gravar a linha no arquivoTXT
         return livro.getIdLivro();
     }
@@ -102,7 +103,7 @@ public class PersistenciaLivro implements ICRUDLivro {
         linhas = controleArquivoTXT.lerArquivo();
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == livro.getIdLivro()) {
-                livro.setDescricaoLivro(livro.getDescricaoLivro().replace(";", ","));
+                livro.setDescricaoLivro((livro.getDescricaoLivro().trim().length() == 0) ? "-" : livro.getDescricaoLivro().replace(";", ","));
                 controleArquivoTXT.alterarLinha(linha, livro.toString().replaceAll("\n", "____"));
                 break;
             }

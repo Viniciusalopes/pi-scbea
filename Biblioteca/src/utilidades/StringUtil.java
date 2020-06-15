@@ -88,7 +88,7 @@ public class StringUtil {
     public static void mudaMascaraTelefone(JFormattedTextField campoTelefone) throws Exception {
         try {
             campoTelefone.setValue(null);
-            String numeros = textoSoComNumeros(campoTelefone.getText());
+            String numeros = textoSoComNumeros(campoTelefone.getText().trim());
             final MaskFormatter mask = new MaskFormatter();
             switch (numeros.length()) {
                 case 8:
@@ -108,7 +108,7 @@ public class StringUtil {
                     String com0800 = numeros.substring(0, 4) + " " + numeros.substring(4, 7) + "-" + numeros.substring(7, 11);
 
                     // Ababandona o evento se já estiver no formato esperado
-                    if (campoTelefone.getText().equals(comDDD) || campoTelefone.equals(com0800)) {
+                    if (campoTelefone.getText().trim().equals(comDDD) || campoTelefone.equals(com0800)) {
                         return;
                     }
                     if (new Mensagens().escolher("Selecione um formato para o número do telefone:", new String[]{comDDD, com0800}) == 0) {

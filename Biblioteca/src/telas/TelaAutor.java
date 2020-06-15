@@ -95,13 +95,13 @@ public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
         validarPreenchimento();
 
         autor = new Autor();
-        autor.setNomeAutor(jTextFieldNomeAutor.getText());
+        autor.setNomeAutor(jTextFieldNomeAutor.getText().trim());
 
         if (acao.equals(EnumAcao.Incluir)) {
             controleAutor.incluir(autor);
             mensagem.sucesso("Autor incluído com sucesso!");
         } else if (acao.equals(EnumAcao.Editar)) {
-            autor.setIdAutor(Integer.parseInt(jTextFieldIdAutor.getText()));
+            autor.setIdAutor(Integer.parseInt(jTextFieldIdAutor.getText().trim()));
             controleAutor.alterar(autor);
             mensagem.sucesso("Autor atualizado com sucesso!");
         }

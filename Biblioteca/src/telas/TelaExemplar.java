@@ -147,9 +147,9 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
 
     private void salvar() throws Exception {
         try {
-            float precoCompra = jFormattedTextFieldPrecoCompra.getText().equals("")
+            float precoCompra = jFormattedTextFieldPrecoCompra.getText().trim().equals("")
                     ? 0
-                    : Float.parseFloat(jFormattedTextFieldPrecoCompra.getText().replace(".", "_").replace(",", ".").replace("_", ""));
+                    : Float.parseFloat(jFormattedTextFieldPrecoCompra.getText().trim().replace(".", "_").replace(",", ".").replace("_", ""));
 
             exemplar = new Exemplar(
                     0,
@@ -157,7 +157,7 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
                     EnumTipoStatus.valueOf(jComboBoxstatusExemplar.getSelectedItem().toString()),
                     (Date) jSpinnerDataAquisicao.getValue(),
                     precoCompra,
-                    jTextAreaMotivoDesativado.getText()
+                    jTextAreaMotivoDesativado.getText().trim()
             );
 
             if (acao.equals(EnumAcao.Incluir)) {
@@ -165,7 +165,7 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
                     controleExemplar.incluir(exemplar);
                 }
             } else if (acao.equals(EnumAcao.Editar)) {
-                exemplar.setIdExemplar(Integer.parseInt(jTextFieldIDExemplar.getText()));
+                exemplar.setIdExemplar(Integer.parseInt(jTextFieldIDExemplar.getText().trim()));
                 controleExemplar.alterar(exemplar);
             }
         } catch (Exception e) {
@@ -206,7 +206,7 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelPrecoUnitario = new javax.swing.JLabel();
         jTextFieldTituloLivro = new javax.swing.JTextField();
         jSpinnerDataAquisicao = new javax.swing.JSpinner();
         jFormattedTextFieldPrecoCompra = new javax.swing.JFormattedTextField();
@@ -253,7 +253,7 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
 
         jLabel4.setText("Data da aquisição ");
 
-        jLabel5.setText("Preço de compra  ");
+        jLabelPrecoUnitario.setText("Preço unitário ");
 
         jTextFieldTituloLivro.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextFieldTituloLivro.setEnabled(false);
@@ -300,7 +300,7 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jFormattedTextFieldPrecoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel5))))
+                                    .addComponent(jLabelPrecoUnitario))))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSpinnerQuantidade)
@@ -318,7 +318,7 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
                 .addComponent(jTextFieldTituloLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(jLabelPrecoUnitario)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel7))
@@ -389,7 +389,7 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
             if (acao.equals(EnumAcao.Incluir)) {
                 mensagem.sucesso("Exemplar incluído com sucesso!");
             } else if (acao.equals(EnumAcao.Editar)) {
-                exemplar.setIdExemplar(Integer.parseInt(jTextFieldIDExemplar.getText()));
+                exemplar.setIdExemplar(Integer.parseInt(jTextFieldIDExemplar.getText().trim()));
                 mensagem.sucesso("Exemplar alterado com sucesso!");
             }
             visible = false;
@@ -461,10 +461,10 @@ public class TelaExemplar extends javax.swing.JDialog implements ITelaCadastro {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelMotivoDesativasao;
+    private javax.swing.JLabel jLabelPrecoUnitario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinnerDataAquisicao;

@@ -201,7 +201,7 @@ public class TelaConfiguracao extends javax.swing.JDialog {
                     Integer.valueOf(jSpinnerLimiteLivros.getValue().toString()),
                     Integer.valueOf(jSpinnerDiasEmprestimo.getValue().toString()),
                     Float.parseFloat(jFormattedTextFieldValorMultaDiaria.getValue().toString()),
-                    jTextFieldCaminhoBdCliente.getText(), jTextFieldCaminhoBdServidor.getText()
+                    jTextFieldCaminhoBdCliente.getText().trim(), jTextFieldCaminhoBdServidor.getText().trim()
             );
             new ControleConfiguracao().atualizar(configuracao);
 

@@ -1,0 +1,8 @@
+2020/06/15 02:10:47_1_2_8_1987;1981;1;15/06/2020_PersistenciaReserva, excluir
+2020/06/15 02:15:23_1_2_6_1982;1981;2;15/06/2020;10,00;--;_PersistenciaExemplar, excluir
+2020/06/15 02:15:26_1_2_6_1983;1981;2;15/06/2020;10,00;---;_PersistenciaExemplar, excluir
+2020/06/15 02:15:28_1_2_6_1984;1981;2;15/06/2020;10,00;----;_PersistenciaExemplar, excluir
+2020/06/15 02:15:29_1_2_6_1985;1981;2;15/06/2020;10,00;-----;_PersistenciaExemplar, excluir
+2020/06/15 02:15:31_1_2_6_1986;1981;2;15/06/2020;10,00;------;_PersistenciaExemplar, excluir
+2020/06/15 02:15:33_1_2_6_1988;1981;2;15/06/2020;10,00;--;_PersistenciaExemplar, excluir
+2020/06/15 02:15:35_1_2_6_1989;1981;2;15/06/2020;25,00;---;_PersistenciaExemplar, excluir

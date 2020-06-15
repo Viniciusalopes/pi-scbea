@@ -101,6 +101,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             jTextFieldPesquisarColaboradorKeyReleased(null);
 
             matrizLivro = controleTelaEmprestimo.getMatrizLivros();
+            matrizPesquisaLivro = matrizLivro;
             preencherJTableLivro(matrizLivro);
             jTextFieldPesquisarLivroKeyReleased(null);
 
@@ -372,7 +373,6 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         linha = jTableLivro.getSelectedRow();
         if (linha >= 0) {
             idLivro = Integer.parseInt(jTableLivro.getValueAt(linha, 0).toString());
-
             for (int i = 0; i < matrizPesquisaLivro.length; i++) {
                 if (Integer.parseInt(matrizPesquisaLivro[i][0]) == idLivro) {
                     String[] dados = matrizPesquisaLivro[i];
@@ -482,6 +482,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         telalivro.setAcao(EnumAcao.Incluir);
         telalivro.setVisible(true);
         matrizLivro = controleTelaEmprestimo.getMatrizLivros();
+        matrizPesquisaLivro = matrizLivro;
         preencherJTableLivro(matrizLivro);
     }
 
@@ -491,6 +492,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         telalivro.setAcao(EnumAcao.Editar);
         telalivro.setVisible(true);
         matrizLivro = controleTelaEmprestimo.getMatrizLivros();
+        matrizPesquisaLivro = matrizLivro;
         preencherJTableExemplares(matrizLivro);
     }
 
@@ -1084,7 +1086,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
 
     private void jTextFieldPesquisarColaboradorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarColaboradorKeyReleased
         try {
-            pesquisarColaboradores(jTextFieldPesquisarColaborador.getText().toLowerCase());
+            pesquisarColaboradores(jTextFieldPesquisarColaborador.getText().trim().toLowerCase());
             ativarBotoes();
         } catch (Exception e) {
             mensagem.erro(e);
@@ -1093,7 +1095,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
 
     private void jTextFieldPesquisarLivroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarLivroKeyReleased
         try {
-            pesquisarLivros(jTextFieldPesquisarLivro.getText().toLowerCase());
+            pesquisarLivros(jTextFieldPesquisarLivro.getText().trim().toLowerCase());
             ativarBotoes();
         } catch (Exception e) {
             mensagem.erro(e);

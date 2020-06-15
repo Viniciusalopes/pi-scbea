@@ -109,7 +109,7 @@ public class TelaEditora extends javax.swing.JDialog implements ITelaCadastro {
                 controleEditora.incluir(editora);
                 mensagem.sucesso("Editora incluída com sucesso!");
             } else if (acao.equals(EnumAcao.Editar)) {
-                editora.setIdEditora(Integer.parseInt(jTextFieldIdEditora.getText()));
+                editora.setIdEditora(Integer.parseInt(jTextFieldIdEditora.getText().trim()));
                 controleEditora.alterar(editora);
                 mensagem.sucesso("Editora alterada com sucesso!");
             }

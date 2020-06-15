@@ -1,0 +1,1 @@
+5;7;2,00;/mnt/HD-500/projetos/pi-testes/Biblioteca/BibliotecaBd/;192.168.15.3:4567

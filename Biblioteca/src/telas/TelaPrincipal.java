@@ -697,6 +697,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jTableListaMouseClicked(evt);
             }
         });
+        jTableLista.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableListaKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableLista);
 
         jLabelStatusBottomLeft.setText("jLabelStatusBottomLeft");
@@ -853,11 +858,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         && Vai.USUARIO.getIdColaborador() != getId());
             }
 
+            if (cadastro.equals(EnumCadastro.RESERVA.toString())) {
+                jButtonComprovante.setEnabled(jTableLista.getSelectedRow() > -1);
+            }
             jButtonExcluir.setEnabled(enabled);
 
             // Clique duplo, mostra detalhes do cadastro
-            if (evt.getClickCount() == 2) {
-                detalheCadastro();
+            if (evt != null) { // Quando acionado pelo keyReleased, evt = null
+                if (evt.getClickCount() == 2) {
+                    detalheCadastro();
+                }
             }
         } catch (Exception e) {
             mensagem.erro(e);
@@ -866,7 +876,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jTextFieldPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarKeyReleased
         try {
-            pesquisar(jTextFieldPesquisar.getText().toLowerCase());
+            pesquisar(jTextFieldPesquisar.getText().trim().toLowerCase());
         } catch (Exception e) {
             mensagem.erro(e);
         }
@@ -891,6 +901,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
             mensagem.erro(e);
         }
     }//GEN-LAST:event_jRadioButtonLivrosActionPerformed
+
+    private void jTableListaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableListaKeyReleased
+        jTableListaMouseClicked(null);
+    }//GEN-LAST:event_jTableListaKeyReleased
 
     //--- FIM EVENTOS ---------------------------------------------------------|
     /**

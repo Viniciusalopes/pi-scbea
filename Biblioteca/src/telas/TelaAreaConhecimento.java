@@ -55,11 +55,11 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
 //------------------------------------------------------------------------------    
     private void validarPreenchimento() throws Exception {
 
-        if (jTextFieldCdd.getText().substring(0, 1).equals("0")) {
+        if (jTextFieldCdd.getText().trim().substring(0, 1).equals("0")) {
             throw new Exception("O código do CDD precisa iniciar com um número diferente de 0!");
         }
 
-        if (!soTemNumeros(jTextFieldCdd.getText().replace(".", ""))) {
+        if (!soTemNumeros(jTextFieldCdd.getText().trim().replace(".", ""))) {
             jTextFieldCdd.requestFocus();
             jTextFieldCdd.selectAll();
             throw new Exception("O código do CDD precisa ter apenas ponto e números!");
@@ -86,8 +86,8 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
     private void salvar() throws Exception {
         validarPreenchimento();
         AreaConhecimento a = new AreaConhecimento();
-        a.setCdd(Integer.parseInt(jTextFieldCdd.getText().replace(".", "")));
-        a.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText());
+        a.setCdd(Integer.parseInt(jTextFieldCdd.getText().trim().replace(".", "")));
+        a.setDescricaoAreaConhecimento(jTextFieldDescricaoAreaConhecimento.getText().trim());
 
         if (acao.equals(EnumAcao.Incluir)) {
             controleAreaConhecimento.incluir(a);
@@ -136,6 +136,8 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
 
         jLabelId.setText("ID:");
 
+        jTextFieldID.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jTextFieldID.setForeground(new java.awt.Color(102, 102, 102));
         jTextFieldID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldID.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextFieldID.setEnabled(false);
@@ -147,15 +149,15 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
 
         jLabel2.setText("Derscrição");
         jPanelDadosAreaConhecimento.add(jLabel2);
-        jLabel2.setBounds(100, 30, 340, 16);
+        jLabel2.setBounds(130, 30, 340, 15);
         jPanelDadosAreaConhecimento.add(jTextFieldDescricaoAreaConhecimento);
-        jTextFieldDescricaoAreaConhecimento.setBounds(100, 50, 340, 24);
+        jTextFieldDescricaoAreaConhecimento.setBounds(130, 50, 530, 23);
         jPanelDadosAreaConhecimento.add(jTextFieldCdd);
-        jTextFieldCdd.setBounds(10, 50, 79, 24);
+        jTextFieldCdd.setBounds(10, 50, 110, 23);
 
         jLabel3.setText("Código CDD");
         jPanelDadosAreaConhecimento.add(jLabel3);
-        jLabel3.setBounds(10, 30, 80, 16);
+        jLabel3.setBounds(10, 30, 100, 15);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,15 +165,15 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabelId)
-                            .addGap(6, 6, 6)
-                            .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jPanelDadosAreaConhecimento, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelId)
+                        .addGap(6, 6, 6)
+                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelDadosAreaConhecimento, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,7 +184,7 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
                     .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelDadosAreaConhecimento, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonSalvar)
                 .addGap(20, 20, 20))
         );

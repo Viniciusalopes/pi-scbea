@@ -26,7 +26,6 @@ import interfaces.ITelaCadastro;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JFormattedTextField;
 import javax.swing.SpinnerNumberModel;
 import utilidades.Mensagens;
 import utilidades.ValidadorISBN;
@@ -183,7 +182,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         jTextAreaLivroDescricao.setText(livro.getDescricaoLivro());
 
         preencherJTableExemplares(livro.getIdLivro());
-        
+
     }
 
     private void preencherJTableExemplares(int idLivro) throws Exception {
@@ -255,7 +254,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
             throw new Exception("O título do livro deve ter ao menos duas letras!");
         }
 
-        if (!ValidadorISBN.validarIsbn13(jTextFieldISBN.getText())) {
+        if (!ValidadorISBN.validarIsbn13(jTextFieldISBN.getText().trim())) {
             throw new Exception("Código ISBN invalido!");
         }
 
@@ -749,17 +748,18 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
 
     private void jTableExemplaresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableExemplaresMouseClicked
         try {
-            // Clique duplo, mostra detalhes do cadastro
-            if (evt.getClickCount() == 2) {
-                TelaExemplar telaExemplar = new TelaExemplar(null, true);
-                telaExemplar.setId(Integer.parseInt(jTableExemplares.getValueAt(jTableExemplares.getSelectedRow(), 0).toString()));
-                telaExemplar.setLivro(livro);
-                telaExemplar.setAcao(EnumAcao.Editar);
-                telaExemplar.setVisible(true);
-                preencherJTableExemplares(livro.getIdLivro());
-            } else {
-                jButtonExcluirExemplar.setEnabled(true);
+            if (evt != null) { // Quando acionado pelo keyReleased, evt = null
+                // Clique duplo, mostra detalhes do cadastro
+                if (evt.getClickCount() == 2) {
+                    TelaExemplar telaExemplar = new TelaExemplar(null, true);
+                    telaExemplar.setId(Integer.parseInt(jTableExemplares.getValueAt(jTableExemplares.getSelectedRow(), 0).toString()));
+                    telaExemplar.setLivro(livro);
+                    telaExemplar.setAcao(EnumAcao.Editar);
+                    telaExemplar.setVisible(true);
+                    preencherJTableExemplares(livro.getIdLivro());
+                }
             }
+            jButtonExcluirExemplar.setEnabled(true);
         } catch (Exception e) {
             mensagem.erro(new Exception("Erro ao abrir cadastro de exemplar!\n " + e.getMessage()));
         }

@@ -117,7 +117,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jFormattedTextFieldPrecoCompra" min="-2" pref="80" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelPrecoUnitario" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -144,7 +144,7 @@
                   <Component id="jTextFieldTituloLivro" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelPrecoUnitario" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -222,9 +222,9 @@
             <Property name="text" type="java.lang.String" value="Data da aquisi&#xe7;&#xe3;o "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="jLabelPrecoUnitario">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pre&#xe7;o de compra  "/>
+            <Property name="text" type="java.lang.String" value="Pre&#xe7;o unit&#xe1;rio "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldTituloLivro">
