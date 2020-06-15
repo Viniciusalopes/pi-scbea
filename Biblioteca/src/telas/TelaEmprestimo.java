@@ -471,6 +471,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         telaColaborador.setAcao(EnumAcao.Incluir);
         telaColaborador.setVisible(true);
         matrizColaborador = controleTelaEmprestimo.getMatrizColaboradores();
+        preencherJTableColaboradores(matrizColaborador);
     }
 
     private void exibirTelaLivro() throws Exception {
@@ -479,6 +480,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         telalivro.setAcao(EnumAcao.Incluir);
         telalivro.setVisible(true);
         matrizLivro = controleTelaEmprestimo.getMatrizLivros();
+        preencherJTableLivro(matrizLivro);
     }
 
     private void exibirTelaExemplar() throws Exception {
@@ -487,6 +489,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         telalivro.setAcao(EnumAcao.Editar);
         telalivro.setVisible(true);
         matrizLivro = controleTelaEmprestimo.getMatrizLivros();
+        preencherJTableExemplares(matrizLivro);
     }
 
     //--- FIM MÉTODOS PARA BOTÕES ---------------------------------------------|

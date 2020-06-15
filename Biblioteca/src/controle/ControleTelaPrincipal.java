@@ -258,11 +258,11 @@ public class ControleTelaPrincipal {
         larguras = new int[9];
         larguras[0] = 60;    // ID
         larguras[1] = 180;   // Nome
-        larguras[2] = 100;   // Perfil
+        larguras[2] = 120;   // Perfil
         larguras[3] = 80;    // Matrícula
-        larguras[4] = 100;   // Cargo
-        larguras[5] = 100;   // OAB
-        larguras[6] = 120;   // E-mail
+        larguras[4] = 120;   // Cargo
+        larguras[5] = 80;   // OAB
+        larguras[6] = 220;   // E-mail
         larguras[7] = 120;   // Telefone
         //larguras[8] = 60;   // Status (está pegando o resto do tamanho total do grid)
     }

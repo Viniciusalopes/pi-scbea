@@ -105,12 +105,15 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         jFormattedTextFieldMatricula.setText(String.format("%d", colaborador.getMatricula()));
         jTextFieldNome.setText(colaborador.getNomeColaborador());
 
-        if (colaborador.getCargo().equals(EnumCargo.ADVOGADO)) {
+        if (colaborador.getOab().length() == 0) {
+            jTextFieldOAB.setText("");
+            jComboBoxUF.setSelectedIndex(-1);
+        } else {
             String[] oab = colaborador.getOab().split("-");
             jTextFieldOAB.setText(oab[0]);
             jComboBoxUF.setSelectedIndex(EnumUF.valueOf(oab[1]).ordinal());
         }
-        jComboBoxUF.setSelectedIndex(-1);
+
         jTextFieldEmail.setText(colaborador.getEmail());
         jFormattedTextFieldTelefone.setText(colaborador.getTelefone());
         jComboBoxPerfil.setSelectedIndex(colaborador.getPerfil().ordinal());
