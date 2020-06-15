@@ -52,7 +52,7 @@ public class PersistenciaExemplar implements ICRUDExemplar {
                     EnumTipoStatus.values()[Integer.parseInt(dados[2])],
                     new SimpleDateFormat("dd/MM/yyyy").parse(dados[3].replace(",", ".")),
                     Float.parseFloat(dados[4].toString().replace(",", ".")),
-                    dados[5].replace("_", "")
+                    dados[5].replaceAll("____", "\n").replace("_", "")
             );
             colecao.add(exemplar);
         }
@@ -74,7 +74,7 @@ public class PersistenciaExemplar implements ICRUDExemplar {
     @Override
     public void incluir(Exemplar exemplar) throws Exception {
         exemplar.setIdExemplar(GeradorID.getProximoID());
-        controleArquivoTXT.incluirLinha(exemplar.toString());
+        controleArquivoTXT.incluirLinha(exemplar.toString().replaceAll("\n", "____"));
     }
 
     @Override
@@ -82,7 +82,7 @@ public class PersistenciaExemplar implements ICRUDExemplar {
         linhas = controleArquivoTXT.lerArquivo();
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == exemplar.getIdExemplar()) {
-                controleArquivoTXT.alterarLinha(linha, exemplar.toString());
+                controleArquivoTXT.alterarLinha(linha, exemplar.toString().replaceAll("\n", "____"));
                 break;
             }
         }

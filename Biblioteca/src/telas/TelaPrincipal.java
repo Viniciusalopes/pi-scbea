@@ -158,7 +158,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         break;
 
                     case "EXEMPLAR":
-                        controleExemplar.excluir(id);
                         break;
 
                     case "LIVRO":

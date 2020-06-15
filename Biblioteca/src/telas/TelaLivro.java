@@ -26,6 +26,7 @@ import interfaces.ITelaCadastro;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JFormattedTextField;
 import javax.swing.SpinnerNumberModel;
 import utilidades.Mensagens;
 import utilidades.ValidadorISBN;
@@ -102,6 +103,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
                 livro = controleLivro.buscarPeloId(id);
                 preencherCampos();
             }
+            jButtonExcluirExemplar.setEnabled(false);
         } catch (Exception e) {
             mensagem.erro(e);
         }
@@ -181,6 +183,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         jTextAreaLivroDescricao.setText(livro.getDescricaoLivro());
 
         preencherJTableExemplares(livro.getIdLivro());
+        
     }
 
     private void preencherJTableExemplares(int idLivro) throws Exception {
@@ -193,7 +196,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
                 exemplar.getStatusExemplar().toString(),
                 formatoData.format(exemplar.getDataAquisicao()).toString(),
                 String.format("%.2f", exemplar.getPrecoCompra()),
-                exemplar.getMotivoDesativado()
+                exemplar.getMotivoDesativado().replaceAll("\n", " ")
             };
             matriz[cont] = vetor;
             cont++;
@@ -232,8 +235,9 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
             jTableExemplares.getColumnModel().getColumn(0).setCellRenderer(renderer.getRendererDireita());
             jTableExemplares.getColumnModel().getColumn(1).setCellRenderer(renderer.getRendererCentro());
             jTableExemplares.getColumnModel().getColumn(2).setCellRenderer(renderer.getRendererCentro());
-            jTableExemplares.getColumnModel().getColumn(2).setCellRenderer(renderer.getRendererDireita());
+            jTableExemplares.getColumnModel().getColumn(3).setCellRenderer(renderer.getRendererDireita());
         }
+        jButtonExcluirExemplar.setEnabled(false);
     }
 
     private void validarPreenchimento() throws Exception {
@@ -325,6 +329,20 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         telaExemplar.setLivro(livro);
         telaExemplar.setAcao(EnumAcao.Incluir);
         telaExemplar.setVisible(true);
+        preencherJTableExemplares(livro.getIdLivro());
+
+    }
+
+    private void excluirExemplarDoLivro() throws Exception {
+        int id = Integer.parseInt(jTableExemplares.getValueAt(jTableExemplares.getSelectedRow(), 0).toString());
+
+        String textoPergunta = "Deseja realmente excluir o exemplar ID: " + id + "?";
+
+        if (mensagem.pergunta(textoPergunta) == 0) {
+            controleExemplar.excluir(id);
+            mensagem.sucesso("Cadastro de exemplar excluído com sucesso!");
+        }
+        preencherJTableExemplares(livro.getIdLivro());
     }
 
     //--- FIM MÉTODOS ---------------------------------------------------------|
@@ -374,6 +392,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         jButtonIncluirExemplar = new javax.swing.JButton();
         jScrollPaneExemplares = new javax.swing.JScrollPane();
         jTableExemplares = new javax.swing.JTable();
+        jButtonExcluirExemplar = new javax.swing.JButton();
         jButtonNovaAreaConhecimento = new javax.swing.JButton();
         jLabelID = new javax.swing.JLabel();
         jTextFieldID = new javax.swing.JTextField();
@@ -391,8 +410,8 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
 
         jLabelAno.setText("Ano");
 
-        jSpinnerAno.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, new java.util.Date(), java.util.Calendar.YEAR));
-        jSpinnerAno.setEditor(new javax.swing.JSpinner.DateEditor(jSpinnerAno, "yyyy"));
+        jSpinnerAno.setModel(new javax.swing.SpinnerNumberModel(2020, 1455, 2020, 1));
+        jSpinnerAno.setEditor(new javax.swing.JSpinner.NumberEditor(jSpinnerAno, ""));
 
         jLabelEditora.setText("Editora");
 
@@ -460,7 +479,13 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
                 return canEdit [columnIndex];
             }
         });
+        jTableExemplares.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableExemplares.getTableHeader().setReorderingAllowed(false);
+        jTableExemplares.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableExemplaresMouseClicked(evt);
+            }
+        });
         jScrollPaneExemplares.setViewportView(jTableExemplares);
         if (jTableExemplares.getColumnModel().getColumnCount() > 0) {
             jTableExemplares.getColumnModel().getColumn(0).setMinWidth(60);
@@ -477,6 +502,13 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
             jTableExemplares.getColumnModel().getColumn(3).setMaxWidth(100);
         }
 
+        jButtonExcluirExemplar.setText("Excluir Exemplar");
+        jButtonExcluirExemplar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirExemplarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -486,6 +518,8 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonIncluirExemplar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonExcluirExemplar)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPaneExemplares))
                 .addContainerGap())
@@ -493,7 +527,9 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButtonIncluirExemplar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonIncluirExemplar)
+                    .addComponent(jButtonExcluirExemplar))
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPaneExemplares, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -711,6 +747,32 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         }
     }//GEN-LAST:event_jButtonNovaAreaConhecimentoActionPerformed
 
+    private void jTableExemplaresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableExemplaresMouseClicked
+        try {
+            // Clique duplo, mostra detalhes do cadastro
+            if (evt.getClickCount() == 2) {
+                TelaExemplar telaExemplar = new TelaExemplar(null, true);
+                telaExemplar.setId(Integer.parseInt(jTableExemplares.getValueAt(jTableExemplares.getSelectedRow(), 0).toString()));
+                telaExemplar.setLivro(livro);
+                telaExemplar.setAcao(EnumAcao.Editar);
+                telaExemplar.setVisible(true);
+                preencherJTableExemplares(livro.getIdLivro());
+            } else {
+                jButtonExcluirExemplar.setEnabled(true);
+            }
+        } catch (Exception e) {
+            mensagem.erro(new Exception("Erro ao abrir cadastro de exemplar!\n " + e.getMessage()));
+        }
+    }//GEN-LAST:event_jTableExemplaresMouseClicked
+
+    private void jButtonExcluirExemplarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirExemplarActionPerformed
+        try {
+            excluirExemplarDoLivro();
+        } catch (Exception e) {
+            mensagem.erro(new Exception(e.getMessage()));
+        }
+    }//GEN-LAST:event_jButtonExcluirExemplarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -754,6 +816,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonExcluirExemplar;
     private javax.swing.JButton jButtonIncluirExemplar;
     private javax.swing.JButton jButtonNovaAreaConhecimento;
     private javax.swing.JButton jButtonNovaEditora;
