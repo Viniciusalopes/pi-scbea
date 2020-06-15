@@ -88,13 +88,16 @@ public class ControleAreaConhecimento implements ICRUDAreaConhecimento {
             int idArea = objAreaConhecimento.getIdAreaConhecimento();
             int cddCadastro = objAreaConhecimento.getCdd();
             String descricaoCadastro = objAreaConhecimento.getDescricaoAreaConhecimento();
+
             if (cddCadastro == areaConhecimento.getCdd()
+                    && !descricaoCadastro.equalsIgnoreCase(areaConhecimento.getDescricaoAreaConhecimento())
                     && idArea != areaConhecimento.getIdAreaConhecimento()) {
                 throw new Exception("Já existe uma área de conhecimento cadastrada com esse código CDD!");
             }
             if (descricaoCadastro.equalsIgnoreCase(areaConhecimento.getDescricaoAreaConhecimento())
+                    && cddCadastro == areaConhecimento.getCdd()
                     && idArea != areaConhecimento.getIdAreaConhecimento()) {
-                throw new Exception("Já existe uma área de conhecimento cadastrada com essa descrição!");
+                throw new Exception("Esta área de conhecimento já está cadastrada!");
             }
         }
     }

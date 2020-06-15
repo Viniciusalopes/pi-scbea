@@ -147,6 +147,7 @@ public class ControleTelaPrincipal {
         colunas.add(new ColunaGrid("Ação", renderer.getRendererCentro()));
         colunas.add(new ColunaGrid("Cadastro", renderer.getRendererCentro()));
         colunas.add(new ColunaGrid("Registro"));
+        colunas.add(new ColunaGrid("Observação"));
     }
 
     //--- FIM COLUNAS DO GRID -------------------------------------------------|
@@ -255,10 +256,10 @@ public class ControleTelaPrincipal {
 
     private void addLargurasColunasColaborador() {
         larguras = new int[9];
-        larguras[0] = 60;   // ID
+        larguras[0] = 60;    // ID
         larguras[1] = 180;   // Nome
         larguras[2] = 100;   // Perfil
-        larguras[3] = 80;   // Matrícula
+        larguras[3] = 80;    // Matrícula
         larguras[4] = 100;   // Cargo
         larguras[5] = 100;   // OAB
         larguras[6] = 120;   // E-mail
@@ -267,12 +268,13 @@ public class ControleTelaPrincipal {
     }
 
     private void addLargurasColunasLog() {
-        larguras = new int[5];
-        larguras[0] = 100;   // Data
-        larguras[1] = 200;   // Usuário
-        larguras[2] = 100;   // Ação
-        larguras[3] = 120;   // Cadastro
-        //larguras[4] = 60;   // Registro (está pegando o resto do tamanho total do grid)
+        larguras = new int[6];
+        larguras[0] = 200;   // Data completa
+        larguras[1] = 100;   // Usuário
+        larguras[2] = 90;    // Ação
+        larguras[3] = 150;   // Cadastro
+        larguras[4] = 200;   // Registro
+        //larguras[5] = 60(está pegando o resto do tamanho total do grid)
     }
 
     //--- FIM LARGURA DAS COLUNAS DO GRID ------------------------------------->
@@ -476,7 +478,8 @@ public class ControleTelaPrincipal {
                 l.getUsuario().getIdColaborador() + " - " + l.getUsuario().getNomeColaborador().split(" ")[0],
                 l.getAcao().toString(),
                 l.getCadastro().getNomeCadastro(),
-                l.getRegistro()
+                l.getRegistro(),
+                l.getObservacao()
             };
             linhas[cont] = linha;
             cont++;

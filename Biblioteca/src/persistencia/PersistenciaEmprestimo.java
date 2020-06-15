@@ -125,7 +125,7 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
             for (String linha : linhas) {
                 if (Integer.parseInt(linha.split(";")[0]) == idEmprestimo) {
                     controleArquivoTXT.excluirLinha(linha);
-                    new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.EMPRESTIMO, linha);
+                    new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.EMPRESTIMO, linha, "PersistenciaEmprestimo, excluir");
                     break;
                 }
             }

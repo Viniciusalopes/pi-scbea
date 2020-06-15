@@ -94,7 +94,7 @@ public class PersistenciaExemplar implements ICRUDExemplar {
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == IdExemplar) {
                 controleArquivoTXT.excluirLinha(linha);
-                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.EXEMPLAR, linha);
+                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.EXEMPLAR, linha, "PersistenciaExemplar, excluir");
                 break;
             }
         }

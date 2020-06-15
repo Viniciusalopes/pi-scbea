@@ -12,8 +12,8 @@ import interfaces.IArquivoTXT;
 import java.util.ArrayList;
 import utilidades.GeradorID;
 import utilidades.Hash;
-import utilidades.ImportacaoCdd;
 import static utilidades.StringUtil.*;
+import utilidades.Menutencao;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -31,6 +31,7 @@ public class Vai {
     public static String BARRA;
     private static IArquivoTXT controleArquivoTXT = null;
     private static ArrayList<String> linhas = null;
+    private static boolean manutencao = false;
 
     public static void main(String[] args) {
 
@@ -77,12 +78,14 @@ public class Vai {
                                             EnumTipoStatus.ATIVO
                                     ).toString()
                             );
+                            manutencao = true;
                         }
                     }
                 }
             }
-
-            //new ImportacaoCdd().importarCdd();
+            if (manutencao) {
+                new Menutencao().importarCDD();
+            }
 
             //System.out.println(Hash.criptografar("123456", "SHA-256"));
             TelaLogin frmLogin = new TelaLogin();

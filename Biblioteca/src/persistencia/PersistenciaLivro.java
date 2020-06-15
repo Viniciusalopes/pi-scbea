@@ -113,7 +113,7 @@ public class PersistenciaLivro implements ICRUDLivro {
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == idLivro) {
                 controleArquivoTXT.excluirLinha(linha);
-                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.LIVRO, linha);
+                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.LIVRO, linha, "PersistenciaLivro, excluir");
                 break;
             }
         }

@@ -79,7 +79,7 @@ public class PersistenciaAutor implements ICRUDAutor {
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == idAutor) {
                 controleArquivoTXT.excluirLinha(linha);
-                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.AUTOR, linha);
+                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.AUTOR, linha, "PersistenciaAutor, excluir");
                 break;
             }
         }

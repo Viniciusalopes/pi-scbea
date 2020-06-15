@@ -84,7 +84,7 @@ public class PersistenciaEditora implements ICRUDEditora {
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == idEditora) {
                 controleArquivoTXT.excluirLinha(linha);
-                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.EDITORA, linha);
+                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.EDITORA, linha, "PersistenciaEditora, excluir");
                 break;
             }
         }

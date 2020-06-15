@@ -5,6 +5,7 @@
  */
 package persistencia;
 
+import classes.Colaborador;
 import classes.Log;
 import controle.ControleArquivoTXT;
 import controle.ControleColaborador;
@@ -58,10 +59,11 @@ public class PersistenciaLog implements ICRUDLog {
 
                 log = new Log(
                         formatoData.parse(dados[0]),
-                        controleColaborador.buscarPeloId(Integer.parseInt(dados[1])),
+                        ((dados[1].equals("0")) ? new Colaborador() : controleColaborador.buscarPeloId(Integer.parseInt(dados[1]))),
                         EnumAcao.values()[Integer.parseInt(dados[2])],
                         EnumCadastro.values()[Integer.parseInt(dados[3])],
-                        dados[4]
+                        dados[4],
+                        dados[5]
                 );
                 colecao.add(log);
             }
@@ -72,10 +74,11 @@ public class PersistenciaLog implements ICRUDLog {
     }
 
     @Override
-    public void incluir(EnumAcao acao, EnumCadastro cadastro, String registro) throws Exception {
+    public void incluir(EnumAcao acao, EnumCadastro cadastro, String registro, String observacao) throws Exception {
         try {
-            log = new Log(new Date(), Vai.USUARIO, acao, cadastro, registro);
-            controleArquivoTXT.incluirLinha(log.toString());
+            log = new Log(new Date(), Vai.USUARIO, acao, cadastro, registro, observacao);
+            String linha = log.toString();
+            controleArquivoTXT.incluirLinha(linha);
         } catch (Exception e) {
             throw new Exception("Erro ao incluir o registro de log!\n" + e.getMessage());
         }

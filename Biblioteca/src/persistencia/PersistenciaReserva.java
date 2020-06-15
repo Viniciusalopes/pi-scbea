@@ -101,7 +101,7 @@ public class PersistenciaReserva implements ICRUDReserva {
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == idReserva) {
                 controleArquivoTXT.excluirLinha(linha);
-                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.RESERVA, linha);
+                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.RESERVA, linha, "PersistenciaReserva, excluir");
                 break;
             }
         }

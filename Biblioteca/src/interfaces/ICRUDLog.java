@@ -18,5 +18,5 @@ public interface ICRUDLog {
 
     ArrayList<Log> listar() throws Exception;
 
-    void incluir(EnumAcao acao, EnumCadastro cadastro, String registro) throws Exception;
+    void incluir(EnumAcao acao, EnumCadastro cadastro, String registro, String observacao) throws Exception;
 }

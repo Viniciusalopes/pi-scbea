@@ -23,6 +23,7 @@ public class Log {
     private EnumAcao acao = null;
     private EnumCadastro cadastro = null;
     private String registro = "";
+    private String observacao = "";
 
     // CONSTRUTORES
     public Log() {
@@ -35,14 +36,16 @@ public class Log {
         acao = log.acao;
         cadastro = log.cadastro;
         registro = log.registro;
+        observacao = log.observacao;
     }
 
-    public Log(Date dataLog, Colaborador usuario, EnumAcao acao, EnumCadastro cadastro, String registro) {
+    public Log(Date dataLog, Colaborador usuario, EnumAcao acao, EnumCadastro cadastro, String registro, String observacao) {
         this.dataLog = dataLog;
         this.usuario = usuario;
         this.acao = acao;
         this.cadastro = cadastro;
         this.registro = registro;
+        this.observacao = observacao;
     }
 
     // MÉTODOS
@@ -86,14 +89,25 @@ public class Log {
         this.registro = registro;
     }
 
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
     @Override
     public String toString() {
-        return String.format("%s_%d_%d_%d_%s",
+        String retorno = String.format("%s_%d_%d_%d_%s_%s",
                 new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(dataLog),
-                Vai.USUARIO.getIdColaborador(),
+                Vai.USUARIO == null ? 0 : Vai.USUARIO.getIdColaborador(),
                 acao.ordinal(),
                 cadastro.ordinal(),
-                registro.replace("_", "-")
+                registro.replace("_", "-"),
+                observacao.replace("_", "-")
         );
+
+        return retorno;
     }
 }

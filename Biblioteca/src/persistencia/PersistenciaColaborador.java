@@ -122,7 +122,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
             for (String linha : linhas) {
                 if (Integer.parseInt(linha.split(";")[0]) == idColaborador) {
                     controleArquivoTXT.excluirLinha(linha);
-                    new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.COLABORADOR, linha);
+                    new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.COLABORADOR, linha, "PersistenciaColaborador, excluir");
                     break;
                 }
             }

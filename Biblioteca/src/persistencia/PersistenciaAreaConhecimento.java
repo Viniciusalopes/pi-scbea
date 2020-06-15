@@ -108,7 +108,7 @@ public class PersistenciaAreaConhecimento implements ICRUDAreaConhecimento {
         for (String linha : linhas) {                                           // percorrer linhas do arquivo // if != incluir linha atual na nova lista de linhas
             if (Integer.parseInt(linha.split(";")[0]) == idAreaConhecimento) {
                 controleArquivoTXT.excluirLinha(linha);
-                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.AREACONHECIMENTO, linha);
+                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.AREACONHECIMENTO, linha, "PersistenciaAreaConhecimento, excluir");
                 break;
             }
         }

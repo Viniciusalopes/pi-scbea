@@ -16,5 +16,6 @@ public enum EnumAcao {
     Incluir_Emprestimo,
     Incluir_Reserva,
     Editar_Emprestimo,
-    Editar_Reserva
+    Editar_Reserva,
+    Importar_CDD
 }

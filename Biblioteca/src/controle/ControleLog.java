@@ -31,7 +31,7 @@ public class ControleLog implements ICRUDLog {
     }
 
     @Override
-    public void incluir(EnumAcao acao, EnumCadastro cadastro, String registro) throws Exception {
-        persistencia.incluir(acao, cadastro, registro);
+    public void incluir(EnumAcao acao, EnumCadastro cadastro, String registro, String observacao) throws Exception {
+        persistencia.incluir(acao, cadastro, registro, observacao);
     }
 }
