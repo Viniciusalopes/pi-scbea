@@ -280,8 +280,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 || EnumCadastro.valueOf(cadastro).equals(EnumCadastro.RESERVA));
         jButtonDevolver.setVisible(EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO));
 
-        jLabelStatusBottomRight.setText((linhas.length == 0) ? "Nenhum cadastro."
-                : ((linhas.length == 1) ? "1 cadastro." : linhas.length + " cadastros."));
+        jLabelStatusBottomRight.setText((jTableLista.getRowCount() == 0) ? "Nenhum cadastro."
+                : ((jTableLista.getRowCount() == 1) ? "1 cadastro." : jTableLista.getRowCount() + " cadastros."));
     }
 
     // Pesquisa nas linhas do grid

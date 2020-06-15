@@ -79,7 +79,9 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         } else if (acao.equals(EnumAcao.Editar_Reserva)) {
             idReserva = id;
         }
-        this.setTitle(acao.toString() + " cadastro de Empréstimos e Reservas");
+        String textoAcao = (acao.toString().contains("Incluir")) ? "Incluir" : "Editar";
+
+        this.setTitle(textoAcao + " cadastro de Empréstimos e Reservas");
     }
 
     @Override
@@ -406,7 +408,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 matriz, new String[]{"ID", "Status", "Motivo da Desativação"}
         ) {
             boolean[] canEdit = new boolean[]{
-                false, false, true, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

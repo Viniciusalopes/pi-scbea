@@ -31,7 +31,7 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
     @Override
     public void setAcao(EnumAcao acao) {
         this.acao = acao;
-        this.setTitle(acao.toString() + "cadastro de Área de conhecimento");
+        this.setTitle(acao.toString() + " cadastro de Área de conhecimento");
     }
 
     @Override

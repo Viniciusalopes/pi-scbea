@@ -18,8 +18,7 @@ public class Configuracao {
     private float valorMultaDiaria = 2;
     private String caminhoBdCliente = System.getProperty("user.dir") + Vai.BARRA + "BibliotecaBd" + Vai.BARRA;
     private String caminhoBdServidor = "192.168.15.3:4567";
-    private boolean lerID = true;
-
+    
     public Configuracao() {
     }
 
@@ -29,17 +28,15 @@ public class Configuracao {
         valorMultaDiaria = configuracao.valorMultaDiaria;
         caminhoBdCliente = configuracao.caminhoBdCliente;
         caminhoBdServidor = configuracao.caminhoBdServidor;
-        lerID = configuracao.lerID;
     }
 
     public Configuracao(int limiteDeLivros, int diasDeEmprestimo, float valorMultaDiaria,
-            String caminhoBdCliente, String caminhoBdServidor, boolean lerID) {
+            String caminhoBdCliente, String caminhoBdServidor) {
         this.limiteDeLivros = limiteDeLivros;
         this.diasDeEmprestimo = diasDeEmprestimo;
         this.valorMultaDiaria = valorMultaDiaria;
         this.caminhoBdCliente = caminhoBdCliente;
         this.caminhoBdServidor = caminhoBdServidor;
-        this.lerID = lerID;
     }
 
     public int getLimiteDeLivros() {
@@ -82,23 +79,14 @@ public class Configuracao {
         this.caminhoBdServidor = caminhoBdServidor;
     }
 
-    public boolean getLerId() {
-        return lerID;
-    }
-
-    public void setLerId(boolean lerID) {
-        this.lerID = lerID;
-    }
-
     @Override
     public String toString() {
-        return String.format("%d;%d;%.2f;%s;%s;%d",
+        return String.format("%d;%d;%.2f;%s;%s",
                 limiteDeLivros,
                 diasDeEmprestimo,
                 valorMultaDiaria,
                 caminhoBdCliente,
-                caminhoBdServidor,
-                (!lerID) ? 0 : 1
+                caminhoBdServidor
         );
     }
 }

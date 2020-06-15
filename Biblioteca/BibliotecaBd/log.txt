@@ -1,7 +1,0 @@
-2020/06/14 23:31:32_1_2_6_1990;1984;2;14/06/2020;20,00;-;_PersistenciaExemplar, excluir
-2020/06/14 23:31:36_1_2_6_1985;1984;1;14/06/2020;0,00;-teste;_PersistenciaExemplar, excluir
-2020/06/14 23:31:40_1_2_6_1986;1984;2;14/06/2020;2500,00;-;_PersistenciaExemplar, excluir
-2020/06/14 23:31:43_1_2_6_1991;1984;2;14/06/2020;20,00;-;_PersistenciaExemplar, excluir
-2020/06/14 23:31:52_1_2_6_1992;1984;2;14/06/2020;20,00;-;_PersistenciaExemplar, excluir
-2020/06/14 23:32:01_1_2_6_1993;1984;2;14/06/2020;20,00;-;_PersistenciaExemplar, excluir
-2020/06/14 23:34:36_1_2_6_1994;1984;2;14/06/2020;20,00;-;_PersistenciaExemplar, excluir

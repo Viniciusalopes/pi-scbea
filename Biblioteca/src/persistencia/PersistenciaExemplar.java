@@ -74,6 +74,7 @@ public class PersistenciaExemplar implements ICRUDExemplar {
     @Override
     public void incluir(Exemplar exemplar) throws Exception {
         exemplar.setIdExemplar(GeradorID.getProximoID());
+        exemplar.setMotivoDesativado(exemplar.getMotivoDesativado().replace(";", ","));
         controleArquivoTXT.incluirLinha(exemplar.toString().replaceAll("\n", "____"));
     }
 
@@ -82,6 +83,7 @@ public class PersistenciaExemplar implements ICRUDExemplar {
         linhas = controleArquivoTXT.lerArquivo();
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == exemplar.getIdExemplar()) {
+                exemplar.setMotivoDesativado(exemplar.getMotivoDesativado().replace(";", ","));
                 controleArquivoTXT.alterarLinha(linha, exemplar.toString().replaceAll("\n", "____"));
                 break;
             }

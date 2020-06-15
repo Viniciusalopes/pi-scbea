@@ -135,8 +135,6 @@ public class ControleTelaPrincipal {
         colunas.add(new ColunaGrid("Perfil", renderer.getRendererCentro()));
         colunas.add(new ColunaGrid("Matrícula", renderer.getRendererDireita()));
         colunas.add(new ColunaGrid("Cargo", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("OAB", renderer.getRendererDireita()));
-        colunas.add(new ColunaGrid("E-mail"));
         colunas.add(new ColunaGrid("Telefone", renderer.getRendererDireita()));
         colunas.add(new ColunaGrid("Status", renderer.getRendererCentro()));
     }
@@ -255,16 +253,14 @@ public class ControleTelaPrincipal {
     }
 
     private void addLargurasColunasColaborador() {
-        larguras = new int[9];
+        larguras = new int[7];
         larguras[0] = 60;    // ID
-        larguras[1] = 180;   // Nome
+        larguras[1] = 240;   // Nome
         larguras[2] = 120;   // Perfil
         larguras[3] = 80;    // Matrícula
-        larguras[4] = 120;   // Cargo
-        larguras[5] = 80;   // OAB
-        larguras[6] = 220;   // E-mail
-        larguras[7] = 120;   // Telefone
-        //larguras[8] = 60;   // Status (está pegando o resto do tamanho total do grid)
+        larguras[4] = 140;    // Telefone
+        larguras[5] = 120;   // Cargo
+        //larguras[6] = 60;   // Status (está pegando o resto do tamanho total do grid)
     }
 
     private void addLargurasColunasLog() {
@@ -454,8 +450,6 @@ public class ControleTelaPrincipal {
                 c.getPerfil().toString(),
                 c.getMatricula() + "",
                 c.getCargo().toString(),
-                c.getOab(),
-                c.getEmail(),
                 c.getTelefone(),
                 c.getStatus().toString()
             };
