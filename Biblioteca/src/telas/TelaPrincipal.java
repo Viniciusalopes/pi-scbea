@@ -898,7 +898,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             // Clique duplo, mostra detalhes do cadastro
             if (evt != null) { // Quando acionado pelo keyReleased, evt = null
                 if (evt.getClickCount() == 2) {
-                    detalheCadastro();
+                    editarCadastro();
                 }
             }
             exibirBotoes();

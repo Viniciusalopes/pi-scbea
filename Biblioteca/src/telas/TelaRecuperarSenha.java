@@ -138,12 +138,23 @@ public class TelaRecuperarSenha extends javax.swing.JDialog {
         });
 
         jPasswordFieldAdministrador.setVerifyInputWhenFocusTarget(false);
+        jPasswordFieldAdministrador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jPasswordFieldAdministradorKeyReleased(evt);
+            }
+        });
 
         jLabel1.setText("Administrador");
 
         jLabelSenhaAdministrador.setText("Senha do Administrador");
 
         jLabel2.setText("Sua nova senha");
+
+        jPasswordFieldNovaSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jPasswordFieldNovaSenhaKeyReleased(evt);
+            }
+        });
 
         jButtonConfirmar.setText("Confirmar");
         jButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -220,6 +231,30 @@ public class TelaRecuperarSenha extends javax.swing.JDialog {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
+
+    private void jPasswordFieldAdministradorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldAdministradorKeyReleased
+         try {
+            String senha = new String(jPasswordFieldAdministrador.getPassword());
+            if (senha.length() >= 6) {
+                evt.consume();
+                jPasswordFieldAdministrador.setText(senha.substring(0, 6));
+            }
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jPasswordFieldAdministradorKeyReleased
+
+    private void jPasswordFieldNovaSenhaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldNovaSenhaKeyReleased
+         try {
+            String senha = new String(jPasswordFieldNovaSenha.getPassword());
+            if (senha.length() >= 6) {
+                evt.consume();
+                jPasswordFieldNovaSenha.setText(senha.substring(0, 6));
+            }
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jPasswordFieldNovaSenhaKeyReleased
     //
     //--- FIM EVENTOS ---------------------------------------------------------|
     //

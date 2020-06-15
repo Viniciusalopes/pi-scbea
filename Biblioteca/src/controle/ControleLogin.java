@@ -65,7 +65,8 @@ public class ControleLogin {
         }
 
         if (colaborador.getNomeColaborador() == "") {
-            throw new Exception("Login inválido!");
+            throw new Exception("Login inválido!\n"
+                    + "Para o login informe sua matrícula, OAB ou e-mail.");
         }
 
         if (colaborador.getStatus().equals(EnumTipoStatus.INATIVO)) {

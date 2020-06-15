@@ -7,6 +7,7 @@ package telas;
 
 import classes.Colaborador;
 import controle.ControleColaborador;
+import controle.ControleLogin;
 import enumeradores.EnumAcao;
 import enumeradores.EnumCaracteres;
 import enumeradores.EnumCargo;
@@ -20,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import static utilidades.Email.isValidEmailAddressRegex;
+import utilidades.Hash;
 import utilidades.Mensagens;
 import static utilidades.StringUtil.*;
 
@@ -29,11 +31,15 @@ import static utilidades.StringUtil.*;
  */
 public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastro {
 
-    private int id;
+    private ICRUDColaborador controleColaborador = null;
+    private ControleLogin controleLogin = null;
+    private Colaborador colaborador = null;
     private Mensagens mensagem = new Mensagens();
     private EnumAcao acao = null;
-    private ICRUDColaborador controleColaborador = null;
-    private Colaborador colaborador = null;
+    private int id;
+    private boolean oProprio = false;
+    private String senha = "";
+
     private boolean visible = false;
 
     @Override
@@ -54,6 +60,7 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
             popularControles();
 
             if (acao.equals(EnumAcao.Incluir)) {
+                colaborador = new Colaborador();
                 limparCampos();
             } else if (acao.equals(EnumAcao.Editar)) {
                 colaborador = controleColaborador.buscarPeloId(id);
@@ -88,6 +95,7 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         for (EnumUF u : EnumUF.values()) {
             jComboBoxUF.addItem(u.toString());
         }
+
         jButtonAlterarSenha.setText(acao.equals(EnumAcao.Incluir) ? "Cadastrar Senha" : "Alterar Senha");
     }
 
@@ -124,7 +132,7 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         jComboBoxPerfil.setSelectedIndex(colaborador.getPerfil().ordinal());
         jComboBoxStatus.setSelectedIndex(colaborador.getStatus().ordinal());
 
-        boolean oProprio = (Vai.USUARIO.getIdColaborador() == colaborador.getIdColaborador());
+        oProprio = (Vai.USUARIO.getIdColaborador() == colaborador.getIdColaborador());
         jLabelPerfil.setEnabled(!oProprio);
         jComboBoxPerfil.setEnabled(!oProprio);
         jLabelStatus.setEnabled(!oProprio);
@@ -138,7 +146,6 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         if (jComboBoxCargo.getSelectedIndex() == -1) {
             jComboBoxCargo.requestFocus();
             throw new Exception("Selecione o cargo!");
-
         }
 
         String campo = new String(jFormattedTextFieldMatricula.getText().trim());
@@ -225,14 +232,13 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         if (jComboBoxStatus.getSelectedIndex() == -1) {
             throw new Exception("Selecione o status do colaborador!");
         }
+
     }
 
     private void salvar() throws Exception {
         validarPreenchimento();
 
-        String senha = (acao.equals(EnumAcao.Editar)) ? colaborador.getSenha() : "";
-
-        colaborador = new Colaborador();
+        senha = colaborador.getSenha();
 
         if (acao.equals(EnumAcao.Incluir)) {
             colaborador.setIdColaborador(id);
@@ -266,28 +272,51 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
 
         // FONTE: https://www.guj.com.br/t/senha-no-joptionpane-resolvido/41296/5
         // Cria campo onde o usuario entra com a senha
-        JPasswordField password = new JPasswordField(6);
-        password.setEchoChar('*');
+        String titulo = "Cadastrar senha";
+        String label = "Digite a sua senha de acesso:\n";
+        senha = "";
+        controleLogin = new ControleLogin();
+
+        if (acao.equals(EnumAcao.Editar)) {
+            titulo = "Alterar senha";
+            label = "Digite a sua nova senha:\n";
+        }
+
+        JPasswordField jPasswordFieldSenha = new JPasswordField(6);
+        jPasswordFieldSenha.setEchoChar('*');
+
+        // Evento para o campo de senha
+        jPasswordFieldSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                try {
+                    senha = new String(jPasswordFieldSenha.getPassword());
+                    if (senha.length() >= 6) {
+                        evt.consume();
+                        jPasswordFieldSenha.setText(senha.substring(0, 6));
+                    }
+                } catch (Exception e) {
+                    mensagem.erro(e);
+                }
+            }
+        });
 
         // Cria um rótulo para o campo
-        JLabel rotulo = new JLabel("Entre com a senha:");
+        JLabel jLabelInstrucao = new JLabel(label);
 
         // Coloca o rótulo e a caixa de entrada numa JPanel:
-        JPanel entUsuario = new JPanel();
-        entUsuario.add(rotulo);
-        entUsuario.add(password);
+        JPanel jPanelSenha = new JPanel();
+        jPanelSenha.add(jLabelInstrucao);
+        jPanelSenha.add(jPasswordFieldSenha);
+
+        jPasswordFieldSenha.requestFocus();
+        jPasswordFieldSenha.selectAll();
 
         // Mostra o rótulo e a caixa de entrada de password para o usuario fornecer a senha:
-        JOptionPane.showMessageDialog(null, entUsuario, "Acesso restrito", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, jPanelSenha, titulo, JOptionPane.PLAIN_MESSAGE);
 
-        // O programa só prossegue quando o usuário clicar o botao de OK do showMessageDialog. 
-        // Aí, é só pegar a senha:
-        // Captura a senha:
-        String senha = new String(password.getPassword());
-
-        // mostra a senha no terminal:
-        mensagem.alerta("Você digitou: " + senha + "\nFim de execucao.");
-
+        senha = new String(jPasswordFieldSenha.getPassword());
+        controleLogin.validarSenha(senha);
+        colaborador.setSenha(Hash.criptografar(senha, "SHA-256"));
     }
 
     /**
