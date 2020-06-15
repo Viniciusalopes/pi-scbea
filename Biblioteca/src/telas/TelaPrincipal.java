@@ -258,11 +258,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
 
+    private void ocultarBotoes() {
+        jButtonIncluir.setVisible(false);
+        jButtonEditar.setVisible(false);
+        jButtonExcluir.setVisible(false);
+        jButtonComprovante.setVisible(false);
+        jButtonDevolver.setVisible(false);
+        jLabelStatusBottomRight.setText("");
+    }
+
     private void exibirBotoes() {
+        jButtonIncluir.setVisible((EnumCadastro.valueOf(cadastro).equals(EnumCadastro.LOG)) ? false : true);
         jButtonIncluir.setEnabled(true);
 
-        // Desabilita botões Editar e Excluir
+        jButtonEditar.setVisible((EnumCadastro.valueOf(cadastro).equals(EnumCadastro.LOG)) ? false : true);
         jButtonEditar.setEnabled(false);
+
+        jButtonExcluir.setVisible((EnumCadastro.valueOf(cadastro).equals(EnumCadastro.LOG)) ? false : true);
         jButtonExcluir.setEnabled(false);
 
         jButtonComprovante.setVisible(EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO)
@@ -409,7 +421,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             // aqui
             jLabelStatusBottomLeft.setText(String.format("USUÁRIO: %d - %s ", Vai.USUARIO.getIdColaborador(), Vai.USUARIO.getNomeColaborador()));
-            jLabelStatusBottomRight.setText("");
+            ocultarBotoes();
         } catch (Exception e) {
             mensagem.erro(new Exception("Erro ao construir a tela principal!\n" + e.getMessage()));
         }
