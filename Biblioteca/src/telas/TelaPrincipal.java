@@ -211,12 +211,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             this.setTitle("Sistema Integra - Cadastro de " + nomeCadastro);
 
-            if (linhas.length == 0 || linhas[0].length == 0) {
-                jLabelStatusTop.setText("Nenhum cadastro de " + nomeCadastro + ".");
-            } else {
-                jLabelStatusTop.setText("");
-            }
-
             // Nomes das colunas do grid
             String[] colunasNomes = new String[colunas.size()];
             for (int i = 0; i < colunas.size(); i++) {
@@ -257,13 +251,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
 
             jButtonIncluir.setEnabled(true);
-            
+
             // Desabilita botões Editar e Excluir
             jButtonEditar.setEnabled(false);
             jButtonExcluir.setEnabled(false);
-            
+
             jTextFieldPesquisar.setEnabled(true);
             jTextFieldPesquisar.requestFocus();
+
+            jLabelStatusBottomRight.setText((linhas.length == 0) ? "Nenhum cadastro."
+                    : ((linhas.length == 1) ? "1 cadastro." : linhas.length + " cadastros."));
         } catch (Exception e) {
             throw new Exception("Erro ao popular o grid de " + cadastro + "!\n" + e.getMessage());
         }
@@ -304,7 +301,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
             // Índice da coluna ID
             int indiceID = 0;
-            
+
             // Atualiza o índice da coluna com o ID
             for (int i = 0; i < jTableLista.getColumnCount(); i++) {
                 if (jTableLista.getColumnName(i).equals("ID")) {
@@ -404,8 +401,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             controleLog = new ControleLog();
 
             // aqui
-            jLabelStatusTop.setText("");
-            jLabelStatusBottom.setText(String.format("USUÁRIO: - %d", Vai.USUARIO.getIdColaborador(), Vai.USUARIO.getNomeColaborador()));
+            jLabelStatusBottomLeft.setText(String.format("USUÁRIO: %d - %s ", Vai.USUARIO.getIdColaborador(), Vai.USUARIO.getNomeColaborador()));
+            jLabelStatusBottomRight.setText("");
         } catch (Exception e) {
             mensagem.erro(new Exception("Erro ao construir a tela principal!\n" + e.getMessage()));
         }
@@ -439,14 +436,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonIncluir = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
-        jLabelStatusTop = new javax.swing.JLabel();
         jLabelPesquisar = new javax.swing.JLabel();
         jTextFieldPesquisar = new javax.swing.JTextField();
         jButtonComprovante = new javax.swing.JButton();
         jButtonDevolver = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLista = new javax.swing.JTable();
-        jLabelStatusBottom = new javax.swing.JLabel();
+        jLabelStatusBottomLeft = new javax.swing.JLabel();
+        jLabelStatusBottomRight = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Integra");
@@ -611,8 +608,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabelStatusTop.setText("jLabelStatusTop");
-
         jLabelPesquisar.setText("Pesquisar");
 
         jTextFieldPesquisar.setEnabled(false);
@@ -646,8 +641,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonDevolver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelStatusTop)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelPesquisar))
@@ -663,7 +656,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addComponent(jButtonEditar))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonExcluir)
-                        .addComponent(jLabelStatusTop)
                         .addComponent(jButtonComprovante)
                         .addComponent(jButtonDevolver))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotoesLayout.createSequentialGroup()
@@ -691,24 +683,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableLista);
 
-        jLabelStatusBottom.setText("jLabelStatusBottom");
+        jLabelStatusBottomLeft.setText("jLabelStatusBottomLeft");
+
+        jLabelStatusBottomRight.setText("jLabelStatusBottomRight");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparatorCadastrosBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanelCadastros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelBotoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelStatusBottomLeft)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelStatusBottomRight))
+                    .addComponent(jSeparatorCadastrosBotoes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanelCadastros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelStatusBottom)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -720,9 +714,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelStatusBottom)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelStatusBottomLeft)
+                    .addComponent(jLabelStatusBottomRight))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -924,8 +920,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonIncluir;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabelPesquisar;
-    private javax.swing.JLabel jLabelStatusBottom;
-    private javax.swing.JLabel jLabelStatusTop;
+    private javax.swing.JLabel jLabelStatusBottomLeft;
+    private javax.swing.JLabel jLabelStatusBottomRight;
     private javax.swing.JPanel jPanelBotoes;
     private javax.swing.JPanel jPanelCadastros;
     private javax.swing.JRadioButton jRadioButtonAreas;

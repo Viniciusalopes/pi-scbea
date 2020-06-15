@@ -32,20 +32,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jLabelStatusBottomLeft" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jLabelStatusBottomRight" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="jSeparatorCadastrosBotoes" alignment="1" max="32767" attributes="0"/>
                   <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
                   <Component id="jPanelCadastros" alignment="0" max="32767" attributes="0"/>
                   <Component id="jPanelBotoes" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabelStatusBottom" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -59,9 +59,12 @@
               <Component id="jPanelBotoes" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="566" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabelStatusBottom" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabelStatusBottomLeft" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelStatusBottomRight" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -260,8 +263,6 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonDevolver" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jLabelStatusTop" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jTextFieldPesquisar" min="-2" pref="183" max="-2" attributes="0"/>
                       <Component id="jLabelPesquisar" min="-2" max="-2" attributes="0"/>
@@ -281,7 +282,6 @@
                       </Group>
                       <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                           <Component id="jButtonExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelStatusTop" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonComprovante" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonDevolver" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -322,11 +322,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExcluirActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabelStatusTop">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jLabelStatusTop"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelPesquisar">
           <Properties>
@@ -397,9 +392,14 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabelStatusBottom">
+    <Component class="javax.swing.JLabel" name="jLabelStatusBottomLeft">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabelStatusBottom"/>
+        <Property name="text" type="java.lang.String" value="jLabelStatusBottomLeft"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelStatusBottomRight">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabelStatusBottomRight"/>
       </Properties>
     </Component>
   </SubComponents>
