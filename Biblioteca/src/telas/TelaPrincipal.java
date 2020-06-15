@@ -249,21 +249,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         jTableLista.getColumnModel().getColumnCount() - 1).setCellRenderer(
                         colunas.get(jTableLista.getColumnModel().getColumnCount() - 1).getAlinhamento());
             }
-
-            jButtonIncluir.setEnabled(true);
-
-            // Desabilita botões Editar e Excluir
-            jButtonEditar.setEnabled(false);
-            jButtonExcluir.setEnabled(false);
-
+            exibirBotoes();
             jTextFieldPesquisar.setEnabled(true);
             jTextFieldPesquisar.requestFocus();
 
-            jLabelStatusBottomRight.setText((linhas.length == 0) ? "Nenhum cadastro."
-                    : ((linhas.length == 1) ? "1 cadastro." : linhas.length + " cadastros."));
         } catch (Exception e) {
             throw new Exception("Erro ao popular o grid de " + cadastro + "!\n" + e.getMessage());
         }
+    }
+
+    private void exibirBotoes() {
+        jButtonIncluir.setEnabled(true);
+
+        // Desabilita botões Editar e Excluir
+        jButtonEditar.setEnabled(false);
+        jButtonExcluir.setEnabled(false);
+
+        jButtonComprovante.setVisible(EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO)
+                || EnumCadastro.valueOf(cadastro).equals(EnumCadastro.RESERVA));
+        jButtonDevolver.setVisible(EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO));
+
+        jLabelStatusBottomRight.setText((linhas.length == 0) ? "Nenhum cadastro."
+                : ((linhas.length == 1) ? "1 cadastro." : linhas.length + " cadastros."));
     }
 
     // Pesquisa nas linhas do grid
@@ -617,11 +624,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButtonComprovante.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButtonComprovante.setText("Comprovante");
         jButtonComprovante.setEnabled(false);
 
-        jButtonDevolver.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButtonDevolver.setText("Devolver");
         jButtonDevolver.setEnabled(false);
 
@@ -631,15 +636,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotoesLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jButtonIncluir)
+                .addComponent(jButtonIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonEditar)
+                .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonExcluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonComprovante)
+                .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonDevolver)
+                .addComponent(jButtonComprovante, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -649,7 +654,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanelBotoesLayout.setVerticalGroup(
             jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBotoesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(6, 6, 6)
                 .addGroup(jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonIncluir)
