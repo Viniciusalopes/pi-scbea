@@ -13,7 +13,7 @@ import utilidades.Mensagens;
  * @author vovostudio
  */
 public class TelaLogin extends javax.swing.JFrame {
-
+    
     private Mensagens mensagem = new Mensagens();
 
     /**
@@ -24,7 +24,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         // Centraliza o form na tela
         this.setLocationRelativeTo(rootPane);
-
+        
     }
 
     /**
@@ -53,6 +53,11 @@ public class TelaLogin extends javax.swing.JFrame {
         jTextFieldLogin.setText("1");
 
         jPasswordField.setText("123456");
+        jPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jPasswordFieldKeyReleased(evt);
+            }
+        });
 
         jButtonNaoSeiMinhaSenha.setText("Não sei minha senha");
         jButtonNaoSeiMinhaSenha.setFocusable(false);
@@ -109,24 +114,40 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNaoSeiMinhaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNaoSeiMinhaSenhaActionPerformed
-        mensagem.erro(new Exception("Problema seu."));
+        try {
+            new TelaRecuperarSenha(this, true).setVisible(true);
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
     }//GEN-LAST:event_jButtonNaoSeiMinhaSenhaActionPerformed
 
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
-
+        
         try {
             // FONTE: https://www.guj.com.br/t/como-pegar-valor-do-jpasswordfield/227295/7
             Vai.USUARIO = new ControleLogin().autenticar(
                     jTextFieldLogin.getText().trim(), new String(jPasswordField.getPassword()));
-
+            
             TelaPrincipal telaPrincipal = new TelaPrincipal();
             telaPrincipal.setVisible(true);
             this.dispose();
-
+            
         } catch (Exception e) {
             mensagem.erro(e);
         }
     }//GEN-LAST:event_jButtonOKActionPerformed
+
+    private void jPasswordFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyReleased
+        try {
+            String senha = new String(jPasswordField.getPassword());
+            if (senha.length() >= 6) {
+                evt.consume();
+                jPasswordField.setText(senha.substring(0, 6));
+            }
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jPasswordFieldKeyReleased
 
     /**
      * @param args the command line arguments

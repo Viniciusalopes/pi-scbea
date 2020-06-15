@@ -15,6 +15,10 @@ import enumeradores.EnumTipoStatus;
 import enumeradores.EnumUF;
 import interfaces.ICRUDColaborador;
 import interfaces.ITelaCadastro;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import static utilidades.Email.isValidEmailAddressRegex;
 import utilidades.Mensagens;
 import static utilidades.StringUtil.*;
@@ -84,6 +88,7 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         for (EnumUF u : EnumUF.values()) {
             jComboBoxUF.addItem(u.toString());
         }
+        jButtonAlterarSenha.setText(acao.equals(EnumAcao.Incluir) ? "Cadastrar Senha" : "Alterar Senha");
     }
 
     private void limparCampos() {
@@ -255,6 +260,34 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         }
         visible = false;
         this.dispose();
+    }
+
+    private void senha() throws Exception {
+
+        // FONTE: https://www.guj.com.br/t/senha-no-joptionpane-resolvido/41296/5
+        // Cria campo onde o usuario entra com a senha
+        JPasswordField password = new JPasswordField(6);
+        password.setEchoChar('*');
+
+        // Cria um rótulo para o campo
+        JLabel rotulo = new JLabel("Entre com a senha:");
+
+        // Coloca o rótulo e a caixa de entrada numa JPanel:
+        JPanel entUsuario = new JPanel();
+        entUsuario.add(rotulo);
+        entUsuario.add(password);
+
+        // Mostra o rótulo e a caixa de entrada de password para o usuario fornecer a senha:
+        JOptionPane.showMessageDialog(null, entUsuario, "Acesso restrito", JOptionPane.PLAIN_MESSAGE);
+
+        // O programa só prossegue quando o usuário clicar o botao de OK do showMessageDialog. 
+        // Aí, é só pegar a senha:
+        // Captura a senha:
+        String senha = new String(password.getPassword());
+
+        // mostra a senha no terminal:
+        mensagem.alerta("Você digitou: " + senha + "\nFim de execucao.");
+
     }
 
     /**
@@ -598,7 +631,7 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
         try {
             if (jTextFieldOAB.getText().trim().length() >= 9) {
                 evt.consume();
-                jTextFieldOAB.setText(jTextFieldOAB.getText().trim().substring(0, 6));
+                jTextFieldOAB.setText(jTextFieldOAB.getText().trim().substring(0, 9));
             } else {
                 if (!EnumCaracteres.Numeros.getCaracteres().contains(evt.getKeyChar() + "")) {
                     evt.consume();
@@ -639,7 +672,11 @@ public class TelaColaborador extends javax.swing.JDialog implements ITelaCadastr
     }//GEN-LAST:event_jFormattedTextFieldTelefoneKeyTyped
 
     private void jButtonAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarSenhaActionPerformed
-        mensagem.informacao("Implementar...");
+        try {
+            senha();
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
     }//GEN-LAST:event_jButtonAlterarSenhaActionPerformed
 
     private void jTextFieldEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEmailKeyReleased

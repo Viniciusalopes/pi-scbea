@@ -16,23 +16,43 @@ import utilidades.Hash;
  */
 public class ControleLogin {
 
+    private ArrayList<Colaborador> colecao = null;
+    private Colaborador colaborador = null;
+
     public Colaborador autenticar(String login, String senha) throws Exception {
 
         if (login.trim().length() == 0) {
             throw new Exception("O campo Login é obrigatório!");
         }
 
-        if (senha.trim().length() == 0) {
-            throw new Exception("O campo Senha é obrigatório!");
+        validarSenha(senha);
+
+        validarColaborador(login);
+
+        if (!colaborador.getSenha().equals(Hash.criptografar(senha, "SHA-256"))) {
+            throw new Exception("Senha incorreta!");
         }
 
-        ArrayList<Colaborador> colecao = new ControleColaborador().listar();
+        return colaborador;
+    }
+
+    public void validarSenha(String senha) throws Exception {
+        if (senha.length() == 0) {
+            throw new Exception("Informe a senha!");
+        }
+        if (senha.length() < 6) {
+            throw new Exception("A senha precisa ter 6 caracteres!");
+        }
+    }
+
+    public Colaborador validarColaborador(String login) throws Exception {
+        colecao = new ControleColaborador().listar();
 
         if (colecao.isEmpty()) {
             throw new Exception("Nenhum colaborador cadastrado!");
         }
 
-        Colaborador colaborador = new Colaborador();
+        colaborador = new Colaborador();
 
         for (Colaborador c : colecao) {
             if (("" + c.getMatricula()).equals(login)
@@ -50,10 +70,6 @@ public class ControleLogin {
 
         if (colaborador.getStatus().equals(EnumTipoStatus.INATIVO)) {
             throw new Exception("Colaborador inativo!");
-        }
-
-        if (!colaborador.getSenha().equals(Hash.criptografar(senha, "SHA-256"))) {
-            throw new Exception("Senha incorreta!");
         }
 
         return colaborador;

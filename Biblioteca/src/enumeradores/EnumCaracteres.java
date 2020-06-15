@@ -28,7 +28,14 @@ public enum EnumCaracteres {
     EspeciaisUcaseAltGr("¬¡½¾¼⅜¨⅞™±°¿˛/?°®Ŧ¥↑ıØÞ`¯Æ§ÐªŊĦ̛&Ł˝^º˘<>©‘’µ×÷¿"),
     Especiais(EspeciaisLcase.caracteres + EspeciaisLcaseAltGr.caracteres
             + EspeciaisUcase.caracteres + EspeciaisUcaseAltGr.caracteres),
-    Todos(Letras.caracteres + Numeros.caracteres + Email.caracteres + Telefone.caracteres + Especiais.caracteres);
+    Todos(VogaisAcentuadas.caracteres
+            + Letras.caracteres
+            + Numeros.caracteres
+            + Email.caracteres
+            + Telefone.caracteres
+            + Editora.caracteres
+            + Especiais.caracteres
+    );
 
     private String caracteres;
 
