@@ -6,3 +6,6 @@
 2020/06/15 02:15:31_1_2_6_1986;1981;2;15/06/2020;10,00;------;_PersistenciaExemplar, excluir
 2020/06/15 02:15:33_1_2_6_1988;1981;2;15/06/2020;10,00;--;_PersistenciaExemplar, excluir
 2020/06/15 02:15:35_1_2_6_1989;1981;2;15/06/2020;25,00;---;_PersistenciaExemplar, excluir
+2020/06/15 06:26:56_1_2_6_1989;1981;2;15/06/2020;20,00;--;_PersistenciaExemplar, excluir
+2020/06/15 06:27:00_1_2_6_1990;1981;2;15/06/2020;20,00;--;_PersistenciaExemplar, excluir
+2020/06/15 06:30:12_1_2_6_1988;1981;2;15/06/2020;20,00;--;_PersistenciaExemplar, excluir

@@ -429,6 +429,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private void ativarBotoes() {
         boolean reservar = false;
         boolean emprestar = false;
+
         EnumTipoStatus status = null;
 
         if (jTableColaborador.getRowCount() > 0 && jTableLivro.getRowCount() > 0) {                      // Existem linhas nos dois grids
@@ -452,7 +453,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             }
         }
         jButtonReservarLivro.setEnabled(reservar);
-        jButtonIncluirExemplar.setEnabled(reservar);
+        jButtonIncluirExemplar.setEnabled(jTableLivro.getSelectedRow() > -1);
         jButtonEmprestar.setEnabled(emprestar);
 
         // Botão emprestar
@@ -478,13 +479,15 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     }
 
     private void exibirTelaExemplar() throws Exception {
+        idLivro = Integer.parseInt(jTableLivro.getValueAt(jTableLivro.getSelectedRow(), 0).toString());
         TelaLivro telalivro = new TelaLivro(null, true);
-        telalivro.setId(Integer.parseInt(jTableLivro.getValueAt(jTableLivro.getSelectedRow(), 0).toString()));
+        telalivro.setId(idLivro);
         telalivro.setAcao(EnumAcao.Editar);
         telalivro.setVisible(true);
         matrizLivro = controleTelaEmprestimo.getMatrizLivros();
         matrizPesquisaLivro = matrizLivro;
-        preencherJTableExemplares(matrizLivro);
+        matrizExemplar = controleTelaEmprestimo.getMatrizExemplares(idLivro);
+        preencherJTableExemplares(matrizExemplar);
     }
 
     //--- FIM MÉTODOS PARA BOTÕES ---------------------------------------------|
@@ -852,6 +855,11 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 jTableExemplaresMouseClicked(evt);
             }
         });
+        jTableExemplares.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableExemplaresKeyReleased(evt);
+            }
+        });
         jScrollPaneExemplares.setViewportView(jTableExemplares);
         if (jTableExemplares.getColumnModel().getColumnCount() > 0) {
             jTableExemplares.getColumnModel().getColumn(0).setMinWidth(60);
@@ -1033,6 +1041,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private void jButtonIncluirColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirColaboradorActionPerformed
         try {
             exibirTelaColaborador();
+            ativarBotoes();
         } catch (Exception e) {
             mensagem.erro(e);
         }
@@ -1041,6 +1050,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private void jButtonIncluirExemplarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirExemplarActionPerformed
         try {
             exibirTelaExemplar();
+            ativarBotoes();
         } catch (Exception e) {
             mensagem.erro(e);
         }
@@ -1049,6 +1059,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private void jButtonIncluirLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirLivroActionPerformed
         try {
             exibirTelaLivro();
+            ativarBotoes();
         } catch (Exception e) {
             mensagem.erro(e);
         }
