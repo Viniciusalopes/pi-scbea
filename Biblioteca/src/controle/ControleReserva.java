@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import persistencia.PersistenciaReserva;
 import static utilidades.ColecaoUtil.getComparadorReservaColaboradorCresc;
+import static utilidades.StringUtil.truncar;
 
 /**
  *
@@ -22,10 +23,11 @@ public class ControleReserva implements ICRUDReserva {
 
     private ICRUDReserva persistencia = null;
     private ArrayList<Reserva> colecao = null;
+    private SimpleDateFormat formatoData = null;
 
     public ControleReserva() throws Exception {
         persistencia = new PersistenciaReserva();
-
+        formatoData = new SimpleDateFormat("dd/MM/yyyy");
     }
 
     @Override
@@ -70,9 +72,20 @@ public class ControleReserva implements ICRUDReserva {
                     && reserva.getLivro().getIdLivro() == r.getLivro().getIdLivro()) {
                 throw new Exception("Já existe uma reserva em nome desse colaborador para este livro!\n"
                         + "Reserva nº " + r.getIdReserva()
-                        + " - Data: " + new SimpleDateFormat("dd/MM/yyyy").format(reserva.getdataReserva()));
+                        + " - Data: " + formatoData.format(reserva.getdataReserva()));
             }
         }
     }
 
+    public String comprovante(Reserva reserva) {
+
+        return " COMPROVANTE DE DE RESERVA nº " + reserva.getIdReserva()
+                + "\n----------------------------------------"
+                + "\nData: " + formatoData.format(reserva.getdataReserva()).toString()
+                + "\nColaborador: " + reserva.getColaborador().getNomeColaborador()
+                + "\nMatrícula: " + reserva.getColaborador().getMatricula()
+                + "\nLivro: " + reserva.getLivro().getIdLivro() + " - " + truncar(reserva.getLivro().getTitulo(), 40)
+                + "\n" + reserva.getLivro().getEdicao() + " ª Edição"
+                + "\n";
+    }
 }

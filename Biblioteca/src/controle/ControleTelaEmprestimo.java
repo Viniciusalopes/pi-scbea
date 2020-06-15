@@ -171,6 +171,10 @@ public class ControleTelaEmprestimo {
         return controleReserva.buscarPeloId(idReserva);
     }
 
+    public String comprovanteReserva(Reserva reserva) throws Exception {
+        return new ControleReserva().comprovante(reserva);
+    }
+
     public Emprestimo buscarEmprestimo(int idEmprestimo) throws Exception {
         return controleEmprestimo.buscarPeloId(idEmprestimo);
     }

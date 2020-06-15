@@ -20,6 +20,7 @@ import controle.ControleLog;
 import controle.ControleReserva;
 import enumeradores.EnumAcao;
 import enumeradores.EnumCadastro;
+import enumeradores.EnumTipoStatus;
 import interfaces.ICRUDAreaConhecimento;
 import interfaces.ICRUDAutor;
 import interfaces.ICRUDEditora;
@@ -111,7 +112,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 acao = EnumAcao.Editar;
             }
 
-            telaCadastro.setId(getId());
+            telaCadastro.setId(getValorColuna("ID"));
             telaCadastro.setAcao(acao);
             telaCadastro.setVisible(true);
 
@@ -127,7 +128,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void excluirCadastro() throws Exception {
         try {
-            int id = getId();
+            int id = getValorColuna("ID");
             String textoPergunta = "Deseja realmente excluir o cadastro selecionado?\n"
                     + "(-) " + cadastro + " ID: " + id;
 
@@ -266,7 +267,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelStatusBottomRight.setText("");
     }
 
-    private void exibirBotoes() {
+    private void exibirBotoes() throws Exception {
         jButtonIncluir.setVisible((EnumCadastro.valueOf(cadastro).equals(EnumCadastro.LOG)) ? false : true);
         jButtonIncluir.setEnabled(true);
 
@@ -276,15 +277,35 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonExcluir.setVisible((EnumCadastro.valueOf(cadastro).equals(EnumCadastro.LOG)) ? false : true);
         jButtonExcluir.setEnabled(false);
 
-        jButtonComprovante.setVisible(EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO)
-                || EnumCadastro.valueOf(cadastro).equals(EnumCadastro.RESERVA));
         jButtonDevolver.setVisible(EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO));
+
+        jButtonComprovante.setVisible(
+                EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO)
+                || EnumCadastro.valueOf(cadastro).equals(EnumCadastro.RESERVA)
+        );
+
+        boolean devolver = false;
+        boolean comprovante = false;
+
+        if (jTableLista.getRowCount() > 0) {
+            devolver = (EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO) // Se for a tela de empréstimo
+                    && jTableLista.getSelectedRow() > -1 // E se tiver linha selecionada
+                    && (EnumTipoStatus.values()[getValorColuna("Status")].equals(EnumTipoStatus.EMPRESTADO) // E estiver com status EMPRESTADO
+                    || EnumTipoStatus.values()[getValorColuna("Status")].equals(EnumTipoStatus.ATRASADO)));     // Ou estiver com o status ATRASADO
+
+            comprovante = (EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO)
+                    || EnumCadastro.valueOf(cadastro).equals(EnumCadastro.RESERVA))
+                    && jTableLista.getSelectedRow() > -1;
+
+        }
+        jButtonDevolver.setEnabled(devolver);
+        jButtonComprovante.setEnabled(comprovante);
 
         jLabelStatusBottomRight.setText((jTableLista.getRowCount() == 0) ? "Nenhum cadastro."
                 : ((jTableLista.getRowCount() == 1) ? "1 cadastro." : jTableLista.getRowCount() + " cadastros."));
     }
-
     // Pesquisa nas linhas do grid
+
     private void pesquisar(String texto) throws Exception {
         try {
             if (linhas != null) {
@@ -314,23 +335,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
 
-    // Retorna o id do cadastro selecionado no grid
-    private int getId() throws Exception {
+    // Retorna o valor inteiro de uma coluna (label) do cadastro selecionado no grid
+    private int getValorColuna(String label) throws Exception {
         try {
-            // Índice da coluna ID
+            // Índice da coluna Status
             int indiceID = 0;
 
-            // Atualiza o índice da coluna com o ID
+            // Atualiza o índice da coluna com o label
             for (int i = 0; i < jTableLista.getColumnCount(); i++) {
-                if (jTableLista.getColumnName(i).equals("ID")) {
+                if (jTableLista.getColumnName(i).equals(label)) {
                     indiceID = i;
                     break;
                 }
             }
-            return Integer.parseInt(jTableLista.getValueAt(jTableLista.getSelectedRow(), indiceID).toString());
-
+            switch (label) {
+                case "ID":
+                    return Integer.parseInt(jTableLista.getValueAt(jTableLista.getSelectedRow(), indiceID).toString());
+                case "Status":
+                    return EnumTipoStatus.valueOf(jTableLista.getValueAt(jTableLista.getSelectedRow(), indiceID).toString()).ordinal();
+                default:
+                    return 0;
+            }
         } catch (Exception e) {
-            throw new Exception("Erro ao obter ID!\n" + e.getMessage());
+            throw new Exception("Erro ao obter o + " + label + "!\n" + e.getMessage());
         }
     }
 
@@ -637,6 +664,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jButtonComprovante.setText("Comprovante");
         jButtonComprovante.setEnabled(false);
+        jButtonComprovante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonComprovanteActionPerformed(evt);
+            }
+        });
 
         jButtonDevolver.setText("Devolver");
         jButtonDevolver.setEnabled(false);
@@ -855,7 +887,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             // Verifica se está na tela de cadastro de Colaboradores
             if (cadastro.equals(EnumCadastro.COLABORADOR.toString())) {
                 enabled = (Vai.USUARIO.getPerfil().equals(EnumPerfil.ADMINISTRADOR)
-                        && Vai.USUARIO.getIdColaborador() != getId());
+                        && Vai.USUARIO.getIdColaborador() != getValorColuna("ID"));
             }
 
             if (cadastro.equals(EnumCadastro.RESERVA.toString())) {
@@ -869,6 +901,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     detalheCadastro();
                 }
             }
+            exibirBotoes();
         } catch (Exception e) {
             mensagem.erro(e);
         }
@@ -905,6 +938,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jTableListaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableListaKeyReleased
         jTableListaMouseClicked(null);
     }//GEN-LAST:event_jTableListaKeyReleased
+
+    private void jButtonComprovanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComprovanteActionPerformed
+        try {
+            mensagem.informacao(new ControleReserva().comprovante(controleReserva.buscarPeloId(getValorColuna("ID"))));
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jButtonComprovanteActionPerformed
 
     //--- FIM EVENTOS ---------------------------------------------------------|
     /**

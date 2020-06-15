@@ -143,16 +143,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             reserva = controleTelaEmprestimo.buscarReserva(idReserva);
 
             if (mensagem.pergunta("Reserva incluída com sucesso!\nDeseja imprimir o recibo agora?") == 0) {
-                mensagem.informacao(
-                        " RECIBO DE RESERVA nº " + reserva.getIdReserva()
-                        + "\n----------------------------------------"
-                        + "\nData: " + formatoData.format(reserva.getdataReserva()).toString()
-                        + "\nColaborador: " + reserva.getColaborador().getNomeColaborador()
-                        + "\nMatrícula: " + reserva.getColaborador().getMatricula()
-                        + "\nLivro: " + reserva.getLivro().getIdLivro() + " - " + titulo
-                        + "\n" + reserva.getLivro().getEdicao() + " ª Edição"
-                        + "\n"
-                );
+                mensagem.informacao(controleTelaEmprestimo.comprovanteReserva(reserva));
             }
             this.dispose();
         }
