@@ -263,49 +263,45 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     private void exibirBotoes() throws Exception {
-        boolean comprovante = false;
-        boolean devolver = false;
 
-        
-        
-        // Incluir
-        jButtonIncluir.setVisible((EnumCadastro.valueOf(cadastro).equals(EnumCadastro.LOG)) ? false : true);
-        jButtonIncluir.setEnabled(!cadastro.equals("") && !EnumCadastro.valueOf(cadastro).equals(EnumCadastro.LOG));
-        
+        boolean enable = false;
+
+        // Exibir
+        jButtonIncluir.setVisible(!EnumCadastro.valueOf(cadastro).equals(EnumCadastro.LOG));
+        jButtonExcluir.setVisible(!EnumCadastro.valueOf(cadastro).equals(EnumCadastro.LOG));
         jButtonDevolver.setVisible(EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO));
-        if (jTableLista.getRowCount() > 0) {
-            // Excluir            
-            jButtonExcluir.setVisible((EnumCadastro.valueOf(cadastro).equals(EnumCadastro.LOG)) ? false : true);
-            // Verifica se está na tela de cadastro de Colaboradores
-            if (cadastro.equals(EnumCadastro.COLABORADOR.toString())) {
-                jButtonExcluir.setEnabled(
-                        jTableLista.getSelectedRow() > -1
-                        && Vai.USUARIO.getPerfil().equals(EnumPerfil.ADMINISTRADOR)
-                        && Vai.USUARIO.getIdColaborador() != getValorColuna("ID")
-                );
-            } else {
-                jButtonExcluir.setEnabled(jTableLista.getSelectedRow() > -1 && !EnumCadastro.valueOf(cadastro).equals(EnumCadastro.LOG));
+        jButtonComprovante.setVisible(EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO)
+                || EnumCadastro.valueOf(cadastro).equals(EnumCadastro.RESERVA));
+
+        // Habilitar
+        jButtonIncluir.setEnabled(!cadastro.equals("") && !EnumCadastro.valueOf(cadastro).equals(EnumCadastro.LOG));
+
+        if (jTableLista.getRowCount() > 0) {    // Se existem linhas no grid
+
+            // Excluir
+            if (jTableLista.getSelectedRow() > -1) { // Se tiver linha selecionada
+
+                // Verifica se está na tela de cadastro de Colaboradores
+                if (cadastro.equals(EnumCadastro.COLABORADOR.toString())) {
+                    enable = Vai.USUARIO.getPerfil().equals(EnumPerfil.ADMINISTRADOR)
+                            && Vai.USUARIO.getIdColaborador() != getValorColuna("ID");
+                }
+                jButtonExcluir.setEnabled(enable);
+
+                // Comprovante
+                enable = (EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO)
+                        || EnumCadastro.valueOf(cadastro).equals(EnumCadastro.RESERVA));
+                jButtonComprovante.setEnabled(enable);
+
+                // Devolver
+                enable = (EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO) // Se for a tela de empréstimo
+                        && (EnumTipoStatus.values()[getValorColuna("Status")].equals(EnumTipoStatus.EMPRESTADO) // E estiver com status EMPRESTADO
+                        || EnumTipoStatus.values()[getValorColuna("Status")].equals(EnumTipoStatus.ATRASADO)));     // Ou estiver com o status ATRASADO
+                jButtonDevolver.setEnabled(enable);
             }
-
-            // Comprovante
-            jButtonComprovante.setVisible(
-                    EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO)
-                    || EnumCadastro.valueOf(cadastro).equals(EnumCadastro.RESERVA)
-            );
-            comprovante = (EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO)
-                    || EnumCadastro.valueOf(cadastro).equals(EnumCadastro.RESERVA))
-                    && jTableLista.getSelectedRow() > -1;
-
-            // Devolver
-            
-            devolver = (EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO) // Se for a tela de empréstimo
-                    && jTableLista.getSelectedRow() > -1 // E se tiver linha selecionada
-                    && (EnumTipoStatus.values()[getValorColuna("Status")].equals(EnumTipoStatus.EMPRESTADO) // E estiver com status EMPRESTADO
-                    || EnumTipoStatus.values()[getValorColuna("Status")].equals(EnumTipoStatus.ATRASADO)));     // Ou estiver com o status ATRASADO
         }
-        jButtonDevolver.setEnabled(devolver);
-        jButtonComprovante.setEnabled(comprovante);
 
+        // Label de contagem de registros
         jLabelStatusBottomRight.setText((jTableLista.getRowCount() == 0) ? "Nenhum cadastro."
                 : ((jTableLista.getRowCount() == 1) ? "1 cadastro." : jTableLista.getRowCount() + " cadastros."));
     }
