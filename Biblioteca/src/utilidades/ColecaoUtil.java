@@ -9,6 +9,7 @@ import classes.AreaConhecimento;
 import classes.Autor;
 import classes.Colaborador;
 import classes.Editora;
+import classes.Emprestimo;
 import classes.Exemplar;
 import classes.Livro;
 import classes.Reserva;
@@ -107,6 +108,17 @@ public class ColecaoUtil {
 
             @Override
             public int compare(Reserva o1, Reserva o2) {
+                return collator.compare(o1.getColaborador().getNomeColaborador(), o2.getColaborador().getNomeColaborador());
+            }
+        };
+    }
+    
+     public static Comparator<Emprestimo> getComparadorEmprestimoColaboradorCresc() {
+        collator.setStrength(Collator.PRIMARY);
+        return new Comparator<Emprestimo>() {
+
+            @Override
+            public int compare(Emprestimo o1, Emprestimo o2) {
                 return collator.compare(o1.getColaborador().getNomeColaborador(), o2.getColaborador().getNomeColaborador());
             }
         };

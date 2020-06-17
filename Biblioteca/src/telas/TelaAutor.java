@@ -143,6 +143,9 @@ public class TelaAutor extends javax.swing.JDialog implements ITelaCadastro {
         jLabelID.setText("ID:");
 
         jTextFieldIdAutor.setEditable(false);
+        jTextFieldIdAutor.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jTextFieldIdAutor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldIdAutor.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextFieldIdAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldIdAutorActionPerformed(evt);

@@ -50,60 +50,81 @@ public class PersistenciaReserva implements ICRUDReserva {
 
     @Override
     public ArrayList<Reserva> listar() throws Exception {
-        colecao = new ArrayList<>();
-        linhas = controleArquivoTXT.lerArquivo();
-        for (String linha : linhas) {
-            String[] dados = linha.split(";");
-            reserva = new Reserva(
-                    Integer.parseInt(dados[0]),
-                    controleLivro.buscarPeloId(Integer.parseInt(dados[1])),
-                    controleColaborador.buscarPeloId(Integer.parseInt(dados[2])),
-                    new SimpleDateFormat("dd/MM/yyyy").parse(dados[3])
-            );
+        try {
+            colecao = new ArrayList<>();
+            linhas = controleArquivoTXT.lerArquivo();
+            for (String linha : linhas) {
+                String[] dados = linha.split(";");
+                reserva = new Reserva(
+                        Integer.parseInt(dados[0]),
+                        controleLivro.buscarPeloId(Integer.parseInt(dados[1])),
+                        controleColaborador.buscarPeloId(Integer.parseInt(dados[2])),
+                        new SimpleDateFormat("dd/MM/yyyy").parse(dados[3])
+                );
 
-            colecao.add(reserva);
+                colecao.add(reserva);
+            }
+            return colecao;
+        } catch (Exception e) {
+            throw new Exception("Erro ao listar as reservas! (Persistência)\n" + e.getMessage());
         }
-        return colecao;
     }
 
     @Override
     public Reserva buscarPeloId(int idReserva) throws Exception {
-        listar();
-        for (Reserva reserva : colecao) {
-            if (reserva.getIdReserva() == idReserva) {
-                return reserva;
+        try {
+            listar();
+            for (Reserva reserva : colecao) {
+                if (reserva.getIdReserva() == idReserva) {
+                    return reserva;
+                }
             }
+            return null;
+        } catch (Exception e) {
+            throw new Exception("Erro ao buscar reserva pelo ID! (Persistência)\n" + e.getMessage());
         }
-        return null;
+
     }
 
     @Override
     public int incluir(Reserva reserva) throws Exception {
-        reserva.setIdReserva(GeradorID.getProximoID());
-        controleArquivoTXT.incluirLinha(reserva.toString());
-        return reserva.getIdReserva();
+        try {
+            reserva.setIdReserva(GeradorID.getProximoID());
+            controleArquivoTXT.incluirLinha(reserva.toString());
+            return reserva.getIdReserva();
+        } catch (Exception e) {
+            throw new Exception("Erro ao incluir a reserva pelo ID! (Persistência)\n" + e.getMessage());
+        }
     }
 
     @Override
     public void alterar(Reserva reserva) throws Exception {
-        linhas = controleArquivoTXT.lerArquivo();
-        for (String linha : linhas) {
-            if (Integer.parseInt(linha.split(";")[0]) == reserva.getIdReserva()) {
-                controleArquivoTXT.alterarLinha(linha, reserva.toString());
-                break;
+        try {
+            linhas = controleArquivoTXT.lerArquivo();
+            for (String linha : linhas) {
+                if (Integer.parseInt(linha.split(";")[0]) == reserva.getIdReserva()) {
+                    controleArquivoTXT.alterarLinha(linha, reserva.toString());
+                    break;
+                }
             }
+        } catch (Exception e) {
+            throw new Exception("Erro ao alterar a reserva ! (Persistência)\n" + e.getMessage());
         }
     }
 
     @Override
     public void excluir(int idReserva) throws Exception {
-        linhas = controleArquivoTXT.lerArquivo();
-        for (String linha : linhas) {
-            if (Integer.parseInt(linha.split(";")[0]) == idReserva) {
-                controleArquivoTXT.excluirLinha(linha);
-                new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.RESERVA, linha, "PersistenciaReserva, excluir");
-                break;
+        try {
+            linhas = controleArquivoTXT.lerArquivo();
+            for (String linha : linhas) {
+                if (Integer.parseInt(linha.split(";")[0]) == idReserva) {
+                    controleArquivoTXT.excluirLinha(linha);
+                    new ControleLog().incluir(EnumAcao.Excluir, EnumCadastro.RESERVA, linha, "PersistenciaReserva, excluir");
+                    break;
+                }
             }
+        } catch (Exception e) {
+            throw new Exception("Erro ao excluir a reserva ! (Persistência)\n" + e.getMessage());
         }
     }
 }

@@ -137,7 +137,6 @@ public class TelaAreaConhecimento extends javax.swing.JDialog implements ITelaCa
         jLabelId.setText("ID:");
 
         jTextFieldID.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        jTextFieldID.setForeground(new java.awt.Color(102, 102, 102));
         jTextFieldID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldID.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextFieldID.setEnabled(false);

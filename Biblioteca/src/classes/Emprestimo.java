@@ -31,11 +31,10 @@ public class Emprestimo {
     private EnumTipoStatus statusEmprestimo = null;
     private float valorMulta = 0;
     private float valorPago = 0;
-    private SimpleDateFormat formatoData = null;
 
     // CONSTRUTORES
     public Emprestimo() {
-        formatoData = new SimpleDateFormat("dd/MM/yyyy");
+
     }
 
     public Emprestimo(Emprestimo emprestimo) {
@@ -44,9 +43,9 @@ public class Emprestimo {
         colaborador = emprestimo.colaborador;
         dataEmprestimo = emprestimo.dataEmprestimo;
         dataDevolucao = emprestimo.dataDevolucao;
+        statusEmprestimo = emprestimo.statusEmprestimo;
         valorMulta = emprestimo.valorMulta;
         valorPago = emprestimo.valorPago;
-        formatoData = new SimpleDateFormat("dd/MM/yyyy");
     }
 
     public Emprestimo(int idEmprestimo,
@@ -62,9 +61,9 @@ public class Emprestimo {
         this.colaborador = colaborador;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
+        this.statusEmprestimo = statusEmprestimo;
         this.valorMulta = valorMulta;
         this.valorPago = valorPago;
-        formatoData = new SimpleDateFormat("dd/MM/yyyy");
     }
 
     // MÉTODOS
@@ -138,14 +137,16 @@ public class Emprestimo {
 
     @Override
     public String toString() {
-        return String.format("%d;%d;%d;%s;%s;%d;%.2f",
+        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        return String.format("%d;%d;%d;%s;%s;%d;%.2f;%.2f",
                 idEmprestimo,
-                exemplar,
-                colaborador,
+                exemplar.getIdExemplar(),
+                colaborador.getIdColaborador(),
                 formatoData.format(dataEmprestimo),
-                formatoData.format(dataDevolucao),
-                statusEmprestimo,
-                valorMulta
+                (dataDevolucao == null) ? "" : formatoData.format(dataDevolucao),
+                statusEmprestimo.ordinal(),
+                valorMulta,
+                valorPago
         );
 
     }

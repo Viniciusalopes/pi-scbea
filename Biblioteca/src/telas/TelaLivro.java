@@ -17,6 +17,7 @@ import controle.ControleEditora;
 import controle.ControleExemplar;
 import controle.ControleLivro;
 import enumeradores.EnumAcao;
+import enumeradores.EnumTipoStatus;
 import interfaces.ICRUDAreaConhecimento;
 import interfaces.ICRUDAutor;
 import interfaces.ICRUDEditora;
@@ -221,9 +222,9 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
             jTableExemplares.getColumnModel().getColumn(0).setMinWidth(60);
             jTableExemplares.getColumnModel().getColumn(0).setPreferredWidth(60);
             jTableExemplares.getColumnModel().getColumn(0).setMaxWidth(60);
-            jTableExemplares.getColumnModel().getColumn(1).setMinWidth(80);
-            jTableExemplares.getColumnModel().getColumn(1).setPreferredWidth(80);
-            jTableExemplares.getColumnModel().getColumn(1).setMaxWidth(80);
+            jTableExemplares.getColumnModel().getColumn(1).setMinWidth(110);
+            jTableExemplares.getColumnModel().getColumn(1).setPreferredWidth(110);
+            jTableExemplares.getColumnModel().getColumn(1).setMaxWidth(110);
             jTableExemplares.getColumnModel().getColumn(2).setMinWidth(100);
             jTableExemplares.getColumnModel().getColumn(2).setPreferredWidth(100);
             jTableExemplares.getColumnModel().getColumn(2).setMaxWidth(100);
@@ -490,9 +491,9 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
             jTableExemplares.getColumnModel().getColumn(0).setMinWidth(60);
             jTableExemplares.getColumnModel().getColumn(0).setPreferredWidth(60);
             jTableExemplares.getColumnModel().getColumn(0).setMaxWidth(60);
-            jTableExemplares.getColumnModel().getColumn(1).setMinWidth(80);
-            jTableExemplares.getColumnModel().getColumn(1).setPreferredWidth(80);
-            jTableExemplares.getColumnModel().getColumn(1).setMaxWidth(80);
+            jTableExemplares.getColumnModel().getColumn(1).setMinWidth(110);
+            jTableExemplares.getColumnModel().getColumn(1).setPreferredWidth(110);
+            jTableExemplares.getColumnModel().getColumn(1).setMaxWidth(110);
             jTableExemplares.getColumnModel().getColumn(2).setMinWidth(100);
             jTableExemplares.getColumnModel().getColumn(2).setPreferredWidth(100);
             jTableExemplares.getColumnModel().getColumn(2).setMaxWidth(100);
@@ -636,6 +637,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         jTextFieldID.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jTextFieldID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldID.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        jTextFieldID.setEnabled(false);
 
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -677,6 +679,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         try {
             validarPreenchimento();
@@ -759,7 +762,8 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
                     preencherJTableExemplares(livro.getIdLivro());
                 }
             }
-            jButtonExcluirExemplar.setEnabled(true);
+            EnumTipoStatus status = EnumTipoStatus.valueOf(jTableExemplares.getValueAt(jTableExemplares.getSelectedRow(), 1).toString());
+            jButtonExcluirExemplar.setEnabled(status.equals(EnumTipoStatus.DISPONIVEL));
         } catch (Exception e) {
             mensagem.erro(new Exception("Erro ao abrir cadastro de exemplar!\n " + e.getMessage()));
         }

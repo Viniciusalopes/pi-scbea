@@ -32,6 +32,7 @@ public class tabelaCdd {
         {"3421", "DIREITO CIVIL"},
         {"3422", "DIREITO COMERCIAL"},
         {"3412", "DIREITO CONSTITUCIONAL"},
+        {"3412", "DIREITO CONSTITUCIONAL"},
         {"3433", "Direito das coisas. Direitos reais"},
         {"3442", "Direito das coisas. Direitos reais"},
         {"3444", "Direito das obrigações"},

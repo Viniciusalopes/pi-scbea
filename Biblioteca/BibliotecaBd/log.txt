@@ -1,11 +1,6 @@
-2020/06/15 02:10:47_1_2_8_1987;1981;1;15/06/2020_PersistenciaReserva, excluir
-2020/06/15 02:15:23_1_2_6_1982;1981;2;15/06/2020;10,00;--;_PersistenciaExemplar, excluir
-2020/06/15 02:15:26_1_2_6_1983;1981;2;15/06/2020;10,00;---;_PersistenciaExemplar, excluir
-2020/06/15 02:15:28_1_2_6_1984;1981;2;15/06/2020;10,00;----;_PersistenciaExemplar, excluir
-2020/06/15 02:15:29_1_2_6_1985;1981;2;15/06/2020;10,00;-----;_PersistenciaExemplar, excluir
-2020/06/15 02:15:31_1_2_6_1986;1981;2;15/06/2020;10,00;------;_PersistenciaExemplar, excluir
-2020/06/15 02:15:33_1_2_6_1988;1981;2;15/06/2020;10,00;--;_PersistenciaExemplar, excluir
-2020/06/15 02:15:35_1_2_6_1989;1981;2;15/06/2020;25,00;---;_PersistenciaExemplar, excluir
-2020/06/15 06:26:56_1_2_6_1989;1981;2;15/06/2020;20,00;--;_PersistenciaExemplar, excluir
-2020/06/15 06:27:00_1_2_6_1990;1981;2;15/06/2020;20,00;--;_PersistenciaExemplar, excluir
-2020/06/15 06:30:12_1_2_6_1988;1981;2;15/06/2020;20,00;--;_PersistenciaExemplar, excluir
+2020/06/16 19:50:29_0_7_0_22;3412;DIREITO CONSTITUCIONAL_Esta área de conhecimento já está cadastrada!
+2020/06/16 19:55:30_1_2_6_1984;1981;2;16/06/2020;20,00;--;_PersistenciaExemplar, excluir
+2020/06/16 19:55:33_1_2_6_1985;1981;2;16/06/2020;20,00;--;_PersistenciaExemplar, excluir
+2020/06/16 20:33:27_1_2_8_1988;1981;1;16/06/2020_PersistenciaReserva, excluir
+2020/06/17 01:53:52_1_2_8_1988;1981;1;16/06/2020_PersistenciaReserva, excluir
+2020/06/17 01:53:52_1_2_8_1988;1981;1;16/06/2020_Livro emprestado. ID do Empréstimo: 2000

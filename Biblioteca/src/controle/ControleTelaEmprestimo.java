@@ -10,16 +10,16 @@ import classes.Emprestimo;
 import classes.Exemplar;
 import classes.Livro;
 import classes.Reserva;
+import enumeradores.EnumOpcaoComprovante;
+import enumeradores.EnumTipoStatus;
 import interfaces.ICRUDColaborador;
-import interfaces.ICRUDEmprestimo;
 import interfaces.ICRUDExemplar;
 import interfaces.ICRUDLivro;
 import interfaces.ICRUDReserva;
+import interfaces.IControleEmprestimo;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import telas.Vai;
 
 /**
  *
@@ -32,19 +32,18 @@ public class ControleTelaEmprestimo {
     private ICRUDColaborador controleColaborador = null;
     private ICRUDLivro controleLivro = null;
     private ICRUDExemplar controleExemplar = null;
-    private ICRUDEmprestimo controleEmprestimo = null;
+    private IControleEmprestimo controleEmprestimo = null;
     private ICRUDReserva controleReserva = null;
 
     // Listas
     private ArrayList<Colaborador> colecaoColaborador = null;
     private ArrayList<Livro> colecaoLivro = null;
     private ArrayList<Exemplar> colecaoExemplar = null;
-    private ArrayList<Emprestimo> colecaoEmprestimo = null;
-    private ArrayList<Reserva> colecaoReserva = null;
 
     // Objetos
     private Colaborador colaborador = null;
     private Livro livro = null;
+    private Exemplar exemplar = null;
     private Emprestimo emprestimo = null;
     private Reserva reserva = null;
 
@@ -68,10 +67,8 @@ public class ControleTelaEmprestimo {
         controleColaborador = new ControleColaborador();
         controleLivro = new ControleLivro();
         controleExemplar = new ControleExemplar();
-
         controleEmprestimo = new ControleEmprestimo();
         controleReserva = new ControleReserva();
-
         formatoData = new SimpleDateFormat("dd/MM/yyyy");
     }
 
@@ -103,6 +100,7 @@ public class ControleTelaEmprestimo {
                 c.getTelefone(), //  6
                 c.getPerfil().toString(), //  7
                 c.getStatus().toString(), //  8
+                String.format("%.2f", controleEmprestimo.calcularSaldoDevedor(qtdColunas, new Date())) // 9 
             };
             matriz[cont] = vetor;
             cont++;
@@ -177,8 +175,16 @@ public class ControleTelaEmprestimo {
         return new ControleReserva().comprovante(reserva);
     }
 
+    public String comprovante(Emprestimo emprestimo, EnumOpcaoComprovante opcaoComprovante) throws Exception {
+        return new ControleEmprestimo().comprovante(emprestimo, opcaoComprovante);
+    }
+
     public Emprestimo buscarEmprestimo(int idEmprestimo) throws Exception {
         return controleEmprestimo.buscarPeloId(idEmprestimo);
+    }
+
+    private float saldoDevedor(int idColaborador) throws Exception {
+        return controleEmprestimo.calcularSaldoDevedor(idColaborador, new Date());
     }
 
     //--- FIM CONSULTAS -------------------------------------------------------|
@@ -189,10 +195,31 @@ public class ControleTelaEmprestimo {
 
         colaborador = controleColaborador.buscarPeloId(idColaborador);
         livro = controleLivro.buscarPeloId(idLivro);
-
         reserva = new Reserva(0, livro, colaborador, new Date());
         return controleReserva.incluir(reserva);
     }
+
+    public void editarReserva(Reserva reserva, int idColaborador, int idLivro) throws Exception {
+        reserva.setColaborador(controleColaborador.buscarPeloId(idColaborador));
+        reserva.setLivro(controleLivro.buscarPeloId(idLivro));
+        controleReserva.alterar(reserva);
+    }
+
+    public int incluirEmprestimo(int idColaborador, int idExemplar, Date dataEmprestimo) throws Exception {
+        colaborador = controleColaborador.buscarPeloId(idColaborador);
+        exemplar = controleExemplar.buscarPeloId(idExemplar);
+        emprestimo = new Emprestimo(0, exemplar, colaborador, dataEmprestimo, null, EnumTipoStatus.PENDENTE, 0, 0);
+        return controleEmprestimo.incluir(emprestimo);
+    }
+
+    public void editarEmprestimo(Emprestimo emprestimo) throws Exception {
+
+    }
+
+    public boolean excluirReservaDeLivroEmprestado(int idEmprestimo) throws Exception {
+        return controleEmprestimo.excluirReservaDeLivroEmprestado(controleEmprestimo.buscarPeloId(idEmprestimo));
+    }
+    //
     //--- FIM AÇÕES -----------------------------------------------------------|
     //
 }

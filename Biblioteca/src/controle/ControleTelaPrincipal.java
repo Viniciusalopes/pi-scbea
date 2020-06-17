@@ -357,6 +357,7 @@ public class ControleTelaPrincipal {
         cont = 0;
 
         for (Emprestimo e : emprestimos) {
+            
             linha = new String[]{
                 e.getIdEmprestimo() + "",
                 e.getColaborador().getNomeColaborador(),

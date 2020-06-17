@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import utilidades.Mensagens;
 import static utilidades.StringUtil.truncar;
+import static utilidades.DataUtil.adicionarDias;
 
 /**
  *
@@ -31,9 +32,13 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private int id = 0;
     private int idColaborador = 0;
     private int idLivro = 0;
+    private int idExemplar = 0;
     private int idReserva = 0;
     private int idEmprestimo = 0;
-    private int linha = 0;
+    private int linhaColaborador = 0;
+    private int linhaLivro = 0;
+    private int linhaExemplar = 0;
+
     private boolean incluirNoResultado = true;
     private EnumAcao acao = null;
 
@@ -121,26 +126,30 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     //--- MÉTODOS PARA CRUD --------------------------------------------------->
     //
     private void salvarReserva() throws Exception {
+        linhaColaborador = jTableColaborador.getSelectedRow();
+        linhaLivro = jTableLivro.getSelectedRow();
 
-        idColaborador = Integer.parseInt(jTableColaborador.getValueAt(jTableColaborador.getSelectedRow(), 0).toString());
-        idLivro = Integer.parseInt(jTableLivro.getValueAt(jTableLivro.getSelectedRow(), 0).toString());
-        String titulo = truncar(jTableLivro.getValueAt(jTableLivro.getSelectedRow(), 1).toString(), 40);
-        linha = Integer.parseInt(jTableColaborador.getSelectedRow() + "");
-        int linhaLivro = Integer.parseInt(jTableLivro.getSelectedRow() + "");
+        idColaborador = Integer.parseInt(jTableColaborador.getValueAt(linhaColaborador, 0).toString());
+        idLivro = Integer.parseInt(jTableLivro.getValueAt(linhaLivro, 0).toString());
+
+        String titulo = truncar(jTableLivro.getValueAt(linhaLivro, 1).toString(), 40);
 
         if (mensagem.pergunta(
                 " DADOS DA RESERVA:"
                 + "\n----------------------------------------"
                 + "\nData: " + formatoData.format(new Date())
-                + "\nColaborador: " + jTableColaborador.getValueAt(linha, 2).toString()
-                + "\nMatrícula: " + jTableColaborador.getValueAt(linha, 1).toString()
+                + "\nColaborador: " + jTableColaborador.getValueAt(linhaColaborador, 2).toString()
+                + "\nMatrícula: " + jTableColaborador.getValueAt(linhaColaborador, 1).toString()
                 + "\nLivro: " + jTableLivro.getValueAt(linhaLivro, 0).toString() + " - " + titulo
                 + "\n" + jTableLivro.getValueAt(linhaLivro, 4) + " ª Edição"
                 + "\n\nConfirma a inclusão da reserva?"
                 + "\n") == 0) {
 
-            idReserva = controleTelaEmprestimo.incluirReserva(idColaborador, idLivro);
-            reserva = controleTelaEmprestimo.buscarReserva(idReserva);
+            if (acao.equals(EnumAcao.Incluir)) {
+                idReserva = controleTelaEmprestimo.incluirReserva(idColaborador, idLivro);
+            } else {
+                controleTelaEmprestimo.editarReserva(reserva, idColaborador, idLivro);
+            }
 
             if (mensagem.pergunta("Reserva incluída com sucesso!\nDeseja imprimir o recibo agora?") == 0) {
                 mensagem.informacao(controleTelaEmprestimo.comprovanteReserva(reserva));
@@ -150,6 +159,44 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     }
 
     private void salvarEmprestimo() throws Exception {
+        linhaColaborador = jTableColaborador.getSelectedRow();
+        linhaLivro = jTableLivro.getSelectedRow();
+        linhaExemplar = jTableExemplares.getSelectedRow();
+
+        idColaborador = Integer.parseInt(jTableColaborador.getValueAt(linhaColaborador, 0).toString());
+        idLivro = Integer.parseInt(jTableLivro.getValueAt(linhaLivro, 0).toString());
+        idExemplar = Integer.parseInt(jTableExemplares.getValueAt(linhaExemplar, 0).toString());
+        Date dataPrevista = adicionarDias(new Date(), Vai.CONFIGURACAO.getDiasDeEmprestimo());
+        String titulo = truncar(jTableLivro.getValueAt(linhaLivro, 1).toString(), 40);
+
+        if (mensagem.pergunta(
+                " DADOS DO EMPRÉSTIMO:"
+                + "\n----------------------------------------"
+                + "\nData do empréstimo: " + formatoData.format(new Date())
+                + "\nData prevista para devolução: " + formatoData.format(dataPrevista)
+                + "\nColaborador: " + jTableColaborador.getValueAt(linhaColaborador, 2).toString()
+                + "\nMatrícula: " + jTableColaborador.getValueAt(linhaColaborador, 1).toString()
+                + "\nLivro: " + idLivro + " - " + titulo
+                + "\n" + jTableLivro.getValueAt(linhaLivro, 4) + " ª Edição"
+                + "\n\nConfirma a inclusão do empréstimo?"
+                + "\n") == 0) {
+
+            if (acao.equals(EnumAcao.Incluir_Emprestimo)) {
+                idEmprestimo = controleTelaEmprestimo.incluirEmprestimo(idColaborador, idExemplar, new Date());
+                matrizExemplar = controleTelaEmprestimo.getMatrizExemplares(idLivro);
+                preencherJTableExemplares(matrizExemplar);
+                if (controleTelaEmprestimo.excluirReservaDeLivroEmprestado(idEmprestimo)) {
+                    mensagem.informacao("A reserva deste colaborador para este livro foi excluída automaGicamente!");
+                }
+            } else {
+                mensagem.alerta("implementar: controleTelaEmprestimo.editarEmprestimo(reserva, idColaborador, idExemplar, new Date()");
+            }
+
+            if (mensagem.escolher("Empréstimo incluído com sucesso!\nO que deseja fazer?", new String[]{"Imprimir comprovante", "Enviar por e-mail"}) == 0) {
+                mensagem.informacao(controleTelaEmprestimo.comprovanteReserva(reserva));
+            }
+            this.dispose();
+        }
     }
 
     //
@@ -261,9 +308,9 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     }
 
     private void preencherJTableColaboradorDetalhe() throws Exception {
-        linha = jTableColaborador.getSelectedRow();
-        if (linha >= 0) {
-            idColaborador = Integer.parseInt(jTableColaborador.getValueAt(linha, 0).toString());
+        linhaColaborador = jTableColaborador.getSelectedRow();
+        if (linhaColaborador >= 0) {
+            idColaborador = Integer.parseInt(jTableColaborador.getValueAt(linhaColaborador, 0).toString());
 
             for (int i = 0; i < matrizFiltroColaborador.length; i++) {
                 if (Integer.parseInt(matrizFiltroColaborador[i][0]) == idColaborador) {
@@ -273,6 +320,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                     jTableColaboradorDetalhe.setValueAt(matrizFiltroColaborador[i][4], 1, 1);
                     jTableColaboradorDetalhe.setValueAt(matrizFiltroColaborador[i][8], 2, 1);
                     jTableColaboradorDetalhe.setValueAt(matrizFiltroColaborador[i][5], 3, 1);
+                    jTableColaboradorDetalhe.setValueAt(matrizFiltroColaborador[i][9], 4, 1);
                     break;
                 }
             }
@@ -361,9 +409,9 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     }
 
     private void preencherJTableLivroDetalhe() throws Exception {
-        linha = jTableLivro.getSelectedRow();
-        if (linha >= 0) {
-            idLivro = Integer.parseInt(jTableLivro.getValueAt(linha, 0).toString());
+        linhaLivro = jTableLivro.getSelectedRow();
+        if (linhaLivro >= 0) {
+            idLivro = Integer.parseInt(jTableLivro.getValueAt(linhaLivro, 0).toString());
             for (int i = 0; i < matrizPesquisaLivro.length; i++) {
                 if (Integer.parseInt(matrizPesquisaLivro[i][0]) == idLivro) {
                     String[] dados = matrizPesquisaLivro[i];
@@ -410,9 +458,9 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             jTableExemplares.getColumnModel().getColumn(0).setMinWidth(60);
             jTableExemplares.getColumnModel().getColumn(0).setPreferredWidth(60);
             jTableExemplares.getColumnModel().getColumn(0).setMaxWidth(60);
-            jTableExemplares.getColumnModel().getColumn(1).setMinWidth(80);
-            jTableExemplares.getColumnModel().getColumn(1).setPreferredWidth(80);
-            jTableExemplares.getColumnModel().getColumn(1).setMaxWidth(80);
+            jTableExemplares.getColumnModel().getColumn(1).setMinWidth(100);
+            jTableExemplares.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTableExemplares.getColumnModel().getColumn(1).setMaxWidth(100);
 
             // Alinhamento de colunas
             jTableExemplares.getColumnModel().getColumn(0).setCellRenderer(renderer.getRendererDireita());
@@ -429,6 +477,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private void ativarBotoes() {
         boolean reservar = false;
         boolean emprestar = false;
+        boolean devolver = false;
 
         EnumTipoStatus status = null;
 
@@ -445,7 +494,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                                 status = EnumTipoStatus.valueOf(jTableExemplares.getValueAt(jTableExemplares.getSelectedRow(), 1).toString());
                                 if (status.equals(EnumTipoStatus.DISPONIVEL)) {                          // Se está disponível
                                     emprestar = true;                                                    // Ativa o botão
-                                }
+                                } 
                             }
                         }
                     }
@@ -454,7 +503,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         }
         jButtonReservarLivro.setEnabled(reservar);
         jButtonIncluirExemplar.setEnabled(jTableLivro.getSelectedRow() > -1);
-        jButtonEmprestar.setEnabled(emprestar);
+        jButtonEmprestarLivro.setEnabled(emprestar);
 
         // Botão emprestar
     }
@@ -503,6 +552,16 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     }
 
     private void preencherCamposReserva() throws Exception {
+        if (acao.toString().contains("Incluir")) {
+            jLabelID.setVisible(false);
+            jTextFieldID.setVisible(false);
+        } else if (acao.toString().contains("")) {
+            jLabelID.setVisible(true);
+            jLabelID.setText("ID da " + acao.toString().replace("Editar_", "") + ":");
+            jTextFieldID.setVisible(true);
+            jTextFieldID.setText(id + "");
+        }
+
         reserva = controleTelaEmprestimo.buscarReserva(idReserva);
 
         jComboBoxFiltrarColaboradorActionPerformed(null);
@@ -587,9 +646,11 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         jScrollPaneExemplares = new javax.swing.JScrollPane();
         jTableExemplares = new javax.swing.JTable();
         jButtonReservarLivro = new javax.swing.JButton();
-        jButtonEmprestar = new javax.swing.JButton();
+        jButtonEmprestarLivro = new javax.swing.JButton();
         jButtonIncluirExemplar = new javax.swing.JButton();
         jButtonIncluirLivro = new javax.swing.JButton();
+        jLabelID = new javax.swing.JLabel();
+        jTextFieldID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -660,7 +721,8 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 {"Cargo", null},
                 {"OAB", null},
                 {"Status", null},
-                {"E-mail", null}
+                {"E-mail", null},
+                {"Saldo devedor", null}
             },
             new String [] {
                 "", ""
@@ -683,9 +745,9 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         jTableColaboradorDetalhe.setTableHeader(null);
         jScrollPane2.setViewportView(jTableColaboradorDetalhe);
         if (jTableColaboradorDetalhe.getColumnModel().getColumnCount() > 0) {
-            jTableColaboradorDetalhe.getColumnModel().getColumn(0).setMinWidth(50);
-            jTableColaboradorDetalhe.getColumnModel().getColumn(0).setPreferredWidth(50);
-            jTableColaboradorDetalhe.getColumnModel().getColumn(0).setMaxWidth(50);
+            jTableColaboradorDetalhe.getColumnModel().getColumn(0).setMinWidth(100);
+            jTableColaboradorDetalhe.getColumnModel().getColumn(0).setPreferredWidth(100);
+            jTableColaboradorDetalhe.getColumnModel().getColumn(0).setMaxWidth(100);
             jTableColaboradorDetalhe.getColumnModel().getColumn(1).setResizable(false);
         }
 
@@ -737,10 +799,10 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelColaboradorDetalhe)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addComponent(jButtonIncluirColaborador)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
         jPanelLivros.setBorder(javax.swing.BorderFactory.createTitledBorder("Livros"));
@@ -865,9 +927,9 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             jTableExemplares.getColumnModel().getColumn(0).setMinWidth(60);
             jTableExemplares.getColumnModel().getColumn(0).setPreferredWidth(60);
             jTableExemplares.getColumnModel().getColumn(0).setMaxWidth(60);
-            jTableExemplares.getColumnModel().getColumn(1).setMinWidth(80);
-            jTableExemplares.getColumnModel().getColumn(1).setPreferredWidth(80);
-            jTableExemplares.getColumnModel().getColumn(1).setMaxWidth(80);
+            jTableExemplares.getColumnModel().getColumn(1).setMinWidth(110);
+            jTableExemplares.getColumnModel().getColumn(1).setPreferredWidth(110);
+            jTableExemplares.getColumnModel().getColumn(1).setMaxWidth(110);
         }
 
         jButtonReservarLivro.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -879,9 +941,14 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             }
         });
 
-        jButtonEmprestar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jButtonEmprestar.setText("Emprestar");
-        jButtonEmprestar.setEnabled(false);
+        jButtonEmprestarLivro.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jButtonEmprestarLivro.setText("Emprestar");
+        jButtonEmprestarLivro.setEnabled(false);
+        jButtonEmprestarLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEmprestarLivroActionPerformed(evt);
+            }
+        });
 
         jButtonIncluirExemplar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jButtonIncluirExemplar.setText("Incluir Exemplar");
@@ -925,7 +992,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                             .addGroup(jPanelLivrosLayout.createSequentialGroup()
                                 .addComponent(jButtonReservarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonEmprestar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jButtonEmprestarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -952,9 +1019,17 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelLivrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonReservarLivro)
-                    .addComponent(jButtonEmprestar))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(jButtonEmprestarLivro))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
+
+        jLabelID.setText("ID:");
+
+        jTextFieldID.setEditable(false);
+        jTextFieldID.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jTextFieldID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldID.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        jTextFieldID.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -962,15 +1037,25 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jPanelColaboradores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelLivros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelID)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelColaboradores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelLivros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelID))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelLivros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelColaboradores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1104,6 +1189,14 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
         }
     }//GEN-LAST:event_jTextFieldPesquisarLivroKeyReleased
 
+    private void jButtonEmprestarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEmprestarLivroActionPerformed
+        try {
+            salvarEmprestimo();
+        } catch (Exception e) {
+            mensagem.alerta(e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonEmprestarLivroActionPerformed
+
     //
     //--- FIM EVENTOS - FILTRO E PESQUISA -------------------------------------|
     //
@@ -1156,7 +1249,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonEmprestar;
+    private javax.swing.JButton jButtonEmprestarLivro;
     private javax.swing.JButton jButtonIncluirColaborador;
     private javax.swing.JButton jButtonIncluirExemplar;
     private javax.swing.JButton jButtonIncluirLivro;
@@ -1165,6 +1258,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private javax.swing.JLabel jLabelColaboradorDetalhe;
     private javax.swing.JLabel jLabelExemplaresLivro;
     private javax.swing.JLabel jLabelFiltrarColaborador;
+    private javax.swing.JLabel jLabelID;
     private javax.swing.JLabel jLabelLivroDetalhe;
     private javax.swing.JLabel jLabelPesquisarColaborador;
     private javax.swing.JLabel jLabelPesquisarLivro;
@@ -1180,6 +1274,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     private javax.swing.JTable jTableExemplares;
     private javax.swing.JTable jTableLivro;
     private javax.swing.JTable jTableLivroDetalhe;
+    private javax.swing.JTextField jTextFieldID;
     private javax.swing.JTextField jTextFieldPesquisarColaborador;
     private javax.swing.JTextField jTextFieldPesquisarLivro;
     // End of variables declaration//GEN-END:variables

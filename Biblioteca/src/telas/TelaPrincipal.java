@@ -9,24 +9,24 @@ import java.util.ArrayList;
 import enumeradores.EnumPerfil;
 import controle.ControleTelaPrincipal;
 import classes.ColunaGrid;
+import classes.Emprestimo;
 import controle.ControleAreaConhecimento;
 import controle.ControleAutor;
 import controle.ControleColaborador;
 import controle.ControleEditora;
 import controle.ControleEmprestimo;
-import controle.ControleExemplar;
 import controle.ControleLivro;
 import controle.ControleLog;
 import controle.ControleReserva;
 import enumeradores.EnumAcao;
 import enumeradores.EnumCadastro;
+import enumeradores.EnumOpcaoComprovante;
 import enumeradores.EnumTipoStatus;
 import interfaces.ICRUDAreaConhecimento;
 import interfaces.ICRUDAutor;
 import interfaces.ICRUDEditora;
 import interfaces.ICRUDColaborador;
 import interfaces.ICRUDEmprestimo;
-import interfaces.ICRUDExemplar;
 import interfaces.ICRUDLivro;
 import interfaces.ICRUDLog;
 import interfaces.ICRUDReserva;
@@ -48,14 +48,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private ICRUDColaborador controleColaborador = null;
     private ICRUDEditora controleEditora = null;
     private ICRUDEmprestimo controleEmprestimo = null;
-    private ICRUDExemplar controleExemplar = null;
     private ICRUDLivro controleLivro = null;
     private ICRUDReserva controleReserva = null;
     private ICRUDLog controleLog = null;
     private ITelaCadastro telaCadastro = null;
-    private Mensagens mensagem = new Mensagens();
+    
+    // Utilidades
+    private Mensagens mensagem = null;
     private EnumAcao acao = null;
-
+    
+    // Objetos
+    Emprestimo emprestimo = null;
+    
     // Nome do cadastro atual
     private String cadastro = "";
 
@@ -174,6 +178,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
 
+    private void emitirComprovante() throws Exception {
+        if (EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO)) {
+            emprestimo = controleEmprestimo.buscarPeloId(getValorColuna("ID"));
+
+            mensagem.informacao(new ControleEmprestimo().comprovante(emprestimo, EnumOpcaoComprovante.IMPRIMIR));
+        } else if (EnumCadastro.valueOf(cadastro).equals(EnumCadastro.RESERVA)) {
+            mensagem.informacao(new ControleReserva().comprovante(controleReserva.buscarPeloId(getValorColuna("ID"))));
+        }
+    }
+
+    private void devolverEmprestimo() throws Exception {
+        emprestimo = controleEmprestimo.buscarPeloId(getValorColuna("ID"));
+        
+    }
+
     //--- FIM MÉTODOS PARA CRUD -----------------------------------------------|
     //
     //--- MÉTODOS PARA GRID --------------------------------------------------->
@@ -285,6 +304,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 if (cadastro.equals(EnumCadastro.COLABORADOR.toString())) {
                     enable = Vai.USUARIO.getPerfil().equals(EnumPerfil.ADMINISTRADOR)
                             && Vai.USUARIO.getIdColaborador() != getValorColuna("ID");
+                    jButtonExcluir.setEnabled(enable);
+                } else {
+                    enable = true;
                 }
                 jButtonExcluir.setEnabled(enable);
 
@@ -295,8 +317,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
                 // Devolver
                 enable = (EnumCadastro.valueOf(cadastro).equals(EnumCadastro.EMPRESTIMO) // Se for a tela de empréstimo
-                        && (EnumTipoStatus.values()[getValorColuna("Status")].equals(EnumTipoStatus.EMPRESTADO) // E estiver com status EMPRESTADO
-                        || EnumTipoStatus.values()[getValorColuna("Status")].equals(EnumTipoStatus.ATRASADO)));     // Ou estiver com o status ATRASADO
+                        && (!EnumTipoStatus.values()[getValorColuna("Status")].equals(EnumTipoStatus.DEVOLVIDO))); // E não estiver com status DEVOLVIDO
+
                 jButtonDevolver.setEnabled(enable);
             }
         }
@@ -434,6 +456,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jRadioButtonLog.setVisible(visible);
 
         try {
+            mensagem = new Mensagens();
             // Controladores
             controleTela = new ControleTelaPrincipal();
             controleAreaConhecimento = new ControleAreaConhecimento();
@@ -441,7 +464,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             controleColaborador = new ControleColaborador();
             controleEditora = new ControleEditora();
             controleEmprestimo = new ControleEmprestimo();
-            controleExemplar = new ControleExemplar();
             controleLivro = new ControleLivro();
             controleReserva = new ControleReserva();
             controleLog = new ControleLog();
@@ -664,6 +686,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jButtonDevolver.setText("Devolver");
         jButtonDevolver.setEnabled(false);
+        jButtonDevolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDevolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelBotoesLayout = new javax.swing.GroupLayout(jPanelBotoes);
         jPanelBotoes.setLayout(jPanelBotoesLayout);
@@ -764,6 +791,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //--- EVENTOS - jRadioButton ---------------------------------------------->
+    //
+    private void jRadioButtonLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLivrosActionPerformed
+        try {
+            telaCadastro = null;
+            exibirCadastros();
+            telaCadastro = new TelaLivro(this, true);
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jRadioButtonLivrosActionPerformed
+
     private void jRadioButtonEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEmprestimosActionPerformed
         try {
             telaCadastro = null;
@@ -773,6 +812,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
             mensagem.erro(e);
         }
     }//GEN-LAST:event_jRadioButtonEmprestimosActionPerformed
+
+    private void jRadioButtonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonReservasActionPerformed
+        try {
+            telaCadastro = null;
+            exibirCadastros();
+            telaCadastro = new TelaEmprestimo(this, true);
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jRadioButtonReservasActionPerformed
 
     private void jRadioButtonAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAreasActionPerformed
         try {
@@ -814,14 +863,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jRadioButtonColaboradoresActionPerformed
 
-    private void jButtonConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfiguracoesActionPerformed
-        try {
-            new TelaConfiguracao(this, true).setVisible(true);
-        } catch (Exception e) {
-            mensagem.erro(e);
-        }
-    }//GEN-LAST:event_jButtonConfiguracoesActionPerformed
-
     private void jRadioButtonLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLogActionPerformed
         try {
             telaCadastro = null;
@@ -830,6 +871,54 @@ public class TelaPrincipal extends javax.swing.JFrame {
             mensagem.erro(e);
         }
     }//GEN-LAST:event_jRadioButtonLogActionPerformed
+    //
+    //--- FIM EVENTOS - jRadioButton ------------------------------------------|
+    //
+    //--- EVENTOS - jTableLista ----------------------------------------------->
+    //
+    private void jTableListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaMouseClicked
+        try {
+            // Clique duplo, mostra detalhes do cadastro
+            if (evt != null) { // Quando acionado pelo keyReleased, evt = null
+                if (evt.getClickCount() == 2) {
+                    if (!EnumCadastro.valueOf(cadastro).equals(EnumCadastro.LOG)) {
+                        editarCadastro();
+                    }
+                }
+            }
+            exibirBotoes();
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jTableListaMouseClicked
+
+    private void jTableListaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableListaKeyReleased
+        jTableListaMouseClicked(null);
+    }//GEN-LAST:event_jTableListaKeyReleased
+    //
+    //--- FIM EVENTOS - jTableLista -------------------------------------------|
+    //
+    //--- EVENTOS - jTextFieldPesquisar --------------------------------------->
+    //
+    private void jTextFieldPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarKeyReleased
+        try {
+            pesquisar(jTextFieldPesquisar.getText().trim().toLowerCase());
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jTextFieldPesquisarKeyReleased
+    //
+    //--- FIM EVENTOS - jTextFieldPesquisar -----------------------------------|
+    //
+    //--- EVENTOS - BOTÕES ---------------------------------------------------->
+    //    
+    private void jButtonConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfiguracoesActionPerformed
+        try {
+            new TelaConfiguracao(this, true).setVisible(true);
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jButtonConfiguracoesActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         try {
@@ -857,63 +946,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
-    private void jTableListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaMouseClicked
-        try {
-            // Clique duplo, mostra detalhes do cadastro
-            if (evt != null) { // Quando acionado pelo keyReleased, evt = null
-                if (evt.getClickCount() == 2) {
-                    if (!EnumCadastro.valueOf(cadastro).equals(EnumCadastro.LOG)) {
-                        editarCadastro();
-                    }
-                }
-            }
-            exibirBotoes();
-        } catch (Exception e) {
-            mensagem.erro(e);
-        }
-    }//GEN-LAST:event_jTableListaMouseClicked
-
-    private void jTextFieldPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarKeyReleased
-        try {
-            pesquisar(jTextFieldPesquisar.getText().trim().toLowerCase());
-        } catch (Exception e) {
-            mensagem.erro(e);
-        }
-    }//GEN-LAST:event_jTextFieldPesquisarKeyReleased
-
-    private void jRadioButtonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonReservasActionPerformed
-        try {
-            telaCadastro = null;
-            exibirCadastros();
-            telaCadastro = new TelaEmprestimo(this, true);
-        } catch (Exception e) {
-            mensagem.erro(e);
-        }
-    }//GEN-LAST:event_jRadioButtonReservasActionPerformed
-
-    private void jRadioButtonLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLivrosActionPerformed
-        try {
-            telaCadastro = null;
-            exibirCadastros();
-            telaCadastro = new TelaLivro(this, true);
-        } catch (Exception e) {
-            mensagem.erro(e);
-        }
-    }//GEN-LAST:event_jRadioButtonLivrosActionPerformed
-
-    private void jTableListaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableListaKeyReleased
-        jTableListaMouseClicked(null);
-    }//GEN-LAST:event_jTableListaKeyReleased
-
     private void jButtonComprovanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComprovanteActionPerformed
         try {
-            mensagem.informacao(new ControleReserva().comprovante(controleReserva.buscarPeloId(getValorColuna("ID"))));
+            emitirComprovante();
         } catch (Exception e) {
             mensagem.erro(e);
         }
     }//GEN-LAST:event_jButtonComprovanteActionPerformed
 
+    private void jButtonDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDevolverActionPerformed
+        try {
+            devolverEmprestimo();
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_jButtonDevolverActionPerformed
+    //
+    //--- FIM EVENTOS - BOTÕES ------------------------------------------------|
+    //
     //--- FIM EVENTOS ---------------------------------------------------------|
+    //
     /**
      * @param args the command line arguments
      */

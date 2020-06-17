@@ -64,7 +64,7 @@ public class ControleExemplar implements ICRUDExemplar {
         //se o livro ja foi alguma vez emprestado nao pode ser excluido 
         for (Emprestimo emprestimo : emprestimos) {
             if (emprestimo.getExemplar().getIdExemplar() == idExemplar) {
-                throw new Exception("este exemplar já foi emprestado por isso não pode ser excluido! ");
+                throw new Exception("Este exemplar já foi emprestado por isso não pode ser excluido!");
             }
         }
         persistencia.excluir(idExemplar);

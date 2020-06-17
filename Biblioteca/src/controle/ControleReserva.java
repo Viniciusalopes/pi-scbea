@@ -6,6 +6,7 @@
 package controle;
 
 import classes.Reserva;
+import enumeradores.EnumAcao;
 import enumeradores.EnumTipoStatus;
 import interfaces.ICRUDReserva;
 import java.text.SimpleDateFormat;
@@ -24,6 +25,7 @@ public class ControleReserva implements ICRUDReserva {
     private ICRUDReserva persistencia = null;
     private ArrayList<Reserva> colecao = null;
     private SimpleDateFormat formatoData = null;
+    private EnumAcao acao = null;
 
     public ControleReserva() throws Exception {
         persistencia = new PersistenciaReserva();
@@ -44,12 +46,14 @@ public class ControleReserva implements ICRUDReserva {
 
     @Override
     public int incluir(Reserva reserva) throws Exception {
+        acao = EnumAcao.Incluir_Reserva;
         validarReserva(reserva);
         return persistencia.incluir(reserva);
     }
 
     @Override
     public void alterar(Reserva reserva) throws Exception {
+        acao = EnumAcao.Editar_Reserva;
         validarReserva(reserva);
         persistencia.alterar(reserva);
     }
@@ -69,7 +73,8 @@ public class ControleReserva implements ICRUDReserva {
         colecao = persistencia.listar();
         for (Reserva r : colecao) {
             if (reserva.getColaborador().getIdColaborador() == r.getColaborador().getIdColaborador()
-                    && reserva.getLivro().getIdLivro() == r.getLivro().getIdLivro()) {
+                    && reserva.getLivro().getIdLivro() == r.getLivro().getIdLivro()
+                    && acao.equals(EnumAcao.Incluir_Reserva)) {
                 throw new Exception("Já existe uma reserva em nome desse colaborador para este livro!\n"
                         + "Reserva nº " + r.getIdReserva()
                         + " - Data: " + formatoData.format(reserva.getdataReserva()));
@@ -79,7 +84,7 @@ public class ControleReserva implements ICRUDReserva {
 
     public String comprovante(Reserva reserva) {
 
-        return " COMPROVANTE DE DE RESERVA nº " + reserva.getIdReserva()
+        return " COMPROVANTE DE RESERVA nº " + reserva.getIdReserva()
                 + "\n----------------------------------------"
                 + "\nData: " + formatoData.format(reserva.getdataReserva()).toString()
                 + "\nColaborador: " + reserva.getColaborador().getNomeColaborador()

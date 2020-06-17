@@ -65,7 +65,7 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
                         controleExemplar.buscarPeloId(Integer.parseInt(dados[1])),
                         controleColaborador.buscarPeloId(Integer.parseInt(dados[2])),
                         formatoData.parse(dados[3]),
-                        formatoData.parse(dados[4]),
+                        (dados[4].equals("")) ? null : formatoData.parse(dados[4]),
                         EnumTipoStatus.values()[Integer.parseInt(dados[5])],
                         Float.parseFloat(dados[6].replace(",", ".")),
                         Float.parseFloat(dados[7].replace(",", "."))
@@ -74,7 +74,7 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
             }
             return colecao;
         } catch (Exception e) {
-            throw new Exception("Erro ao listar os empréstimos! (Persistência)");
+            throw new Exception("Erro ao listar os empréstimos! (Persistência)\n" + e.getMessage());
         }
     }
 
@@ -89,17 +89,18 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
             }
             return null;
         } catch (Exception e) {
-            throw new Exception("Erro ao buscar empréstimo pelo ID! (Persistência)");
+            throw new Exception("Erro ao buscar empréstimo pelo ID! (Persistência)\n" + e.getMessage());
         }
     }
 
     @Override
-    public void incluir(Emprestimo emprestimo) throws Exception {
+    public int incluir(Emprestimo emprestimo) throws Exception {
         try {
             emprestimo.setIdEmprestimo(GeradorID.getProximoID());
             controleArquivoTXT.incluirLinha(emprestimo.toString());
+            return emprestimo.getIdEmprestimo();
         } catch (Exception e) {
-            throw new Exception("Erro ao incluir o empréstimo! (Persistência)");
+            throw new Exception("Erro ao incluir o empréstimo! (Persistência)\n" + e.getMessage());
         }
     }
 
@@ -114,7 +115,7 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
                 }
             }
         } catch (Exception e) {
-            throw new Exception("Erro ao alterar o empréstimo! (Persistência)");
+            throw new Exception("Erro ao alterar o empréstimo! (Persistência)\n" + e.getMessage());
         }
     }
 
@@ -130,7 +131,7 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
                 }
             }
         } catch (Exception e) {
-            throw new Exception("Erro ao excluir o empréstimo! (Persistência)");
+            throw new Exception("Erro ao excluir o empréstimo! (Persistência)\n" + e.getMessage());
         }
     }
 }
