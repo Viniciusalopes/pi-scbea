@@ -31,8 +31,10 @@ public class ControleTelaPrincipal {
     private Renderer renderer = new Renderer();
     private int cont = 0;
     private int[] larguras = null;
+    private SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
 
     //--- COLUNAS DO GRID ----------------------------------------------------->
+    //
     public ArrayList<ColunaGrid> getColunasParaGrid(EnumCadastro cadastro) {
 
         // Colunas do grid
@@ -93,11 +95,12 @@ public class ControleTelaPrincipal {
     private void addColunasEmprestimo() {
         colunas.add(new ColunaGrid("ID", renderer.getRendererDireita()));
         colunas.add(new ColunaGrid("Colaborador"));
-        colunas.add(new ColunaGrid("Livro"));
+        colunas.add(new ColunaGrid("Exemplar"));
         colunas.add(new ColunaGrid("Data Empréstimo ", renderer.getRendererCentro()));
-        colunas.add(new ColunaGrid("Status", renderer.getRendererCentro()));
         colunas.add(new ColunaGrid("Data Devolução", renderer.getRendererCentro()));
+        colunas.add(new ColunaGrid("Status", renderer.getRendererCentro()));
         colunas.add(new ColunaGrid("Multa", renderer.getRendererDireita()));
+        colunas.add(new ColunaGrid("Valor Pago", renderer.getRendererDireita()));
     }
 
     private void addColunasReserva() {
@@ -210,13 +213,16 @@ public class ControleTelaPrincipal {
     }
 
     private void addLargurasColunasEmprestimo() {
-        larguras = new int[7];
+        larguras = new int[8];
         larguras[0] = 60;   // ID
         larguras[1] = 200;   // Colaborador
-        larguras[2] = 200;   // Livro
+        larguras[2] = 200;   // Exemplar
         larguras[3] = 120;   // Data Empréstimo
-        larguras[4] = 120;   // Status
-        larguras[5] = 120;   // Data Devolução
+        larguras[4] = 120;   // Data Devolução
+        larguras[5] = 120;   // Status
+        larguras[6] = 120;   // Multa
+        larguras[7] = 120;   // Valor Pago
+
         //larguras[6] = 60;   // Multa (está pegando o resto do tamanho total do grid)
     }
 
@@ -229,7 +235,7 @@ public class ControleTelaPrincipal {
         larguras[4] = 150;  // Autor
         larguras[5] = 100;  // Editora
         larguras[6] = 60;   // Edição
-      //  larguras[7] = 50;   // Ano (está pegando o resto do tamanho total do grid)
+        //  larguras[7] = 50;   // Ano (está pegando o resto do tamanho total do grid)
 
     }
 
@@ -276,6 +282,7 @@ public class ControleTelaPrincipal {
     //--- FIM LARGURA DAS COLUNAS DO GRID ------------------------------------->
     //
     //--- LINHAS DO GRID ------------------------------------------------------>
+    //
     public String[][] getLinhasParaGrid(Object colecao, EnumCadastro cadastro) throws Exception {
 
         switch (cadastro.toString()) {
@@ -351,13 +358,14 @@ public class ControleTelaPrincipal {
 
         for (Emprestimo e : emprestimos) {
             linha = new String[]{
-                String.format("%s", e.getDataEmprestimo()),
+                e.getIdEmprestimo() + "",
                 e.getColaborador().getNomeColaborador(),
-                "e.getExemplar().getLivro().getTitulo()",
-                String.format("%s", e.getDataEmprestimo()),
+                e.getExemplar().getIdExemplar() + "-" + e.getExemplar().getTitulo(),
+                formatoData.format(e.getDataEmprestimo()),
+                (e.getDataDevolucao() == null) ? "" : formatoData.format(e.getDataDevolucao()),
                 e.getStatusEmprestimo().toString(),
-                String.format("%s", e.getDataDevolucao()),
-                String.format("%.2f", e.getValorMulta())
+                String.format("%.2f", e.getValorMulta()),
+                String.format("%.2f", e.getValorPago())
             };
             linhas[cont] = linha;
             cont++;
@@ -368,7 +376,7 @@ public class ControleTelaPrincipal {
         ArrayList<Reserva> reservas = (ArrayList<Reserva>) colecao;
         linhas = new String[reservas.size()][colunas.size()];
         cont = 0;
-        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        formatoData = new SimpleDateFormat("dd/MM/yyyy");
 
         for (Reserva r : reservas) {
             linha = new String[]{
@@ -479,6 +487,6 @@ public class ControleTelaPrincipal {
             cont++;
         }
     }
+    //
     //--- FIM LINHAS DO GRID --------------------------------------------------|
-
 }
