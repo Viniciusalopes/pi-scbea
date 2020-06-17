@@ -24,7 +24,7 @@ public interface ICRUDEmprestimo {
 
     Emprestimo buscarPeloId(int idEmprestimo) throws Exception;
 
-    void incluir(Emprestimo emprestimo) throws Exception;
+    int incluir(Emprestimo emprestimo) throws Exception;
 
     void alterar(Emprestimo emprestimo) throws Exception;
 
