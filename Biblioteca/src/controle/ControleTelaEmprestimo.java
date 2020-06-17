@@ -100,7 +100,7 @@ public class ControleTelaEmprestimo {
                 c.getTelefone(), //  6
                 c.getPerfil().toString(), //  7
                 c.getStatus().toString(), //  8
-                String.format("%.2f", controleEmprestimo.calcularSaldoDevedor(qtdColunas, new Date())) // 9 
+                String.format("%.2f", controleEmprestimo.calcularSaldoDevedor(c.getIdColaborador())) // 9 
             };
             matriz[cont] = vetor;
             cont++;
@@ -184,7 +184,7 @@ public class ControleTelaEmprestimo {
     }
 
     private float saldoDevedor(int idColaborador) throws Exception {
-        return controleEmprestimo.calcularSaldoDevedor(idColaborador, new Date());
+        return controleEmprestimo.calcularSaldoDevedor(idColaborador);
     }
 
     //--- FIM CONSULTAS -------------------------------------------------------|

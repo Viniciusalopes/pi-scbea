@@ -47,14 +47,17 @@ public class ControleEmprestimo implements IControleEmprestimo {
 
     @Override
     public ArrayList<Emprestimo> listar() throws Exception {
-        atualizarAtrasoMulta();
+        colecao = new ArrayList<>();
+        for (Emprestimo emprestimo : persistencia.listar()) {
+            colecao.add(new Emprestimo(atualizarDados(emprestimo)));
+        }
         Collections.sort(colecao, getComparadorEmprestimoColaboradorCresc());
         return colecao;
     }
 
     @Override
     public Emprestimo buscarPeloId(int idEmprestimo) throws Exception {
-        return persistencia.buscarPeloId(idEmprestimo);
+        return atualizarDados(persistencia.buscarPeloId(idEmprestimo));
     }
 
     @Override
@@ -85,27 +88,33 @@ public class ControleEmprestimo implements IControleEmprestimo {
     }
 
     @Override
-    public float calcularSaldoDevedor(int idColaborador, Date dataDevolucao) throws Exception {
+    public float calcularValorDaMulta(Emprestimo emprestimo, int diasDeAtraso) throws Exception {
         float saldo = 0;
-        int dias = 0;
-        colecao = listar();
-        for (Emprestimo emprestimo : colecao) {
-            if (emprestimo.getColaborador().getIdColaborador() == idColaborador
-                    && emprestimo.getDataDevolucao() != null) {
-                dias = calcularDiasDeAtraso(emprestimo.getDataEmprestimo(), dataDevolucao);
-                for (int i = 0; i < dias; i++) {
-                    saldo += (dias * Vai.CONFIGURACAO.getValorMultaDiaria());
-                }
-            }
+
+        for (int i = 0; i < diasDeAtraso; i++) {
+            saldo += (diasDeAtraso * Vai.CONFIGURACAO.getValorMultaDiaria());
         }
+
         return saldo;
     }
 
     @Override
     public int calcularDiasDeAtraso(Date dataEmprestimo, Date dataDevolucao) throws Exception {
-        int corridos = intervaloEmDias(dataEmprestimo, dataDevolucao);
-        int previsto = intervaloEmDias(dataEmprestimo, adicionarDias(dataEmprestimo, Vai.CONFIGURACAO.getDiasDeEmprestimo()));
+        int corridos = intervaloEmDias((dataDevolucao == null) ? new Date() : dataDevolucao, dataEmprestimo);
+        int previsto = intervaloEmDias(adicionarDias(dataEmprestimo, Vai.CONFIGURACAO.getDiasDeEmprestimo()), dataEmprestimo);
         return corridos - previsto;
+    }
+
+    @Override
+    public Emprestimo atualizarDados(Emprestimo emprestimo) throws Exception {
+        if (!emprestimo.getStatusEmprestimo().equals(EnumTipoStatus.DEVOLVIDO)) {
+            int diasDeAtraso = calcularDiasDeAtraso(emprestimo.getDataEmprestimo(), emprestimo.getDataDevolucao());
+            if (diasDeAtraso > 0) {
+                emprestimo.setStatusEmprestimo(EnumTipoStatus.ATRASADO);
+                emprestimo.setValorMulta(calcularValorDaMulta(emprestimo, diasDeAtraso));
+            }
+        }
+        return new Emprestimo(emprestimo);
     }
 
     @Override
@@ -116,7 +125,7 @@ public class ControleEmprestimo implements IControleEmprestimo {
         if (emprestimo.getColaborador().getStatus().equals(EnumTipoStatus.INADIMPLENTE)) {
             throw new Exception("Para fazer um empréstimo, o colaborador precisa estar ADIMPLENTE!");
         }
-        colecao = persistencia.listar();
+        colecao = listar();
 
     }
 
@@ -166,14 +175,14 @@ public class ControleEmprestimo implements IControleEmprestimo {
 
     }
 
-    private void atualizarAtrasoMulta() throws Exception {
-        colecao = new ArrayList<>();
-        for (Emprestimo e : persistencia.listar()) {
-            if (!e.getStatusEmprestimo().equals(EnumTipoStatus.DEVOLVIDO)) {
-                e.setValorMulta(calcularSaldoDevedor(e.getColaborador().getIdColaborador(), e.getDataDevolucao()));
-                persistencia.alterar(e);
-                colecao.add(e);
+    @Override
+    public float calcularSaldoDevedor(int idColaborador) throws Exception {
+        float saldo = 0;
+        for (Emprestimo emprestimo : listar()) {
+            if (emprestimo.getColaborador().getIdColaborador() == idColaborador) {
+                saldo += emprestimo.getValorMulta();
             }
         }
+        return saldo;
     }
 }

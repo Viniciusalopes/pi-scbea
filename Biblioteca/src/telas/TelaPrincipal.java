@@ -915,6 +915,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jButtonConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfiguracoesActionPerformed
         try {
             new TelaConfiguracao(this, true).setVisible(true);
+            exibirCadastros();
         } catch (Exception e) {
             mensagem.erro(e);
         }

@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public interface IControleEmprestimo extends ICRUDEmprestimo {
 
-    float calcularSaldoDevedor(int idColaborador, Date dataDevolucao) throws Exception;
+    float calcularValorDaMulta(Emprestimo emprestimo, int dias) throws Exception;
 
     int calcularDiasDeAtraso(Date dataEmprestimo, Date dataDevolucao) throws Exception;
 
@@ -24,4 +24,8 @@ public interface IControleEmprestimo extends ICRUDEmprestimo {
     boolean excluirReservaDeLivroEmprestado(Emprestimo emprestimo) throws Exception;
 
     String comprovante(Emprestimo emprestimo, EnumOpcaoComprovante opcaoComprovante);
+
+    float calcularSaldoDevedor(int idColaborador) throws Exception;
+    
+    Emprestimo atualizarDados(Emprestimo emprestimo) throws Exception;
 }
