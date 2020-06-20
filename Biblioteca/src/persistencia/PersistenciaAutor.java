@@ -25,7 +25,7 @@ public class PersistenciaAutor implements ICRUDAutor {
     private ArrayList<String> linhas = null;
 
     public PersistenciaAutor() throws Exception {
-        controleArquivoTXT = new ControleArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.AUTOR.getNomeArquivo());
+        controleArquivoTXT = new ControleArquivoTXT(CONFIGURACAO.getCaminhoBD(), EnumArquivosBd.AUTOR.getNomeArquivo());
     }
 
     @Override

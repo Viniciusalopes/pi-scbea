@@ -35,7 +35,7 @@ public class PersistenciaColaborador implements ICRUDColaborador {
     public PersistenciaColaborador() throws Exception {
         try {
             controleArquivoTXT = new ControleArquivoTXT(
-                    CONFIGURACAO.getCaminhoBdCliente(),
+                    CONFIGURACAO.getCaminhoBD(),
                     EnumArquivosBd.COLABORADOR.getNomeArquivo());
         } catch (Exception e) {
             throw new Exception("Erro ao construir a classe PersistenciaColaborador!\n" + e.getMessage());

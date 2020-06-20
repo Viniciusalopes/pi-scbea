@@ -42,11 +42,11 @@ public class ControleConfiguracao implements ICRUDConfiguracao {
             throw new Exception("O valor da multa diária deve ser maior ou igual a R$ 0,00!");
         }
 
-        if (configuracao.getCaminhoBdCliente().trim().length() == 0) {
+        if (configuracao.getCaminhoBD().trim().length() == 0) {
             throw new Exception("O caminho da base de dados local não pode ficar em branco");
         }
 
-        if (!new File(configuracao.getCaminhoBdCliente()).exists()) {
+        if (!new File(configuracao.getCaminhoBD()).exists()) {
             throw new Exception("O caminho da base de dados local é inválido!");
         }
 

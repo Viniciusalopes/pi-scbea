@@ -31,6 +31,9 @@ import interfaces.ICRUDLivro;
 import interfaces.ICRUDLog;
 import interfaces.ICRUDReserva;
 import interfaces.ITelaCadastro;
+import java.util.Date;
+import persistencia.PersistenciaComunicadorTCP;
+import static telas.Vai.CONFIGURACAO;
 import utilidades.Mensagens;
 
 /**
@@ -52,14 +55,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private ICRUDReserva controleReserva = null;
     private ICRUDLog controleLog = null;
     private ITelaCadastro telaCadastro = null;
-    
+
     // Utilidades
     private Mensagens mensagem = null;
     private EnumAcao acao = null;
-    
+
     // Objetos
     Emprestimo emprestimo = null;
-    
+
     // Nome do cadastro atual
     private String cadastro = "";
 
@@ -189,8 +192,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     private void devolverEmprestimo() throws Exception {
-        emprestimo = controleEmprestimo.buscarPeloId(getValorColuna("ID"));
-        
+        if (mensagem.pergunta("Confirma a devolução do empréstimo?") == 0) {
+            emprestimo = controleEmprestimo.buscarPeloId(getValorColuna("ID"));
+            emprestimo.setStatusEmprestimo(EnumTipoStatus.DEVOLVIDO);
+            emprestimo.getExemplar().setStatusExemplar(EnumTipoStatus.DISPONIVEL);
+            emprestimo.setDataDevolucao(new Date());
+            if (emprestimo.getValorMulta() > 0) {
+                if (mensagem.pergunta(
+                        "O atraso na entrega gerou uma multe de R$ " + String.format("%.2f", emprestimo.getValorMulta())) == 0) {
+                    mensagem.informacao("Multa recebida com sucesso!");
+                    emprestimo.setValorPago(emprestimo.getValorMulta());
+                }
+            }
+
+            controleEmprestimo.alterar(emprestimo);
+
+            exibirCadastros();
+        }
     }
 
     //--- FIM MÉTODOS PARA CRUD -----------------------------------------------|
@@ -512,10 +530,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelStatusBottomLeft = new javax.swing.JLabel();
         jLabelStatusBottomRight = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sistema Integra");
         setResizable(false);
         setSize(new java.awt.Dimension(1366, 768));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         buttonGroupCadastros.add(jRadioButtonLivros);
         jRadioButtonLivros.setText("Livros");
@@ -962,6 +985,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
             mensagem.erro(e);
         }
     }//GEN-LAST:event_jButtonDevolverActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            // Encerra a comunicação com o servidor
+            String[] dadosServidor = CONFIGURACAO.getCaminhoBdServidor().split(":");
+            PersistenciaComunicadorTCP comunicacao = new PersistenciaComunicadorTCP(dadosServidor[0], Integer.parseInt(dadosServidor[1]));
+            comunicacao.enviarMensagem(EnumAcao.EncerrarServidor.toString());
+
+        } catch (Exception e) {
+            mensagem.erro(e);
+        }
+    }//GEN-LAST:event_formWindowClosing
     //
     //--- FIM EVENTOS - BOTÕES ------------------------------------------------|
     //

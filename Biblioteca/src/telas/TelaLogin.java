@@ -6,6 +6,9 @@
 package telas;
 
 import controle.ControleLogin;
+import enumeradores.EnumAcao;
+import persistencia.PersistenciaComunicadorTCP;
+import static telas.Vai.CONFIGURACAO;
 import utilidades.Mensagens;
 
 /**
@@ -13,7 +16,7 @@ import utilidades.Mensagens;
  * @author vovostudio
  */
 public class TelaLogin extends javax.swing.JFrame {
-    
+
     private Mensagens mensagem = new Mensagens();
 
     /**
@@ -24,7 +27,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         // Centraliza o form na tela
         this.setLocationRelativeTo(rootPane);
-        
+
     }
 
     /**
@@ -122,16 +125,17 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonNaoSeiMinhaSenhaActionPerformed
 
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
-        
+
         try {
             // FONTE: https://www.guj.com.br/t/como-pegar-valor-do-jpasswordfield/227295/7
             Vai.USUARIO = new ControleLogin().autenticar(
                     jTextFieldLogin.getText().trim(), new String(jPasswordField.getPassword()));
-            
+
             TelaPrincipal telaPrincipal = new TelaPrincipal();
             telaPrincipal.setVisible(true);
+
             this.dispose();
-            
+
         } catch (Exception e) {
             mensagem.erro(e);
         }

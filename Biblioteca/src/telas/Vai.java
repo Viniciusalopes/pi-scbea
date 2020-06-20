@@ -4,6 +4,7 @@ import classes.Colaborador;
 import classes.Configuracao;
 import controle.ControleArquivoTXT;
 import controle.ControleConfiguracao;
+import enumeradores.EnumAmbiente;
 import enumeradores.EnumArquivosBd;
 import enumeradores.EnumCargo;
 import enumeradores.EnumPerfil;
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 import utilidades.GeradorID;
 import utilidades.Hash;
 import static utilidades.StringUtil.*;
-import utilidades.Menutencao;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,9 +26,10 @@ import utilidades.Menutencao;
  */
 public class Vai {
 
-    public static Configuracao CONFIGURACAO;
-    public static Colaborador USUARIO;
-    public static String BARRA;
+    public static EnumAmbiente AMBIENTE = null;
+    public static Configuracao CONFIGURACAO = null;
+    public static Colaborador USUARIO = null;
+    public static String BARRA = null;
     private static IArquivoTXT controleArquivoTXT = null;
     private static ArrayList<String> linhas = null;
     private static boolean manutencao = false;
@@ -36,10 +37,10 @@ public class Vai {
     public static void main(String[] args) {
 
         try {
-
             BARRA = barra();    // Obtém a barra de divisão de diretórios de acordo com o S.O.
             CONFIGURACAO = new Configuracao();
 
+            AMBIENTE = EnumAmbiente.CLIENTE; // Para criar o arquivo de configuração local
             controleArquivoTXT = new ControleArquivoTXT(
                     CONFIGURACAO.getCaminhoBdCliente(),
                     EnumArquivosBd.CONFIGURACAO.getNomeArquivo()
@@ -53,11 +54,20 @@ public class Vai {
                 CONFIGURACAO = new ControleConfiguracao().ler();
             }
 
+            // Alterna o ambiente do banco de dados de acordo com o argumento da inicialização
+            AMBIENTE = (args[0].equals(EnumAmbiente.CLIENTE.toString())) ? EnumAmbiente.CLIENTE : EnumAmbiente.SERVIDOR;
+
+            // Altera o IP e Porta do servidor por agumentos 
+            CONFIGURACAO.setCaminhoBdServidor(args[0].equals(EnumAmbiente.SERVIDOR) ? args[1] : CONFIGURACAO.getCaminhoBdServidor());
+
+            System.out.println("AMBIENTE: " + AMBIENTE.toString());
+            System.out.println("ENDERECO: " + CONFIGURACAO.getCaminhoBD());
+            
             for (EnumArquivosBd arquivo : EnumArquivosBd.values()) {
                 if (!arquivo.equals(EnumArquivosBd.CONFIGURACAO)) { // Não cria o arquivo de configuração porque ele já existe
 
                     // Cria os arquivos caso não existam (primeira execução)
-                    controleArquivoTXT = new ControleArquivoTXT(CONFIGURACAO.getCaminhoBdCliente(), arquivo.getNomeArquivo());
+                    controleArquivoTXT = new ControleArquivoTXT(CONFIGURACAO.getCaminhoBD(), arquivo.getNomeArquivo());
 
                     if (arquivo.equals(EnumArquivosBd.COLABORADOR)) {
                         // Cria o arquivo com os dados do proprietário se não existir (primeira excução)
@@ -84,7 +94,7 @@ public class Vai {
                 }
             }
             if (manutencao) {
-                new Menutencao().importarCDD();
+                //new Menutencao().importarCDD();
             }
 
             //System.out.println(Hash.criptografar("123456", "SHA-256"));

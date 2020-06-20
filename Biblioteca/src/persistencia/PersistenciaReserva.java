@@ -38,7 +38,7 @@ public class PersistenciaReserva implements ICRUDReserva {
     public PersistenciaReserva() throws Exception {
         try {
             controleArquivoTXT = new ControleArquivoTXT(
-                    CONFIGURACAO.getCaminhoBdCliente(),
+                    CONFIGURACAO.getCaminhoBD(),
                     EnumArquivosBd.RESERVA.getNomeArquivo());
             controleLivro = new ControleLivro();
             controleColaborador = new ControleColaborador();

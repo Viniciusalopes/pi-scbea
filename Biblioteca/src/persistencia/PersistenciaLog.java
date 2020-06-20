@@ -38,7 +38,7 @@ public class PersistenciaLog implements ICRUDLog {
     // CONSTRUTOR
     public PersistenciaLog() throws Exception {
         try {
-            String caminho = Vai.CONFIGURACAO.getCaminhoBdCliente();
+            String caminho = Vai.CONFIGURACAO.getCaminhoBD();
 
             controleArquivoTXT = new ControleArquivoTXT(caminho, EnumArquivosBd.LOG.getNomeArquivo());
             controleColaborador = new ControleColaborador();

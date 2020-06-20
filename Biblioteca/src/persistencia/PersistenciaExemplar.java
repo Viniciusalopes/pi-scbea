@@ -34,7 +34,7 @@ public class PersistenciaExemplar implements ICRUDExemplar {
     private ICRUDLivro controleLivro = null;
 
     public PersistenciaExemplar() throws Exception {
-        controleArquivoTXT = new ControleArquivoTXT(Vai.CONFIGURACAO.getCaminhoBdCliente(),
+        controleArquivoTXT = new ControleArquivoTXT(Vai.CONFIGURACAO.getCaminhoBD(),
                 EnumArquivosBd.EXEMPLAR.getNomeArquivo()
         );
         controleLivro = new ControleLivro();

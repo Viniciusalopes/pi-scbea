@@ -40,7 +40,7 @@ public class PersistenciaLivro implements ICRUDLivro {
 
     public PersistenciaLivro() throws Exception {
         try {
-            controleArquivoTXT = new ControleArquivoTXT(Vai.CONFIGURACAO.getCaminhoBdCliente(), EnumArquivosBd.LIVRO.getNomeArquivo());
+            controleArquivoTXT = new ControleArquivoTXT(Vai.CONFIGURACAO.getCaminhoBD(), EnumArquivosBd.LIVRO.getNomeArquivo());
             controleEditora = new ControleEditora();
             controleAutor = new ControleAutor();
             controleAreaConhecimento = new ControleAreaConhecimento();

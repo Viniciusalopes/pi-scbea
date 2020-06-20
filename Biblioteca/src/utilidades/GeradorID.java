@@ -10,7 +10,7 @@ public class GeradorID {
 
     private static int id = 0;
     private static int maior = 0;
-    private static String caminho = Vai.CONFIGURACAO.getCaminhoBdCliente();
+    private static String caminho = Vai.CONFIGURACAO.getCaminhoBD();
     private static IArquivoTXT controleDados = null;
 
     public static int getProximoID() throws Exception {

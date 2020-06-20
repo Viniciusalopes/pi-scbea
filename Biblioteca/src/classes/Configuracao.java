@@ -5,6 +5,7 @@
  */
 package classes;
 
+import enumeradores.EnumAmbiente;
 import telas.Vai;
 
 /**
@@ -17,8 +18,8 @@ public class Configuracao {
     private int diasDeEmprestimo = 7;
     private float valorMultaDiaria = 2;
     private String caminhoBdCliente = System.getProperty("user.dir") + Vai.BARRA + "BibliotecaBd" + Vai.BARRA;
-    private String caminhoBdServidor = "192.168.15.3:4567";
-    
+    private String caminhoBdServidor = "192.168.43.249:6789";
+
     public Configuracao() {
     }
 
@@ -77,6 +78,10 @@ public class Configuracao {
 
     public void setCaminhoBdServidor(String caminhoBdServidor) {
         this.caminhoBdServidor = caminhoBdServidor;
+    }
+
+    public String getCaminhoBD() {
+        return (Vai.AMBIENTE.equals(EnumAmbiente.CLIENTE)) ? caminhoBdCliente : caminhoBdServidor;
     }
 
     @Override

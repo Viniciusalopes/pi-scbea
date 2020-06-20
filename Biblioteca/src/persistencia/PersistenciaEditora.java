@@ -33,7 +33,7 @@ public class PersistenciaEditora implements ICRUDEditora {
 
     public PersistenciaEditora() throws Exception {
         controleArquivoTXT = new ControleArquivoTXT(
-                Vai.CONFIGURACAO.getCaminhoBdCliente(),
+                Vai.CONFIGURACAO.getCaminhoBD(),
                 EnumArquivosBd.EDITORA.getNomeArquivo()
         );
     }

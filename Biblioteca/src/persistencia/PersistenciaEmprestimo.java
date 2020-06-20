@@ -41,7 +41,7 @@ public class PersistenciaEmprestimo implements ICRUDEmprestimo {
     public PersistenciaEmprestimo() throws Exception {
         try {
             controleArquivoTXT = new ControleArquivoTXT(
-                    Vai.CONFIGURACAO.getCaminhoBdCliente(),
+                    Vai.CONFIGURACAO.getCaminhoBD(),
                     EnumArquivosBd.EMPRESTIMO.getNomeArquivo()
             );
             controleExemplar = new ControleExemplar();

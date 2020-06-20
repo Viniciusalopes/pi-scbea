@@ -31,7 +31,7 @@ public class TelaConfiguracao extends javax.swing.JDialog {
         jSpinnerLimiteLivros.setValue(Integer.valueOf(Vai.CONFIGURACAO.getLimiteDeLivros()));
         jSpinnerDiasEmprestimo.setValue(Integer.valueOf(Vai.CONFIGURACAO.getDiasDeEmprestimo()));
         jFormattedTextFieldValorMultaDiaria.setValue(Float.valueOf(Vai.CONFIGURACAO.getValorMultaDiaria()));
-        jTextFieldCaminhoBdCliente.setText(Vai.CONFIGURACAO.getCaminhoBdCliente());
+        jTextFieldCaminhoBdCliente.setText(Vai.CONFIGURACAO.getCaminhoBD());
         jTextFieldCaminhoBdServidor.setText(Vai.CONFIGURACAO.getCaminhoBdServidor());
     }
 
@@ -178,7 +178,7 @@ public class TelaConfiguracao extends javax.swing.JDialog {
             String choosertitle = "Selecionar diretório";
 
             chooser = new JFileChooser();
-            chooser.setCurrentDirectory(new java.io.File(Vai.CONFIGURACAO.getCaminhoBdCliente()));
+            chooser.setCurrentDirectory(new java.io.File(Vai.CONFIGURACAO.getCaminhoBD()));
             chooser.setDialogTitle(choosertitle);
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 

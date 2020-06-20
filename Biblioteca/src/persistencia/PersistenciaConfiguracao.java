@@ -24,9 +24,8 @@ public class PersistenciaConfiguracao implements ICRUDConfiguracao {
 
     public PersistenciaConfiguracao() throws Exception {
         try {
-
             controleArquivoTXT = new ControleArquivoTXT(
-                    CONFIGURACAO.getCaminhoBdCliente(),
+                    CONFIGURACAO.getCaminhoBD(),
                     EnumArquivosBd.CONFIGURACAO.getNomeArquivo()
             );
         } catch (Exception e) {

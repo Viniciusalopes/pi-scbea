@@ -10,3 +10,7 @@
 /lab/*
 /tarefas/ativas/ers/.~lock*.docx#
 /Biblioteca/dist/
+/BibliotecaSrv/nbproject/private/
+/TCPServer/nbproject/private/
+/TCPServer/build/
+/TCPServer/dist/
