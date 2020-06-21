@@ -43,8 +43,10 @@ public class TCPServer {
         while (!acao.equals(EnumAcao.EncerrarServidor)) {
             comunicacao = new ComunicadorTCP(6789);
             System.out.println("[" + new Date() + "] Nova comunicação iniciada.");
+            
             comando = comunicacao.receberMensagem();
             System.out.println("[" + new Date() + "] Comando recebido: " + comando);
+            
             if (acao.equals(EnumAcao.EncerrarServidor)) {
                 comunicacao.getServerSocket().close();
                 System.out.println("[" + new Date() + "] Servidor Socket encerrado.");
