@@ -69,17 +69,17 @@ public class Vai {
             //
             // DESCOMENTAR PARA EXECUÇÃO EM PRODUÇÃO
             // Alterna o ambiente do banco de dados de acordo com o argumento da inicialização
-//            if (args.length == 0) {
-//                AMBIENTE = EnumAmbiente.CLIENTE;
-//            } else {
-//                AMBIENTE = (args[0].equals(EnumAmbiente.CLIENTE.toString())) ? EnumAmbiente.CLIENTE : EnumAmbiente.SERVIDOR;
-//                // Altera o IP e Porta do servidor por agumentos 
-//                CONFIGURACAO.setCaminhoBdServidor(args[0].equals(EnumAmbiente.SERVIDOR) ? args[1] : CONFIGURACAO.getCaminhoBdServidor());
-//            }
+            if (args.length == 0) {
+                AMBIENTE = EnumAmbiente.CLIENTE;
+            } else {
+                AMBIENTE = (args[0].equals(EnumAmbiente.CLIENTE.toString())) ? EnumAmbiente.CLIENTE : EnumAmbiente.SERVIDOR;
+                // Altera o IP e Porta do servidor por agumentos 
+                CONFIGURACAO.setCaminhoBdServidor(args[0].equals(EnumAmbiente.SERVIDOR) ? args[1] : CONFIGURACAO.getCaminhoBdServidor());
+            }
             // DESCOMENTAR PARA EXECUÇÃO EM PRODUÇÃO
             //
             //PARA TESTE COM IDE NETBEANS: COMENTAR QUANDO EM PRODUÇÃO
-            AMBIENTE = EnumAmbiente.SERVIDOR;
+//            AMBIENTE = EnumAmbiente.SERVIDOR;
             //PARA TESTE COM IDE NETBEANS: COMENTAR QUANDO EM PRODUÇÃO
 
             System.out.println("AMBIENTE: " + AMBIENTE.toString());
