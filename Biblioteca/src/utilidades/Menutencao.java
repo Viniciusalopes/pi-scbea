@@ -45,8 +45,8 @@ public class Menutencao {
                 System.out.println("Importando CDD " + area.getCdd() + "...");
 
             } catch (Exception e) {
-                new ControleLog().incluir(EnumAcao.Importar_CDD, EnumCadastro.AREACONHECIMENTO, area.toString(), e.getMessage());
-                System.out.println("CDD " + area.getCdd() + "Não foi importada!\nMotivo: " + e.getMessage());
+                new ControleLog().incluir(EnumAcao.ImportarCDD, EnumCadastro.AREACONHECIMENTO, area.toString(), e.getMessage());
+                System.out.println("CDD " + area.getCdd() + " não foi importada!\nMotivo: " + e.getMessage());
             }
         }
         dataHora = formatoData.format(new Date()).toString();

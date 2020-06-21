@@ -109,7 +109,7 @@ public class Exemplar extends Livro {
                 statusExemplar.ordinal(),
                 new SimpleDateFormat("dd/MM/yyyy").format(dataAquisicao),
                 precoCompra,
-                "_" + motivoDesativado
+                "." + motivoDesativado
         );
     }
 }

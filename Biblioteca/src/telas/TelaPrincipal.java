@@ -91,9 +91,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 return;
             }
             if (cadastro.equals(EnumCadastro.EMPRESTIMO.toString())) {
-                acao = EnumAcao.Incluir_Emprestimo;
+                acao = EnumAcao.IncluirEmprestimo;
             } else if (cadastro.equals(EnumCadastro.RESERVA.toString())) {
-                acao = EnumAcao.Incluir_Reserva;
+                acao = EnumAcao.IncluirReserva;
             } else {
                 acao = EnumAcao.Incluir;
             }
@@ -112,9 +112,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         try {
 
             if (cadastro.equals(EnumCadastro.EMPRESTIMO.toString())) {
-                acao = EnumAcao.Editar_Emprestimo;
+                acao = EnumAcao.EditarEmprestimo;
             } else if (cadastro.equals(EnumCadastro.RESERVA.toString())) {
-                acao = EnumAcao.Editar_Reserva;
+                acao = EnumAcao.EditarReserva;
             } else {
                 acao = EnumAcao.Editar;
             }

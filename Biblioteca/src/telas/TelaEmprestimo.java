@@ -79,9 +79,9 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
     public void setAcao(EnumAcao acao
     ) {
         this.acao = acao;
-        if (acao.equals(EnumAcao.Editar_Emprestimo)) {
+        if (acao.equals(EnumAcao.EditarEmprestimo)) {
             idEmprestimo = id;
-        } else if (acao.equals(EnumAcao.Editar_Reserva)) {
+        } else if (acao.equals(EnumAcao.EditarReserva)) {
             idReserva = id;
         }
         String textoAcao = (acao.toString().contains("Incluir")) ? "Incluir" : "Editar";
@@ -110,9 +110,9 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
             preencherJTableLivro(matrizLivro);
             jTextFieldPesquisarLivroKeyReleased(null);
 
-            if (acao.equals(EnumAcao.Editar_Emprestimo)) {
+            if (acao.equals(EnumAcao.EditarEmprestimo)) {
                 preencherCamposEmprestimo();
-            } else if (acao.equals(EnumAcao.Editar_Reserva)) {
+            } else if (acao.equals(EnumAcao.EditarReserva)) {
                 preencherCamposReserva();
             }
         } catch (Exception e) {
@@ -181,7 +181,7 @@ public class TelaEmprestimo extends javax.swing.JDialog implements ITelaCadastro
                 + "\n\nConfirma a inclusão do empréstimo?"
                 + "\n") == 0) {
 
-            if (acao.equals(EnumAcao.Incluir_Emprestimo)) {
+            if (acao.equals(EnumAcao.IncluirEmprestimo)) {
                 idEmprestimo = controleTelaEmprestimo.incluirEmprestimo(idColaborador, idExemplar, new Date());
                 matrizExemplar = controleTelaEmprestimo.getMatrizExemplares(idLivro);
                 preencherJTableExemplares(matrizExemplar);

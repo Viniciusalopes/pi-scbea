@@ -72,9 +72,11 @@ public class ControleArquivoTXT implements IArquivoTXT {
                 escreverArquivo();
             } else {
                 comunicacao = new PersistenciaComunicadorTCP(dadosServidor[0], Integer.parseInt(dadosServidor[1]));
+                Thread.sleep(15);
                 comunicacao.enviarMensagem(
                         EnumAcao.Incluir.toString() + "_" + arquivo + "_" + linha
                 );
+                Thread.sleep(15);
                 comunicacao.FecharConexao();
             }
         } catch (Exception e) {
@@ -97,7 +99,9 @@ public class ControleArquivoTXT implements IArquivoTXT {
                 escreverArquivo();
             } else {
                 comunicacao = new PersistenciaComunicadorTCP(dadosServidor[0], Integer.parseInt(dadosServidor[1]));
+                Thread.sleep(15);
                 comunicacao.enviarMensagem(EnumAcao.Editar.toString() + "_" + arquivo + "_" + linhaAntes + "_" + linhaDepois);
+                Thread.sleep(15);
                 comunicacao.FecharConexao();
             }
         } catch (Exception e) {
@@ -118,8 +122,9 @@ public class ControleArquivoTXT implements IArquivoTXT {
                 }
             } else {
                 comunicacao = new PersistenciaComunicadorTCP(dadosServidor[0], Integer.parseInt(dadosServidor[1]));
-                comunicacao.enviarMensagem(
-                        EnumAcao.Excluir.toString() + "_" + arquivo + "_" + linha);
+                Thread.sleep(15);
+                comunicacao.enviarMensagem(EnumAcao.Excluir.toString() + "_" + arquivo + "_" + linha);
+                Thread.sleep(15);
                 comunicacao.FecharConexao();
             }
         } catch (Exception e) {
@@ -144,7 +149,9 @@ public class ControleArquivoTXT implements IArquivoTXT {
             } else {
                 String mensagem = EnumAcao.LerArquivo.toString() + "_" + arquivo;
                 comunicacao = new PersistenciaComunicadorTCP(dadosServidor[0], Integer.parseInt(dadosServidor[1]));
+                Thread.sleep(15);
                 comunicacao.enviarMensagem(mensagem);
+                Thread.sleep(15);
                 String retorno = comunicacao.receberMensagem();
                 comunicacao.FecharConexao();
 

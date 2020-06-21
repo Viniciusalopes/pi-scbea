@@ -46,13 +46,17 @@ public class PersistenciaExemplar implements ICRUDExemplar {
         linhas = controleArquivoTXT.lerArquivo();
         for (String linha : linhas) {
             String[] dados = linha.split(";");
+
+            float valor = 0;
+            valor = Float.parseFloat("1.0");
+
             exemplar = new Exemplar(
                     Integer.parseInt(dados[0]),
                     controleLivro.buscarPeloId(Integer.parseInt(dados[1])),
                     EnumTipoStatus.values()[Integer.parseInt(dados[2])],
                     new SimpleDateFormat("dd/MM/yyyy").parse(dados[3].replace(",", ".")),
-                    Float.parseFloat(dados[4].toString().replace(",", ".")),
-                    dados[5].replaceAll("____", "\n").replace("_", "")
+                    (float) Float.parseFloat(dados[4].toString().replace(",", ".")),
+                    (dados[5].substring(0, 1).equals(".")) ? dados[5].replaceAll("____", "\n").substring(1) : dados[5].replaceAll("____", "\n")
             );
             colecao.add(exemplar);
         }
@@ -74,7 +78,7 @@ public class PersistenciaExemplar implements ICRUDExemplar {
     @Override
     public void incluir(Exemplar exemplar) throws Exception {
         exemplar.setIdExemplar(GeradorID.getProximoID());
-        exemplar.setMotivoDesativado((exemplar.getMotivoDesativado().trim().length() == 0) ? "-" : exemplar.getMotivoDesativado().replace(";", ","));
+        exemplar.setMotivoDesativado((exemplar.getMotivoDesativado().trim().length() == 0) ? "." : exemplar.getMotivoDesativado().replace(";", ","));
         controleArquivoTXT.incluirLinha(exemplar.toString().replaceAll("\n", "____"));
     }
 
@@ -83,7 +87,7 @@ public class PersistenciaExemplar implements ICRUDExemplar {
         linhas = controleArquivoTXT.lerArquivo();
         for (String linha : linhas) {
             if (Integer.parseInt(linha.split(";")[0]) == exemplar.getIdExemplar()) {
-                exemplar.setMotivoDesativado((exemplar.getMotivoDesativado().trim().length() == 0) ? "-" : exemplar.getMotivoDesativado().replace(";", ","));
+                exemplar.setMotivoDesativado((exemplar.getMotivoDesativado().trim().length() == 0) ? "." : exemplar.getMotivoDesativado().replace(";", ","));
                 controleArquivoTXT.alterarLinha(linha, exemplar.toString().replaceAll("\n", "____"));
                 break;
             }

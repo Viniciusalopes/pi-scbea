@@ -105,7 +105,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
             }
             jButtonExcluirExemplar.setEnabled(false);
         } catch (Exception e) {
-            mensagem.erro(e);
+            mensagem.erro(new Exception(e.getMessage()));
         }
         visible = true;
         super.setVisible(b);
@@ -679,7 +679,7 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         try {
             validarPreenchimento();
@@ -762,8 +762,10 @@ public class TelaLivro extends javax.swing.JDialog implements ITelaCadastro {
                     preencherJTableExemplares(livro.getIdLivro());
                 }
             }
-            EnumTipoStatus status = EnumTipoStatus.valueOf(jTableExemplares.getValueAt(jTableExemplares.getSelectedRow(), 1).toString());
-            jButtonExcluirExemplar.setEnabled(status.equals(EnumTipoStatus.DISPONIVEL));
+            if (jTableExemplares.getSelectedRow() > -1) {
+                EnumTipoStatus status = EnumTipoStatus.valueOf(jTableExemplares.getValueAt(jTableExemplares.getSelectedRow(), 1).toString());
+                jButtonExcluirExemplar.setEnabled(status.equals(EnumTipoStatus.DISPONIVEL));
+            }
         } catch (Exception e) {
             mensagem.erro(new Exception("Erro ao abrir cadastro de exemplar!\n " + e.getMessage()));
         }

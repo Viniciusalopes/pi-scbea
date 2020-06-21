@@ -46,14 +46,14 @@ public class ControleReserva implements ICRUDReserva {
 
     @Override
     public int incluir(Reserva reserva) throws Exception {
-        acao = EnumAcao.Incluir_Reserva;
+        acao = EnumAcao.IncluirReserva;
         validarReserva(reserva);
         return persistencia.incluir(reserva);
     }
 
     @Override
     public void alterar(Reserva reserva) throws Exception {
-        acao = EnumAcao.Editar_Reserva;
+        acao = EnumAcao.EditarReserva;
         validarReserva(reserva);
         persistencia.alterar(reserva);
     }
@@ -74,7 +74,7 @@ public class ControleReserva implements ICRUDReserva {
         for (Reserva r : colecao) {
             if (reserva.getColaborador().getIdColaborador() == r.getColaborador().getIdColaborador()
                     && reserva.getLivro().getIdLivro() == r.getLivro().getIdLivro()
-                    && acao.equals(EnumAcao.Incluir_Reserva)) {
+                    && acao.equals(EnumAcao.IncluirReserva)) {
                 throw new Exception("Já existe uma reserva em nome desse colaborador para este livro!\n"
                         + "Reserva nº " + r.getIdReserva()
                         + " - Data: " + formatoData.format(reserva.getdataReserva()));

@@ -13,6 +13,7 @@ import interfaces.IArquivoTXT;
 import java.util.ArrayList;
 import utilidades.GeradorID;
 import utilidades.Hash;
+import utilidades.Menutencao;
 import static utilidades.StringUtil.*;
 
 /*
@@ -32,7 +33,7 @@ public class Vai {
     public static String BARRA = null;
     private static IArquivoTXT controleArquivoTXT = null;
     private static ArrayList<String> linhas = null;
-    private static boolean manutencao = false;
+    private static boolean manutencao = true;
 
     public static void main(String[] args) {
 
@@ -54,15 +55,36 @@ public class Vai {
                 CONFIGURACAO = new ControleConfiguracao().ler();
             }
 
+            // Se for Ambiente CLIENTE
+            //      Abre a comunicação
+            //      Baixa todos os arquivos de dados do SERVIDOR
+            //      Mescla com os arquivos de dados locais
+            // Se for Ambiente SERVIDOR
+            //      Abre a comunicação
+            //      Evia todos os arquivos de locais para o SERVIDOR
+            //      chama o serviço de mescar dados do servidor
+            // LOCAL: ABD124
+            // REMOTO: CEFG357
+            // MESCLADO: ABCDEFG12357
+            //
+            // DESCOMENTAR PARA EXECUÇÃO EM PRODUÇÃO
             // Alterna o ambiente do banco de dados de acordo com o argumento da inicialização
-            AMBIENTE = (args[0].equals(EnumAmbiente.CLIENTE.toString())) ? EnumAmbiente.CLIENTE : EnumAmbiente.SERVIDOR;
-
-            // Altera o IP e Porta do servidor por agumentos 
-            CONFIGURACAO.setCaminhoBdServidor(args[0].equals(EnumAmbiente.SERVIDOR) ? args[1] : CONFIGURACAO.getCaminhoBdServidor());
+//            if (args.length == 0) {
+//                AMBIENTE = EnumAmbiente.CLIENTE;
+//            } else {
+//                AMBIENTE = (args[0].equals(EnumAmbiente.CLIENTE.toString())) ? EnumAmbiente.CLIENTE : EnumAmbiente.SERVIDOR;
+//                // Altera o IP e Porta do servidor por agumentos 
+//                CONFIGURACAO.setCaminhoBdServidor(args[0].equals(EnumAmbiente.SERVIDOR) ? args[1] : CONFIGURACAO.getCaminhoBdServidor());
+//            }
+            // DESCOMENTAR PARA EXECUÇÃO EM PRODUÇÃO
+            //
+            //PARA TESTE COM IDE NETBEANS: COMENTAR QUANDO EM PRODUÇÃO
+            AMBIENTE = EnumAmbiente.SERVIDOR;
+            //PARA TESTE COM IDE NETBEANS: COMENTAR QUANDO EM PRODUÇÃO
 
             System.out.println("AMBIENTE: " + AMBIENTE.toString());
             System.out.println("ENDERECO: " + CONFIGURACAO.getCaminhoBD());
-            
+
             for (EnumArquivosBd arquivo : EnumArquivosBd.values()) {
                 if (!arquivo.equals(EnumArquivosBd.CONFIGURACAO)) { // Não cria o arquivo de configuração porque ele já existe
 
@@ -88,13 +110,13 @@ public class Vai {
                                             EnumTipoStatus.ATIVO
                                     ).toString()
                             );
-                            manutencao = true;
+                            //manutencao = true;
                         }
                     }
                 }
             }
             if (manutencao) {
-                //new Menutencao().importarCDD();
+                new Menutencao().importarCDD();
             }
 
             //System.out.println(Hash.criptografar("123456", "SHA-256"));

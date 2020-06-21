@@ -1,3 +1,0 @@
-2020/06/17 19:24:05_0_7_0_22;3412;DIREITO CONSTITUCIONAL_Esta área de conhecimento já está cadastrada!
-2020/06/17 19:34:31_1_2_6_1986;1983;2;17/06/2020;52,00;--;_PersistenciaExemplar, excluir
-2020/06/17 19:37:44_1_2_6_1984;1983;2;17/06/2020;52,00;--;_PersistenciaExemplar, excluir

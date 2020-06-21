@@ -62,7 +62,7 @@ public class ControleEmprestimo implements IControleEmprestimo {
 
     @Override
     public int incluir(Emprestimo emprestimo) throws Exception {
-        acao = EnumAcao.Incluir_Emprestimo;
+        acao = EnumAcao.IncluirEmprestimo;
         validarEmprestimo(emprestimo);
 
         int idEmprestimo = persistencia.incluir(emprestimo);
@@ -77,7 +77,7 @@ public class ControleEmprestimo implements IControleEmprestimo {
 
     @Override
     public void alterar(Emprestimo emprestimo) throws Exception {
-        acao = EnumAcao.Editar_Emprestimo;
+        acao = EnumAcao.EditarEmprestimo;
         validarEmprestimo(emprestimo);
         persistencia.alterar(emprestimo);
     }
